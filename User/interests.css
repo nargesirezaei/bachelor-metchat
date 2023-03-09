@@ -9,18 +9,22 @@ html {
 }
 
 header {
-  background-color: #112d40;
   height: 191px;
 }
 .main-nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0px;
   font-family: "Bai Jamjuree", sans-serif;
   font-size: 36px;
   line-height: 45px;
   width: 100%;
+  background-color: #112d40;
 }
 .main-nav a {
   color: #ffffff;
@@ -50,7 +54,7 @@ a {
   align-items: center;
   color: #112d40;
 }
-#first img {
+#first .profile-icon {
   width: 350px;
   height: 350px;
 }
@@ -58,23 +62,32 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px;
-  height: 1350px;
+  height: 1200px;
   width: 950px;
-  background-color: #98a4ac;
+  background: #dee1e4;
   margin-top: -25px;
   margin-bottom: 100px;
+  box-shadow: 0px 30px 100px rgba(0, 0, 0, 0.25);
 }
 .box .text {
-  margin-right: 500px;
+  margin-right: 600px;
+  margin-top: 75px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  font-size: 50px;
+  font-size: 30px;
 }
-.box input {
+.box textarea {
   width: 750px;
   height: 150px;
-  margin-top: 100px;
+  margin-top: 75px;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+.box h2 {
+  margin-right: 600px;
+  color: #112d40;
+  margin-top: 75px;
 }
 .btns-odd {
   display: grid;
@@ -98,6 +111,50 @@ a {
 }
 .intress-btn:hover {
   background-color: #112d40;
+}
+.showMore {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-left: 150px;
+}
+.showMore button {
+  background-color: #dee1e4;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  border: none;
+  margin-right: 700px;
+  margin-top: 75px;
+  color: #112d40;
+}
+.showMore img {
+  width: 50px;
+  height: 50px;
+  margin-top: 75px;
+}
+.btns {
+  display: flex;
+  flex-direction: row;
+}
+.btns button {
+  margin-left: 25%;
+  margin-bottom: 100px;
+  width: 242px;
+  height: 98px;
+  background: #112d40;
+  border-radius: 35px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 59px;
+  color: #fafafa;
+}
+.btns button:hover {
+  background-color: #fafafa;
+  color: #112d40;
 }
 
 footer {

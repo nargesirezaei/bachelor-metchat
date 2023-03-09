@@ -14,18 +14,22 @@ html {
 }
 
 header {
-  background-color: #112d40;
   height: 191px;
 }
 .main-nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0px;
   font-family: "Bai Jamjuree", sans-serif;
   font-size: 36px;
   line-height: 45px;
   width: 100%;
+  background-color: #112d40;
 }
 .main-nav a {
   color: #ffffff;
