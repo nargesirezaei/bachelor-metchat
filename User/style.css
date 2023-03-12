@@ -24,6 +24,7 @@ nav {
   line-height: 45px;
   height: 160px;
   background-color: #112d40;
+  z-index: 1;
 }
 nav img {
   width: 160px;
@@ -294,6 +295,101 @@ margin-left: 10px;
 .info img{
   width: 50px;
   height: 50px;
+}
+/* profile page */
+.bdy{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 800px;
+}
+
+.bdy .left-side{
+  position: absolute;
+  color: #112d40;
+  border-right: 1px solid #dee1e4;
+  z-index: 0;
+  top: 0; 
+  width: 75%;
+  height:100%;
+}
+.bdy .left-side .part-1 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 100px;
+ }
+ .bdy .left-side .part-1 img{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 250px;
+  left: 20px;
+}
+.bdy .left-side .part-1 h1{
+  position: absolute; 
+  left: 150px;
+}
+.bdy .left-side .part-1 button{
+  position: absolute; 
+  right: 150px;
+  top: 320px;
+  width: 109px;
+height: 36px;
+  background-color: #fafafa;
+  border: 1px solid #000000;
+  border-radius: 40px;
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 19px;
+line-height: 22px;
+color: #000000;
+
+}
+
+.left-side .cover{
+  height: 300px;
+  width: 100%;
+}
+.bdy .left-side .info{
+  display: flex;
+  flex-direction: column;
+  
+  margin: 0 100px 0 100px;
+  font-family: 'Bai Jamjuree';
+font-style: normal;
+font-weight: 400;
+font-size: 25px;
+line-height: 22px;
+color: #000000;
+
+}
+.bdy .left-side .info textarea{
+  max-width: 300px;
+  height: 100px;
+  margin-bottom: 50px;
+}
+.btns-odd {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 300px;
+  gap: 20px;
+}
+.intress-btn {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(17, 45, 64, 0.42);
+  color: #fafafa;
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+}
+.intress-btn:hover {
+  background-color: #112d40;
+}
+
+.info .bio{
+  margin-bottom: 50px;
 }
 
 footer {
