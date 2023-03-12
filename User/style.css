@@ -239,7 +239,38 @@ margin-top: 500px;
   }
 #right-side{
   border-left:#dee1e4 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+}
+#right-side .part-1{
+  width: 100px;
+  height: 100px;
+  margin-top: 25px;
+}
+#right-side .part-2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 25px;
+  width: 50%;
+
+}
+.part-2 img{
+  width: 35px;
+  height: 35px;
+}
+.part-2 .search-icon{
+  width: 35px;
+  height: 35px;
+}
+.part-3{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  margin-top: 10px;
 }
 #left-side .info{
   margin-top: 20px;
