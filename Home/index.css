@@ -13,9 +13,6 @@ html {
   font-family: "Inter", sans-serif;
 }
 
-header {
-  height: 160px;
-}
 nav {
   display: flex;
   flex-direction: row;
@@ -63,6 +60,7 @@ a {
 #first {
   display: flex;
   flex-direction: row;
+  margin-top: 150px;
 }
 .log-reg {
   display: flex;
