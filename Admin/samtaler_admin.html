@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="admin_nav.css" />
+    <link rel="stylesheet" type="text/css" href="admin_samtaler.css" />
+
+    <title>Samtaler - Admin</title>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul class="admin-nav">
+          <li>
+            <!-- Logo -->
+            <a href="admin_home.html"
+              ><img src="../photos/Logo.svg" alt="MetChat"
+            /></a>
+          </li>
+          <!-- Menu Items -->
+          <li class="nav-item">
+            <a href="brukere_admin.html">Brukere</a>
+          </li>
+          <li class="nav-item">
+            <a href="samtaler_admin.html">Samtaler</a>
+          </li>
+          <li class="nav-item"><a href="../Home/index.html">Logg ut</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h1>Samtaler</h1>
+
+        <!-- Search bar -->
+        <!-- Retrived from https://mdbootstrap.com/docs/standard/forms/search/-->
+        <div class="search-group input-group rounded">
+          <input
+            type="search"
+            class="form-control rounded"
+            placeholder="Søk"
+            aria-label="Search"
+            aria-describedby="search-addon"
+          />
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+          </span>
+          <p>
+            Sorter etter:
+            <select>
+              <option value="">Velg</option>
+              <option value="dato">Dato</option>
+              <option value="navn">Navn</option>
+            </select>
+          </p>
+        </div>
+      </section>
+
+      <!-- List of conversetions -->
+      <section class="conversation-list">
+        <ul class="list-group list-group-light">
+          <!-- Conversation participants -->
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <!-- Date -->
+            <span>Dato</span>
+            <!-- Conversation participants -->
+            <div class="participants">
+              <div class="participant d-flex align-items-center">
+                <img
+                  src=""
+                  alt="P"
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Person En</p>
+                </div>
+              </div>
+
+              <div class="participant d-flex align-items-center">
+                <img
+                  src=""
+                  alt="P"
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Person To</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <a
+              class="btn-download btn-link btn-rounded btn-sm"
+              href="#"
+              role="button"
+              >Last ned samtale</a
+            >
+            <a
+              class="btn-delete btn-link btn-rounded btn-sm"
+              href="#"
+              role="button"
+              >Slett samtale</a
+            >
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <!-- Date -->
+            <span>Dato</span>
+            <!-- Conversation participants -->
+            <div class="participants">
+              <div class="participant d-flex align-items-center">
+                <img
+                  src=""
+                  alt="P"
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Person En</p>
+                </div>
+              </div>
+
+              <div class="participant d-flex align-items-center">
+                <img
+                  src=""
+                  alt="P"
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Person To</p>
+                </div>
+              </div>
+            </div>
+            <!-- Buttons -->
+            <a
+              class="btn-download btn-link btn-rounded btn-sm"
+              href="#"
+              role="button"
+              >Last ned samtale</a
+            >
+            <a
+              class="btn-delete btn-link btn-rounded btn-sm"
+              href="#"
+              role="button"
+              >Slett samtale</a
+            >
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <!-- Date -->
+            <span>Dato</span>
+            <!-- Conversation participants -->
+            <div class="participants">
+              <div class="participant d-flex align-items-center">
+                <img
+                  src=""
+                  alt="P"
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Person En</p>
+                </div>
+              </div>
+
+              <div class="participant d-flex align-items-center">
+                <img
+                  src=""
+                  alt="P"
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Person To</p>
+                </div>
+              </div>
+            </div>
+            <!-- Buttons -->
+            <a
+              class="btn-download btn-link btn-rounded btn-sm"
+              href="#"
+              role="button"
+              >Last ned samtale</a
+            >
+            <a
+              class="btn-delete btn-link btn-rounded btn-sm"
+              href="#"
+              role="button"
+              >Slett samtale</a
+            >
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <!-- Date -->
+            <span>Dato</span>
+            <!-- Conversation participants -->
+            <div class="participants">
+              <div class="participant d-flex align-items-center">
+                <img
+                  src=""
+                  alt="P"
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Person En</p>
+                </div>
+              </div>
+
+              <div class="participant d-flex align-items-center">
+                <img
+                  src=""
+                  alt="P"
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">Person To</p>
+                </div>
+              </div>
+            </div>
+            <!-- Buttons -->
+            <a
+              class="btn-download btn-link btn-rounded btn-sm"
+              href="#"
+              role="button"
+              >Last ned samtale</a
+            >
+            <a
+              class="btn-delete btn-link btn-rounded btn-sm"
+              href="#"
+              role="button"
+              >Slett samtale</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <div class="master-buttons">
+        <button class="btn-download-all">Last ned alle</button>
+        <button class="btn-delete-all">Slett alle</button>
+      </div>
+    </main>
+  </body>
+</html>
