@@ -33,11 +33,7 @@ nav img {
   height: 160px;
   margin-left: 75px;
 }
-.main-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+
 .main-nav a {
   color: #ffffff;
   text-decoration: none;

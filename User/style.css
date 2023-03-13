@@ -44,12 +44,13 @@ li {
   list-style: none;
 }
 .main-nav a:hover {
-  color: chocolate;
+  color:#ffdc00;
 }
 
 a.active {
-  color: coral;
+  color:#ffdc00;
   font-weight: 600;
+  text-decoration: underline;
 }
 a.active:hover {
   color: #dee1e4;
