@@ -80,12 +80,9 @@ h1 {
 }
 
 /* USER */
-/*
-aside {
-  border-left: solid black 1px;
-}*/
 .user {
   margin-left: 4%;
+  margin-bottom: 6%;
 }
 
 .user-header {
@@ -112,14 +109,48 @@ aside {
   margin-bottom: 2%;
 }
 
-.user-info span {
-  background-color: #dee1e4;
-  padding: 8px;
-  border-radius: 12px;
+.user-info td {
+  padding: 10px 40px;
 }
 
-.user-info ul {
+.user-info-value {
   background-color: #dee1e4;
-  padding: 8px;
-  border-radius: 12px;
+  width: 75%;
+}
+
+/* BUTTONS FOR VIEWING AND DOWNLOADING CONVERSATIONS */
+.btn-coanversations button {
+  background-color: #98a4ac;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+
+  padding: 8px 24px;
+  margin-top: 8px;
+  display: flex;
+  align-content: right;
+  justify-items: right;
+}
+
+.btn-coanversations button:hover {
+  background-color: #112d40;
+  color: #ffffff;
+}
+
+/* DETETE USER BUTTON */
+.del-user {
+  font-family: "Inter", sans-serif;
+  background-color: #112d40;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 12px;
+
+  margin-top: 5%;
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+
+.del-user:hover {
+  background-color: #dee1e4;
+  color: #112d40;
 }
