@@ -8,9 +8,6 @@ html {
   font-family: "Inter", sans-serif;
 }
 
-header {
-  height: 160px;
-}
 nav {
   display: flex;
   flex-direction: row;
@@ -30,11 +27,6 @@ nav img {
   width: 160px;
   height: 160px;
   margin-left: 75px;
-}
-.main-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 .main-nav a {
   color: #ffffff;
@@ -60,6 +52,7 @@ a {
   flex-direction: column;
   align-items: center;
   color: #112d40;
+  margin-top: 250px;
 }
 #first h1 {
   font-family: "Bai Jamjuree";
@@ -69,14 +62,13 @@ a {
   line-height: 62px;
 }
 #first .profile-icon {
-  width: 350px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
 }
 .box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 1200px;
   width: 950px;
   background: #dee1e4;
   margin-bottom: 100px;
@@ -132,6 +124,7 @@ a {
   justify-content: space-around;
   width: 100%;
   margin-left: 150px;
+  margin-bottom: 50px;
 }
 .showMore button {
   background-color: #dee1e4;
@@ -177,7 +170,6 @@ footer {
   align-items: center;
   padding: 20px;
   background-color: #112d40;
-  margin-top: auto;
 }
 footer p {
   margin-top: 25px;

@@ -59,9 +59,8 @@ h1 {
   font-size: 16px;
   background-color: #dee1e4;
   padding: 8px;
-  flex-grow: 1;
   border-radius: 100px;
-
+  display: flex;
   align-items: center;
   transition: 0.3s;
 }
