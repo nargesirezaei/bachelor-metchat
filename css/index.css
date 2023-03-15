@@ -259,6 +259,7 @@ left: 75px;
   left: 0;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 .scroll-div {
   max-width: 800px;
