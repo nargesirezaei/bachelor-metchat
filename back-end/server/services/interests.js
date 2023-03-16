@@ -4,9 +4,19 @@ module.exports = {
   create: (req, res, next) => {
     var title = req.body.title;
     var interest = new Interests({ title });
-    interest.save((err) => {
+    Interests.findOne({title }, (err, result) => {
       if (err) return res.send({ status: false, message: "data base error" });
-      res.send({ status: true, message: "interest added" });
+
+      if (!result) {
+        interest.save((err) => {
+          if (err)
+            return res.send({ status: false, message: "data base error" });
+            
+          res.send({ status: true, message: "interest added" });
+        });
+      }else{
+        res.send({ status: false, message: "interest already exists" });
+      }
     });
   },
   delete: (req, res, next) => {
@@ -17,7 +27,7 @@ module.exports = {
       if (!result)
         return res.send({ status: false, message: "interest not exists!" });
 
-      res.send({ status:true,message: "interest removed" });
+      res.send({ status: true, message: "interest removed" });
     });
   },
   getAll: (req, res, next) => {
@@ -50,7 +60,7 @@ module.exports = {
       .catch((error) => {
         res.send({
           result: false,
-          message: "Error while updating UserContact documents:"+error,
+          message: "Error while updating UserContact documents:" + error,
         });
         // Add any error handling code here
       });
