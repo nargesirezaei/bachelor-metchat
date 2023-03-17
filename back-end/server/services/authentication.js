@@ -57,4 +57,15 @@ module.exports = {
       
     });
   },
+  changePassword: (req, res) => {
+    var userId = req.userId;
+    var password  = req.password;
+    User.findOneAndUpdate({_id:userId },{$set:{password}}, (err, result) => {
+        if (err) return res.send({ status: false, message: "data base error" });
+        if (!result)
+          return res.send({ status: true, message: "user not exists!" });
+  
+        res.send({ message: "password changed" });
+      });
+},
 };
