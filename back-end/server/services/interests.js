@@ -33,7 +33,7 @@ module.exports = {
       res.send({ status: true, interest: result });
     });
   },
-  update: (req, res, next) => {
+  /*update: (req, res, next) => {
     var interestId = req.params.interestId;
     Interests.updateOne(
       { _id: interestId },
@@ -54,5 +54,5 @@ module.exports = {
         });
         // Add any error handling code here
       });
-  },
+  },*/
 };

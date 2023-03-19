@@ -13,7 +13,7 @@ app.get(`/`,verifyaccess, interests.getAll);
 app.get(`/:interestId`,verifyaccess,  interests.get);
 
 //update one row with specific id
-app.put(`/:interestId`,verifyaccess, interests.update);
+//app.put(`/:interestId`,verifyaccess, interests.update);
 
 app.delete(`/:interestId`,verifyaccess, interests.delete);
 

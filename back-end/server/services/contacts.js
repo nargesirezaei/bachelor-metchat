@@ -1,16 +1,15 @@
 const Contacts = require('../models/contacts');
 
 module.exports = {
-    add:(req,res,next)=>{
+    add : ( req, res, next ) => {
         var userId = req.userId;
         var contactId = req.body.contactId;
         var contact = new Contacts({userId , contactId});
         contact.save((err)=>{
             if(err) return res.send({status:false,message:"data base error"});
-            res.send({status:true,message:"contact added"})
         })
     },
-    remove:(req,res,next)=>{
+    remove : ( req, res, next ) => {
         var userId = req.userId;
         var contactId = req.body.contactId;
         
@@ -21,7 +20,7 @@ module.exports = {
             res.send({message:"contact removed"})
         })
     },
-    myContacts:(req,res,next)=>{
+    myContacts : ( req, res, next ) => {
         var userId = req.userId;
       
         Contacts.find({userId},(err,result)=>{
@@ -29,7 +28,7 @@ module.exports = {
             res.send({status:true,contacts:result})
         })
     },
-    UpdateMyContact:(req,res,next)=>{
+    UpdateMyContact : ( req, res, next ) => {
         Contacts.updateMany({ userId:req.userId }, { $set: {name:"ehsan"} })
         .then((result) => {
           // The `result` variable contains the number of documents that were updated
