@@ -46,13 +46,24 @@ const userSchema = new Schema({
     },
     /*interests : {
         type : Array,
-        default : [],
     },*/
-    isAdmin:{
+    interests : {
+        type : [{
+            type : Schema.Types.ObjectId,
+            unique : true,
+            ref : 'Interests',
+        }],
+        validate : [ arrayLimit, '{PATH} exceeds the limit of 10' ]
+    },
+    isAdmin : {
         type : Boolean,
         default : false,
     },
 });
+
+function arrayLimit(val) {
+    return val.length <= 100;
+}
 
 
 const User = mongoose.model('User', userSchema);

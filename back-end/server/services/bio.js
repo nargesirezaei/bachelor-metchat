@@ -4,18 +4,25 @@ module.exports = {
     editProfile: async (req, res) => {
         const userId = req.params.userId,
             { avatar, bio, interests } = req.body;
-
+        let status = 0,
+            message = "";
+        
         await User.findByIdAndUpdate( userId, {
-            isBioSet: true,
             avatar,
             bio,
-            //interests,
+            $addToSet: { interests },
         })
         .then(() => {
-            return res.status(200).json({ message: "Successfuly edited bio" });
+            status = 200;
+            message = "Successfuly edited bio";
         })
         .catch((error) => {
-            return res.status(401).json({ message: `Unsuccessfuly edited bio ${error}` });
+            status = 401
+            message = `Unsuccessfuly edited bio ${error}`;
         });
+
+        await User.findById( userId ).populate( "interests" ).exec((err, posts) => {
+            return res.status(status).json({ message, posts });
+        })
     },
-};
+};   

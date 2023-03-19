@@ -1,38 +1,44 @@
 const Interests = require("../models/interests");
 
 module.exports = {
-  create: (req, res, next) => {
-    var title = req.body.title;
-    var interest = new Interests({ title });
-    interest.save((err) => {
-      if (err) return res.send({ status: false, message: "data base error" });
-      res.send({ status: true, message: "interest added" });
-    });
-  },
-  delete: (req, res, next) => {
-    var interestId = req.params.interestId;
+    create: async (req, res) => {
+        var title = req.body.title;
 
-    Interests.findOneAndRemove({ _id: interestId }, (err, result) => {
-      if (err) return res.send({ status: false, message: "data base error" });
-      if (!result)
-        return res.send({ status: false, message: "interest not exists!" });
+        await Interests.create({ title })
+        .then(() => {
+            return res.send({ status: true, message: "interest added" });
+        })
+        .catch(() => {
+            return res.send({ status: false, message: "database error" });
+        });
+    },
 
-      res.send({ status:true,message: "interest removed" });
-    });
-  },
-  getAll: (req, res, next) => {
-    Interests.find({}, (err, result) => {
-      if (err) return res.send({ status: false, message: "data base error" });
-      res.send({ status: true, interests: result });
-    });
-  },
-  get: (req, res, next) => {
-    var interestId = req.params.interestId;
-    Interests.findOne({ _id: interestId }, (err, result) => {
-      if (err) return res.send({ status: false, message: "data base error" });
-      res.send({ status: true, interest: result });
-    });
-  },
+    delete: (req, res) => {
+        var interestId = req.params.interestId;
+
+        Interests.findOneAndRemove({ _id: interestId }, (err, result) => {
+            if (err) return res.send({ status: false, message: "database error" });
+            if (!result)
+                return res.send({ status: false, message: "interest does not exist!" });
+
+            res.send({ status:true,message: "interest removed" });
+        });
+    },
+
+    getAll: (req, res) => {
+        Interests.find({}, (err, result) => {
+            if (err) return res.send({ status: false, message: "data base error" });
+            res.send({ status: true, interests: result });
+        });
+    },
+
+    get: (req, res) => {
+        var interestId = req.params.interestId;
+        Interests.findOne({ _id: interestId }, (err, result) => {
+            if (err) return res.send({ status: false, message: "data base error" });
+            res.send({ status: true, interest: result });
+        });
+    },
   /*update: (req, res, next) => {
     var interestId = req.params.interestId;
     Interests.updateOne(
