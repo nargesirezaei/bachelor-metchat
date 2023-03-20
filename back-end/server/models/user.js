@@ -30,11 +30,7 @@ const userSchema = new Schema({
         required : true,
         default : [],
     },
-
-    isBioSet : {
-        type : Boolean,
-        default : false,
-    },
+    
     avatarImage : {
         type : String,
         default : "",
@@ -44,26 +40,11 @@ const userSchema = new Schema({
         default : "",
         max : 150,
     },
-    /*interests : {
-        type : Array,
-    },*/
-    interests : {
-        type : [{
-            type : Schema.Types.ObjectId,
-            unique : true,
-            ref : 'Interests',
-        }],
-        validate : [ arrayLimit, '{PATH} exceeds the limit of 10' ]
-    },
     isAdmin : {
         type : Boolean,
         default : false,
     },
 });
-
-function arrayLimit(val) {
-    return val.length <= 100;
-}
 
 
 const User = mongoose.model('User', userSchema);
