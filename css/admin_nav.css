@@ -1,0 +1,43 @@
+/*  112D40 (blå)
+FAFAFA (hvit)
+98A4AC (grå)
+DEE1E4 (grå) */
+
+header {
+  background-color: #112d40;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+}
+
+.admin-nav a {
+  color: #fafafa;
+  text-decoration: none;
+}
+
+.admin-nav a:hover,
+.admin-nav a:active {
+  color: #98a4ac;
+  transition: 0.3s;
+}
+
+.admin-nav img {
+  width: 120px;
+  height: 120px;
+}
+
+li {
+  list-style: none;
+}
