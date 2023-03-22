@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  padding: 32px 32px;
+}
+
+h1 {
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  padding-bottom: 8px;
+  padding-left: 8px;
+}
+
+/* SEARCH */
+.search-group {
+  margin-bottom: 20px;
+  padding: 16px 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+.search-group input,
+.search-group select {
+  max-width: 220px;
+  background-color: #c1c8cd;
+  border: none;
+  font-size: 18px;
+  color: inherit;
+}
+
+.search-group input {
+  padding: 16px;
+  border-radius: 100px;
+  flex-grow: 1;
+}
+
+.search-group select {
+  background-color: #112d40;
+  color: #fafafa;
+  padding: 12px;
+  margin-left: 12px;
+  border-radius: 10px;
+}
+
+/* GRID LIST OF CONVERSATIONS */
+.list-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+  padding: 8px 8px;
+}
+
+.list-group-item {
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px;
+  border-radius: 30px;
+
+  background-color: #dee1e4;
+}
+
+.list-group-item span {
+  float: inline-end;
+  padding: 4px 8px;
+  border-radius: 30px;
+
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #112d40;
+  color: #ffffff;
+}
+
+.participants {
+  margin-block-end: 24px;
+}
+
+.list-group-item a {
+  text-decoration: none;
+  margin-left: 10px;
+  border-radius: 30px;
+  padding: 8px 20px;
+  transition: 0.3s;
+
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.list-group-item a:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #112d40;
+  transition: 0.3s;
+}
+
+.participant {
+  display: flex;
+  align-items: center;
+  padding: 8px 4px;
+
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.participant p {
+  margin-left: 10px;
+}
+
+.btn-download {
+  background-color: #98a4ac;
+  color: #000000;
+}
+
+.btn-delete {
+  background-color: #112d40;
+  color: #fafafa;
+}
+
+/* BUTTONS FOR DOWNLOADING AND DELETING */
+.master-buttons button {
+  border: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+
+  position: absolute;
+  padding: 12px 20px;
+  margin-top: 16px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.master-buttons button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transition: 0.3s;
+  border: 1px solid #112d40;
+}
+
+.btn-download-all {
+  background-color: #dee1e4;
+  border: 1px solid #112d40;
+  right: 15%;
+}
+
+.btn-delete-all {
+  background-color: #112d40;
+  color: #fafafa;
+  right: 5%;
+}
