@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Start from "./Start";
 import MoreInfo from "./MoreInfo";
+import "./home.css";
 // Import .jsx files as they are made
 
 function App() {
