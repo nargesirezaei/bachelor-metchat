@@ -2,16 +2,19 @@ const express = require('express');
 //so we can call all express methods via app
 const app = express();
 const port = 8088;
-const {connectToDb} = require('./db')
+const { connectToDb } = require('./db');
 //parse incoming request bodies in JSON format
 app.use(express.json());
 //The body-parser middleware parses the request body and attaches the resulting data to the req.body property
 //of the incoming request object, which can then be used by the route handlers.
 const bodyParser = require('body-parser');
-const fs = require('fs')
+// const fs = require('fs');
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
+// for å koble sammen front-end og back-end
+const cors = require("cors");
+app.use(cors());
 
 
 //we will have all express configuration in this file
@@ -22,7 +25,6 @@ const homeController      = require('./server/controller/home'),
   autheticationController = require('./server/controller/authentication'),
 
   profileController       = require('./server/controller/profile'),
-  bioController           = require('./server/controller/bio'),
   contactsController      = require('./server/controller/contacts'),
 
   conversationsController = require('./server/controller/conversations'),
@@ -39,7 +41,6 @@ app.use('', homeController);
 app.use('/authentication', autheticationController);
 
 app.use('/profile', profileController);
-app.use('/bio', bioController);
 app.use('/contacts', contactsController);
 
 app.use('/conversations', conversationsController);

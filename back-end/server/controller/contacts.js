@@ -4,7 +4,6 @@ const app = express();
 
 const contacts = require('../services/contacts');
 
-
 // => contact/add or contact/remove or contact/mycontacts or update
 app.post("/add", verifyaccess, contacts.add)
 

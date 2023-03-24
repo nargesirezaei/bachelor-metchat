@@ -25,21 +25,6 @@ const userSchema = new Schema({
         min : 8,
     },
 
-    contacts : {
-        type : Array,
-        required : true,
-        default : [],
-    },
-    
-    avatarImage : {
-        type : String,
-        default : "",
-    },
-    bio : {
-        type : String,
-        default : "",
-        max : 150,
-    },
     isAdmin : {
         type : Boolean,
         default : false,
