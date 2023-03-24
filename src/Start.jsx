@@ -1,18 +1,48 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { startRoute } from "./TempRoutes";
 import "./home.css";
 
 function Start() {
-  const { useState } = React;
+  const navigate = useNavigate();
 
   const [email_log, setEmail_log] = useState("");
   const [password_log, setPassword_log] = useState("");
 
-  function handleSubmit(e) {
+  useEffect(() => {
+    if (localStorage.getItem("metchat-user")) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const handleValidation = () => {
+    if (email_log === "" || password_log === "") {
+      alert("Fyll inn feltene.");
+      return false;
+    }
+    return true;
+  };
+
+  async function handleSubmit(e) {
     e.preventDefault(); // prevents the page form refreshing or moving to another url.
     console.log("email", email_log);
     console.log("password", password_log);
+
+    if (handleValidation()) {
+      const { data } = await axios.post(startRoute, {
+        email_log,
+        password_log,
+      });
+
+      if (data.status === false) {
+        alert(data.msg);
+      } else if (data.status === true) {
+        localStorage.setItem("metchat-user", JSON.stringify(data.user));
+        alert("Logged in");
+        navigate("/");
+      }
+    }
   }
 
   return (
@@ -23,7 +53,7 @@ function Start() {
         </a>
         <ul className="main-nav">
           <li className="push">
-            <a href="">Om Oss</a>
+            <a href="/">Om Oss</a>
           </li>
         </ul>
       </nav>
