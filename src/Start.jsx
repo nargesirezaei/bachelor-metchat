@@ -4,14 +4,25 @@ import { startRoute } from "./TempRoutes";
 import "./home.css";
 
 function Start() {
+  const { useState } = React;
+
+  const [email_log, setEmail_log] = useState("");
+  const [password_log, setPassword_log] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault(); // prevents the page form refreshing or moving to another url.
+    console.log("email", email_log);
+    console.log("password", password_log);
+  }
+
   return (
     <>
       <nav>
         <a href="index.html">
           <img src="Logo.svg" alt="logo" />
         </a>
-        <ul class="main-nav">
-          <li class="push">
+        <ul className="main-nav">
+          <li className="push">
             <a href="">Om Oss</a>
           </li>
         </ul>
@@ -22,73 +33,85 @@ function Start() {
           <img src="Lines.png" alt="lines" />
         </div>
 
-        <div class="log-reg">
-          <div class="btn-container">
-            <button class="tab-btn active" data-id="log_in">
+        <div className="log-reg">
+          <div className="btn-container">
+            <button className="tab-btn active" data-id="log_in">
               {" "}
               Logg Inn
             </button>
-            <button class="tab-btn reg" data-id="reg">
+            <button className="tab-btn reg" data-id="reg">
               Register
             </button>
           </div>
 
-          <div class="log-reg-content">
-            <div class="content active inactive" id="log_in">
-              <form id="form_log">
-                <div class="form-row">
+          <div className="log-reg-content">
+            <div className="content active inactive" id="log_in">
+              <form id="form_log" onSubmit={handleSubmit}>
+                <div className="form-row">
                   <label>Epost</label>
-                  <input type="text" required id="email_log" />
+                  <input
+                    type="text"
+                    required
+                    id="email_log"
+                    value={email_log}
+                    onInput={(e) => setEmail_log(e.target.value)}
+                  />
                 </div>
-                <div class="form-row">
+                <div className="form-row">
                   <label>Passord</label>
-                  <input type="password" required id="password_log" />
+                  <input
+                    type="password"
+                    required
+                    id="password_log"
+                    value={password_log}
+                    onInput={(e) => setPassword_log(e.target.value)}
+                  />
                 </div>
-                <div class="form-row">
+                <div className="form-row">
                   <input type="checkbox" />
-                  <label class="chang-color">Husk meg</label>
+                  <label className="chang-color">Husk meg</label>
                 </div>
-                <button type="submit" class="btn">
+                <button type="submit" className="btn">
                   Logg Inn
                 </button>
               </form>
             </div>
           </div>
 
-          <div class="content" id="reg">
+          <div className="content" id="reg">
             <form id="form_reg">
-              <div class="form-row">
+              <div className="form-row">
                 <label>Fornavn</label>
                 <input type="text" required id="first_name" />
               </div>
-              <div class="form-row">
+              <div className="form-row">
                 <label>Etternavn</label>
                 <input type="text" required id="last_name" />
               </div>
-              <div class="form-row">
+              <div className="form-row">
                 <label>Epost</label>
                 <input type="text" required id="email_reg" />
               </div>
-              <div class="form-row">
+              <div className="form-row">
                 <label>Passord</label>
                 <input type="password" required id="password_reg" />
               </div>
-              <div class="form-row">
+              <div className="form-row">
                 <label>Gjente Passord</label>
                 <input type="password" required id="repeat_passowrd" />
               </div>
             </form>
-            <button class="btn-reg">Register</button>
+            <button className="btn-reg">Register</button>
           </div>
         </div>
       </section>
 
-      <div class="model-overlay">
-        <div class="scroll-div">
-          <div class="heading">
+      <div className="model-overlay">
+        <div className="scroll-div">
+          <div className="heading">
             <p>Vilkår for tjenesten</p>
           </div>
-          <div class="scroll-div-object">
+          <div className="scroll-div-object">
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Repellendus expedita iusto, eaque, aut maiores quas at unde
@@ -120,16 +143,16 @@ function Start() {
               quaerat cumque labore repellat!
             </p>
           </div>
-          <div class="btns">
+          <div className="btns">
             <div>
               <input type="checkbox" />
               <label> Jeg har lest alt, og samtrykker..</label>
             </div>
 
             <div>
-              <button class="btn">Tilbake</button>
+              <button className="btn">Tilbake</button>
               <a href="interests.html">
-                <button class="btn">Gå Videre</button>
+                <button className="btn">Gå Videre</button>
               </a>
             </div>
           </div>
@@ -146,7 +169,7 @@ function Start() {
 
       <section id="nlp">
         <img src="BubbleBox.png" />
-        <div class="contents">
+        <div className="contents">
           <h2>Hva Er NLP</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ab
@@ -154,7 +177,7 @@ function Start() {
             ipsa, optio architecto vero aperiam nesciunt facilis pariatur,
             nostrum itaque.
           </p>
-          <button class="btn"> Les mer..</button>
+          <button className="btn"> Les mer..</button>
         </div>
       </section>
 
