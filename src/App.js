@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Start from "./Start";
+import Velkommen from "./Velkommen";
 import MoreInfo from "./MoreInfo";
 import "./home.css";
 // Import .jsx files as they are made
@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Add Routes as functions in .jsx files are made */}
-        <Route path="/start" element={<Start />} />
+        <Route path="/" element={<Velkommen />} />
         <Route path="/moreInfo" element={<MoreInfo />} />
       </Routes>
     </BrowserRouter>

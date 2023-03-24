@@ -1,6 +1,6 @@
 export const host = "http://localhost:8080";
 
-export const startRoute = `${host}/api/auth/start`;
+export const velkommenRoute = `${host}/api/auth/velkommen`;
 export const logoutRoute = `${host}/api/auth/logout`;
 
 export const moreInfo = `${host}/api/auth/moreInfo`;
