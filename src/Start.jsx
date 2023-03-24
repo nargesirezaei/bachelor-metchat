@@ -60,7 +60,7 @@ function Start() {
 
       <section id="first">
         <div id="lines_1">
-          <img src="Lines.png" alt="lines" />
+          <img src="Lines.png" alt="pyntelinjer" />
         </div>
 
         <div className="log-reg">
@@ -190,7 +190,7 @@ function Start() {
       </div>
 
       <section id="second">
-        <img id="photo" src="photo.png" alt="home-photo" />
+        <img id="photo" src="photo.png" alt="personer som snakker" />
       </section>
 
       <section id="third">
@@ -198,7 +198,7 @@ function Start() {
       </section>
 
       <section id="nlp">
-        <img src="BubbleBox.png" />
+        <img src="BubbleBox.png" alt="bobleramme" />
         <div className="contents">
           <h2>Hva Er NLP</h2>
           <p>
