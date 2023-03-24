@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { velkommenRoute } from "./TempRoutes";
+import { welcomeRoute } from "./TempRoutes";
 import "./home.css";
 
-function Velkommen() {
+function Welcome() {
   const navigate = useNavigate();
 
   const [email_log, setEmail_log] = useState("");
@@ -30,7 +30,7 @@ function Velkommen() {
     console.log("password", password_log);
 
     if (handleValidation()) {
-      const { data } = await axios.post(velkommenRoute, {
+      const { data } = await axios.post(welcomeRoute, {
         email_log,
         password_log,
       });
@@ -222,4 +222,4 @@ function Velkommen() {
   );
 }
 
-export default Velkommen;
+export default Welcome;
