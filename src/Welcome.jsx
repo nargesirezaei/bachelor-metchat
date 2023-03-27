@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { welcomeRoute } from "./TempRoutes";
+import { welcomeRoute } from "./APIRoutes";
 import "./home.css";
 
 function Welcome() {
