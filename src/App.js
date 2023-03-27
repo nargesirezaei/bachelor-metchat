@@ -14,3 +14,5 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+// Bruke Bootsrap Grid system for å gjøre sidene r
