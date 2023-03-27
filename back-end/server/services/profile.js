@@ -1,16 +1,34 @@
-const User = require("../models/user");
+const Profile = require("../models/profile");
 
 module.exports = {
-    initUserInfo: async (req, res) => {
-        //var { userId } 
-        var user = await User.find({});
-        // var user = {
-        //     firstName: "f",
-        //     lastName: "l",
-        //     userName: "narges",
-        //     isAdmin: false,
-        // };
-        var result = { user };
-        res.send(result);
+    create: async (req, res) => {
+        const { userId, avatarImage, bio } = req.body;
+        
+        await Profile.create( {
+            userId,
+            avatarImage,
+            bio,
+        })
+        .then(() => {
+            return res.status(200).json({ message: "Successfuly created bio" });
+        })
+        .catch((error) => {
+            return res.status(401).json({ message: `Unsuccessfuly created bio: ${error}` });
+        });
+    },
+
+    edit: async (req, res) => {
+        const { userId, avatarImage, bio } = req.body;
+        
+        await Profile.findOneAndUpdate( { userId }, {
+            avatarImage,
+            bio,
+        })
+        .then(() => {
+            return res.status(200).json({ message: "Successfuly edited bio" });
+        })
+        .catch((error) => {
+            return res.status(401).json({ message: `Unsuccessfuly edited bio: ${error}` });
+        });
     },
 };

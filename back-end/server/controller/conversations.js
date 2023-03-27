@@ -3,9 +3,7 @@ const app = express();
 const conversations = require('../services/conversations');
 
 
-app.post(`/`, async (req, res) => {
-   //coming soon
-});
+app.post('/create', conversations.create);
 
 app.get(``, async (req, res) => {
    //coming soon 
@@ -19,8 +17,6 @@ app.put(`/:conversationId`, async (req, res) => {
    //coming soon 
 });
 
-app.delete(`/:conversationId`, async (req, res) => {
-   //coming soon
-});
+app.delete(`/delete`, conversations.delete);
 
 module.exports = app;

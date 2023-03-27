@@ -3,29 +3,19 @@ const app = express();
 const messages = require('../services/messages');
 
 
-app.post(`/`, async (req, res) => {
-   //creating
-});
+app.post('/create', messages.create);
 
-app.get(`/`, async (req, res) => {
-   //
-});
+app.get('/getConversation', messages.getConversation);
 
-app.post(`/seen`, async (req, res) => {
+app.get('/getMessage/:messageId', messages.getMessage);
+
+app.post('/seen', async (req, res) => {
     //updating
    
 });
 
-app.get(`/:messageId`, async (req, res) => {
-    
-});
+app.put('/edit', messages.edit);
 
-app.put(`/`, async (req, res) => {
-    
-});
-
-app.delete(`/`, async (req, res) => {
-   
-});
+app.delete('/delete', messages.delete);
 
 module.exports = app;
