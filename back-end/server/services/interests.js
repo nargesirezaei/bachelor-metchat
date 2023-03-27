@@ -1,8 +1,9 @@
+
 const Interests = require("../models/interests");
 
 module.exports = {
     create: async (req, res) => {
-        var title = req.body.title;
+        const title = req.body.title;
 
         await Interests.create({ title })
         .then(() => {

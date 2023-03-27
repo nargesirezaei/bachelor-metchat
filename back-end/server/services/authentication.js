@@ -44,7 +44,7 @@ module.exports = {
             return res.status(401).json({ message: "Invalid email or password" });
         }
         // Check if password is correct
-        if(password != user.password)
+        if(password !== user.password)
             return res.status(401).json({ message: "Invalid email or password" });
             
             var token = authorization.generateToken({ userId: user._id });

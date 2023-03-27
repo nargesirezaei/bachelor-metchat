@@ -1,16 +1,86 @@
+
+const Messages = require("../models/messages");
+
 module.exports = {
-    create:  {
+    create: async (req, res) => {
+        const { conversationId, fromId, toId, message } = req.body;
+
+        await Messages.create({
+            conversationId,
+            fromId,
+            toId,
+            message,
+        })
+        .then(() => {
+            return res.json({ message: "Message successflly sent to database" });
+        })
+        .catch((err) => {
+            return res.json({ message: "Failed to send message to database" });
+        });
+    },
+
+    edit: async (req, res) => {
+        const { messageId, message } = req.body;
         
+        await Messages.findById((messageId), (err, loadedMessage) => {
+            if (err)
+                return res.json({ message: "Failed to load message" });
+
+            else if (!loadedMessage)
+                return res.json({ message: "Message not found"});
+
+            loadedMessage.message = message;
+            return res.json({ message: "Message successfully edited", loadedMessage });
+        });
     },
-    update:  {
-       
+
+    getConversation: async (req, res) => {
+        const { conversationId } = req.body;
+
+        await Messages.find({ conversationId }).sort({ createdAt: 1 })
+        .then((loadedMessages) => {
+            return res.json({ message: "Messages successfully loaded", loadedMessages });
+        })
+        .catch((err) => {
+            return res.json({ message: "Failed to load messages" + err });
+        });        
     },
-    init:  {
-       
+
+    getMessage: async (req, res) => {
+        const { messageId } = req.params;
+        
+        await Messages.findById((messageId), (err, loadedMessage) => {
+            if (err)
+                return res.json({ message: "Failed to load message" });
+
+            else if (!loadedMessage)
+                return res.json({ message: "Message not found"});
+
+            return res.json({ message: "Message successfully loaded", loadedMessage });
+        });
     },
-    delete:  {
-      
+
+    init: {
+
     },
+
+    delete: async (req, res) => {
+        const { messageId } = req.body;
+        
+        await Messages.findOneAndDelete({ _id: messageId }, (err, deletedMessage) => {
+        if (err)
+            return res.json({ message: "Failed to delete message" });
+
+        else if (!deletedMessage)
+            return res.json({ message: "Message not found"});
+
+        return res.json({ message: "Messages successfully deleted", deletedMessage });
+        });        
+    },
+
     seen:  {
-    }
+    },
 };
+
+
+
