@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { welcomeRoute } from "./APIRoutes";
+//import { useState, useEffect } from "react";
+//import { Link, useNavigate } from "react-router-dom";
+//import axios from "axios";
+//import { welcomeRoute } from "./APIRoutes";
 import Login from "./components/Login";
 import "./home.css";
 
