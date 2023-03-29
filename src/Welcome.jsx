@@ -3,6 +3,7 @@
 //import axios from "axios";
 //import { welcomeRoute } from "./APIRoutes";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import "./home.css";
 
 function Welcome() {
@@ -37,32 +38,7 @@ function Welcome() {
 
           <div className="log-reg-content">
             <Login />
-
-            <div className="content" id="reg">
-              <form id="form_reg">
-                <div className="form-row">
-                  <label>Fornavn</label>
-                  <input type="text" required id="first_name" />
-                </div>
-                <div className="form-row">
-                  <label>Etternavn</label>
-                  <input type="text" required id="last_name" />
-                </div>
-                <div className="form-row">
-                  <label>Epost</label>
-                  <input type="text" required id="email_reg" />
-                </div>
-                <div className="form-row">
-                  <label>Passord</label>
-                  <input type="password" required id="password_reg" />
-                </div>
-                <div className="form-row">
-                  <label>Gjente Passord</label>
-                  <input type="password" required id="repeat_passowrd" />
-                </div>
-              </form>
-              <button className="btn-reg">Register</button>
-            </div>
+            <Register />
           </div>
         </div>
       </section>

@@ -52,7 +52,6 @@ function Login() {
         localStorage.setItem("metchat-user", JSON.stringify(data.user));
         alert("Logged in");
         navigate("/"); // add navigation to contacts?
-        alert("Logget inn");
       }
     }
   };
