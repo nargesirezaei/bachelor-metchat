@@ -1,4 +1,4 @@
-//import { useState, useEffect } from "react";
+import { useState } from "react";
 //import { Link, useNavigate } from "react-router-dom";
 //import axios from "axios";
 //import { welcomeRoute } from "./APIRoutes";
@@ -7,6 +7,16 @@ import Register from "./components/Register";
 import "./home.css";
 
 function Welcome() {
+  const [showLogin, setShowLogin] = useState(true);
+
+  const handleLoginClick = () => {
+    setShowLogin(true);
+  };
+
+  const handleRegisterClick = () => {
+    setShowLogin(false);
+  };
+
   return (
     <>
       <nav>
@@ -27,18 +37,25 @@ function Welcome() {
 
         <div className="log-reg">
           <div className="btn-container">
-            <button className="tab-btn active" data-id="log_in">
+            <button
+              className="tab-btn active"
+              data-id="log_in"
+              onClick={handleLoginClick}
+            >
               {" "}
               Logg Inn
             </button>
-            <button className="tab-btn reg" data-id="reg">
+            <button
+              className="tab-btn reg"
+              data-id="reg"
+              onClick={handleRegisterClick}
+            >
               Register
             </button>
           </div>
 
           <div className="log-reg-content">
-            <Login />
-            <Register />
+            {showLogin ? <Login /> : <Register />}
           </div>
         </div>
       </section>
