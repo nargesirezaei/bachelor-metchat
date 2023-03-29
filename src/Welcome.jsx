@@ -42,7 +42,6 @@ function Welcome() {
               data-id="log_in"
               onClick={handleLoginClick}
             >
-              {" "}
               Logg Inn
             </button>
             <button
@@ -50,7 +49,7 @@ function Welcome() {
               data-id="reg"
               onClick={handleRegisterClick}
             >
-              Register
+              Registrer
             </button>
           </div>
 
