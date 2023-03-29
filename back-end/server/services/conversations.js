@@ -5,10 +5,18 @@ module.exports = {
     create: async (req, res) => {
         const { fromId, toId } = req.body;
 
-        if (await Conversations.findOne({ fromId, toId }) || await Conversations.findOne({ fromId: toId, toId: fromId }))
-            return res.json({ message: "Conversation already exists!" });
+        const date = new Date();
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+
+        const formattedDate = `${dd}/${mm}/${yyyy}`;
 
         await Conversations.create({
+            title: formattedDate,
             fromId,
             toId,
         })
@@ -23,7 +31,7 @@ module.exports = {
     delete: async (req, res) => {
         const { conversationId } = req.body;
         
-        await Conversations.findOneAndDelete({ _id: conversationId }, (err, deletedConversation) => {
+        await Conversations.findByIdAndDelete(conversationId, (err, deletedConversation) => {
         if (err)
             return res.json({ message: "Failed to delete conversation" });
 
@@ -32,6 +40,18 @@ module.exports = {
 
         return res.json({ message: "Conversation successfully deleted", deletedConversation });
         });        
+    },
+
+    editTitle: async (req, res) => {
+        const { conversationId, title } = req.body;
+
+        await Conversations.findByIdAndUpdate(conversationId, { title })
+        .then(() => {
+            return res.json({ message: "Conversation title successflly edited" });
+        })
+        .catch(() => {
+            return res.json({ message: "Failed to edit conversation title" });
+        });
     },
 
 };
