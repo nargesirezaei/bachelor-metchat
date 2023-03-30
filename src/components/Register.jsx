@@ -111,7 +111,7 @@ function Register() {
           />
         </div>
         <div className="form-row">
-          <label>Gjente Passord</label>
+          <label>Gjenta Passord</label>
           <input
             type="password"
             name="confirmPassword"
