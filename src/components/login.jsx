@@ -10,7 +10,6 @@ function Login() {
   const navigate = useNavigate();
 
   // Initializes a state using the useState hook from React.
-  //
   const [values, setValues] = useState({
     email: "",
     password: "",
