@@ -2,8 +2,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./test_pages/Register";
-import Welcome from "./Welcome";
 import MoreInfo from "./MoreInfo";
+import Welcome from "./Welcome";
 
 export default function App() {
   return (

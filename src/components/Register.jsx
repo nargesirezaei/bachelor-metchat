@@ -34,7 +34,7 @@ function Register() {
         "Navnet ditt kan bare bestå av bokstaver fra det norske alfabetet."
       );
       return false;
-    } else if (password.length <= 8) {
+    } else if (password.length < 8) {
       alert("Passordet må være minst åtte(8) tegn.");
       return false;
     } else if (
@@ -45,6 +45,8 @@ function Register() {
       alert("E-post er i feil format.");
       return false;
     } // regex for e-post
+
+    return true;
   };
 
   const handleSubmit = async (e) => {
