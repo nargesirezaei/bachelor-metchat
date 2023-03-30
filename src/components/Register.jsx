@@ -120,10 +120,10 @@ function Register() {
             onChange={(e) => handleChange(e)}
           />
         </div>
+        <button className="btn-reg" type="submit">
+          Registrer
+        </button>
       </form>
-      <button className="btn-reg" type="submit">
-        Registrer
-      </button>
     </div>
   );
 }
