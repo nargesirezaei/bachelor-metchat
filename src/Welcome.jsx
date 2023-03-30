@@ -2,7 +2,7 @@ import { useState } from "react";
 //import { Link, useNavigate } from "react-router-dom";
 //import axios from "axios";
 //import { welcomeRoute } from "./APIRoutes";
-import Login from "./components/Login";
+import Login from "./components/login";
 import Register from "./components/Register";
 import "./home.css";
 
