@@ -1,35 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { contactRoute, userInterestRoute } from "./APIRoutes";
+import Nav from "./components/MainNav";
 import "./style.css";
 
 function Contacts() {
   const [contacts, setContacts] = useState([]);
 
+  useEffect(() => {
+    fetch(contactRoute)
+      .then((response) => response.json())
+      .then((data) => setContacts(data))
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <>
       {/* Pull nav out as a component 
       Add navigation */}
-      <nav>
-        <Link to="/">
-          <img src="Logo.svg" alt="logo" />
-        </Link>
-        <ul className="main-nav">
-          <li>
-            <div className="active">
-              <Link to="/kontakter">Kontakter</Link>
-            </div>
-          </li>
-          <li>
-            <Link to="/samtaler">Samtaler</Link>
-          </li>
-          <li>
-            <Link to="/profil">Profil</Link>
-          </li>
-          <li className="push">
-            <Link to="/logut">Logg ut</Link>
-          </li>
-        </ul>
-      </nav>
+      <Nav />
 
       <section id="first">
         <h1>Finn Kontakter</h1>
@@ -46,7 +35,11 @@ function Contacts() {
       <section id="second">
         <div className="info">
           <img src="profile.svg" alt="profile-icon" />
-          <h2>Navn</h2>
+          {contacts.map((contact) => (
+            <li key={contact.id}>
+              {contact.name} ({contact.email})
+            </li>
+          ))}
           <img className="pluss" src="pluss.svg" alt="pluss-icon" />
           <img className="mail" src="mail.jpg" alt="mail-icon" />
         </div>
