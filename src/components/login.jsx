@@ -46,7 +46,7 @@ function Login() {
   //  handleSubmit function is called when the user submits the form.
   // First, the default action of refreshing the page is prevented.
   // Then sends a POST request to the server with the user's email and password.
-  // If the validation is successful, and the server returns a successful response, the user's details are saved in localStorage, an alert message is displayed, and the page is redirected to the home page.
+  // If the validation is successful, and the server returns a successful response, the user's details are saved in localStorage, an alert message is displayed, and the page is redirected to the contacts page.
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevents the page form refreshing or moving to another url.
     console.log("email", values.email);
@@ -63,8 +63,8 @@ function Login() {
         alert(data.msg);
       } else if (data.status === true) {
         localStorage.setItem("metchat-user", JSON.stringify(data.user));
-        alert("Logged in");
-        navigate("/"); // add navigation to contacts?
+        alert("Logget inn");
+        navigate("/kontakter"); // add navigation to contacts?
       }
     }
   };

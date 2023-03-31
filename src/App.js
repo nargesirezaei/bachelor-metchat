@@ -2,17 +2,18 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./test_pages/Register";
-import MoreInfo from "./MoreInfo";
 import Welcome from "./Welcome";
+import Contacts from "./Contacts";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/moreInfo" element={<MoreInfo />} />
+        <Route path="/kontakter" element={<Contacts />} />
 
         <Route path="/register" element={<Register />} />
+
+        <Route path="/" element={<Welcome />} />
       </Routes>
     </BrowserRouter>
   );

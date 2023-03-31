@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { authenticationRoute } from "../APIRoutes";
+import "../home.css";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [values, setValues] = useState({
     fname: "",
     lname: "",
@@ -65,6 +69,7 @@ function Register() {
       } else if (data.status === true) {
         localStorage.setItem("metchat-user", JSON.stringify(data.user));
         alert("Bruker opprettet"); // Noe bedre å si?
+        navigate("/merInfo");
       }
     }
   };
