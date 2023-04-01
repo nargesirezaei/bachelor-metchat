@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { contactRoute, userInterestRoute } from "./APIRoutes";
+import { profileRoute, contactRoute, userInterestRoute } from "./APIRoutes";
 import Nav from "./components/MainNav";
 import "./style.css";
 
 function Contacts() {
+  const [users, setUsers] = useState([]);
   const [contacts, setContacts] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch(contactRoute)
-      .then((response) => response.json())
-      .then((data) => setContacts(data))
-      .catch((error) => console.log(error));
+    axios
+      .get(`${profileRoute}`)
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
+
+  const handleAddContact = (user) => {
+    if (!contacts.includes(user)) {
+      setContacts([...contacts, user]);
+    }
+  };
 
   return (
     <>
-      {/* Pull nav out as a component 
-      Add navigation */}
       <Nav />
 
       <section id="first">
@@ -33,13 +45,19 @@ function Contacts() {
       </section>
 
       <section id="second">
-        <div className="info">
-          <img src="profile.svg" alt="profile-icon" />
-          {contacts.map((contact) => (
-            <li key={contact.id}>
-              {contact.name} ({contact.email})
+        <ul>
+          {users.map((user) => (
+            <li key={user.id}>
+              {user.name} ({user.email})
+              <button onClick={() => handleAddContact(user)}>
+                Add to contacts
+              </button>
             </li>
           ))}
+        </ul>
+        <div className="info">
+          <img src="profile.svg" alt="profile-icon" />
+
           <img className="pluss" src="pluss.svg" alt="pluss-icon" />
           <img className="mail" src="mail.jpg" alt="mail-icon" />
         </div>
@@ -67,10 +85,6 @@ function Contacts() {
           </a>
           <button>Vis flere</button>
         </div>
-        <div className="third">
-          <button>Hopp Over</button>
-          <button>Gå Videre</button>
-        </div>
       </section>
 
       <footer>
@@ -79,4 +93,5 @@ function Contacts() {
     </>
   );
 }
+
 export default Contacts;
