@@ -2,45 +2,49 @@
 const Interests = require("../models/interests");
 
 module.exports = {
-    create: async (req, res) => {
-        const title = req.body.title;
+  create: (req, res, next) => {
+    var title = req.body.title;
+    var interest = new Interests({ title });
+    Interests.findOne({title }, (err, result) => {
+      if (err) return res.send({ status: false, message: "data base error" });
 
-        await Interests.create({ title })
-        .then(() => {
-            return res.send({ status: true, message: "interest added" });
-        })
-        .catch(() => {
-            return res.send({ status: false, message: "database error" });
+      if (!result) {
+        interest.save((err) => {
+          if (err)
+            return res.send({ status: false, message: "data base error" });
+            
+          res.send({ status: true, message: "interest added" });
         });
-    },
-
-    delete: (req, res) => {
-        var interestId = req.params.interestId;
+      }else{
+        res.send({ status: false, message: "interest already exists" });
+      }
+    });
+  },
+  delete: (req, res, next) => {
+    var interestId = req.params.interestId;
 
         Interests.findOneAndRemove({ _id: interestId }, (err, result) => {
             if (err) return res.send({ status: false, message: "database error" });
             if (!result)
                 return res.send({ status: false, message: "interest does not exist!" });
 
-            res.send({ status:true,message: "interest removed" });
-        });
-    },
-
-    getAll: (req, res) => {
-        Interests.find({}, (err, result) => {
-            if (err) return res.send({ status: false, message: "data base error" });
-            res.send({ status: true, interests: result });
-        });
-    },
-
-    get: (req, res) => {
-        var interestId = req.params.interestId;
-        Interests.findOne({ _id: interestId }, (err, result) => {
-            if (err) return res.send({ status: false, message: "data base error" });
-            res.send({ status: true, interest: result });
-        });
-    },
-  /*update: (req, res, next) => {
+      res.send({ status: true, message: "interest removed" });
+    });
+  },
+  getAll: (req, res, next) => {
+    Interests.find({}, (err, result) => {
+      if (err) return res.send({ status: false, message: "data base error" });
+      res.send({ status: true, interests: result });
+    });
+  },
+  get: (req, res, next) => {
+    var interestId = req.params.interestId;
+    Interests.findOne({ _id: interestId }, (err, result) => {
+      if (err) return res.send({ status: false, message: "data base error" });
+      res.send({ status: true, interest: result });
+    });
+  },
+  update: (req, res, next) => {
     var interestId = req.params.interestId;
     Interests.updateOne(
       { _id: interestId },
@@ -57,7 +61,7 @@ module.exports = {
       .catch((error) => {
         res.send({
           result: false,
-          message: "Error while updating UserContact documents:"+error,
+          message: "Error while updating UserContact documents:" + error,
         });
         // Add any error handling code here
       });
