@@ -1,21 +1,20 @@
-
 const Interests = require("../models/interests");
 
 module.exports = {
   create: (req, res, next) => {
     var title = req.body.title;
     var interest = new Interests({ title });
-    Interests.findOne({title }, (err, result) => {
+    Interests.findOne({ title }, (err, result) => {
       if (err) return res.send({ status: false, message: "data base error" });
 
       if (!result) {
         interest.save((err) => {
           if (err)
             return res.send({ status: false, message: "data base error" });
-            
+
           res.send({ status: true, message: "interest added" });
         });
-      }else{
+      } else {
         res.send({ status: false, message: "interest already exists" });
       }
     });
@@ -23,10 +22,10 @@ module.exports = {
   delete: (req, res, next) => {
     var interestId = req.params.interestId;
 
-        Interests.findOneAndRemove({ _id: interestId }, (err, result) => {
-            if (err) return res.send({ status: false, message: "database error" });
-            if (!result)
-                return res.send({ status: false, message: "interest does not exist!" });
+    Interests.findOneAndRemove({ _id: interestId }, (err, result) => {
+      if (err) return res.send({ status: false, message: "database error" });
+      if (!result)
+        return res.send({ status: false, message: "interest does not exist!" });
 
       res.send({ status: true, message: "interest removed" });
     });
@@ -65,5 +64,5 @@ module.exports = {
         });
         // Add any error handling code here
       });
-  },*/
+  },
 };
