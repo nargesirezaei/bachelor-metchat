@@ -1,6 +1,7 @@
 {
   "name": "met-chat",
   "version": "0.1.0",
+<<<<<<< HEAD
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -20,28 +21,24 @@
     "web-vitals": "^2.1.0",
     "yarn": "^1.22.19"
   },
+=======
+  "main": "server/app.js",
+>>>>>>> origin/master
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "cd server && npm run back",
+    "start:dev": "concurrently \"npm run server\" \"npm run client\" -k",
+    "client": "cd client && npm run start",
+    "server": "cd server && npm run back",
+    "install": "cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "author": "Rami Maroun, Narges Rezaei, Aina Stustad-Meren, and Fatima Yasefi",
+  "license": "OsloMet",
+  "devDependencies": {
+    "concurrently": "8.0.1"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "if-env": "1.0.4"
   }
 }
