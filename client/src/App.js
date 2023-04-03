@@ -19,4 +19,4 @@ export default function App() {
   );
 }
 
-// Bruke Bootsrap Grid system for å gjøre sidene r
+// Bruke Bootsrap Grid system for å gjøre sidene responsive
