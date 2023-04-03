@@ -23,8 +23,9 @@ app.put(`/:conversationId`, async (req, res) => {
 });
 */
 
-app.put('/edit', conversations.editTitle);
+app.put('/editTitle', conversations.editTitle);
 
-app.delete(`/delete`, conversations.delete);
+app.delete('/delete/id', conversations.deleteById);
+app.delete('/delete/names', conversations.deleteByName);
 
 module.exports = app;

@@ -5,18 +5,18 @@ module.exports = {
     create: async (req, res) => {
         const { fromId, toId } = req.body;
 
-        const date = new Date();
-        const yyyy = date.getFullYear();
-        let mm = date.getMonth() + 1;
-        let dd = date.getDate();
+        const date = new Date(),
+            year = date.getFullYear();
+        let month = date.getMonth() + 1,
+            day = date.getDate();
 
-        if (dd < 10) dd = '0' + dd;
-        if (mm < 10) mm = '0' + mm;
+        if (day < 10) day = '0' + day;
+        if (month < 10) month = '0' + month;
 
-        const formattedDate = `${dd}/${mm}/${yyyy}`;
+        const defaultTitle = `${day}/${month}/${year}`;
 
         await Conversations.create({
-            title: formattedDate,
+            title: defaultTitle,
             fromId,
             toId,
         })
@@ -28,7 +28,7 @@ module.exports = {
         });
     },
 
-    delete: async (req, res) => {
+    deleteById: async (req, res) => {
         const { conversationId } = req.body;
         
         await Conversations.findByIdAndDelete(conversationId, (err, deletedConversation) => {
@@ -40,6 +40,19 @@ module.exports = {
 
         return res.json({ message: "Conversation successfully deleted", deletedConversation });
         });        
+    },
+    deleteByName: async (req, res) => {
+        const { name1, name2 } = req.body;
+        
+        await Conversations.deleteMany({$or: [{fromId: name1, toId: name2}, {fromId: name2, toId: name1}]}, (err, deleted) => {
+            if (err)
+                return res.json({ message: "Failed to delete conversation" });
+    
+            else if (deleted.deletedCount === 0)
+                return res.json({ message: "Conversation not found"});
+    
+            return res.json({ message: "Conversation successfully deleted", deleted });
+        });
     },
 
     editTitle: async (req, res) => {
