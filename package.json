@@ -1,6 +1,7 @@
 {
   "name": "met-chat",
   "version": "0.1.0",
+<<<<<<< HEAD
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -22,6 +23,9 @@
     "yarn": "^1.22.19"
   },
   "main": "client/src/App.js",
+=======
+  "main": "server/app.js",
+>>>>>>> master
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "cd server && npm run back",
