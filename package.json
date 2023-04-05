@@ -21,7 +21,7 @@
     "web-vitals": "^2.1.0",
     "yarn": "^1.22.19"
   },
-  "main": "server/index.js",
+  "main": "client/src/App.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "cd server && npm run back",
