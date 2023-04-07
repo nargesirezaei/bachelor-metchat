@@ -1,5 +1,5 @@
 import { useState } from "react";
-//import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 //import axios from "axios";
 //import { welcomeRoute } from "./APIRoutes";
 import Login from "./components/login";
@@ -20,9 +20,9 @@ function Welcome() {
   return (
     <>
       <nav>
-        <a href="index.html">
+        <Link to="/">
           <img src="Logo.svg" alt="logo" />
-        </a>
+        </Link>
         <ul className="main-nav">
           <li className="push">
             <a href="/">Om Oss</a>

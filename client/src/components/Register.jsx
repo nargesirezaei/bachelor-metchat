@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { authenticationRoute } from "../APIRoutes";
+import "../home.css";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [values, setValues] = useState({
     fname: "",
     lname: "",

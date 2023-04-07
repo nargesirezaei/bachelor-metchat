@@ -10,8 +10,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/moreInfo" element={<MoreInfo />} />
+        <Route path="/kontakter" element={<Contacts />} />
 
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
@@ -20,4 +19,4 @@ export default function App() {
   );
 }
 
-// Bruke Bootsrap Grid system for å gjøre sidene r
+// Bruke Bootsrap Grid system for å gjøre sidene responsive
