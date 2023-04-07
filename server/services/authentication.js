@@ -13,23 +13,19 @@ module.exports = {
       }
 
       if (existingUser) {
-        return res
-          .status(409)
-          .json({ message: "User with that email already exists" });
+        return res.status(409).json({ message: "User with that email already exists" });
       }
 
       // Create new user
       const user = new User({ firstName, lastName, email, password });
-      user.save((err) => {
+      user.save((err, user) => {
         if (err) {
           console.error(err);
           return res.status(500).json({ message: "Error registering user" });
         }
 
         // Send success response
-        return res
-          .status(200)
-          .json({ message: "User registered successfully" });
+        return res.status(200).json({ message: "User registered successfully", user });
       });
     });
   },

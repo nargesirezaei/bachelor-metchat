@@ -53,19 +53,20 @@ function Register() {
     e.preventDefault();
     if (handleValidation()) {
       const { fname, lname, email, password } = values;
-      const { data } = await axios.post(`${authenticationRoute}/register`, {
+      await axios.post(`${authenticationRoute}/register`, {
         firstName: fname,
         lastName: lname,
         email,
         password,
+      })
+      .then(data => {
+        localStorage.setItem("metchat-user", JSON.stringify(data.data.user));
+        alert("Bruker opprettet"); // Noe bedre å si?
+      })
+      .catch(err => {
+        alert(err.response.data.message);
       });
 
-      if (data.status === 500 || data.status === false) {
-        alert(data.msg);
-      } else if (data.status === true) {
-        localStorage.setItem("metchat-user", JSON.stringify(data.user));
-        alert("Bruker opprettet"); // Noe bedre å si?
-      }
     }
   };
 
