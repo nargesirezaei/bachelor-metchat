@@ -63,12 +63,12 @@ function Register() {
         email,
         password,
       })
-      .then(data => {
-        localStorage.setItem("metchat-user", JSON.stringify(data.data.user));
+      .then((response) => {
+        localStorage.setItem("metchat-user", JSON.stringify(response.data.user));
         alert("Bruker opprettet"); // Noe bedre å si?
       })
-      .catch(err => {
-        alert(err.response.data.message);
+      .catch((err) => {
+        alert(err.response.data);
       });
 
     }

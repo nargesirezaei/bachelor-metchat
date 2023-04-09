@@ -2,9 +2,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./Welcome";
-import MoreInfo from "./MoreInfo";
 import Login from "./components/login";
 import Register from "./components/Register";
+import MoreInfo from "./MoreInfo";
+import Contacts from "./Contacts";
+
 
 export default function App() {
   return (

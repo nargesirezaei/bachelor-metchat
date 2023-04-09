@@ -9,11 +9,11 @@ module.exports = {
     User.findOne({ email }, (err, existingUser) => {
       if (err) {
         console.error(err);
-        return res.status(500).json({ message: "Error registering user" });
+        return res.status(500).send("Error registering user");
       }
 
       if (existingUser) {
-        return res.status(409).json({ message: "User with that email already exists" });
+        return res.status(409).send("User with that email already exists");
       }
 
       // Create new user
@@ -21,7 +21,7 @@ module.exports = {
       user.save((err, user) => {
         if (err) {
           console.error(err);
-          return res.status(500).json({ message: "Error registering user" });
+          return res.status(500).send("Error registering user");
         }
 
         // Send success response

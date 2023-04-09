@@ -2,12 +2,12 @@ const UserInterets = require("../models/user-interests");
 
 module.exports = {
   create: (req, res, next) => {
-    var userId = req.userId;
-    var interestId = req.body.interestId;
+    const userId = req.body.userId;
+    const interestId = req.body.interestId;
     UserInterets.findOne({ userId, interestId }, (err, result) => {
       if (err) return res.send({ status: false, message: "data base error" });
       if (!result) {
-        var userInterests = new UserInterets({ userId, interestId });
+        const userInterests = new UserInterets({ userId, interestId });
         userInterests.save((err) => {
           if (err)
             return res.send({ status: false, message: "data base error" });
@@ -19,8 +19,8 @@ module.exports = {
     });
   },
   delete: (req, res, next) => {
-    var userId = req.userId;
-    var interestId = req.body.interestId;
+    const userId = req.userId;
+    const interestId = req.body.interestId;
 
     UserInterets.findOneAndRemove({ userId, interestId }, (err, result) => {
       if (err) return res.send({ status: false, message: "data base error" });
@@ -30,12 +30,25 @@ module.exports = {
       res.send({ message: "user interest removed" });
     });
   },
-  getAll: (req, res, next) => {
-    var userId = req.userId;
 
-    UserInterets.find({ userId }, (err, result) => {
-      if (err) return res.send({ status: false, message: "data base error" });
-      res.send({ status: true, interests: result });
+  getAll: async (req, res) => {
+    const userId = req.query.userId;
+
+    await UserInterets.find({ userId }, "interestId -_id").populate("interestId")
+    .then((result) => {
+
+      return res.status(200).send(result);
+    })
+    .catch(() => {
+      return res.status(500).send("database error");
     });
+    
+    
+    /*UserInterets.find({ userId }, (err, result) => {
+      if (err) return res.send({ status: false, message: "database error" });
+      res.send({ status: true, interests: result });
+      console.log(result);
+    });*/
+
   },
 };
