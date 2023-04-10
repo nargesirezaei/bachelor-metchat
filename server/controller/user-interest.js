@@ -4,9 +4,9 @@ const app = express();
 const userInterests = require('../services/user-interest');
 
 
-app.post(`/`,verifyaccess, userInterests.create);
+app.post(`/`, /*verifyaccess,*/ userInterests.create);
 
-app.get(`/`,verifyaccess, userInterests.getAll);
+app.get(`/`, /*verifyaccess,*/ userInterests.getAll);
 
 app.delete(`/`,verifyaccess, userInterests.delete);
 

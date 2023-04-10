@@ -19,6 +19,7 @@ module.exports = {
       }
     });
   },
+
   delete: (req, res, next) => {
     var interestId = req.params.interestId;
 
@@ -30,12 +31,14 @@ module.exports = {
       res.send({ status: true, message: "interest removed" });
     });
   },
+
   getAll: (req, res, next) => {
     Interests.find({}, (err, result) => {
       if (err) return res.send({ status: false, message: "data base error" });
       res.send({ status: true, interests: result });
     });
   },
+
   get: (req, res, next) => {
     var interestId = req.params.interestId;
     Interests.findOne({ _id: interestId }, (err, result) => {
@@ -43,6 +46,7 @@ module.exports = {
       res.send({ status: true, interest: result });
     });
   },
+
   update: (req, res, next) => {
     var interestId = req.params.interestId;
     Interests.updateOne(
@@ -65,4 +69,5 @@ module.exports = {
         // Add any error handling code here
       });
   },
+  
 };
