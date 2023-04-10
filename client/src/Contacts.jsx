@@ -30,24 +30,23 @@ export default function Contacts() {
             await axios.get(`${contactRoute}/getAllUsers`, {
                 id: self._id
             })
-            .then((response) => {
+            .then(async (response) => {
                 let users = response.data.users;
+                const count = users.length;
 
-                /*
-                users.map(async (user) => {
+                for (let i = 0; i < count; i++) {
+                    users[i].interests = [];
+
                     await axios.get(`${userInterestRoute}`, {
-                        params: { userId: user._id }
+                        params: { userId: users[i]._id }
                     })
                     .then((response) => {
-                        user.interests = response.data;
+                        users[i]["interests"] = response.data;
                     })
                     .catch((err) => {
                         alert(err.response.data);
                     });
-                });
-
-                console.log(JSON.stringify(users, null, 4));
-                */
+                }
 
                 setUsers(users);
             })
@@ -66,22 +65,7 @@ export default function Contacts() {
         }
     };
 
-    const userInterests = async (user) => {
-        await axios.get(`${userInterestRoute}`, {
-            params: { userId: user._id }
-        })
-        .then((response) => {
-            const res = response.data;
-            res.forEach(interestId => {
-                
-                return <button className="btn">{interestId.title}</button>
-            });
-        })
-        .catch((err) => {
-            alert(err.response.data);
-        });
-    };
-
+    
   return (
     <>
       <Nav />
@@ -125,11 +109,9 @@ export default function Contacts() {
                     <img className="mail" src="mail.jpg" alt="mail-icon" />
                 </div>
                 <div className="intersts">
-                    {userInterests(user)}
-                    <button className="btn">Mat</button>
-                    <button className="btn">Knust</button>
-                    <button className="btn">Litratur</button>
-                    <div>....</div>
+                    {user["interests"].map((interest, i) => (
+                        <button className="btn" key={i}>{interest.interestId.title}</button>  
+                    ))}
                     <button className="btn showmore">Vis flere</button>
                 </div>
             </div>
