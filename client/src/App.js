@@ -4,9 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./Welcome";
 import Login from "./components/login";
 import Register from "./components/Register";
-//import MoreInfo from "./MoreInfo";
+import MoreInfo from "./MoreInfo";
 import Contacts from "./Contacts";
-
 
 export default function App() {
   return (
@@ -15,6 +14,7 @@ export default function App() {
         <Route path="/" element={<Welcome />} />
 
         <Route path="/kontakter" element={<Contacts />} />
+        <Route path="/merInfo" element={<MoreInfo />} />
 
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

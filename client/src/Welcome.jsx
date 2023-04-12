@@ -30,7 +30,7 @@ function Welcome() {
         </ul>
       </nav>
 
-      <section id="first">
+      <section id="forms">
         <div id="lines_1">
           <img src="Lines.png" alt="pyntelinjer" />
         </div>
@@ -112,7 +112,7 @@ function Welcome() {
         </div>
       </div>
 
-      <section id="second">
+      <section id="persons-img">
         <img id="photo" src="photo.png" alt="personer som snakker" />
       </section>
 
