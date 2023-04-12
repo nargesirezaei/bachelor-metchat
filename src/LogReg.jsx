@@ -5,6 +5,7 @@ import { useState } from "react";
 function LogReg() {
   const [toggleState, setToggleState] = useState(1);
   const toggelTab = (index) => {
+    console.log(index);
     setToggleState(index);
   };
 
