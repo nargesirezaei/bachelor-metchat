@@ -6,7 +6,6 @@ import Login from "./components/login";
 import Register from "./components/Register";
 import MoreInfo from "./MoreInfo";
 import Contacts from "./Contacts";
-
 export default function App() {
   return (
     <BrowserRouter>
