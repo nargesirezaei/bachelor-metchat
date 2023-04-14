@@ -18,4 +18,6 @@ app.put('/edit', messages.edit);
 
 app.delete('/delete', messages.delete);
 
+app.put(`/seen`, messages.seen);
+
 module.exports = app;

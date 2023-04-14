@@ -58,7 +58,7 @@ a {
   color: #112d40;
 }
 
-#first {
+#forms {
   display: flex;
   flex-direction: row;
   margin-top: 150px;
@@ -205,14 +205,14 @@ input[type="password"] {
   color: #fafafa;
 }
 
-#second {
+#persons-img {
   display: flex;
   flex-direction: row;
   width: 800px;
   margin-left: 50px;
   margin-top: -100px;
 }
-#second img {
+#persons-img img {
   width: 100%;
 }
 

@@ -4,68 +4,68 @@ import { /*Link,*/ useNavigate } from "react-router-dom";
 import { /*profileRoute,*/ contactRoute, userInterestRoute } from "./APIRoutes";
 import Nav from "./components/MainNav";
 import "./style.css";
- 
+
 export default function Contacts() {
-    const navigate = useNavigate(),
-        [self, setSelf] = useState({}),
-        [users, setUsers] = useState([]),
-        [contacts, setContacts] = useState([]);
-        //[selectedUser, setSelectedUser] = useState(null);
-    
-    useEffect(() => {
-        async function fetchData() {
-            if (!localStorage.getItem("metchat-user")) {
-                navigate("/login");
-            } else {
-                const data = await JSON.parse(localStorage.getItem("metchat-user"));
-                setSelf(data);
-            }
-        }
-        fetchData();
-    }, [navigate]);    
-    
+  const navigate = useNavigate(),
+    [self, setSelf] = useState({}),
+    [users, setUsers] = useState([]),
+    [contacts, setContacts] = useState([]);
+  //[selectedUser, setSelectedUser] = useState(null);
 
-    useEffect(() => {
-        async function getUsers() {
-            await axios.get(`${contactRoute}/getAllUsers`, {
-                id: self._id
-            })
-            .then(async (response) => {
-                let users = response.data.users;
-                const count = users.length;
+  useEffect(() => {
+    async function fetchData() {
+      if (!localStorage.getItem("metchat-user")) {
+        navigate("/login");
+      } else {
+        const data = await JSON.parse(localStorage.getItem("metchat-user"));
+        setSelf(data);
+      }
+    }
+    fetchData();
+  }, [navigate]);
 
-                for (let i = 0; i < count; i++) {
-                    users[i].interests = [];
+  useEffect(() => {
+    async function getUsers() {
+      await axios
+        .get(`${contactRoute}/getAllUsers`, {
+          id: self._id,
+        })
+        .then(async (response) => {
+          let users = response.data.users;
+          const count = users.length;
 
-                    await axios.get(`${userInterestRoute}`, {
-                        params: { userId: users[i]._id }
-                    })
-                    .then((response) => {
-                        users[i]["interests"] = response.data;
-                    })
-                    .catch((err) => {
-                        alert(err.response.data);
-                    });
-                }
+          for (let i = 0; i < count; i++) {
+            users[i].interests = [];
 
-                setUsers(users);
-            })
-            .catch((err) => {
-                console.log(err);
+            await axios
+              .get(`${userInterestRoute}`, {
+                params: { userId: users[i]._id },
+              })
+              .then((response) => {
+                users[i]["interests"] = response.data;
+              })
+              .catch((err) => {
                 alert(err.response.data);
-            });
-        }
-        getUsers();
-    }, [self]);
+              });
+          }
 
-    const handleAddContact = (user) => {
-        if (!contacts.includes(user)) {
-            setContacts([...contacts, user]);
-            alert("Contact added")
-        }
-    };
+          setUsers(users);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(err.response.data);
+        });
+    }
+    getUsers();
+  }, [self]);
 
-    
+  const handleAddContact = (user) => {
+    if (!contacts.includes(user)) {
+      setContacts([...contacts, user]);
+      alert("Contact added");
+    }
+  };
+
   return (
     <>
       <Nav />
@@ -95,26 +95,32 @@ export default function Contacts() {
         </ul>*/}
 
         {users.map((user, i) => (
-            <div key={i}>
-                <div className="info">
-                    <img src="profile.svg" alt="profile-icon" />
-                    <h2>{user.firstName} {user.lastName}<br />({user.email})</h2>
+          <div key={i}>
+            <div className="info">
+              <img src="profile.svg" alt="profile-icon" />
+              <h2>
+                {user.firstName} {user.lastName}
+                <br />({user.email})
+              </h2>
 
-                    <img
-                        className="pluss"
-                        src="pluss.svg" alt="pluss-icon"
-                        style={{ cursor: "pointer"}}
-                        onClick={() => handleAddContact(user)}
-                    />
-                    <img className="mail" src="mail.jpg" alt="mail-icon" />
-                </div>
-                <div className="intersts">
-                    {user["interests"].map((interest, i) => (
-                        <button className="btn" key={i}>{interest.interestId.title}</button>  
-                    ))}
-                    <button className="btn showmore">Vis flere</button>
-                </div>
+              <img
+                className="pluss"
+                src="pluss.svg"
+                alt="pluss-icon"
+                style={{ cursor: "pointer" }}
+                onClick={() => handleAddContact(user)}
+              />
+              <img className="mail" src="mail.jpg" alt="mail-icon" />
             </div>
+            <div className="intersts">
+              {user["interests"].map((interest, i) => (
+                <button className="btn" key={i}>
+                  {interest.interestId.title}
+                </button>
+              ))}
+              <button className="btn showmore">Vis flere</button>
+            </div>
+          </div>
         ))}
 
         <div className="info">
@@ -150,7 +156,7 @@ export default function Contacts() {
       </section>
 
       <footer>
-        <p>Laget av Rami, Narges, Aina Og Fatima</p>
+        <p>Laget av Rami, Narges, Aina og Fatima</p>
       </footer>
     </>
   );
