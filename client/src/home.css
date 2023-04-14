@@ -206,7 +206,7 @@ input[type="password"] {
   flex-direction: column;
 }
 .btn,
-.btn-reg {
+.button-reg {
   border: none;
   width: 170px;
   height: 59px;
@@ -222,7 +222,7 @@ input[type="password"] {
   background-color: #112d40;
   color: #fafafa;
 }
-.btn-reg:hover {
+.button-reg:hover {
   background-color: #fafafa;
   color: #112d40;
 }

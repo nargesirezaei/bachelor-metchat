@@ -186,12 +186,34 @@ a.active:hover {
   margin-top: 160px;
 }
 #left-side {
-  padding: 50px;
+  padding: 1em;
   border-right: #dee1e4 1px solid;
 }
 #left-side input {
-  width: 300px;
+  width: 2em;
+  height: 2em;
 }
+
+#left-side button {
+  border: none;
+  margin-top: 0px;
+  margin-left: 1em;
+  height: 2em;
+  width: 3em;
+  font-size: 24px;
+}
+
+#left-side h2 {
+  margin-top: 1em;
+  font-size: 100%;
+  color: #000000;
+}
+
+#left-side small {
+  padding: 0.5em;
+  color: #a9a9a9;
+}
+
 #middel {
   display: flex;
   flex-direction: column;
@@ -226,7 +248,7 @@ a.active:hover {
   background-color: #dee1e4;
   border-radius: 35px;
   width: 98%;
-  height: 75px;
+  height: 2em;
   border: none;
 }
 #middel hr {
@@ -265,6 +287,7 @@ a.active:hover {
   justify-content: space-between;
   width: 50%;
   margin-top: 10px;
+  color: #000000;
 }
 #left-side .info {
   margin-top: 20px;

@@ -6,6 +6,8 @@ import Login from "./components/login";
 import Register from "./components/Register";
 import MoreInfo from "./MoreInfo";
 import Contacts from "./Contacts";
+import Chat from "./Chat";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -14,6 +16,7 @@ export default function App() {
 
         <Route path="/kontakter" element={<Contacts />} />
         <Route path="/merInfo" element={<MoreInfo />} />
+        <Route path="/samtaler" element={<Chat />} />
 
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
