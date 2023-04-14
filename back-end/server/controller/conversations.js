@@ -1,26 +1,26 @@
 const express = require('express');
+const { verifyaccess } = require('../services/authorization');
 const app = express();
 const conversations = require('../services/conversations');
 
 
-app.post(`/`, async (req, res) => {
-   //coming soon
-});
 
-app.get(``, async (req, res) => {
-   //coming soon 
-});
 
-app.get(`/:conversationId`, async (req, res) => {
-   //coming soon 
-});
+app.post(`/`,verifyaccess, conversations.add);
 
-app.put(`/:conversationId`, async (req, res) => {
-   //coming soon 
-});
+//print all conversations 
+app.get(`/`,verifyaccess,conversations.getAll);
 
-app.delete(`/:conversationId`, async (req, res) => {
-   //coming soon
-});
+//all conversation user had
+app.get(`/:conversationId`, verifyaccess,conversations.get);
+
+//delete a conversation 
+app.delete(`/:conversationId`,verifyaccess, conversations.delete);
+
+//finish a conversation 
+app.put('/:conversationId',verifyaccess,conversations.finish);
+
+//print all conversation only admin can do it.
+app.get('/conversations', verifyaccess, conversations.printAllConversations)
 
 module.exports = app;

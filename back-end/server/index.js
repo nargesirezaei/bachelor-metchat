@@ -43,6 +43,13 @@ app.use('/messages',messagesController);
 app.use('/user-interests',userInterestsController);
 
 
+/* enable corse for requests from front-end with address http://localhost:3001
+const corsOptions = {
+  origin: ["http://localhost:3001"],
+};
+app.use(cors(corsOptions));
+*/
+
 
 connectToDb((result)=>{
     console.log(result);

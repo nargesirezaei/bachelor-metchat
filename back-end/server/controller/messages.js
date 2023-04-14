@@ -1,31 +1,15 @@
 const express = require('express');
+const { verifyaccess } = require('../services/authorization');
 const app = express();
 const messages = require('../services/messages');
 
 
-app.post(`/`, async (req, res) => {
-   //creating
-});
+app.post(`/`,verifyaccess, messages.add);
 
-app.get(`/`, async (req, res) => {
-   //
-});
+app.get(`/:conversationId`,verifyaccess,messages.getAllMessages);
 
-app.post(`/seen`, async (req, res) => {
-    //updating
-   
-});
+app.put(`/seen`, messages.seen);
 
-app.get(`/:messageId`, async (req, res) => {
-    
-});
-
-app.put(`/`, async (req, res) => {
-    
-});
-
-app.delete(`/`, async (req, res) => {
-   
-});
+app.delete(`/:messageId`,messages.delete);
 
 module.exports = app;
