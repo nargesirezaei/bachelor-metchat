@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-//import axios from "axios";
-//import { welcomeRoute } from "./APIRoutes";
+import Logo from "./img/Logo.svg";
+import { HiBars3 } from "react-icons/hi2";
 import Login from "./components/login";
 import Register from "./components/Register";
 import "./home.css";
@@ -17,15 +17,33 @@ function Welcome() {
     setShowLogin(false);
   };
 
+  const [showLinks, setShowLinks] = useState(false);
+  const toggleLinks = () => {
+    setShowLinks(!showLinks);
+  };
+
   return (
     <>
-      <nav>
-        <Link to="/">
-          <img src="Logo.svg" alt="logo" />
-        </Link>
-        <ul className="main-nav">
-          <li className="push">
-            <a href="/">Om Oss</a>
+      <nav className="nav-center">
+        <div className="nav-header">
+          <a href="index.html">
+            <img src={Logo} alt="logo" />
+          </a>
+
+          <a className="push" href="">
+            Om Oss
+          </a>
+
+          <HiBars3 className="nav-toggle" onClick={toggleLinks} />
+        </div>
+
+        <ul
+          className={
+            showLinks ? "links-container show-container" : "links-container"
+          }
+        >
+          <li>
+            <a href="">Om Oss</a>
           </li>
         </ul>
       </nav>
