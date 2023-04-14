@@ -61,6 +61,7 @@ function Chat() {
             </button>
           </div>
           {/* CONVERSATIONS */}
+          {/* not currently working */}
           {/*{conversation.map((conversation, i) => (
             <div key={i}>
               <h2>{conversation.name}</h2>
@@ -72,10 +73,43 @@ function Chat() {
         </div>
 
         {/* MIDDLE */}
-        <div className="col-md-6"></div>
+        <div className="col-md-6" id="middel">
+          <div className="info">
+            <div className="icon-status">
+              <img src="profile.svg" alt="profil-icon" />
+              <div className="online"></div>
+            </div>
+            <a href="">Anders</a>
+          </div>
+          {/* Need to change? */}
+          <hr />
+          <input type="text" />
+        </div>
 
         {/* RIGHT*/}
-        <div className="col-md-3"></div>
+        <div className="col-md-3" id="right-side">
+          <img class="part-1" src="face.png" alt="face-icon" />
+          <div class="part-2">
+            <img src="profile.svg" alt="profile-icon" />
+            <div class="search-icon">
+              <i class="bi bi-search"></i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                fill="currentColor"
+                class="bi bi-search"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+            </div>
+          </div>
+          <div class="part-3">
+            <p>Profil</p>
+            <p>Søk i chat</p>
+          </div>
+        </div>
       </div>
     </>
   );
