@@ -3,59 +3,85 @@ FAFAFA (hvit)
 98A4AC (grå)
 DEE1E4 (grå)
     */
-body,
-html {
-  /*margin: 0px; */
-  margin: auto 0;
-  background-color: #fafafa;
-  color: #fff;
-  font-size: 25px;
-  font-family: "Inter", sans-serif;
-}
 
-nav {
+.nav-center {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
   right: 0;
-  margin: 0px;
   font-family: "Bai Jamjuree", sans-serif;
   font-size: 36px;
+  font-weight: 400;
   line-height: 45px;
-  height: 160px;
+  height: 170px;
   background-color: #112d40;
   z-index: 1;
 }
-nav img {
-  width: 160px;
-  height: 160px;
-  margin-left: 75px;
-}
-.main-nav {
+.nav-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.main-nav a {
-  color: #ffffff;
+.push {
   text-decoration: none;
+  color: #fafafa;
+  margin-top: 50px;
+  margin-right: 50px;
+}
+.nav-toggle {
+  display: none;
+  background-color: transparent;
+  border: none;
+  color: #fafafa;
+  width: 75px;
+  height: 75px;
+  margin-right: 50px;
+  margin-top: 50px;
 }
 
-.main-nav .push {
-  margin-top: 20px;
-  margin-right: 75px;
+.nav-header img {
+  width: 150px;
+  height: 150px;
+  margin-left: 50px;
 }
 
-li {
+/* 190px */
+.links-container {
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #112d40;
+}
+.show-container {
+  display: flex;
+  flex-direction: column;
   list-style: none;
 }
 
-a {
+.links-container a {
+  color: #fafafa;
   text-decoration: none;
-  color: #112d40;
+  text-transform: capitalize;
+  font-size: 25px;
+}
+.links-container a:hover {
+  color: #ffdc00;
+  padding-left: 1.5rem;
+}
+.nav-toggle :hover {
+  color: #ffdc00;
+}
+/* make Nave responsive at width 450 px */
+@media only screen and (max-width: 450px) {
+  .nav-toggle {
+    display: flex;
+  }
+  .push {
+    display: none;
+  }
 }
 
 #forms {
