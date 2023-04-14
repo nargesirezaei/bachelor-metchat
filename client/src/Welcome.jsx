@@ -16,7 +16,7 @@ function Welcome() {
   const handleRegisterClick = () => {
     setShowLogin(false);
   };
-
+  /* Toggle Nav*/
   const [showLinks, setShowLinks] = useState(false);
   const toggleLinks = () => {
     setShowLinks(!showLinks);
