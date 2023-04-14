@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { /*Link,*/ useNavigate } from "react-router-dom";
+import { /*profileRoute,*/ conversationRoute } from "./APIRoutes";
+import Nav from "./components/MainNav";
 import "./style.css";
 
 function Chat() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(),
+    [self, setSelf] = useState({}),
+    [conversation, setConversation] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -16,6 +20,25 @@ function Chat() {
     }
     fetchData();
   }, [navigate]);
+
+  useEffect(() => {
+    async function getConversations() {
+      await axios
+        .get(`${conversationRoute}/conversations`, {
+          id: self._id,
+        })
+        .then(async (response) => {
+          let conversation = response.data.conversation;
+
+          setConversation(conversation);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(err.response.data);
+        });
+    }
+    getConversations();
+  }, [self]);
 
   return (
     <>
@@ -38,6 +61,14 @@ function Chat() {
             </button>
           </div>
           {/* CONVERSATIONS */}
+          {/*{conversation.map((conversation, i) => (
+            <div key={i}>
+              <h2>{conversation.name}</h2>
+              <small>{conversation.conact}</small>
+            </div>
+          ))}*/}
+          <h2>CONVERSATION NAME</h2>
+          <small>CONVERSATION PARTNER</small>
         </div>
 
         {/* MIDDLE */}
