@@ -78,7 +78,14 @@ module.exports = {
         });        
     },
 
-    seen:  {
+    seen  :(req,res,next)=>{
+        messages.findOneAndUpdate({_id:req.body.messageId },{$set:{seen:true}}, (err, result) => {
+            if (err) return res.send({ status: false, message: "data base error" });
+            if (!result)
+              return res.send({ status: true, message: "message not exists!" });
+      
+            res.send({ message: "message hase been read" });
+          });
     },
 };
 
