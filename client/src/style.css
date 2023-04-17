@@ -179,12 +179,19 @@ a.active:hover {
 }
 /* ------- Messages page -------*/
 
+/*
 #msg-body {
   display: grid;
   grid-template-columns: 2fr 4fr 2fr;
   height: 700px;
   margin-top: 160px;
 }
+*/
+
+#msg-body {
+  margin-top: 170px;
+}
+
 #left-side {
   padding: 1em;
   border-right: #dee1e4 1px solid;

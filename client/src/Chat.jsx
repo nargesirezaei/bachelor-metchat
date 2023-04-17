@@ -45,9 +45,8 @@ function Chat() {
 
   return (
     <>
-      {/*<Nav />*/}
-
-      <div className="row">
+      <Nav />
+      <div className="row" id="msg-body">
         {/* LEFT */}
         <div className="col-lg-3" id="left-side">
           {/* SEARCH */}
