@@ -29,6 +29,7 @@ module.exports = {
       });
     });
   },
+
   login: (req, res, next) => {
     const { email, password } = req.body;
 
@@ -43,14 +44,15 @@ module.exports = {
         return res.status(401).json({ message: "Invalid email or password" });
       }
       // Check if password is correct
-      if (password != user.password)
+      if (password !== user.password)
         return res.status(401).json({ message: "Invalid email or password" });
 
-      var token = authorization.generateToken({ userId: user._id });
+      let token = authorization.generateToken({ userId: user._id });
       // Send success response with token
-      return res.status(200).json({ message: "Login successful", token });
+      return res.status(200).json({ message: "Login successful", user, token });
     });
   },
+
   changePassword: (req, res) => {
     var userId = req.userId;
     var password = req.password;

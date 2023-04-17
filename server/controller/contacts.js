@@ -13,6 +13,8 @@ app.get("/mycontacts", verifyaccess, contacts.myContacts);
 
 app.get("/update", verifyaccess, contacts.UpdateMyContact)
 
+app.get("/getUser", /*verifyaccess,*/ contacts.getUser)
+
 app.get("/getAllUsers", /*verifyaccess,*/ contacts.getAllUsers)
 
 module.exports = app;
