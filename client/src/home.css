@@ -3,7 +3,10 @@ FAFAFA (hvit)
 98A4AC (grå)
 DEE1E4 (grå)
     */
-
+.homePage {
+  display: flex;
+  flex-direction: column;
+}
 .nav-center {
   display: flex;
   flex-direction: column;
@@ -90,12 +93,12 @@ DEE1E4 (grå)
   flex-direction: column;
   margin-top: 350px;
   margin-left: 50vw;
-  width: 440px;
+  width: 22vw;
+  height: 100%;
 }
-#btns-tabs {
+#btn-tabs {
   display: flex;
   flex-direction: row;
-  width: 100%;
 }
 
 .content {
@@ -110,7 +113,6 @@ DEE1E4 (grå)
 }
 
 #reg-content {
-  width: 440px;
   height: 850px;
   background-color: #112d40;
   color: #fafafa;
@@ -120,10 +122,8 @@ DEE1E4 (grå)
   font-size: 22px;
   line-height: 48px;
   width: 100%;
-  height: 95%;
 }
 #log-content {
-  width: 440px;
   height: 614px;
   background-color: #98a4ac;
   color: #fafafa;
@@ -144,7 +144,7 @@ DEE1E4 (grå)
   font-family: "Bai Jamjuree";
   font-style: normal;
   font-weight: 300;
-  font-size: 40px;
+  font-size: 2vw;
   line-height: 50px;
   color: #fafafa;
   border-radius: 0 10px 0 0;
@@ -158,7 +158,7 @@ DEE1E4 (grå)
   font-family: "Bai Jamjuree";
   font-style: normal;
   font-weight: 300;
-  font-size: 40px;
+  font-size: 2vw;
   line-height: 50px;
   color: #112d40;
 }
@@ -185,20 +185,20 @@ DEE1E4 (grå)
   margin-top: 75px;
 }
 .form-row input {
-  width: 347px;
-  height: 40px;
+  width: 15vw;
+  height: 4vh;
 }
 .form-row button {
-  width: 170px;
+  width: 12vw;
   height: 59px;
   border-radius: 25px;
   border: none;
-  margin-left: 20%;
+  margin-left: 12%;
   color: #112d40;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 1vw;
   line-height: 29px;
 }
 .btn-form-log {
@@ -270,6 +270,45 @@ DEE1E4 (grå)
 @media only screen and (max-width: 390px) {
   #LogReg {
     margin-left: 12%;
+  }
+}
+
+/* images*/
+
+.imgs {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 400px;
+  width: 100%;
+  right: 10vw;
+}
+img {
+  width: 30vw;
+}
+
+.img_1 {
+  margin-left: 30vw;
+}
+
+.img_2 {
+  margin-left: 20vw;
+  margin-top: 75px;
+}
+.img_3 {
+  margin-left: 50vw;
+  margin-top: -150px;
+}
+.img_4 {
+  margin-left: 60vw;
+}
+.img_5 {
+  margin-left: 30vw;
+  margin-top: -400px;
+}
+@media only screen and (max-width: 1039px) {
+  .imgs {
+    display: none;
   }
 }
 
@@ -420,108 +459,21 @@ input[type="password"] {
 }
 */
 
-#persons-img {
-  display: flex;
-  flex-direction: row;
-  width: 800px;
-  margin-left: 50px;
-  margin-top: -100px;
-}
-#persons-img img {
-  width: 100%;
-}
-
-#third {
-  display: flex;
-  flex-direction: row;
-  margin-left: 850px;
-  margin-top: -400px;
-}
-#nlp {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  width: 600px;
-  margin-left: 1100px;
-  color: #fafafa;
-}
-#nlp .contents {
-  position: absolute;
-  top: 100px;
-  right: 75px;
-  left: 75px;
-}
-#nlp .btn {
-  position: absolute;
-  right: 20px;
-  width: 35%;
-  border-radius: 50px;
-}
-#fifth {
-  margin-top: -100px;
-  margin-left: 500px;
-}
-
-.model-overlay {
-  display: none;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(17, 45, 64, 0.9);
-  top: 0;
-  left: 0;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-.scroll-div {
-  max-width: 800px;
-  border: solid 1px #fafafa;
-  box-shadow: 0 0 15px rgba(17, 45, 64, 0.3);
-}
-.scroll-div-object {
-  background-color: #fafafa;
-  height: 400px;
-  overflow: hidden;
-  overflow-y: scroll;
-  padding: 35px;
-  color: #112d40;
-}
-
-.heading {
-  display: flex;
-  background-color: #c3cace;
-  height: 115px;
-  align-items: center;
-  justify-content: center;
-  color: #112d40;
-  font-size: larger;
-  width: 100%;
-}
-
-.btns {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #112d40;
-  background-color: #c3cace;
-  height: 150px;
-}
-.btns .btn {
-  margin-top: 25px;
-  width: 163px;
-  border-radius: 10px;
-}
 footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
   background-color: #112d40;
-  margin-top: auto;
+  width: 100%;
+  height: 200px;
+  color: #fafafa;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vw;
+  margin-top: 140vh;
 }
-footer p {
-  margin-top: 25px;
+
+@media only screen and (max-width: 1039px) {
+  footer {
+    display: none;
+  }
 }
