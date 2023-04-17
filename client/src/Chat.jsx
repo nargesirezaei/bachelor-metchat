@@ -3,6 +3,7 @@ import axios from "axios";
 import { /*Link,*/ useNavigate } from "react-router-dom";
 import { /*profileRoute,*/ conversationRoute } from "./APIRoutes";
 import Nav from "./components/MainNav";
+import ChatContainer from "./components/ChatContainer";
 import "./style.css";
 
 function Chat() {
@@ -10,6 +11,7 @@ function Chat() {
     [self, setSelf] = useState({}),
     [conversation, setConversation] = useState([]);
 
+  //remove if not needed.
   useEffect(() => {
     async function fetchData() {
       if (!localStorage.getItem("metchat-user")) {
@@ -61,7 +63,7 @@ function Chat() {
             </button>
           </div>
           {/* CONVERSATIONS */}
-          {/* not currently working */}
+          {/* not currently working, delete if better solution found */}
           {/*{conversation.map((conversation, i) => (
             <div key={i}>
               <h2>{conversation.name}</h2>
@@ -74,19 +76,10 @@ function Chat() {
 
         {/* MIDDLE */}
         <div className="col-md-6" id="middel">
-          <div className="info">
-            <div className="icon-status">
-              <img src="profile.svg" alt="profil-icon" />
-              <div className="online"></div>
-            </div>
-            <a href="">Anders</a>
-          </div>
-          {/* Need to change? */}
-          <hr />
-          <input type="text" />
+          <ChatContainer />
         </div>
 
-        {/* RIGHT*/}
+        {/* RIGHT */}
         <div className="col-md-3" id="right-side">
           <img class="part-1" src="face.png" alt="face-icon" />
           <div class="part-2">
