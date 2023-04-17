@@ -190,7 +190,7 @@ DEE1E4 (grå)
 }
 .form-row button {
   width: 12vw;
-  height: 59px;
+  height: 6vh;
   border-radius: 25px;
   border: none;
   margin-left: 12%;
@@ -293,14 +293,15 @@ img {
 
 .img_2 {
   margin-left: 20vw;
-  margin-top: 75px;
+  margin-top: 7vh;
 }
 .img_3 {
   margin-left: 50vw;
   margin-top: -150px;
 }
 .img_4 {
-  margin-left: 60vw;
+  width: 30vw;
+  height: auto;
 }
 .img_5 {
   margin-left: 30vw;
@@ -310,6 +311,43 @@ img {
   .imgs {
     display: none;
   }
+}
+.nlp {
+  text-align: center;
+  position: relative;
+  left: 60vw;
+  width: 30vw;
+  height: auto;
+}
+.nlp h2 {
+  position: absolute;
+  top: 5vh;
+  left: 10vw;
+  font-size: 2vw;
+}
+.txt {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  height: 100%;
+  line-height: 3vh;
+  font-size: 1vw;
+  top: 15vh;
+}
+.nlp .btn {
+  width: 9vw;
+  height: 5vh;
+  border-radius: 20px;
+  border: none;
+  color: #112d40;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1vw;
+  line-height: 2vh;
+  position: absolute;
+  left: 15vw;
+  bottom: 7vh;
 }
 
 /*
@@ -474,7 +512,7 @@ footer {
 
 @media only screen and (max-width: 1039px) {
   footer {
-    font-size: 2vw;
+    font-size: 0.5rem;
     margin-top: 50px;
   }
 }
