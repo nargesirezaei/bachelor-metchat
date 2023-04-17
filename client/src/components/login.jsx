@@ -85,8 +85,8 @@ function Login() {
   // When the user enters their email or password, the handleChange function is called to update the values state with the new values.
   // When the user submits the form, the handleSubmit function is called to validate the input and send a request to the server.
   return (
-    <div className="content active inactive" id="log_in">
-      <form id="form_log" onSubmit={(e) => handleSubmit(e)}>
+    <div className="content active-content" id="log-content">
+      <form id="form-log" onSubmit={(e) => handleSubmit(e)}>
         <div className="form-row">
           <label>Epost</label>
           <input
@@ -111,9 +111,11 @@ function Login() {
           <input type="checkbox" />
           <label className="chang-color">Husk meg</label>
         </div>
-        <button type="submit" className="btn">
-          Logg Inn
-        </button>
+        <div className="form-row">
+          <button type="submit" className="btn">
+            Logg Inn
+          </button>
+        </div>
       </form>
     </div>
   );

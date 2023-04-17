@@ -3,7 +3,6 @@ import axios from "axios";
 import { /*Link,*/ useNavigate } from "react-router-dom";
 import { /*profileRoute,*/ contactRoute, userInterestRoute } from "./APIRoutes";
 import Nav from "./components/MainNav";
-import "./style.css";
 
 export default function Contacts() {
   const navigate = useNavigate(),
@@ -70,7 +69,13 @@ export default function Contacts() {
     <>
       <Nav />
 
-      <section id="first">
+      <div className="row" id="conacts-body">
+        {/* List of contacts, in cotact list */}
+      <div className="col-lg-3" id="contacts-list"><div/>
+
+      {/* List of users, that can be added to cotact list */}
+      <div className="col-lg-9" id="users"><div/>
+      <section id="users-header">
         <h1>Finn Kontakter</h1>
         <hr></hr>
         <input
@@ -82,18 +87,7 @@ export default function Contacts() {
         />
       </section>
 
-      <section id="second">
-        {/*<ul>
-          {users.map((user) => (
-            <li key={user.id}>
-              {user.firstName} {user.lastName} ({user.email})
-              <button onClick={() => handleAddContact(user)}>
-                Add to contacts
-              </button>
-            </li>
-          ))}
-        </ul>*/}
-
+      <section id="users-list">
         {users.map((user, i) => (
           <div key={i}>
             <div className="info">
@@ -122,38 +116,8 @@ export default function Contacts() {
             </div>
           </div>
         ))}
-
-        <div className="info">
-          <img src="profile.svg" alt="profile-icon" />
-
-          <img className="pluss" src="pluss.svg" alt="pluss-icon" />
-          <img className="mail" src="mail.jpg" alt="mail-icon" />
-        </div>
-        <div className="intersts">
-          <button className="btn">Mat</button>
-          <button className="btn">Knust</button>
-          <button className="btn">Litratur</button>
-          <div>....</div>
-        </div>
-        <div className="info">
-          <img src="profile.svg" alt="profile-icon" />
-          <h2>Navn</h2>
-          <img className="pluss" src="pluss.svg" alt="pluss-icon" />
-          <img className="mail" src="mail.jpg" alt="mail-icon" />
-        </div>
-        <div className="intersts">
-          <button className="btn">Mat</button>
-          <button className="btn">Knust</button>
-          <button className="btn">Litratur</button>
-          <div>....</div>
-        </div>
-        <div className="showMore">
-          <a href="/kontakter">
-            <img src="pluss.svg" alt="pluss-icon" />
-          </a>
-          <button>Vis flere</button>
-        </div>
       </section>
+      </div>
 
       <footer>
         <p>Laget av Rami, Narges, Aina og Fatima</p>

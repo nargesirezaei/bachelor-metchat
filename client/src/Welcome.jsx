@@ -23,141 +23,132 @@ function Welcome() {
 
   return (
     <>
-      <nav className="nav-center">
-        <div className="nav-header">
-          <Link to="/">
-            <img src="Logo.svg" alt="logo" />
-          </Link>
+      <div className="homePage">
+        <nav className="nav-center">
+          <div className="nav-header">
+            <Link to="/">
+              <img src="Logo.svg" alt="logo" />
+            </Link>
 
-          <a className="push" href="">
-            Om Oss
-          </a>
+            <a className="push" href="">
+              Om Oss
+            </a>
 
-          <HiBars3 className="nav-toggle" onClick={toggleLinks} />
-        </div>
+            <HiBars3 className="nav-toggle" onClick={toggleLinks} />
+          </div>
 
-        <ul
-          className={
-            showLinks ? "links-container show-container" : "links-container"
-          }
-        >
-          <li>
-            <a href="">Om Oss</a>
-          </li>
-        </ul>
-      </nav>
+          <ul
+            className={
+              showLinks ? "links-container show-container" : "links-container"
+            }
+          >
+            <li>
+              <a href="">Om Oss</a>
+            </li>
+          </ul>
+        </nav>
 
-      <section id="forms">
-        <div id="lines_1">
-          <img src="Lines.png" alt="pyntelinjer" />
-        </div>
-
-        <div className="log-reg">
-          <div className="btn-container">
+        <div id="LogReg">
+          <div id="btn-tabs">
             <button
-              className="tab-btn active"
-              data-id="log_in"
+              id="btn-log"
+              className="tabs active-tabs"
+              data-id="btn-log"
               onClick={handleLoginClick}
             >
               Logg Inn
             </button>
             <button
-              className="tab-btn reg"
+              id="btn-reg"
+              className="tabs active-tabs"
               data-id="reg"
               onClick={handleRegisterClick}
             >
               Registrer
             </button>
           </div>
-
-          <div className="log-reg-content">
+          <div className="content-tabs">
             {showLogin ? <Login /> : <Register />}
           </div>
         </div>
-      </section>
-
-      <div className="model-overlay">
-        <div className="scroll-div">
-          <div className="heading">
-            <p>Vilkår for tjenesten</p>
-          </div>
-          <div className="scroll-div-object">
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Repellendus expedita iusto, eaque, aut maiores quas at unde
-              delectus eius voluptatum, corrupti ex vitae commodi dolorem in
-              quaerat cumque labore repellat!
-            </p>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Repellendus expedita iusto, eaque, aut maiores quas at unde
-              delectus eius voluptatum, corrupti ex vitae commodi dolorem in
-              quaerat cumque labore repellat!
-            </p>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Repellendus expedita iusto, eaque, aut maiores quas at unde
-              delectus eius voluptatum, corrupti ex vitae commodi dolorem in
-              quaerat cumque labore repellat!
-            </p>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Repellendus expedita iusto, eaque, aut maiores quas at unde
-              delectus eius voluptatum, corrupti ex vitae commodi dolorem in
-              quaerat cumque labore repellat!
-            </p>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Repellendus expedita iusto, eaque, aut maiores quas at unde
-              delectus eius voluptatum, corrupti ex vitae commodi dolorem in
-              quaerat cumque labore repellat!
-            </p>
-          </div>
-          <div className="btns">
-            <div>
-              <input type="checkbox" />
-              <label> Jeg har lest alt, og samtrykker..</label>
+        {/*
+        <div className="model-overlay">
+          <div className="scroll-div">
+            <div className="heading">
+              <p>Vilkår for tjenesten</p>
             </div>
+            <div className="scroll-div-object">
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Repellendus expedita iusto, eaque, aut maiores quas at unde
+                delectus eius voluptatum, corrupti ex vitae commodi dolorem in
+                quaerat cumque labore repellat!
+              </p>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Repellendus expedita iusto, eaque, aut maiores quas at unde
+                delectus eius voluptatum, corrupti ex vitae commodi dolorem in
+                quaerat cumque labore repellat!
+              </p>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Repellendus expedita iusto, eaque, aut maiores quas at unde
+                delectus eius voluptatum, corrupti ex vitae commodi dolorem in
+                quaerat cumque labore repellat!
+              </p>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Repellendus expedita iusto, eaque, aut maiores quas at unde
+                delectus eius voluptatum, corrupti ex vitae commodi dolorem in
+                quaerat cumque labore repellat!
+              </p>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Repellendus expedita iusto, eaque, aut maiores quas at unde
+                delectus eius voluptatum, corrupti ex vitae commodi dolorem in
+                quaerat cumque labore repellat!
+              </p>
+            </div>
+            <div className="btns">
+              <div>
+                <input type="checkbox" />
+                <label> Jeg har lest alt, og samtrykker..</label>
+              </div>
 
-            <div>
-              <button className="btn">Tilbake</button>
-              <a href="interests.html">
-                <button className="btn">Gå Videre</button>
-              </a>
+              <div>
+                <button className="btn">Tilbake</button>
+                <a href="interests.html">
+                  <button className="btn">Gå Videre</button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
+        */}
+        <div className="imgs">
+          <img src="Lines.png" className="img_1" />
+          <img src="photo.png" className="img_2" />
+          <img src="Lines_2.png" className="img_3" />
+          <div className="nlp">
+            <img src="BubbleBox.png" className="img_4" />
+            <h2>Hva Er NLP</h2>
+            <p className="txt">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+              ab placeat saepe? Ex, maxime! Quis, commodi. Labore error iusto a,
+              ipsa, optio architecto vero aperiam nesciunt facilis pariatur,
+              nostrum itaque. Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Officia ab placeat saepe? Ex, maxime! Quis, commodi. Labore
+              error iusto a, ipsa, optio architecto vero aperiam nesciunt
+              facilis pariatur, nostrum itaque.
+            </p>
+            <button className="btn"> Les mer..</button>
+          </div>
+          <img src="Lines.png" className="img_5" />
+        </div>
+        <footer>
+          <h3>DATA3900-1 23V Bacheloroppgave</h3>
+        </footer>
       </div>
-
-      <section id="persons-img">
-        <img id="photo" src="photo.png" alt="personer som snakker" />
-      </section>
-
-      <section id="third">
-        <img src="Lines_2.png" alt="lines" />
-      </section>
-
-      <section id="nlp">
-        <img src="BubbleBox.png" alt="bobleramme" />
-        <div className="contents">
-          <h2>Hva Er NLP</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ab
-            placeat saepe? Ex, maxime! Quis, commodi. Labore error iusto a,
-            ipsa, optio architecto vero aperiam nesciunt facilis pariatur,
-            nostrum itaque.
-          </p>
-          <button className="btn"> Les mer..</button>
-        </div>
-      </section>
-
-      <section id="fifth">
-        <img src="Lines.png" alt="lines" />
-      </section>
-
-      <footer>
-        <p>Laget av Rami, Narges, Aina Og Fatima</p>
-      </footer>
     </>
   );
 }

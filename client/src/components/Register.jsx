@@ -24,10 +24,10 @@ function Register() {
     if (password !== confirmPassword) {
       alert("Feltene for passord er ikke like.");
       return false;
-    } else if (fname.length < 3) {
+    } else if (fname.length < 3 && fname.length > 30) {
       alert("Fornavn må være minst tre bokstaver.");
       return false;
-    } else if (lname.length < 2) {
+    } else if (lname.length < 2 && lname.length > 30) {
       alert("Etternavn må være minst to bokstaver.");
       return false;
     } else if (
@@ -38,7 +38,7 @@ function Register() {
         "Navnet ditt kan bare bestå av bokstaver fra det norske alfabetet."
       );
       return false;
-    } else if (password.length < 8) {
+    } else if (password.length < 8 && password.length > 50) {
       alert("Passordet må være minst åtte(8) tegn.");
       return false;
     } else if (
@@ -79,8 +79,8 @@ function Register() {
   };
 
   return (
-    <div className="content" id="reg">
-      <form id="form_reg" onSubmit={(e) => handleSubmit(e)}>
+    <div className="content active-content" id="reg-content">
+      <form id="form-reg" onSubmit={(e) => handleSubmit(e)}>
         <div className="form-row">
           <label>Fornavn</label>
           <input
@@ -131,9 +131,11 @@ function Register() {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <button className="btn button-reg" type="submit">
-          Registrer
-        </button>
+        <div className="form-row">
+          <button className="btn button-reg" type="submit">
+            Registrer
+          </button>
+        </div>
       </form>
     </div>
   );
