@@ -462,18 +462,19 @@ input[type="password"] {
 footer {
   background-color: #112d40;
   width: 100%;
-  height: 200px;
+  height: 150px;
   color: #fafafa;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 2vw;
+  font-size: 1.5vw;
   margin-top: 140vh;
 }
 
 @media only screen and (max-width: 1039px) {
   footer {
-    display: none;
+    font-size: 2vw;
+    margin-top: 50px;
   }
 }
