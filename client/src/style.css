@@ -287,9 +287,8 @@ a.active:hover {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
-
 .input-container input {
   width: 90%;
   height: 60%;
@@ -306,7 +305,6 @@ a.active:hover {
     outline: none;
   }*/
 }
-
 .input-container button {
   padding: 0.3rem 2rem;
   border-radius: 2rem;
@@ -390,6 +388,7 @@ a.active:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #000000;
 }
 #right-side .part-1 {
   width: 100px;
@@ -405,10 +404,17 @@ a.active:hover {
   color: #000000;
 }
 .part-2 img {
-  width: 35px;
-  height: 35px;
+  height: 3rem;
 }
-.part-2 .search-icon {
+
+#right-side button {
+  padding: 0.3rem 1rem;
+  border-radius: 2rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #c1c8cd;
+}
+/*.part-2 .search-icon {
   width: 35px;
   height: 35px;
 }
@@ -419,7 +425,14 @@ a.active:hover {
   width: 50%;
   margin-top: 10px;
   color: #000000;
+}*/
+
+/* LEFT SIDE - Conversation list*/
+.convo-list {
+  background-color: #dee1e4;
+  padding: 1rem;
 }
+
 #left-side .info {
   margin-top: 20px;
 }

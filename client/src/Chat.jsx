@@ -70,8 +70,10 @@ function Chat() {
               <small>{conversation.conact}</small>
             </div>
           ))}*/}
-          <h2>CONVERSATION NAME</h2>
-          <small>CONVERSATION PARTNER</small>
+          <div className="convo-list">
+            <h2>CONVERSATION NAME</h2>
+            <small>CONVERSATION PARTNER</small>
+          </div>
         </div>
 
         {/* MIDDLE */}
@@ -81,10 +83,14 @@ function Chat() {
 
         {/* RIGHT */}
         <div className="col-md-3" id="right-side">
-          <img class="part-1" src="profile.svg" alt="profile-icon" />
+          <div className="user-info">
+            <img class="part-1" src="profile.svg" alt="profile-icon" />
+            <h3>LOREM NAMEN</h3>
+          </div>
           <div class="part-2">
             <img src="profile.svg" alt="profile-icon" />
-            <p>Profil</p>
+            <p>Til profil</p>
+            <button className="delete-convo">Slett samtale</button>
           </div>
         </div>
       </div>
