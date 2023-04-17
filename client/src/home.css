@@ -88,6 +88,7 @@ DEE1E4 (grå)
 }
 
 /* Form*/
+/*
 #LogReg {
   display: flex;
   flex-direction: column;
@@ -271,86 +272,8 @@ DEE1E4 (grå)
   #LogReg {
     margin-left: 12%;
   }
-}
+} */
 
-/* images*/
-
-.imgs {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 400px;
-  width: 40%;
-  right: 70vw;
-}
-img {
-  width: 30vw;
-}
-
-.img_1 {
-  margin-left: 30vw;
-}
-
-.img_2 {
-  margin-left: 20vw;
-  margin-top: 7vh;
-}
-.img_3 {
-  margin-left: 50vw;
-  margin-top: -150px;
-}
-.img_4 {
-  width: 30vw;
-  height: auto;
-}
-.img_5 {
-  margin-left: 30vw;
-  margin-top: -400px;
-}
-@media only screen and (max-width: 1039px) {
-  .imgs {
-    display: none;
-  }
-}
-.nlp {
-  text-align: center;
-  position: relative;
-  left: 60vw;
-  width: 30vw;
-  height: auto;
-}
-.nlp h2 {
-  position: absolute;
-  top: 5vh;
-  left: 10vw;
-  font-size: 2vw;
-}
-.txt {
-  position: absolute;
-  left: 7%;
-  right: 7%;
-  height: 100%;
-  line-height: 3vh;
-  font-size: 1vw;
-  top: 15vh;
-}
-.nlp .btn {
-  width: 9vw;
-  height: 5vh;
-  border-radius: 20px;
-  border: none;
-  color: #112d40;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1vw;
-  line-height: 2vh;
-  position: absolute;
-  left: 15vw;
-  bottom: 7vh;
-}
-
-/*
 #forms {
   display: flex;
   flex-direction: row;
@@ -464,14 +387,12 @@ input[type="password"] {
   background-color: #98a4ac;
 }
 
-
-
 .content.active {
   display: flex;
   flex-direction: column;
 }
 .btn,
-.btn-reg {
+.button-reg {
   border: none;
   width: 170px;
   height: 59px;
@@ -487,7 +408,7 @@ input[type="password"] {
   background-color: #112d40;
   color: #fafafa;
 }
-.btn-reg:hover {
+.button-reg:hover {
   background-color: #fafafa;
   color: #112d40;
 }
@@ -495,7 +416,6 @@ input[type="password"] {
 .btn:hover a {
   color: #fafafa;
 }
-*/
 
 footer {
   background-color: #112d40;

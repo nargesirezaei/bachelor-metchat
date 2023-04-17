@@ -54,18 +54,30 @@ function Login() {
 
     if (handleValidation()) {
       const { email, password } = values;
-      const { data } = await axios.post(`${authenticationRoute}/login`, {
-        email,
-        password,
-      });
+      await axios
+        .post(`${authenticationRoute}/login`, {
+          email,
+          password,
+        })
+        .then((response) => {
+          localStorage.setItem(
+            "metchat-user",
+            JSON.stringify(response.data.user)
+          );
+          alert("Logget inn");
+          navigate("/kontakter");
+        })
+        .catch((err) => {
+          alert(err.response.data);
+        });
 
-      if (data.status === false) {
+      /*if (data.status === false) {
         alert(data.msg);
       } else if (data.status === true) {
         localStorage.setItem("metchat-user", JSON.stringify(data.user));
         alert("Logget inn");
         navigate("/kontakter"); // add navigation to contacts?
-      }
+      }*/
     }
   };
 

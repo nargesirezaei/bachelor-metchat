@@ -20,10 +20,6 @@ function Welcome() {
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
-  const [toggleState, setToggleState] = useState(1);
-  const toggelTab = (index) => {
-    setToggleState(index);
-  };
 
   return (
     <>
@@ -51,88 +47,35 @@ function Welcome() {
             </li>
           </ul>
         </nav>
-
-        <div id="LogReg">
-          <div id="btn-tabs">
-            <button
-              id="btn-log"
-              className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggelTab(1)}
-            >
-              Logg Inn
-            </button>
-            <button
-              id="btn-reg"
-              className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggelTab(2)}
-            >
-              Register
-            </button>
+        <section id="forms">
+          <div id="lines_1">
+            <img src="Lines.png" alt="pyntelinjer" />
           </div>
-          <div className="content-tabs">
-            <div
-              id="log-content"
-              className={
-                toggleState === 1 ? "content active-content" : "content"
-              }
-            >
-              <form id="form-log">
-                <div className="form-row">
-                  <label>Epost</label>
-                  <input type="text" required id="email_log" />
-                </div>
-                <div className="form-row">
-                  <label>Passord</label>
-                  <input type="password" required id="password_log" />
-                </div>
-                <div className="form-check">
-                  <input type="checkbox" />
-                  <label className="chang-color">Husk meg</label>
-                </div>
-                <div className="form-row">
-                  <button type="submit" className="btn-form-log">
-                    Logg Inn
-                  </button>
-                </div>
-              </form>
+
+          <div className="log-reg">
+            <div className="btn-container">
+              <button
+                className="tab-btn active"
+                data-id="log_in"
+                onClick={handleLoginClick}
+              >
+                Logg Inn
+              </button>
+              <button
+                className="tab-btn reg"
+                data-id="reg"
+                onClick={handleRegisterClick}
+              >
+                Registrer
+              </button>
             </div>
 
-            <div
-              id="reg-content"
-              className={
-                toggleState === 2 ? "content active-content" : "content"
-              }
-            >
-              <form id="form-reg">
-                <div className="form-row">
-                  <label>Fornavn</label>
-                  <input type="text" required id="first_name" />
-                </div>
-                <div className="form-row">
-                  <label>Etternavn</label>
-                  <input type="text" required id="last_name" />
-                </div>
-                <div className="form-row">
-                  <label>Epost</label>
-                  <input type="text" required id="email_reg" />
-                </div>
-                <div className="form-row">
-                  <label>Passord</label>
-                  <input type="password" required id="password_reg" />
-                </div>
-                <div className="form-row">
-                  <label>Gjente Passord</label>
-                  <input type="password" required id="repeat_passowrd" />
-                </div>
-                <div className="form-row">
-                  <button className="btn-form-reg">Register</button>
-                </div>
-              </form>
+            <div className="log-reg-content">
+              {showLogin ? <Login /> : <Register />}
             </div>
           </div>
-        </div>
-        {/* 
-       <div className="model-overlay">
+        </section>
+        <div className="model-overlay">
           <div className="scroll-div">
             <div className="heading">
               <p>Vilkår for tjenesten</p>
@@ -185,7 +128,6 @@ function Welcome() {
           </div>
         </div>
         */}
-
         <div className="imgs">
           <img src="Lines.png" className="img_1" />
           <img src="photo.png" className="img_2" />
