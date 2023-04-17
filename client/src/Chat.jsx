@@ -5,7 +5,6 @@ import { /*Link,*/ useNavigate } from "react-router-dom";
 import { /*profileRoute,*/ conversationRoute } from "./APIRoutes";
 import Nav from "./components/MainNav";
 import ChatContainer from "./components/ChatContainer";
-import "./style.css";
 
 function Chat() {
   const navigate = useNavigate(),

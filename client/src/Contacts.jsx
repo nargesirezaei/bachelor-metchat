@@ -3,7 +3,6 @@ import axios from "axios";
 import { /*Link,*/ useNavigate } from "react-router-dom";
 import { /*profileRoute,*/ contactRoute, userInterestRoute } from "./APIRoutes";
 import Nav from "./components/MainNav";
-import "./style.css";
 
 export default function Contacts() {
   const navigate = useNavigate(),

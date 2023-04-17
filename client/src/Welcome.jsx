@@ -47,34 +47,31 @@ function Welcome() {
             </li>
           </ul>
         </nav>
-        <section id="forms">
-          <div id="lines_1">
-            <img src="Lines.png" alt="pyntelinjer" />
-          </div>
 
-          <div className="log-reg">
-            <div className="btn-container">
-              <button
-                className="tab-btn active"
-                data-id="log_in"
-                onClick={handleLoginClick}
-              >
-                Logg Inn
-              </button>
-              <button
-                className="tab-btn reg"
-                data-id="reg"
-                onClick={handleRegisterClick}
-              >
-                Registrer
-              </button>
-            </div>
-
-            <div className="log-reg-content">
-              {showLogin ? <Login /> : <Register />}
-            </div>
+        <div id="LogReg">
+          <div id="btn-tabs">
+            <button
+              id="btn-log"
+              className="tabs active-tabs"
+              data-id="btn-log"
+              onClick={handleLoginClick}
+            >
+              Logg Inn
+            </button>
+            <button
+              id="btn-reg"
+              className="tabs active-tabs"
+              data-id="reg"
+              onClick={handleRegisterClick}
+            >
+              Registrer
+            </button>
           </div>
-        </section>
+          <div className="content-tabs">
+            {showLogin ? <Login /> : <Register />}
+          </div>
+        </div>
+        {/*
         <div className="model-overlay">
           <div className="scroll-div">
             <div className="heading">

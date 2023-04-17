@@ -79,8 +79,8 @@ function Register() {
   };
 
   return (
-    <div className="content" id="reg">
-      <form id="form_reg" onSubmit={(e) => handleSubmit(e)}>
+    <div className="content active-content" id="reg-content">
+      <form id="form-reg" onSubmit={(e) => handleSubmit(e)}>
         <div className="form-row">
           <label>Fornavn</label>
           <input
@@ -131,9 +131,11 @@ function Register() {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <button className="btn button-reg" type="submit">
-          Registrer
-        </button>
+        <div className="form-row">
+          <button className="btn button-reg" type="submit">
+            Registrer
+          </button>
+        </div>
       </form>
     </div>
   );
