@@ -5,6 +5,7 @@ import { /*Link,*/ useNavigate } from "react-router-dom";
 import { /*profileRoute,*/ conversationRoute } from "./APIRoutes";
 import Nav from "./components/MainNav";
 import ChatContainer from "./components/ChatContainer";
+import "./chat.css";
 
 function Chat() {
   const navigate = useNavigate(),
@@ -47,7 +48,7 @@ function Chat() {
       <Nav />
       <div className="row" id="msg-body">
         {/* LEFT */}
-        <div className="col-lg-3" id="left-side">
+        <div className="col-lg-3" id="conversations-list">
           {/* SEARCH */}
           <div className="input-group">
             <input
