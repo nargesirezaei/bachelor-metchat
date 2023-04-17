@@ -265,7 +265,7 @@ a.active:hover {
     }
   }*/
 }
-
+/* can be used to style the message bubbles?*/
 .message {
   display: flex;
   align-items: center;
@@ -274,7 +274,7 @@ a.active:hover {
   max-width: 40%;
   overflow-wrap: break-word;
   padding: 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border-radius: 1rem;
   color: #000000;
   /*@media screen and (min-width: 720px) and (max-width: 1080px) {
@@ -285,21 +285,20 @@ a.active:hover {
 /* Input field */
 .input-container {
   width: 100%;
-  border-radius: 2rem;
   display: flex;
   align-items: center;
   gap: 2rem;
-  background-color: #ffffff34;
 }
 
 .input-container input {
   width: 90%;
   height: 60%;
-  background-color: transparent;
-  color: white;
   border: none;
-  padding-left: 1rem;
-  font-size: 1.2rem;
+  border-radius: 2rem;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: #d9d9d9;
+
   /*&::selection {
     background-color: #112d40;
   }
@@ -316,12 +315,12 @@ a.active:hover {
   align-items: center;
   background-color: #c1c8cd;
   border: none;
-  @media screen and (min-width: 720px) and (max-width: 1080px) {
+  /*@media screen and (min-width: 720px) and (max-width: 1080px) {
     padding: 0.3rem 1rem;
     svg {
       font-size: 1rem;
-    }
-  }
+    } 
+  }*/
   /*svg {
     font-size: 2rem;
     color: white;
