@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "./img/Logo.svg";
 import { HiBars3 } from "react-icons/hi2";
 import Login from "./components/login";
 import Register from "./components/Register";
@@ -26,9 +25,9 @@ function Welcome() {
     <>
       <nav className="nav-center">
         <div className="nav-header">
-          <a href="index.html">
-            <img src={Logo} alt="logo" />
-          </a>
+          <Link to="/">
+            <img src="Logo.svg" alt="logo" />
+          </Link>
 
           <a className="push" href="">
             Om Oss
