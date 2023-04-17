@@ -16,7 +16,7 @@ export default function MoreInfo() {
 
   useEffect(() => {
     async function fetchData() {
-      if (!localStorage.getItem("metchat-user")) navigate("/merInfo");
+      if (!localStorage.getItem("metchat-user")) navigate("/");
       else {
         const data = await JSON.parse(localStorage.getItem("metchat-user"));
         setUser(data);
