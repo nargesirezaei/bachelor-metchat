@@ -85,6 +85,7 @@ DEE1E4 (grå)
 }
 
 /* Form*/
+/*
 #LogReg {
   display: flex;
   flex-direction: column;
@@ -271,9 +272,8 @@ DEE1E4 (grå)
   #LogReg {
     margin-left: 12%;
   }
-}
+} */
 
-/*
 #forms {
   display: flex;
   flex-direction: row;
@@ -387,8 +387,6 @@ input[type="password"] {
   background-color: #98a4ac;
 }
 
-
-
 .content.active {
   display: flex;
   flex-direction: column;
@@ -418,7 +416,6 @@ input[type="password"] {
 .btn:hover a {
   color: #fafafa;
 }
-*/
 
 #persons-img {
   display: flex;
