@@ -6,17 +6,20 @@ import { IoMdSend } from "react-icons/io";
 function ChatContainer() {
   return (
     <>
+      {/* HEADER */}
       <div className="chat-header">
-        <div className="user-details">
-          <div className="avatar">
+        <div className="user-info">
+          <div className="convo-patner-img">
             <img src="profile.svg" alt="" />
           </div>
           <div className="username">
-            <h3>CURRENT CHAT</h3>
+            <h3>LOREM NAMEN</h3>
           </div>
         </div>
       </div>
+      {/* CHAT MESSAGES */}
       <div className="chat-messages">{/* .map over messages? */}</div>
+      {/* INPUT FOR WRITING MESSAGES */}
       <form className="input-container">
         <input type="text" placeholder="Skriv noe her..." />
         <button type="submit">

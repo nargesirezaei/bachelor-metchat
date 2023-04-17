@@ -86,10 +86,6 @@ function Chat() {
             <img src="profile.svg" alt="profile-icon" />
             <p>Profil</p>
           </div>
-          <div class="part-3">
-            <p>Profil</p>
-            <p>Søk i chat</p>
-          </div>
         </div>
       </div>
     </>
