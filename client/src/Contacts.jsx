@@ -71,52 +71,56 @@ export default function Contacts() {
 
       <div className="row" id="conacts-body">
         {/* List of contacts, in cotact list */}
-      <div className="col-lg-3" id="contacts-list"><div/>
+        <div className="col-lg-3" id="contacts-list">
+          <h2>Mine Kontakter</h2>
+        </div>
 
-      {/* List of users, that can be added to cotact list */}
-      <div className="col-lg-9" id="users"><div/>
-      <section id="users-header">
-        <h1>Finn Kontakter</h1>
-        <hr></hr>
-        <input
-          type="search"
-          className="form-control rounded"
-          placeholder="Søk"
-          aria-label="Search"
-          aria-describedby="search-addon"
-        />
-      </section>
+        {/* Column with users, that can be added to cotact list */}
+        <div className="col-lg-9" id="users">
+          <section id="users-header">
+            <h1>Finn Kontakter</h1>
+            <hr></hr>
+            <input
+              type="search"
+              className="form-control rounded"
+              placeholder="Søk"
+              aria-label="Search"
+              aria-describedby="search-addon"
+            />
+          </section>
 
-      <section id="users-list">
-        {users.map((user, i) => (
-          <div key={i}>
-            <div className="info">
-              <img src="profile.svg" alt="profile-icon" />
-              <h2>
-                {user.firstName} {user.lastName}
-                <br />({user.email})
-              </h2>
+          {/* List of users, that can be added to cotact list */}
+          <section id="users-list">
+            {users.map((user, i) => (
+              <div key={i}>
+                <div className="info">
+                  <img src="profile.svg" alt="profile-icon" />
+                  <h2>
+                    {user.firstName} {user.lastName}
+                    <br />({user.email})
+                  </h2>
 
-              <img
-                className="pluss"
-                src="pluss.svg"
-                alt="pluss-icon"
-                style={{ cursor: "pointer" }}
-                onClick={() => handleAddContact(user)}
-              />
-              <img className="mail" src="mail.jpg" alt="mail-icon" />
-            </div>
-            <div className="intersts">
-              {user["interests"].map((interest, i) => (
-                <button className="btn" key={i}>
-                  {interest.interestId.title}
-                </button>
-              ))}
-              <button className="btn showmore">Vis flere</button>
-            </div>
-          </div>
-        ))}
-      </section>
+                  <img
+                    className="pluss"
+                    src="pluss.svg"
+                    alt="pluss-icon"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleAddContact(user)}
+                  />
+                  <img className="mail" src="mail.jpg" alt="mail-icon" />
+                </div>
+                <div className="intersts">
+                  {user["interests"].map((interest, i) => (
+                    <button className="btn" key={i}>
+                      {interest.interestId.title}
+                    </button>
+                  ))}
+                  <button className="btn showmore">Vis flere</button>
+                </div>
+              </div>
+            ))}
+          </section>
+        </div>
       </div>
 
       <footer>
