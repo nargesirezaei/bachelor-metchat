@@ -190,7 +190,20 @@ function Welcome() {
           <img src="Lines.png" className="img_1" />
           <img src="photo.png" className="img_2" />
           <img src="Lines_2.png" className="img_3" />
-          <img src="BubbleBox.png" className="img_4" />
+          <div className="nlp">
+            <img src="BubbleBox.png" className="img_4" />
+            <h2>Hva Er NLP</h2>
+            <p className="txt">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+              ab placeat saepe? Ex, maxime! Quis, commodi. Labore error iusto a,
+              ipsa, optio architecto vero aperiam nesciunt facilis pariatur,
+              nostrum itaque. Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Officia ab placeat saepe? Ex, maxime! Quis, commodi. Labore
+              error iusto a, ipsa, optio architecto vero aperiam nesciunt
+              facilis pariatur, nostrum itaque.
+            </p>
+            <button className="btn"> Les mer..</button>
+          </div>
           <img src="Lines.png" className="img_5" />
         </div>
         <footer>
