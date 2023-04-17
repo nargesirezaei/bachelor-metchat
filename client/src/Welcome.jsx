@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "./img/Logo.svg";
 import { HiBars3 } from "react-icons/hi2";
 import Login from "./components/login";
 import Register from "./components/Register";
 import "./home.css";
 
 function Welcome() {
-  const [showLogin, setShowLogin] = useState(true);
+  /*  const [showLogin, setShowLogin] = useState(true);
 
   const handleLoginClick = () => {
     setShowLogin(true);
@@ -16,19 +15,25 @@ function Welcome() {
   const handleRegisterClick = () => {
     setShowLogin(false);
   };
+  */
   /* Toggle Nav*/
   const [showLinks, setShowLinks] = useState(false);
   const toggleLinks = () => {
     setShowLinks(!showLinks);
+  };
+  /* Form toggle */
+  const [toggleState, setToggleState] = useState(1);
+  const toggelTab = (index) => {
+    setToggleState(index);
   };
 
   return (
     <>
       <nav className="nav-center">
         <div className="nav-header">
-          <a href="index.html">
-            <img src={Logo} alt="logo" />
-          </a>
+          <Link to="/">
+            <img src="Logo.svg" alt="logo" />
+          </Link>
 
           <a className="push" href="">
             Om Oss
@@ -48,34 +53,81 @@ function Welcome() {
         </ul>
       </nav>
 
-      <section id="forms">
-        <div id="lines_1">
-          <img src="Lines.png" alt="pyntelinjer" />
+      <div id="LogReg">
+        <div id="btn-tabs">
+          <button
+            id="btn-log"
+            className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+            onClick={() => toggelTab(1)}
+          >
+            Logg Inn
+          </button>
+          <button
+            id="btn-reg"
+            className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+            onClick={() => toggelTab(2)}
+          >
+            Register
+          </button>
         </div>
-
-        <div className="log-reg">
-          <div className="btn-container">
-            <button
-              className="tab-btn active"
-              data-id="log_in"
-              onClick={handleLoginClick}
-            >
-              Logg Inn
-            </button>
-            <button
-              className="tab-btn reg"
-              data-id="reg"
-              onClick={handleRegisterClick}
-            >
-              Registrer
-            </button>
+        <div className="content-tabs">
+          <div
+            id="log-content"
+            className={toggleState === 1 ? "content active-content" : "content"}
+          >
+            <form id="form-log">
+              <div className="form-row">
+                <label>Epost</label>
+                <input type="text" required id="email_log" />
+              </div>
+              <div className="form-row">
+                <label>Passord</label>
+                <input type="password" required id="password_log" />
+              </div>
+              <div className="form-check">
+                <input type="checkbox" />
+                <label className="chang-color">Husk meg</label>
+              </div>
+              <div className="form-row">
+                <button type="submit" className="btn-form-log">
+                  Logg Inn
+                </button>
+              </div>
+            </form>
           </div>
 
-          <div className="log-reg-content">
-            {showLogin ? <Login /> : <Register />}
+          <div
+            id="reg-content"
+            className={toggleState === 2 ? "content active-content" : "content"}
+          >
+            <form id="form-reg">
+              <div className="form-row">
+                <label>Fornavn</label>
+                <input type="text" required id="first_name" />
+              </div>
+              <div className="form-row">
+                <label>Etternavn</label>
+                <input type="text" required id="last_name" />
+              </div>
+              <div className="form-row">
+                <label>Epost</label>
+                <input type="text" required id="email_reg" />
+              </div>
+              <div className="form-row">
+                <label>Passord</label>
+                <input type="password" required id="password_reg" />
+              </div>
+              <div className="form-row">
+                <label>Gjente Passord</label>
+                <input type="password" required id="repeat_passowrd" />
+              </div>
+              <div className="form-row">
+                <button className="btn-form-reg">Register</button>
+              </div>
+            </form>
           </div>
         </div>
-      </section>
+      </div>
 
       <div className="model-overlay">
         <div className="scroll-div">
