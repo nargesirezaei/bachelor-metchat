@@ -96,6 +96,17 @@
     max-width: 70%;
   }
 }
+.sender {
+  justify-content: flex-end;
+}
+
+.sender .message-content {
+  background-color: #112d40;
+  color: #ffffff;
+}
+.reciever .message-content {
+  background-color: #c1c8cd;
+}
 
 /* Input field */
 .input-container {
@@ -125,7 +136,6 @@
   background-color: #c1c8cd;
   border: none;
 }
-
 .input-container button:hover {
   background-color: #112d40;
   color: #ffffff;

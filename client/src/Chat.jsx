@@ -185,24 +185,16 @@ function Chat() {
           {/* CHAT MESSAGES */}
           <div className="chat-messages">
             {messages.map((message, i) => (
-              <div
-                key={i}
-                ref={scrollRef}
-                style={{
-                  width: "100%",
-                  margin: "2%",
-                  backgroundColor:
-                    message.fromId === self._id ? "#112D40" : "#C1C8CD", // message color background
-                }}
-              >
-                <p
-                  style={{
-                    color: message.fromId === self._id ? "white" : "black",
-                    textAlign: message.fromId === self._id ? "right" : "left",
-                  }}
+              <div key={i} ref={scrollRef}>
+                <div
+                  className={`message ${
+                    message.fromId === self._id ? "reciever" : "sender"
+                  }`}
                 >
-                  {message.message}
-                </p>
+                  <div className="message-content">
+                    <p>{message.message}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
