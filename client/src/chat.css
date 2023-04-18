@@ -1,16 +1,11 @@
 /* ------- Messages page -------*/
 
-/*
 #msg-body {
-  display: grid;
-  grid-template-columns: 2fr 4fr 2fr;
-  height: 700px;
-  margin-top: 160px;
-}
-*/
-
-#msg-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 170px;
+  color: #000000;
 }
 
 /* Conversation list */
@@ -44,10 +39,9 @@
 
 /* Chat container*/
 #middel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+  display: grid;
+  gap: 0.1rem;
+  overflow: hidden;
 }
 
 /* Header */
@@ -66,9 +60,6 @@
 .convo-patner-img img {
   height: 3rem;
 }
-.username h3 {
-  color: #000000;
-}
 
 /* Chat messages */
 .chat-messages {
@@ -86,6 +77,10 @@
       }
     }*/
 }
+.chat-messages::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
 .message {
   display: flex;
   align-items: center;
@@ -94,12 +89,13 @@
   max-width: 40%;
   overflow-wrap: break-word;
   padding: 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border-radius: 1rem;
-  color: #000000;
-  /*@media screen and (min-width: 720px) and (max-width: 1080px) {
-      max-width: 70%;
-    } */
+}
+@media screen and (min-width: 720px) and (max-width: 1080px) {
+  .message-content {
+    max-width: 70%;
+  }
 }
 
 /* Input field */
@@ -108,43 +104,32 @@
   border-radius: 2rem;
   display: flex;
   align-items: center;
-  gap: 2rem;
-  background-color: #ffffff34;
+  gap: 1rem;
+  background-color: #d7d7d7;
 }
 
 .input-container input {
   width: 90%;
   height: 60%;
-  background-color: transparent;
-  color: white;
   border: none;
-  padding-left: 1rem;
-  font-size: 1.2rem;
-  /*&::selection {
-      background-color: #112d40;
-    }
-    &:focus {
-      outline: none;
-    }*/
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 10%;
+  background-color: transparent;
 }
 .input-container button {
-  padding: 0.3rem 2rem;
+  padding: 1rem 2rem;
   border-radius: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #c1c8cd;
   border: none;
-  @media screen and (min-width: 720px) and (max-width: 1080px) {
-    padding: 0.3rem 1rem;
-    svg {
-      font-size: 1rem;
-    }
-  }
-  /*svg {
-      font-size: 2rem;
-      color: white;
-    }*/
+}
+
+.input-container button:hover {
+  background-color: #112d40;
+  color: #ffffff;
 }
 
 /* Profile on right side */

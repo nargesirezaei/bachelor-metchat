@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
 import { /*Link,*/ useNavigate } from "react-router-dom";
-import { /*profileRoute,*/ conversationRoute } from "./APIRoutes";
+import { contactRoute, conversationRoute, messageRoute } from "./APIRoutes";
+import { IoMdSend } from "react-icons/io";
 import Nav from "./components/MainNav";
 import ChatContainer from "./components/ChatContainer";
 import "./chat.css";
@@ -10,6 +11,7 @@ import "./chat.css";
 function Chat() {
   const navigate = useNavigate(),
     scrollRef = useRef(),
+    socket = useRef(),
     [self, setSelf] = useState({}),
     [msg, setMsg] = useState(""),
     [messages, setMessages] = useState([]),
@@ -109,13 +111,11 @@ function Chat() {
       message: msg,
     };
 
-    /*
-            socket.current.emit("msg-send", {
-                from: currentUser._id,
-                to: currentChat._id,
-                message: msg,
-            })
-        */
+    /*socket.current.emit("msg-send", {
+      from: currentUser._id,
+      to: currentChat._id,
+      message: msg,
+    });*/
 
     const msgs = [...messages];
     msgs.push(newMsg);
@@ -149,68 +149,75 @@ function Chat() {
             </button>
           </div>
           {/* CONVERSATIONS */}
-          {conversations.map((conversation, i) => (
-            <div
-              key={i}
-              style={{ backgroundColor: i === selectedChat ? "skyblue" : "" }} //color chat backround (conversation)
-              onClick={() => changeCurrentChat(conversation, i)}
-            >
-              <h2>{conversation.title}</h2>
-              <small>
-                {conversation.toData.firstName} {conversation.toData.lastName}
-              </small>
-            </div>
-          ))}
-          */}
           <div className="convo-list">
-            <h2>CONVERSATION NAME</h2>
-            <small>CONVERSATION PARTNER</small>
+            {conversations.map((conversation, i) => (
+              <div
+                key={i}
+                style={{ backgroundColor: i === selectedChat ? "skyblue" : "" }} //color chat backround (conversation)
+                onClick={() => changeCurrentChat(conversation, i)}
+              >
+                <h2>{conversation.title}</h2>
+                <small>
+                  {conversation.toData.firstName} {conversation.toData.lastName}
+                </small>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* MIDDLE */}
         <div className="col-md-6" id="middel">
-          <div className="info">
-            <div className="icon-status">
-              <img src="profile.svg" alt="profil-icon" />
-              <div className="online"></div>
+          {/* HEADER */}
+          <div className="chat-header">
+            <div className="user-info">
+              <div className="convo-patner-img">
+                <img src="profile.svg" alt="" />
+              </div>
+              <div className="convo-title">
+                <h3>
+                  {Object.keys(currentChat).length !== 0 && (
+                    <a href="/samtaler">{currentChat.title}</a>
+                  )}
+                </h3>
+              </div>
             </div>
-            {Object.keys(currentChat).length !== 0 && (
-              <a href="/samtaler">{currentChat.title}</a>
-            )}
           </div>
-          {/* Need to change? */}
-          <hr />
-          {messages.map((message, i) => (
-            <div
-              key={i}
-              ref={scrollRef}
-              style={{
-                width: "100%",
-                margin: "2%",
-                backgroundColor:
-                  message.fromId === self._id ? "#112D40" : "#C1C8CD", // message color background
-              }}
-            >
-              <p
+          {/* CHAT MESSAGES */}
+          <div className="chat-messages">
+            {messages.map((message, i) => (
+              <div
+                key={i}
+                ref={scrollRef}
                 style={{
-                  color: message.fromId === self._id ? "white" : "black",
-                  textAlign: message.fromId === self._id ? "right" : "left",
+                  width: "100%",
+                  margin: "2%",
+                  backgroundColor:
+                    message.fromId === self._id ? "#112D40" : "#C1C8CD", // message color background
                 }}
               >
-                {message.message}
-              </p>
-            </div>
-          ))}
-          <hr />
-          <form onSubmit={(e) => sendMsg(e)}>
+                <p
+                  style={{
+                    color: message.fromId === self._id ? "white" : "black",
+                    textAlign: message.fromId === self._id ? "right" : "left",
+                  }}
+                >
+                  {message.message}
+                </p>
+              </div>
+            ))}
+          </div>
+          {/* INPUT FOR WRITING MESSAGES */}
+          <form className="input-container" onSubmit={(e) => sendMsg(e)}>
             <input
               type="text"
-              placeholder="Type your message here..."
+              placeholder="Skriv noe her..."
               style={{ margin: "0px" }}
               onChange={(e) => setMsg(e.target.value)}
               value={msg}
             />
+            <button type="submit">
+              <IoMdSend />
+            </button>
           </form>
         </div>
 
