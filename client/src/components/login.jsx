@@ -49,13 +49,14 @@ function Login() {
   // If the validation is successful, and the server returns a successful response, the user's details are saved in localStorage, an alert message is displayed, and the page is redirected to the contacts page.
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevents the page form refreshing or moving to another url.
+    /*
     console.log("email", values.email);
     console.log("password", values.password);
+    */
 
     if (handleValidation()) {
       const { email, password } = values;
-      await axios
-        .post(`${authenticationRoute}/login`, {
+      await axios.post(`${authenticationRoute}/login`, {
           email,
           password,
         })

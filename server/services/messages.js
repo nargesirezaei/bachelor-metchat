@@ -2,7 +2,7 @@
 const Messages = require("../models/messages");
 
 module.exports = {
-    create: async (req, res) => {
+    send: async (req, res) => {
         const { conversationId, fromId, toId, message } = req.body;
 
         await Messages.create({
@@ -12,10 +12,10 @@ module.exports = {
             message,
         })
         .then(() => {
-            return res.json({ message: "Message successflly sent to database" });
+            return res.status(200).send("Message successflly sent to database");
         })
         .catch((err) => {
-            return res.json({ message: "Failed to send message to database" });
+            return res.status(500).send("Failed to send message to database");
         });
     },
 
@@ -24,25 +24,25 @@ module.exports = {
         
         await Messages.findById((messageId), (err, loadedMessage) => {
             if (err)
-                return res.json({ message: "Failed to load message" });
+                return res.status(500).send("Failed to load message");
 
             else if (!loadedMessage)
-                return res.json({ message: "Message not found"});
+                return res.status(404).send("Message not found");
 
             loadedMessage.message = message;
-            return res.json({ message: "Message successfully edited", loadedMessage });
+            return res.status(200).json(loadedMessage);
         });
     },
 
     getConversation: async (req, res) => {
-        const { conversationId } = req.body;
+        const conversationId = req.query.conversationId;
 
-        await Messages.find({ conversationId }).sort({ createdAt: 1 })
-        .then((loadedMessages) => {
-            return res.json({ message: "Messages successfully loaded", loadedMessages });
+        await Messages.find({ conversationId }).sort({ createdAt: 1 }).exec()
+        .then((messages) => {
+            return res.status(200).send(messages);
         })
         .catch((err) => {
-            return res.json({ message: "Failed to load messages" + err });
+            return res.status(500).send("Failed to load messages" + err);
         });        
     },
 
@@ -51,12 +51,12 @@ module.exports = {
         
         await Messages.findById((messageId), (err, loadedMessage) => {
             if (err)
-                return res.json({ message: "Failed to load message" });
+                return res.status(500).send("Failed to load message");
 
             else if (!loadedMessage)
-                return res.json({ message: "Message not found"});
+                return res.status(404).send("Message not found");
 
-            return res.json({ message: "Message successfully loaded", loadedMessage });
+            return res.status(200).send(loadedMessage);
         });
     },
 
@@ -67,24 +67,24 @@ module.exports = {
     delete: async (req, res) => {
         const { messageId } = req.body;
         
-        await Messages.findOneAndDelete({ _id: messageId }, (err, deletedMessage) => {
+        await Messages.findOneAndDelete({ _id: messageId }).exec((err, deletedMessage) => {
         if (err)
-            return res.json({ message: "Failed to delete message" });
+            return res.status(500).send("Failed to delete message");
 
         else if (!deletedMessage)
-            return res.json({ message: "Message not found"});
+            return res.status(404).send("Message not found");
 
-        return res.json({ message: "Messages successfully deleted", deletedMessage });
+        return res.status(200).send(deletedMessage);
         });        
     },
 
     seen  :(req,res,next)=>{
-        messages.findOneAndUpdate({_id:req.body.messageId },{$set:{seen:true}}, (err, result) => {
-            if (err) return res.send({ status: false, message: "data base error" });
+        Messages.findOneAndUpdate({_id:req.body.messageId },{$set:{seen:true}}, (err, result) => {
+            if (err) return res.status(500).send("database error");
             if (!result)
-              return res.send({ status: true, message: "message not exists!" });
+              return res.status(404).send("message not exists!");
       
-            res.send({ message: "message hase been read" });
+            res.status(200).send("message hase been read");
           });
     },
 };

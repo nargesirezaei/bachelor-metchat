@@ -1,5 +1,6 @@
 
 const Conversations = require("../models/conversations");
+const User = require("../models/user");
 
 module.exports = {
     create: async (req, res) => {
@@ -10,8 +11,8 @@ module.exports = {
         let month = date.getMonth() + 1,
             day = date.getDate();
 
-        if (day < 10) day = '0' + day;
         if (month < 10) month = '0' + month;
+        if (day < 10) day = '0' + day;
 
         const defaultTitle = `${day}/${month}/${year}`;
 
@@ -21,37 +22,50 @@ module.exports = {
             toId,
         })
         .then(() => {
-            return res.json({ message: "Conversation successflly created in database" });
+            return res.status(200).send("Conversation successflly created in database");
         })
         .catch(() => {
-            return res.json({ message: "Failed to create conversation in database" });
+            return res.status(500).send("Failed to create conversation in database");
         });
+    },
+
+    conversations: async (req, res) => {
+        const name = req.query.id;
+
+        await Conversations.find({$or: [{fromId: name}, {toId: name}]}).sort({ updatedAt: 1 }).exec()
+        .then((conversations) => {
+            return res.status(200).send(conversations);
+        })
+        .catch((err) => {
+            return res.status(500).send("Failed to load messages" + err);
+        });        
     },
 
     deleteById: async (req, res) => {
         const { conversationId } = req.body;
         
-        await Conversations.findByIdAndDelete(conversationId, (err, deletedConversation) => {
+        await Conversations.findByIdAndDelete(conversationId).exec((err, deletedConversation) => {
         if (err)
-            return res.json({ message: "Failed to delete conversation" });
+            return res.status(500).send("Failed to delete conversation");
 
         else if (!deletedConversation)
-            return res.json({ message: "Conversation not found"});
+            return res.status(404).send("Conversation not found");
 
-        return res.json({ message: "Conversation successfully deleted", deletedConversation });
+        return res.status(200).send(deletedConversation);
         });        
     },
     deleteByName: async (req, res) => {
         const { name1, name2 } = req.body;
         
-        await Conversations.deleteMany({$or: [{fromId: name1, toId: name2}, {fromId: name2, toId: name1}]}, (err, deleted) => {
+        await Conversations.deleteMany({$or: [{fromId: name1, toId: name2}, {fromId: name2, toId: name1}]})
+        .exec((err, deleted) => {
             if (err)
-                return res.json({ message: "Failed to delete conversation" });
+                return res.status(500).send("Failed to delete conversation");
     
             else if (deleted.deletedCount === 0)
-                return res.json({ message: "Conversation not found"});
+                return res.status(404).send("Conversation not found");
     
-            return res.json({ message: "Conversation successfully deleted", deleted });
+            return res.status(200).send(deleted);
         });
     },
 
@@ -60,10 +74,10 @@ module.exports = {
 
         await Conversations.findByIdAndUpdate(conversationId, { title })
         .then(() => {
-            return res.json({ message: "Conversation title successflly edited" });
+            return res.status(200).send("Conversation title successflly edited");
         })
         .catch(() => {
-            return res.json({ message: "Failed to edit conversation title" });
+            return res.status(500).send("Failed to edit conversation title");
         });
     },
 

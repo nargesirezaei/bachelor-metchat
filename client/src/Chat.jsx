@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
 import { /*Link,*/ useNavigate } from "react-router-dom";
@@ -9,31 +9,56 @@ import "./chat.css";
 
 function Chat() {
   const navigate = useNavigate(),
+    scrollRef = useRef(),
     [self, setSelf] = useState({}),
-    [conversation, setConversation] = useState([]);
+    [msg, setMsg] = useState(""),
+    [messages, setMessages] = useState([]),
+    // [incomingMessage, setIncomingMessage] = useState(null),
+    [conversations, setConversations] = useState([]),
+    [currentChat, setCurrentChat] = useState({}),
+    [selectedChat, setSelectedChat] = useState(null);
 
-  //remove if not needed.
   useEffect(() => {
     async function fetchData() {
-      if (!localStorage.getItem("metchat-user")) {
-        navigate("/");
-      } else {
+      if (!localStorage.getItem("metchat-user")) navigate("/");
+      else {
         const data = await JSON.parse(localStorage.getItem("metchat-user"));
+        setSelf(data);
       }
     }
     fetchData();
   }, [navigate]);
 
+  // get conversations
   useEffect(() => {
     async function getConversations() {
       await axios
         .get(`${conversationRoute}/conversations`, {
-          id: self._id,
+          params: { id: self._id },
         })
         .then(async (response) => {
-          let conversation = response.data.conversation;
+          const conversations = response.data,
+            count = conversations.length;
 
-          setConversation(conversation);
+          for (let i = 0; i < count; i++) {
+            const contact =
+              conversations[i].toId === self._id
+                ? conversations[i].fromId
+                : conversations[i].toId;
+
+            await axios
+              .get(`${contactRoute}/getUser`, {
+                params: { id: contact },
+              })
+              .then((response) => {
+                conversations[i]["toData"] = response.data;
+              })
+              .catch((err) => {
+                conversations[i]["toData"] = [];
+                alert(err.response.data);
+              });
+          }
+          setConversations(conversations);
         })
         .catch((err) => {
           console.log(err);
@@ -42,6 +67,67 @@ function Chat() {
     }
     getConversations();
   }, [self]);
+
+  // get messages
+  useEffect(() => {
+    if (currentChat) {
+      async function getMessages() {
+        const response = await axios.get(`${messageRoute}/getConversation`, {
+          params: { conversationId: currentChat._id },
+        });
+        // console.log(response.data[0]);
+        setMessages(response.data);
+      }
+      getMessages();
+    }
+  }, [currentChat]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, scrollRef]);
+
+  const sendMsg = (event) => {
+    event.preventDefault();
+    if (msg.length > 0) {
+      handleSendMsg(msg);
+      setMsg("");
+    }
+  };
+
+  const handleSendMsg = async (msg) => {
+    await axios.post(`${messageRoute}/send`, {
+      conversationId: currentChat._id,
+      fromId: self._id,
+      toId: currentChat,
+      message: msg,
+    });
+
+    const newMsg = {
+      conversationId: currentChat._id,
+      fromId: self._id,
+      toId: currentChat,
+      message: msg,
+    };
+
+    /*
+            socket.current.emit("msg-send", {
+                from: currentUser._id,
+                to: currentChat._id,
+                message: msg,
+            })
+        */
+
+    const msgs = [...messages];
+    msgs.push(newMsg);
+
+    setMessages(msgs);
+  };
+
+  const changeCurrentChat = (conversation, i) => {
+    setCurrentChat(conversation);
+    setSelectedChat(i);
+    // console.log(conversation);
+  };
 
   return (
     <>
@@ -63,13 +149,19 @@ function Chat() {
             </button>
           </div>
           {/* CONVERSATIONS */}
-          {/* not currently working, delete if better solution found */}
-          {/*{conversation.map((conversation, i) => (
-            <div key={i}>
-              <h2>{conversation.name}</h2>
-              <small>{conversation.conact}</small>
+          {conversations.map((conversation, i) => (
+            <div
+              key={i}
+              style={{ backgroundColor: i === selectedChat ? "skyblue" : "" }} //color chat backround (conversation)
+              onClick={() => changeCurrentChat(conversation, i)}
+            >
+              <h2>{conversation.title}</h2>
+              <small>
+                {conversation.toData.firstName} {conversation.toData.lastName}
+              </small>
             </div>
-          ))}*/}
+          ))}
+          */}
           <div className="convo-list">
             <h2>CONVERSATION NAME</h2>
             <small>CONVERSATION PARTNER</small>
@@ -78,7 +170,48 @@ function Chat() {
 
         {/* MIDDLE */}
         <div className="col-md-6" id="middel">
-          <ChatContainer />
+          <div className="info">
+            <div className="icon-status">
+              <img src="profile.svg" alt="profil-icon" />
+              <div className="online"></div>
+            </div>
+            {Object.keys(currentChat).length !== 0 && (
+              <a href="/samtaler">{currentChat.title}</a>
+            )}
+          </div>
+          {/* Need to change? */}
+          <hr />
+          {messages.map((message, i) => (
+            <div
+              key={i}
+              ref={scrollRef}
+              style={{
+                width: "100%",
+                margin: "2%",
+                backgroundColor:
+                  message.fromId === self._id ? "#112D40" : "#C1C8CD", // message color background
+              }}
+            >
+              <p
+                style={{
+                  color: message.fromId === self._id ? "white" : "black",
+                  textAlign: message.fromId === self._id ? "right" : "left",
+                }}
+              >
+                {message.message}
+              </p>
+            </div>
+          ))}
+          <hr />
+          <form onSubmit={(e) => sendMsg(e)}>
+            <input
+              type="text"
+              placeholder="Type your message here..."
+              style={{ margin: "0px" }}
+              onChange={(e) => setMsg(e.target.value)}
+              value={msg}
+            />
+          </form>
         </div>
 
         {/* RIGHT */}

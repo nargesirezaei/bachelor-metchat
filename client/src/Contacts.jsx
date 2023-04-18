@@ -24,38 +24,37 @@ export default function Contacts() {
   }, [navigate]);
 
   useEffect(() => {
-    async function getUsers() {
-      await axios
-        .get(`${contactRoute}/getAllUsers`, {
-          id: self._id,
+    if (Object.keys(self).length !== 0) {
+      async function getUsers() {
+        await axios.get(`${contactRoute}/getAllUsers`, {
+          params: { id: self._id }
         })
         .then(async (response) => {
           let users = response.data.users;
           const count = users.length;
-
+  
           for (let i = 0; i < count; i++) {
-            users[i].interests = [];
-
-            await axios
-              .get(`${userInterestRoute}`, {
-                params: { userId: users[i]._id },
-              })
-              .then((response) => {
-                users[i]["interests"] = response.data;
-              })
-              .catch((err) => {
-                alert(err.response.data);
-              });
+            await axios.get(`${userInterestRoute}`, {
+              params: { userId: users[i]._id },
+            })
+            .then((response) => {
+              users[i]["interests"] = response.data;
+            })
+            .catch((err) => {
+              users[i]["interests"] = [];
+              alert(err.response.data);
+            });
           }
-
+  
           setUsers(users);
         })
         .catch((err) => {
           console.log(err);
           alert(err.response.data);
         });
+      }
+      getUsers();  
     }
-    getUsers();
   }, [self]);
 
   const handleAddContact = (user) => {
