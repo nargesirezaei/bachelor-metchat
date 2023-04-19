@@ -7,6 +7,9 @@ DEE1E4 (grå)
   display: flex;
   flex-direction: column;
 }
+img {
+  width: 650px;
+}
 .nav-center {
   display: flex;
   flex-direction: column;
@@ -86,9 +89,6 @@ DEE1E4 (grå)
     display: none;
   }
 }
-img {
-  width: 35vw;
-}
 
 .first {
   display: flex;
@@ -104,14 +104,14 @@ img {
   margin-left: 5vw;
 }
 .img_2 {
-  margin-right: 0px;
+  margin-right: 20px;
 }
 
 /* Form*/
 #LogReg {
   display: flex;
   flex-direction: column;
-  width: 25vw;
+  width: 400px;
   height: 100%;
   margin-left: 0px;
 }
@@ -119,7 +119,6 @@ img {
   display: flex;
   flex-direction: row;
 }
-
 .content {
   display: none;
 }
@@ -164,7 +163,7 @@ img {
   font-family: "Bai Jamjuree";
   font-style: normal;
   font-weight: 300;
-  font-size: 2vw;
+  font-size: 30px;
   line-height: 50px;
   color: #fafafa;
   border-radius: 0 10px 0 0;
@@ -178,7 +177,7 @@ img {
   font-family: "Bai Jamjuree";
   font-style: normal;
   font-weight: 300;
-  font-size: 2vw;
+  font-size: 30px;
   line-height: 50px;
   color: #112d40;
 }
@@ -207,27 +206,28 @@ img {
   margin-top: 75px;
 }
 input.large {
-  width: 3vw;
-  height: 3vh;
+  width: 25px;
+  height: 25px;
   margin-top: 10px;
+  margin-right: 10px;
 }
 
 .form-row input {
-  width: 20vw;
-  height: 5vh;
+  width: 300px;
+  height: 50px;
 }
 .form-row button {
-  width: 12vw;
-  height: 6vh;
+  width: 200px;
+  height: 50px;
   border-radius: 25px;
   border: none;
-  margin-left: 20%;
+  margin-left: 15%;
   margin-top: 10%;
   color: #112d40;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 1vw;
+  font-size: 25px;
   line-height: 29px;
 }
 .btn-form-log {
@@ -237,99 +237,108 @@ input.large {
   margin-bottom: 50px;
 }
 
-@media only screen and (max-width: 1039px) {
+@media only screen and (max-width: 1326px) {
   #LogReg {
-    margin-top: 200px;
-    margin-left: 30%;
-    width: 300px;
+    margin-left: 0px;
   }
-  #reg-content {
-    font-size: 18px;
-  }
-  #log-content {
-    font-size: 18px;
-  }
-  #btn-reg {
-    width: 150px;
-    height: 75px;
-    font-size: 25px;
-  }
-  #btn-log {
-    width: 150px;
-    height: 75px;
-    font-size: 25px;
-  }
-
-  #form-reg {
-    margin-left: 50px;
-  }
-
-  #form-log {
-    margin-left: 50px;
-  }
-
-  .form-row {
-    margin-top: 25px;
-  }
-  .form-check {
-    margin-top: 75px;
-  }
-  .form-row input {
-    width: 200px;
-    height: 40px;
-  }
-  .form-row button {
-    width: 100px;
-    height: 59px;
-    margin-left: 20%;
-    font-size: 18px;
-  }
-  .btn-form-log {
-    margin-bottom: 50px;
-  }
-  .btn-form-reg {
-    margin-bottom: 50px;
+  .firstImages {
+    margin-left: 0px;
   }
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 1124px) {
+  .firstImages {
+    display: none;
+  }
   #LogReg {
-    margin-left: 18%;
+    margin-left: 32vw;
+  }
+}
+@media only screen and (max-width: 665px) {
+  #LogReg {
+    margin-left: 20vw;
+  }
+  #reg-content {
+    font-size: 4vw;
+  }
+  #log-content {
+    font-size: 4vw;
+  }
+  #btn-reg {
+    width: 100%;
+    font-size: 5vw;
+  }
+  #btn-log {
+    width: 100%;
+    font-size: 5vw;
+  }
+
+  .form-row input {
+    width: 300px;
+    height: 50px;
+  }
+  .form-row button {
+    width: 30vw;
+    font-size: 5vw;
+  }
+}
+@media only screen and (max-width: 428px) {
+  #LogReg {
+    margin-left: 3vw;
+  }
+}
+
+@media only screen and (max-width: 412px) {
+  #LogReg {
+    margin-left: 8vw;
+    width: 350px;
+  }
+
+  .form-row input {
+    width: 275px;
+  }
+  .form-row button {
+    margin-left: 18vw;
   }
 }
 @media only screen and (max-width: 390px) {
   #LogReg {
-    margin-left: 12%;
+    margin-left: 5vw;
+  }
+}
+@media only screen and (max-width: 375px) {
+  #LogReg {
+    margin-left: 3vw;
   }
 }
 
 /* images*/
-
-@media only screen and (max-width: 1039px) {
-  .imgs {
-    display: none;
-  }
+.second {
+  display: flex;
+  flex-direction: column;
+  margin-left: 45vw;
+  margin-top: -200px;
 }
 .nlp {
   text-align: center;
   position: relative;
-  left: 60vw;
-  width: 30vw;
+  width: 600px;
   height: auto;
 }
 .nlp h2 {
   position: absolute;
-  top: 5vh;
-  left: 10vw;
-  font-size: 2vw;
+  top: 10vh;
+  left: 12vw;
+  right: 10vw;
+  font-size: 33px;
 }
 .txt {
   position: absolute;
-  left: 7%;
-  right: 7%;
+  left: 4vw;
+  right: 2vw;
   height: 100%;
   line-height: 3vh;
-  font-size: 1vw;
-  top: 15vh;
+  font-size: 25px;
+  top: 18vh;
 }
 .nlp .btn {
   width: 9vw;
@@ -346,7 +355,16 @@ input.large {
   left: 15vw;
   bottom: 7vh;
 }
+.img_5 {
+  margin-left: -600px;
+  margin-top: -200px;
+}
 
+@media only screen and (max-width: 1124px) {
+  .second {
+    display: none;
+  }
+}
 footer {
   background-color: #112d40;
   width: 100%;
@@ -356,13 +374,11 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 1.5vw;
-  margin-top: 140vh;
+  font-size: 2.4vw;
+  margin-top: 5vh;
 }
-
-@media only screen and (max-width: 1039px) {
+@media only screen and (max-width: 450px) {
   footer {
-    font-size: 0.5rem;
-    margin-top: 50px;
+    font-size: 0.8rem;
   }
 }
