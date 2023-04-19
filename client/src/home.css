@@ -330,6 +330,7 @@ input.large {
   left: 12vw;
   right: 10vw;
   font-size: 33px;
+  color: #fafafa;
 }
 .txt {
   position: absolute;
@@ -339,6 +340,7 @@ input.large {
   line-height: 3vh;
   font-size: 25px;
   top: 18vh;
+  color: #fafafa;
 }
 .nlp .btn {
   width: 9vw;
