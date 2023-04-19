@@ -19,7 +19,7 @@ nav {
   display: flex;
   flex-direction: row;
   position: fixed;
-  align-items: center;
+  justify-content: space-between;
   top: 0;
   left: 0;
   right: 0;
@@ -37,31 +37,25 @@ nav img {
   margin-left: 75px;
 }
 
-/* ---- USER: Logged in ----- */
-.main-nav a {
-  color: #ffffff;
+/* ---- Logged in as User or admin ----- */
+.main-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   text-decoration: none;
 }
 
-.main-nav .push {
-  margin-top: 20px;
-  margin-right: 75px;
-}
-
-/* ---- ADMIN ----- */
-.admin-nav a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.admin-nav-items {
-  color: #fafafa;
+.main-nav {
   text-decoration: none;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
+}
+.main-nav a {
+  color: #fafafa;
+  text-decoration: none;
 }
 
 .nav-item {
-  justify-content: space-between;
+  padding: 1em;
 }
