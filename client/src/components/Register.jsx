@@ -24,10 +24,10 @@ function Register() {
     if (password !== confirmPassword) {
       alert("Feltene for passord er ikke like.");
       return false;
-    } else if (fname.length < 3) {
+    } else if (fname.length < 3 && fname.length > 30) {
       alert("Fornavn må være minst tre bokstaver.");
       return false;
-    } else if (lname.length < 2) {
+    } else if (lname.length < 2 && lname.length > 30) {
       alert("Etternavn må være minst to bokstaver.");
       return false;
     } else if (
@@ -38,7 +38,7 @@ function Register() {
         "Navnet ditt kan bare bestå av bokstaver fra det norske alfabetet."
       );
       return false;
-    } else if (password.length < 8) {
+    } else if (password.length < 8 && password.length > 50) {
       alert("Passordet må være minst åtte(8) tegn.");
       return false;
     } else if (
@@ -57,24 +57,23 @@ function Register() {
     e.preventDefault();
     if (handleValidation()) {
       const { fname, lname, email, password } = values;
-      await axios
-        .post(`${authenticationRoute}/register`, {
-          firstName: fname,
-          lastName: lname,
-          email,
-          password,
-        })
-        .then((response) => {
-          localStorage.setItem(
-            "metchat-user",
-            JSON.stringify(response.data.user)
-          );
-          alert("Bruker opprettet"); // Noe bedre å si?
-          navigate("/merInfo");
-        })
-        .catch((err) => {
-          alert(err.response.data);
-        });
+      await axios.post(`${authenticationRoute}/register`, {
+        firstName: fname,
+        lastName: lname,
+        email,
+        password,
+      })
+      .then((response) => {
+        localStorage.setItem(
+          "metchat-user",
+          JSON.stringify(response.data.user)
+        );
+        alert("Bruker opprettet"); // Noe bedre å si?
+        navigate("/merInfo");
+      })
+      .catch((err) => {
+        alert(err.response.data);
+      });
     }
   };
 

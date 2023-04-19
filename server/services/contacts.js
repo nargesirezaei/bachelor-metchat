@@ -54,8 +54,19 @@ module.exports = {
       });
   },
 
+  getUser: async (req, res) => {
+    await User.findById(req.query.id, "firstName lastName").exec()
+    .then((user) => {
+      return res.status(200).send(user);
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(500).send("Error getting contacts");
+    });
+  },
+
   getAllUsers: async (req, res) => {
-    await User.find({ _id: { $ne: req.body.id } }, "_id firstName lastName email")
+    await User.find({ _id: { $ne: req.query.id } }, "_id firstName lastName email")
     .then((users) => {
       return res.status(200).send({message: "Successfully got contacts", users});
     })
