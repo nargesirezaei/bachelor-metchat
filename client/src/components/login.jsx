@@ -107,9 +107,9 @@ function Login() {
             onInput={(e) => handleChange(e)}
           />
         </div>
-        <div className="form-row">
-          <input type="checkbox" />
-          <label className="chang-color">Husk meg</label>
+        <div className="checkBox">
+          <input type="checkbox" className="large" />
+          <label className="text">Husk meg</label>
         </div>
         <div className="form-row">
           <button type="submit" className="btn">
