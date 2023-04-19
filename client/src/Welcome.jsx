@@ -133,7 +133,7 @@ function Welcome() {
           </div>
         </div>
         */}
-        <div className="imgs">
+        <div className="second">
           <img src="Lines_2.png" className="img_3" />
           <div className="nlp">
             <img src="BubbleBox.png" className="img_4" />
@@ -152,7 +152,7 @@ function Welcome() {
           <img src="Lines.png" className="img_5" />
         </div>
         <footer>
-          <h3>DATA3900-1 23V Bacheloroppgave</h3>
+          <p>DATA3900-1 23V Bacheloroppgave</p>
         </footer>
       </div>
     </>
