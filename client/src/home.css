@@ -86,9 +86,6 @@ DEE1E4 (grå)
     display: none;
   }
 }
-img {
-  width: 35vw;
-}
 
 .first {
   display: flex;
@@ -104,14 +101,14 @@ img {
   margin-left: 5vw;
 }
 .img_2 {
-  margin-right: 0px;
+  margin-right: 20px;
 }
 
 /* Form*/
 #LogReg {
   display: flex;
   flex-direction: column;
-  width: 25vw;
+  width: 400px;
   height: 100%;
   margin-left: 0px;
 }
@@ -119,7 +116,6 @@ img {
   display: flex;
   flex-direction: row;
 }
-
 .content {
   display: none;
 }
@@ -164,7 +160,7 @@ img {
   font-family: "Bai Jamjuree";
   font-style: normal;
   font-weight: 300;
-  font-size: 2vw;
+  font-size: 30px;
   line-height: 50px;
   color: #fafafa;
   border-radius: 0 10px 0 0;
@@ -178,7 +174,7 @@ img {
   font-family: "Bai Jamjuree";
   font-style: normal;
   font-weight: 300;
-  font-size: 2vw;
+  font-size: 30px;
   line-height: 50px;
   color: #112d40;
 }
@@ -213,7 +209,7 @@ input.large {
 }
 
 .form-row input {
-  width: 20vw;
+  width: 300px;
   height: 5vh;
 }
 .form-row button {
@@ -237,82 +233,31 @@ input.large {
   margin-bottom: 50px;
 }
 
-@media only screen and (max-width: 1039px) {
+@media only screen and (max-width: 1326px) {
   #LogReg {
-    margin-top: 200px;
-    margin-left: 30%;
-    width: 300px;
+    margin-left: 0px;
   }
-  #reg-content {
-    font-size: 18px;
-  }
-  #log-content {
-    font-size: 18px;
-  }
-  #btn-reg {
-    width: 150px;
-    height: 75px;
-    font-size: 25px;
-  }
-  #btn-log {
-    width: 150px;
-    height: 75px;
-    font-size: 25px;
-  }
-
-  #form-reg {
-    margin-left: 50px;
-  }
-
-  #form-log {
-    margin-left: 50px;
-  }
-
-  .form-row {
-    margin-top: 25px;
-  }
-  .form-check {
-    margin-top: 75px;
-  }
-  .form-row input {
-    width: 200px;
-    height: 40px;
-  }
-  .form-row button {
-    width: 100px;
-    height: 59px;
-    margin-left: 20%;
-    font-size: 18px;
-  }
-  .btn-form-log {
-    margin-bottom: 50px;
-  }
-  .btn-form-reg {
-    margin-bottom: 50px;
+  .firstImages {
+    margin-left: 0px;
   }
 }
-@media only screen and (max-width: 450px) {
-  #LogReg {
-    margin-left: 18%;
+@media only screen and (max-width: 1124px) {
+  .firstImages {
+    display: none;
   }
-}
-@media only screen and (max-width: 390px) {
   #LogReg {
-    margin-left: 12%;
+    margin-left: 32vw;
   }
 }
 
 /* images*/
-
-@media only screen and (max-width: 1039px) {
-  .imgs {
-    display: none;
-  }
+.second {
+  display: flex;
+  flex-direction: column;
 }
 .nlp {
   text-align: center;
   position: relative;
-  left: 60vw;
   width: 30vw;
   height: auto;
 }
