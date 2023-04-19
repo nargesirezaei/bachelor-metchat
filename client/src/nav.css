@@ -19,7 +19,6 @@ nav {
   display: flex;
   flex-direction: row;
   position: fixed;
-  align-items: center;
   top: 0;
   left: 0;
   right: 0;
