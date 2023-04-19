@@ -153,7 +153,7 @@ function Chat() {
             {conversations.map((conversation, i) => (
               <div
                 key={i}
-                style={{ backgroundColor: i === selectedChat ? "skyblue" : "" }} //color chat backround (conversation)
+                style={{ backgroundColor: i === selectedChat ? "skyblue" : "" }} //color chat backround (conversations - left side)
                 onClick={() => changeCurrentChat(conversation, i)}
               >
                 <h2>{conversation.title}</h2>
