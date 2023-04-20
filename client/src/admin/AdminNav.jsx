@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import logo from "../img/Logo.svg";
 
 function AdminNav() {
   return (
     <nav className="main-menu">
       <Link to="/admin">
-        <img src="Logo.svg" alt="Logo" />
+        <img src={logo} alt="Logo" />
       </Link>
       <ul className="main-nav">
         <li className="nav-item">
