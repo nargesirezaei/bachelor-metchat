@@ -342,21 +342,7 @@ input.large {
   top: 18vh;
   color: #fafafa;
 }
-.nlp .btn {
-  width: 9vw;
-  height: 5vh;
-  border-radius: 20px;
-  border: none;
-  color: #112d40;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1vw;
-  line-height: 2vh;
-  position: absolute;
-  left: 15vw;
-  bottom: 7vh;
-}
+
 .img_5 {
   margin-left: -600px;
   margin-top: -200px;

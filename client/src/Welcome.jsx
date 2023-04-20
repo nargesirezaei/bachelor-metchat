@@ -147,7 +147,6 @@ function Welcome() {
               error iusto a, ipsa, optio architecto vero aperiam nesciunt
               facilis pariatur, nostrum itaque.
             </p>
-            <button className="btn"> Les mer..</button>
           </div>
           <img src="Lines.png" className="img_5" />
         </div>
