@@ -82,7 +82,6 @@
 .user-info {
   display: flex;
   align-items: center;
-  gap: 1rem;
 }
 .convo-patner-img img {
   height: 3rem;

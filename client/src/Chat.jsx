@@ -189,7 +189,7 @@ function Chat() {
               <div key={i} ref={scrollRef}>
                 <div
                   className={`message ${
-                    message.fromId === self._id ? "reciever" : "sender"
+                    message.fromId === self._id ? "sender" : "reciever"
                   }`}
                 >
                   <div className="message-content">
