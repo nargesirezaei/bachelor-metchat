@@ -1,5 +1,6 @@
 import AdminNav from "./AdminNav";
 import "../admin_samtaler.css";
+import dummyProfile from "../img/profile.svg";
 
 function Conversations() {
   return (
@@ -11,7 +12,7 @@ function Conversations() {
 
           {/*<!-- Search bar -->
         <!-- Retrived from https://mdbootstrap.com/docs/standard/forms/search/-->*/}
-          <div class="search-group input-group rounded">
+          <div className="search-group input-group rounded">
             <input
               type="search"
               class="form-control rounded"
@@ -34,51 +35,49 @@ function Conversations() {
         </section>
 
         {/*<!-- List of conversetions -->*/}
-        <section class="conversation-list">
-          <ul class="list-group list-group-light">
+        <div className="row conversation-list">
+          <div className="col-sm-6 ">
             {/*<!-- Conversation participants -->*/}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              {/*<!-- Date -->*/}
-              <span>Dato</span>
-              {/*<!-- Conversation participants -->*/}
-              <div class="participants">
-                <div class="participant">
-                  <img
-                    src="../../public/Logo.svg"
-                    alt="P"
-                    class="rounded-circle"
-                  />
-                  <div class="ms-3">
-                    <p class="fw-bold mb-1">Person En</p>
+            <div className="card">
+              <div className="card-body">
+                {/*<!-- Date -->*/}
+                <a className="convo-date" href="">
+                  Dato
+                </a>
+                {/*<!-- Conversation participants -->*/}
+                <div className="participants">
+                  <div className="participant">
+                    <img src={dummyProfile} alt="P" class="rounded-circle" />
+                    <div className="ms-3">
+                      <p className="fw-bold mb-1">Person En</p>
+                    </div>
+                  </div>
+
+                  <div className="participant d-flex align-items-center">
+                    <img src={dummyProfile} alt="P" class="rounded-circle" />
+                    <div className="ms-3">
+                      <p className="fw-bold mb-1">Person To</p>
+                    </div>
                   </div>
                 </div>
 
-                <div class="participant d-flex align-items-center">
-                  <img
-                    src="../img/profile.svg"
-                    alt="P"
-                    class="rounded-circle"
-                  />
-                  <div class="ms-3">
-                    <p class="fw-bold mb-1">Person To</p>
-                  </div>
+                {/*<!-- Buttons -->*/}
+                <div className="text-end">
+                  <button className="btn-download btn-link btn-rounded btn-sm">
+                    Last ned samtale
+                  </button>
+                  <button className="btn-delete btn-link btn-rounded btn-sm">
+                    Slett samtale
+                  </button>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/*<!-- Buttons -->*/}
-              <button class="btn-download btn-link btn-rounded btn-sm">
-                Last ned samtale
-              </button>
-              <button class="btn-delete btn-link btn-rounded btn-sm">
-                Slett samtale
-              </button>
-            </li>
-          </ul>
-        </section>
-
-        <div class="master-buttons">
-          <button class="btn-download-all">Last ned alle</button>
-          <button class="btn-delete-all">Slett alle</button>
+        <div className="master-buttons">
+          <button className="btn-download-all">Last ned alle</button>
+          <button className="btn-delete-all">Slett alle</button>
         </div>
       </div>
     </>
