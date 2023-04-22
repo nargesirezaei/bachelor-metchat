@@ -41,6 +41,16 @@ module.exports = {
         });        
     },
 
+    getAllConversations: async (req, res) => {
+        await Conversations.find().sort({ createdAt: 1 }).exec()
+        .then((conversations) => {
+            return res.status(200).send(conversations);
+        })
+        .catch((err) => {
+            return res.status(500).send("Failed to load messages" + err);
+        });        
+    },
+
     deleteById: async (req, res) => {
         const { conversationId } = req.body;
         

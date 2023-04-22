@@ -6,6 +6,7 @@ const conversations = require('../services/conversations');
 app.post('/create', conversations.create);
 
 app.get('/conversations', conversations.conversations);
+app.get('/getAllConversations', conversations.getAllConversations);
 
 /*
 app.get(`/:conversationId`, async (req, res) => {
