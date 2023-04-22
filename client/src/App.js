@@ -2,11 +2,12 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./Welcome";
-import Login from "./components/login";
-import Register from "./components/Register";
 import MoreInfo from "./MoreInfo";
 import Contacts from "./Contacts";
 import Chat from "./Chat";
+import Conversations from "./admin/Conversations";
+
+import "./nav.css";
 
 export default function App() {
   return (
@@ -18,8 +19,8 @@ export default function App() {
         <Route path="/merInfo" element={<MoreInfo />} />
         <Route path="/samtaler" element={<Chat />} />
 
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        {/* Admin Routes */}
+        <Route path="/admin/samtaler" element={<Conversations />} />
       </Routes>
     </BrowserRouter>
   );

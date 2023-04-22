@@ -8,32 +8,60 @@
   color: #000000;
 }
 
-/* Conversation list */
+/* --- Left side: Conversation list --- */
 #conversations-list {
   padding: 1em;
   border-right: #dee1e4 1px solid;
 }
 
+/* Search conversations */
 #conversations-list input {
   width: 2em;
   height: 2em;
 }
 #conversations-list button {
   border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 0px;
   margin-left: 1em;
   height: 2em;
   width: 3em;
-  font-size: 24px;
+  font-size: 0.9em;
+  background-color: #c1c8cd;
 }
 
+.input-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+/* List of converasations */
 #conversations-list h2 {
-  margin-top: 1em;
-  font-size: 100%;
+  margin-top: 0.2em;
+  font-size: 1.5em;
 }
 #conversations-list small {
-  padding: 0.5em;
-  color: #a9a9a9;
+  color: #fafafa;
+}
+
+.convo-list {
+  padding: 1rem 0.2rem;
+}
+
+/* Conversation elements */
+.convo-element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #c1c8cd;
 }
 
 /* Chat container*/
@@ -54,7 +82,6 @@
 .user-info {
   display: flex;
   align-items: center;
-  gap: 1rem;
 }
 .convo-patner-img img {
   height: 3rem;
@@ -76,9 +103,9 @@
       }
     }*/
 }
-.chat-messages::-webkit-scrollbar {
+/*.chat-messages::-webkit-scrollbar {
   width: 0.2rem;
-}
+}*/
 
 .message {
   display: flex;
@@ -160,11 +187,27 @@
   margin-top: 25px;
   width: 50%;
 }
-.part-2 img {
+#right-side .part-2 img {
   width: 35px;
   height: 35px;
 }
 .part-2 .search-icon {
   width: 35px;
   height: 35px;
+}
+
+.convo-options .delete-convo {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c1c8cd;
+  border: none;
+  font-size: 0.7em;
+}
+
+.delete-convo:hover {
+  background-color: #112d40;
+  color: #ffffff;
 }

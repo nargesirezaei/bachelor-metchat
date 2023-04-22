@@ -155,6 +155,7 @@ function Chat() {
                 key={i}
                 style={{ backgroundColor: i === selectedChat ? "skyblue" : "" }} //color chat backround (conversations - left side)
                 onClick={() => changeCurrentChat(conversation, i)}
+                className="convo-element"
               >
                 <h2>{conversation.title}</h2>
                 <small>
@@ -188,7 +189,7 @@ function Chat() {
               <div key={i} ref={scrollRef}>
                 <div
                   className={`message ${
-                    message.fromId === self._id ? "reciever" : "sender"
+                    message.fromId === self._id ? "sender" : "reciever"
                   }`}
                 >
                   <div className="message-content">
@@ -222,6 +223,8 @@ function Chat() {
           <div class="part-2">
             <img src="profile.svg" alt="profile-icon" />
             <p>Til profil</p>
+          </div>
+          <div className="convo-options">
             <button className="delete-convo">Slett samtale</button>
           </div>
         </div>

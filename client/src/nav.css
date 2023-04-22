@@ -1,0 +1,61 @@
+body,
+html {
+  /*margin: 0px; */
+  margin: auto 0;
+  background-color: #fafafa;
+  font-size: 25px;
+  font-family: "Inter", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #112d40;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0px;
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 36px;
+  line-height: 45px;
+  height: 160px;
+  background-color: #112d40;
+  color: #fafafa;
+}
+nav img {
+  width: 160px;
+  height: 160px;
+  margin-left: 75px;
+}
+
+/* ---- Logged in as User or admin ----- */
+.main-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+}
+
+.main-nav {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.main-nav a {
+  color: #fafafa;
+  text-decoration: none;
+}
+
+.nav-item {
+  padding: 1em;
+}

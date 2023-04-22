@@ -48,29 +48,37 @@ function Welcome() {
           </ul>
         </nav>
 
-        <div id="LogReg">
-          <div id="btn-tabs">
-            <button
-              id="btn-log"
-              className="tabs active-tabs"
-              data-id="btn-log"
-              onClick={handleLoginClick}
-            >
-              Logg Inn
-            </button>
-            <button
-              id="btn-reg"
-              className="tabs active-tabs"
-              data-id="reg"
-              onClick={handleRegisterClick}
-            >
-              Registrer
-            </button>
+        <div className="first">
+          <div className="firstImages">
+            <img src="Lines.png" className="img_1" />
+            <img src="photo.png" className="img_2" />
           </div>
-          <div className="content-tabs">
-            {showLogin ? <Login /> : <Register />}
+
+          <div id="LogReg">
+            <div id="btn-tabs">
+              <button
+                id="btn-log"
+                className="tabs active-tabs"
+                data-id="btn-log"
+                onClick={handleLoginClick}
+              >
+                Logg Inn
+              </button>
+              <button
+                id="btn-reg"
+                className="tabs active-tabs"
+                data-id="reg"
+                onClick={handleRegisterClick}
+              >
+                Registrer
+              </button>
+            </div>
+            <div className="content-tabs">
+              {showLogin ? <Login /> : <Register />}
+            </div>
           </div>
         </div>
+
         {/*
         <div className="model-overlay">
           <div className="scroll-div">
@@ -125,9 +133,7 @@ function Welcome() {
           </div>
         </div>
         */}
-        <div className="imgs">
-          <img src="Lines.png" className="img_1" />
-          <img src="photo.png" className="img_2" />
+        <div className="second">
           <img src="Lines_2.png" className="img_3" />
           <div className="nlp">
             <img src="BubbleBox.png" className="img_4" />
@@ -141,12 +147,11 @@ function Welcome() {
               error iusto a, ipsa, optio architecto vero aperiam nesciunt
               facilis pariatur, nostrum itaque.
             </p>
-            <button className="btn"> Les mer..</button>
           </div>
           <img src="Lines.png" className="img_5" />
         </div>
         <footer>
-          <h3>DATA3900-1 23V Bacheloroppgave</h3>
+          <p>DATA3900-1 23V Bacheloroppgave</p>
         </footer>
       </div>
     </>
