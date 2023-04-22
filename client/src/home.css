@@ -31,6 +31,10 @@ img {
   flex-direction: row;
   justify-content: space-between;
 }
+a.push {
+  text-decoration: none;
+  color: #fafafa;
+}
 .push {
   text-decoration: none;
   color: #fafafa;
@@ -114,6 +118,7 @@ img {
   width: 400px;
   height: 100%;
   margin-left: 0px;
+  z-index: 0;
 }
 #btn-tabs {
   display: flex;
