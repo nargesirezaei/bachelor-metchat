@@ -40,10 +40,14 @@
   width: 4rem;
 }
 .pluss {
-  height: 1rem;
-  width: 1rem;
+  height: 3rem;
+  width: 4rem;
+  border: none;
+  background-color: transparent;
 }
 .mail {
   height: 3rem;
   width: 4rem;
+  border: none;
+  background-color: transparent;
 }
