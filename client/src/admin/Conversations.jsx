@@ -36,6 +36,19 @@ export default function Conversations() {
             count = conversations.length;
 
           for (let i = 0; i < count; i++) {
+            const date = new Date(conversations[i].createdAt),
+              year = date.getFullYear();
+            let month = date.getMonth() + 1,
+              day = date.getDate(),
+              hour = date.getHours(),
+              minute = date.getMinutes();
+
+            if (month < 10) month = '0' + month;
+            if (day < 10) day = '0' + day;
+            if (hour < 10) hour = '0' + hour;
+            if (minute < 10) minute = '0' + minute;
+    
+            conversations[i].createdAtText = `${day}/${month}/${year} - ${hour}:${minute}`;
 
             await axios.get(`${contactRoute}/getUser`, {
                 params: { id: conversations[i].fromId },
@@ -58,7 +71,6 @@ export default function Conversations() {
                 conversations[i]["toData"] = [];
                 alert(err.response.data);
               });
-
           }
           setConversations(conversations);
         })
@@ -84,7 +96,7 @@ export default function Conversations() {
           <div className="search-group input-group rounded">
             <input
               type="search"
-              class="form-control rounded"
+              className="form-control rounded"
               placeholder="Søk"
               aria-label="Search"
               aria-describedby="search-addon"
@@ -94,8 +106,8 @@ export default function Conversations() {
             </button>
             <p>
               Sorter etter:
-              <select>
-                <option value="" selected disabled hidden>Velg</option>
+              <select defaultValue={""}>
+                <option value="" disabled hidden>Velg</option>
                 <option value="dato">Dato</option>
                 <option value="navn">Navn</option>
               </select>
@@ -103,60 +115,51 @@ export default function Conversations() {
           </div>
         </section>
 
-        <div className="convo-list">
-          {conversations.map((conversation, i) => (
-            <div
-              key={i}
-              className="convo-element"
-            >
+        {/*<!-- List of conversetions -->*/}
+        <div className="row conversation-list">
+        {conversations.map((conversation, i) => (
+          <div key={i} className="col-sm-6 ">
+            {/*<!-- Conversation participants -->*/}
+            <div className="card">
+              <div className="card-body">
+                {/*<!-- Date -->*/}
+                <a className="convo-date" href="./samtaler">
+                  {conversation.createdAtText}
+                </a>
+                {/*<!-- Conversation participants -->*/}
+                <div className="participants">
+                  <div className="participant">
+                    <img src={dummyProfile} alt="P" className="rounded-circle" />
+                    <div className="ms-3">
+                      <p className="fw-bold mb-1">
+                        {conversation.fromData.firstName} {conversation.fromData.lastName}
+                      </p>
+                    </div>
+                  </div>
 
-              {/*<!-- List of conversetions -->*/}
-              <div className="row conversation-list">
-                <div className="col-sm-6 ">
-                  {/*<!-- Conversation participants -->*/}
-                  <div className="card">
-                    <div className="card-body">
-                      {/*<!-- Date -->*/}
-                      <a className="convo-date" href="./samtaler">
-                        {conversation.createdAt}
-                      </a>
-                      {/*<!-- Conversation participants -->*/}
-                      <div className="participants">
-                        <div className="participant">
-                          <img src={dummyProfile} alt="P" class="rounded-circle" />
-                          <div className="ms-3">
-                            <p className="fw-bold mb-1">
-                              {conversation.fromData.firstName} {conversation.fromData.lastName}
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="participant d-flex align-items-center">
-                          <img src={dummyProfile} alt="P" class="rounded-circle" />
-                          <div className="ms-3">
-                            <p className="fw-bold mb-1">
-                              {conversation.toData.firstName} {conversation.toData.lastName}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/*<!-- Buttons -->*/}
-                      <div className="text-end">
-                        <button className="btn-download btn-link btn-rounded btn-sm">
-                          Last ned samtale
-                        </button>
-                        <button className="btn-delete btn-link btn-rounded btn-sm">
-                          Slett samtale
-                        </button>
-                      </div>
+                  <div className="participant d-flex align-items-center">
+                    <img src={dummyProfile} alt="P" className="rounded-circle" />
+                    <div className="ms-3">
+                      <p className="fw-bold mb-1">
+                        {conversation.toData.firstName} {conversation.toData.lastName}
+                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
 
+                {/*<!-- Buttons -->*/}
+                <div className="text-end">
+                  <button className="btn-download btn-link btn-rounded btn-sm">
+                    Last ned samtale
+                  </button>
+                  <button className="btn-delete btn-link btn-rounded btn-sm">
+                    Slett samtale
+                  </button>
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
+        ))}
         </div>
 
         {/*<!-- List of conversetions -->*/}
@@ -172,14 +175,14 @@ export default function Conversations() {
                 {/*<!-- Conversation participants -->*/}
                 <div className="participants">
                   <div className="participant">
-                    <img src={dummyProfile} alt="P" class="rounded-circle" />
+                    <img src={dummyProfile} alt="P" className="rounded-circle" />
                     <div className="ms-3">
                       <p className="fw-bold mb-1">Person En</p>
                     </div>
                   </div>
 
                   <div className="participant d-flex align-items-center">
-                    <img src={dummyProfile} alt="P" class="rounded-circle" />
+                    <img src={dummyProfile} alt="P" className="rounded-circle" />
                     <div className="ms-3">
                       <p className="fw-bold mb-1">Person To</p>
                     </div>

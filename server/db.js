@@ -7,6 +7,7 @@ module.exports = {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
+        useCreateIndex: true,
       })
       .then(() => cb("Connected to MongoDB"))
       .catch((err) => cb(err));

@@ -1,7 +1,7 @@
 {
   "name": "met-chat",
   "version": "0.1.0",
-  "main": "server/app.js",
+  "main": "server/index.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "cd server && npm run back",
