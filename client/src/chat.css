@@ -3,9 +3,7 @@
 #msg-body {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-top: 170px;
-  color: #000000;
 }
 
 /* --- Left side: Conversation list --- */
@@ -67,6 +65,7 @@
 /* Chat container*/
 #middel {
   display: grid;
+  align-items: center;
   gap: 0.1rem;
   overflow: hidden;
 }

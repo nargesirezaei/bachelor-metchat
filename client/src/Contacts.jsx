@@ -3,6 +3,7 @@ import axios from "axios";
 import { /*Link,*/ useNavigate } from "react-router-dom";
 import { /*profileRoute,*/ contactRoute, userInterestRoute } from "./APIRoutes";
 import Nav from "./components/MainNav";
+import { IoIosMail, IoIosAdd } from "react-icons/io";
 
 export default function Contacts() {
   const navigate = useNavigate(),
@@ -23,37 +24,57 @@ export default function Contacts() {
     fetchData();
   }, [navigate]);
 
-  useEffect(() => {
-    if (Object.keys(self).length !== 0) {
-      async function getUsers() {
-        await axios.get(`${contactRoute}/getAllUsers`, {
-          params: { id: self._id }
-        })
+  // Fetching users added to contact-list
+  /*useEffect(() => {
+    async function getContacts() {
+      await axios
+        .get(`${contactRoute}/mycontacts`, { params: { userId: self._id } })
         .then(async (response) => {
-          let users = response.data.users;
-          const count = users.length;
-  
-          for (let i = 0; i < count; i++) {
-            await axios.get(`${userInterestRoute}`, {
-              params: { userId: users[i]._id },
-            })
-            .then((response) => {
-              users[i]["interests"] = response.data;
-            })
-            .catch((err) => {
-              users[i]["interests"] = [];
-              alert(err.response.data);
-            });
-          }
-  
-          setUsers(users);
+          console.log(response.data[0]);
+          setContacts(response.data);
         })
         .catch((err) => {
           console.log(err);
           alert(err.response.data);
         });
+    }
+    getContacts();
+  }, [self]);*/
+
+  // Fetching registered users
+  useEffect(() => {
+    if (Object.keys(self).length !== 0) {
+      async function getUsers() {
+        await axios
+          .get(`${contactRoute}/getAllUsers`, {
+            params: { id: self._id },
+          })
+          .then(async (response) => {
+            let users = response.data.users;
+            const count = users.length;
+
+            for (let i = 0; i < count; i++) {
+              await axios
+                .get(`${userInterestRoute}`, {
+                  params: { userId: users[i]._id },
+                })
+                .then((response) => {
+                  users[i]["interests"] = response.data;
+                })
+                .catch((err) => {
+                  users[i]["interests"] = [];
+                  alert(err.response.data);
+                });
+            }
+
+            setUsers(users);
+          })
+          .catch((err) => {
+            console.log(err);
+            alert(err.response.data);
+          });
       }
-      getUsers();  
+      getUsers();
     }
   }, [self]);
 
@@ -72,6 +93,11 @@ export default function Contacts() {
         {/* List of contacts, in cotact list */}
         <div className="col-lg-3" id="contacts-list">
           <h2>Mine Kontakter</h2>
+          {contacts.map((contact, i) => (
+            <div key={i} className="contact-element">
+              <h3>{contact.name}</h3>
+            </div>
+          ))}
         </div>
 
         {/* Column with users, that can be added to cotact list */}
@@ -99,14 +125,18 @@ export default function Contacts() {
                     <br />({user.email})
                   </h2>
 
-                  <img
+                  <button
                     className="pluss"
-                    src="pluss.svg"
-                    alt="pluss-icon"
                     style={{ cursor: "pointer" }}
                     onClick={() => handleAddContact(user)}
-                  />
-                  <img className="mail" src="mail.jpg" alt="mail-icon" />
+                  >
+                    {" "}
+                    <IoIosAdd />
+                  </button>
+                  {/*<img className="mail" src="mail.jpg" alt="mail-icon" />*/}
+                  <button className="mail">
+                    <IoIosMail />
+                  </button>
                 </div>
                 <div className="intersts">
                   {user["interests"].map((interest, i) => (
