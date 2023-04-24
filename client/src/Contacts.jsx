@@ -15,7 +15,7 @@ export default function Contacts() {
   useEffect(() => {
     async function fetchData() {
       if (!localStorage.getItem("metchat-user")) {
-        navigate("/kontakter");
+        navigate("/");
       } else {
         const data = await JSON.parse(localStorage.getItem("metchat-user"));
         setSelf(data);
