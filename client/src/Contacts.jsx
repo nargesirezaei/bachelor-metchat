@@ -3,6 +3,7 @@ import axios from "axios";
 import { /*Link,*/ useNavigate } from "react-router-dom";
 import { /*profileRoute,*/ contactRoute, userInterestRoute } from "./APIRoutes";
 import Nav from "./components/MainNav";
+import { BsFillEnvelopeFill } from "react-icons/fa";
 
 export default function Contacts() {
   const navigate = useNavigate(),
@@ -26,34 +27,36 @@ export default function Contacts() {
   useEffect(() => {
     if (Object.keys(self).length !== 0) {
       async function getUsers() {
-        await axios.get(`${contactRoute}/getAllUsers`, {
-          params: { id: self._id }
-        })
-        .then(async (response) => {
-          let users = response.data.users;
-          const count = users.length;
-  
-          for (let i = 0; i < count; i++) {
-            await axios.get(`${userInterestRoute}`, {
-              params: { userId: users[i]._id },
-            })
-            .then((response) => {
-              users[i]["interests"] = response.data;
-            })
-            .catch((err) => {
-              users[i]["interests"] = [];
-              alert(err.response.data);
-            });
-          }
-  
-          setUsers(users);
-        })
-        .catch((err) => {
-          console.log(err);
-          alert(err.response.data);
-        });
+        await axios
+          .get(`${contactRoute}/getAllUsers`, {
+            params: { id: self._id },
+          })
+          .then(async (response) => {
+            let users = response.data.users;
+            const count = users.length;
+
+            for (let i = 0; i < count; i++) {
+              await axios
+                .get(`${userInterestRoute}`, {
+                  params: { userId: users[i]._id },
+                })
+                .then((response) => {
+                  users[i]["interests"] = response.data;
+                })
+                .catch((err) => {
+                  users[i]["interests"] = [];
+                  alert(err.response.data);
+                });
+            }
+
+            setUsers(users);
+          })
+          .catch((err) => {
+            console.log(err);
+            alert(err.response.data);
+          });
       }
-      getUsers();  
+      getUsers();
     }
   }, [self]);
 
@@ -107,6 +110,7 @@ export default function Contacts() {
                     onClick={() => handleAddContact(user)}
                   />
                   <img className="mail" src="mail.jpg" alt="mail-icon" />
+                  {/* <button><BsFillEnvelopeFill /></button>*/}
                 </div>
                 <div className="intersts">
                   {user["interests"].map((interest, i) => (
