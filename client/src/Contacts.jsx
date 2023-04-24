@@ -25,7 +25,7 @@ export default function Contacts() {
   }, [navigate]);
 
   // Fetching users added to contact-list
-  useEffect(() => {
+  /*useEffect(() => {
     async function getContacts() {
       await axios
         .get(`${contactRoute}/mycontacts`, { params: { userId: self._id } })
@@ -39,7 +39,7 @@ export default function Contacts() {
         });
     }
     getContacts();
-  }, [self]);
+  }, [self]);*/
 
   // Fetching registered users
   useEffect(() => {
