@@ -6,56 +6,24 @@ html {
   font-size: 25px;
   font-family: "Inter", sans-serif;
 }
-
-li {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-  color: #112d40;
-}
-
-nav {
+.nav-header {
   display: flex;
   flex-direction: row;
-  position: fixed;
   justify-content: space-between;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 0px;
-  font-family: "Bai Jamjuree", sans-serif;
-  font-size: 36px;
-  line-height: 45px;
-  height: 160px;
-  background-color: #112d40;
-  color: #fafafa;
 }
-nav img {
-  width: 160px;
-  height: 160px;
-  margin-left: 75px;
-}
-
-/* ---- Logged in as User or admin ----- */
-.main-menu {
+.nav-items {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  text-decoration: none;
+  justify-content: space-around;
+  width: 50%;
 }
 
-.main-nav {
-  text-decoration: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.main-nav a {
+a:hover {
   color: #fafafa;
   text-decoration: none;
 }
-
-.nav-item {
-  padding: 1em;
+.item {
+  margin-top: 50px;
+  color: #fafafa;
+  list-style: none;
 }
