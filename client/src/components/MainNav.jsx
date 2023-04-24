@@ -32,16 +32,24 @@ function Nav() {
 
         <HiBars3 className="nav-toggle" onClick={toggleLinks} />
       </div>
-
-      <ul
+      <div
         className={
           showLinks ? "links-container show-container" : "links-container"
         }
       >
-        <li>
-          <a href="">Om Oss</a>
-        </li>
-      </ul>
+        <Link className="item" to="/kontakter">
+          Kontakter
+        </Link>
+        <Link className="item" to="/samtaler">
+          Samtaler
+        </Link>
+        <Link className="item" to="/profil">
+          Profil
+        </Link>
+        <Link className="item" to="/logut">
+          Logg ut
+        </Link>
+      </div>
     </nav>
   );
 }
