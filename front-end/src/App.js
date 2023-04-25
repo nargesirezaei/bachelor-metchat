@@ -11,7 +11,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
 
         <Route element={<Protected />}>
-          //har chi k niaz be login dashte bashe dakhele in route hast
+          /*all function that needs to be login should place insode this
+          Protected route*/
           <Route path="/about" element={<About />} />
         </Route>
       </Route>

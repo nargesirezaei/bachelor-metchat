@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Flex } from "./Flex";
 import { Logo } from "./logo";
 
+//header om oss
 export const Nav = () => {
   return (
     <nav className="px-3">

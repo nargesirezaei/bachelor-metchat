@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 
+//footer common for all pages
 export function PublicLayout() {
   return (
     <>
