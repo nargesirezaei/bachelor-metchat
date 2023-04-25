@@ -1,16 +1,10 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.main {
+.admin-users {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
 }
 
-h1 {
+.admin-users h1 {
   font-family: "Bai Jamjuree", sans-serif;
   font-size: 32px;
   font-weight: 500;

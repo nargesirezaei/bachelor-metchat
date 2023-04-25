@@ -3,34 +3,32 @@ import AdminNav from "./AdminNav";
 function Users() {
   <>
     <AdminNav />
-    <div className="row">
-      <div className="col-sm-4">
-        <section>
-          <h1>Brukere</h1>
+    <div className="row admin-users">
+      <div className="col-sm-4 admin-users-list">
+        <h1>Brukere</h1>
 
-          {/* -- Search bar --
+        {/* -- Search bar --
         -- Retrived from https://mdbootstrap.com/docs/standard/forms/search/-- */}
-          <div className="search-group">
-            <input
-              type="search"
-              className="form-control"
-              placeholder="Søk"
-              aria-label="Search"
-              aria-describedby="search-addon"
-            />
-            <span className="input-group-text" id="search-addon">
-              <i className="fas fa-search"></i>
-            </span>
-          </div>
+        <div className="search-group">
+          <input
+            type="search"
+            className="form-control"
+            placeholder="Søk"
+            aria-label="Search"
+            aria-describedby="search-addon"
+          />
+          <span className="input-group-text" id="search-addon">
+            <i className="fas fa-search"></i>
+          </span>
+        </div>
 
-          {/* -- List of users -- */}
-          <ul className="user-list">
-            <li className="user-item">
-              <img src="./img/profile.svg" alt="P" />
-              <span>Anna Lund</span>
-            </li>
-          </ul>
-        </section>
+        {/* -- List of users -- */}
+        <ul className="user-list">
+          <li className="user-item">
+            <img src="./img/profile.svg" alt="P" />
+            <span>Anna Lund</span>
+          </li>
+        </ul>
       </div>
       <div classNameName="col-sm-8">
         <aside>
