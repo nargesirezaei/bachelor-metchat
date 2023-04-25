@@ -7,7 +7,6 @@ import Contacts from "./Contacts";
 import Chat from "./Chat";
 import Conversations from "./admin/Conversations";
 
-import "./nav.css";
 import "./contacts.css";
 
 export default function App() {

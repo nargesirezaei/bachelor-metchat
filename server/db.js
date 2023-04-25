@@ -4,9 +4,10 @@ module.exports = {
   connectToDb: (cb) => {
     mongoose
       .connect("mongodb://localhost:27017/chat", {
-        seNewUrlParser: true,
+        useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
+        useCreateIndex: true,
       })
       .then(() => cb("Connected to MongoDB"))
       .catch((err) => cb(err));

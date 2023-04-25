@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 import { /*Link,*/ useNavigate } from "react-router-dom";
 import { contactRoute, conversationRoute, messageRoute } from "./APIRoutes";
 import { IoMdSend } from "react-icons/io";
 import Nav from "./components/MainNav";
-import ChatContainer from "./components/ChatContainer";
+// import ChatContainer from "./components/ChatContainer";
 import "./chat.css";
 
 function Chat() {
   const navigate = useNavigate(),
     scrollRef = useRef(),
-    socket = useRef(),
+    // socket = useRef(),
     [self, setSelf] = useState({}),
     [msg, setMsg] = useState(""),
     [messages, setMessages] = useState([]),
@@ -153,7 +153,7 @@ function Chat() {
             {conversations.map((conversation, i) => (
               <div
                 key={i}
-                style={{ backgroundColor: i === selectedChat ? "skyblue" : "" }} //color chat backround (conversation)
+                style={{ backgroundColor: i === selectedChat ? "skyblue" : "" }} //color chat backround (conversations - left side)
                 onClick={() => changeCurrentChat(conversation, i)}
                 className="convo-element"
               >
