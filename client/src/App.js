@@ -6,8 +6,13 @@ import MoreInfo from "./MoreInfo";
 import Contacts from "./Contacts";
 import Chat from "./Chat";
 import Conversations from "./admin/Conversations";
+import Users from "./admin/Users";
 
+// Users
 import "./contacts.css";
+// Admin
+import "./admin_brukere.css";
+import "./admin_samtaler.css";
 
 export default function App() {
   return (
@@ -20,6 +25,7 @@ export default function App() {
         <Route path="/samtaler" element={<Chat />} />
 
         {/* Admin Routes */}
+        <Route path="/admin/brukere" element={<Users />} />
         <Route path="/admin/samtaler" element={<Conversations />} />
       </Routes>
     </BrowserRouter>

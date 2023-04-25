@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { contactRoute, conversationRoute } from "../APIRoutes";
 
 import AdminNav from "./AdminNav";
-import "../admin_samtaler.css";
 import dummyProfile from "../img/profile.svg";
 
 export default function Conversations() {
