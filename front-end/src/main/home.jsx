@@ -1,4 +1,3 @@
-
 import { Field, Form, Formik } from "formik";
 import { useRef, useState } from "react";
 import * as yup from "yup";
@@ -7,7 +6,7 @@ import { Flex } from "../components/Flex";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "../app/account-context";
-//import { Logo } from "../components/logo";
+import { Logo } from "../components/logo";
 import { Nav } from "../components/nav";
 
 export const Home = () => {

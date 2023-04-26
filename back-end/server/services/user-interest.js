@@ -35,6 +35,7 @@ module.exports = {
 
     UserInterets.find({ userId }, (err, result) => {
       if (err) return res.send({ status: false, message: "data base error" });
+      
       res.send({ status: true, interests: result });
     });
   },

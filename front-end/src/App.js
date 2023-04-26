@@ -11,7 +11,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
 
         <Route element={<Protected />}>
-          /*all function that needs to be login should place insode this
+          /*all function that needs to be login should place inside this
           Protected route*/
           <Route path="/about" element={<About />} />
         </Route>

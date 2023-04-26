@@ -1,13 +1,13 @@
 const Conversations = require("../models/conversation");
 
 module.exports = {
-    //adding new conversations 
+  //adding new conversations
   add: (req, res, next) => {
     var fromUserId = req.userId;
     var toUserId = req.body.toUserId;
     var intrestId = req.body.intrestId;
     var conversation = new Conversations({ fromUserId, toUserId, intrestId });
-    
+
     //add a new conversations
     Conversations.findOne(
       { fromUserId, toUserId, finished: false },
@@ -83,11 +83,11 @@ module.exports = {
     );
   },
 
-  //i didnot test this function 
+  //i didnot test this function
   printAllConversations(req, res, next) {
     Conversations.find({}, (err, results) => {
       if (err) return res.send({ status: false, message: "data base error" });
       return res.send({ status: true, conversations: results });
     });
-  }
+  },
 };
