@@ -50,6 +50,7 @@ export default function Conversations() {
     
             conversations[i].createdAtText = `${day}/${month}/${year} - ${hour}:${minute}`;
 
+            // fetch sender data
             await axios.get(`${contactRoute}/getUser`, {
                 params: { id: conversations[i].fromId },
               })
@@ -61,6 +62,7 @@ export default function Conversations() {
                 alert(err.response.data);
               });
 
+            // fetch receiver data  
             await axios.get(`${contactRoute}/getUser`, {
                 params: { id: conversations[i].toId },
               })
@@ -71,6 +73,18 @@ export default function Conversations() {
                 conversations[i]["toData"] = [];
                 alert(err.response.data);
               });
+
+            // fetch messages
+            await axios.get(`${conversationRoute}/getConversationMessages`, {
+              params: { conversationId: conversations[i]._id },
+            })
+            .then((response) => {
+              conversations[i]["messages"] = response.data.map(message => message.text).join('\n');
+            }) 
+            .catch((err) => {
+              conversations[i]["messages"] = "";
+              alert(err.response.data);
+            }); 
           }
           setConversations(conversations);
         })
@@ -81,6 +95,26 @@ export default function Conversations() {
     }
     getConversations();
   });
+
+  // csv data
+  const csvData = conversations.map((conversation) => {
+    return {
+      date: conversation.createdAtText.split(" - ")[0],
+      time: conversation.createdAtText.split(" - ")[1],
+      sender: conversation.fromData.name,
+      receiver: conversation.toData.name,
+      messages: conversation.messages || "",
+    };
+  });
+
+  // csv headers
+  const headers = [
+    { label: "Date", key: "date"},
+    { label: "Time", key: "time"},
+    { label: "Sender", key: "sender"},
+    { label: "Receiver", key: "receiver"},
+    { label: "Messages", key: "messages" },
+  ];
 
 
 
@@ -148,10 +182,10 @@ export default function Conversations() {
                 </div>
 
                 {/*<!-- Buttons -->*/}
-                <div className="text-end">
-                  <button className="btn-download btn-link btn-rounded btn-sm">
+                <div className="text-end">{/* CSV download link */}
+                  <button className="btn-download btn-link btn-rounded btn-sm"><CSVLink data={csvData} headers={headers}>
                     Last ned samtale
-                  </button>
+                  </CSVLink></button>
                   <button className="btn-delete btn-link btn-rounded btn-sm">
                     Slett samtale
                   </button>
