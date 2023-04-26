@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import logo from "../img/Logo.svg";
 import { HiBars3 } from "react-icons/hi2";
 import { useState } from "react";
+import logo from "../assets/img/Logo.svg";
 
 function AdminNav() {
   /* Toggle Nav*/

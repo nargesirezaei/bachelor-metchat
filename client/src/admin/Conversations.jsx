@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 //import { CSVLink } from "react-csv";
 import { contactRoute, conversationRoute } from "../APIRoutes";
 
-import AdminNav from "./AdminNav";
-import dummyProfile from "../img/profile.svg";
+import AdminNav from "../components/AdminNav";
+import dummyProfile from "../assets/img/profile.svg";
 
 export default function Conversations() {
   const navigate = useNavigate(),

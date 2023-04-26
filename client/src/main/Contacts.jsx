@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { /*Link,*/ useNavigate } from "react-router-dom";
-import { /*profileRoute,*/ contactRoute, userInterestRoute } from "./APIRoutes";
-import Nav from "./components/MainNav";
+import {
+  /*profileRoute,*/ contactRoute,
+  userInterestRoute,
+} from "../APIRoutes";
+import Nav from "../components/MainNav";
 import { IoIosMail, IoIosAdd } from "react-icons/io";
+import dummyProfile from "../assets/img/profile.svg";
 
 export default function Contacts() {
   const navigate = useNavigate(),
@@ -119,7 +123,7 @@ export default function Contacts() {
             {users.map((user, i) => (
               <div key={i}>
                 <div className="info">
-                  <img src="profile.svg" alt="profile-icon" />
+                  <img src={dummyProfile} alt="profile-icon" />
                   <h2>
                     {user.firstName} {user.lastName}
                     <br />({user.email})
@@ -133,7 +137,6 @@ export default function Contacts() {
                     {" "}
                     <IoIosAdd />
                   </button>
-                  {/*<img className="mail" src="mail.jpg" alt="mail-icon" />*/}
                   <button className="mail">
                     <IoIosMail />
                   </button>

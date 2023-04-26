@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { /*Link,*/ useNavigate } from "react-router-dom";
 import axios from "axios";
-import { profileRoute } from "./APIRoutes";
-import "./interests.css";
+import { IoIosAdd } from "react-icons/io";
+import { profileRoute } from "../APIRoutes";
+import MainNav from "../components/MainNav";
 
 export default function MoreInfo() {
   const navigate = useNavigate(),
@@ -68,16 +69,7 @@ export default function MoreInfo() {
 
   return (
     <>
-      <nav>
-        <a href="./Welcome.jsx">
-          <img src="Logo.svg" alt="Logo" />
-        </a>
-        <ul class="main-nav">
-          <li class="push">
-            <a href="">Logg ut</a>
-          </li>
-        </ul>
-      </nav>
+      <MainNav />
       <section id="more-info">
         <h1>Snart ferdig. Fortell oss litt om deg selv</h1>
         <img class="profile-icon" src="profile.svg" alt="profile-icon" />
@@ -112,7 +104,7 @@ export default function MoreInfo() {
           </div>
           <div class="showMore">
             <a href="">
-              <img src="pluss.svg" alt="pluss-icon" />
+              <IoIosAdd />
             </a>
             <button>Vis flere</button>
           </div>
@@ -120,7 +112,7 @@ export default function MoreInfo() {
       </section>
       <div class="btns">
         <button>Tilbake</button>
-        <a href="contacts.html">
+        <a href="">
           <button type="submit" form="infoForm">
             Gå Videre
           </button>

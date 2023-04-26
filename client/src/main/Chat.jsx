@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 // import { io } from "socket.io-client";
 import { /*Link,*/ useNavigate } from "react-router-dom";
-import { contactRoute, conversationRoute, messageRoute } from "./APIRoutes";
+import { contactRoute, conversationRoute, messageRoute } from "../APIRoutes";
 import { IoMdSend } from "react-icons/io";
-import Nav from "./components/MainNav";
+import Nav from "../components/MainNav";
 // import ChatContainer from "./components/ChatContainer";
-import "./chat.css";
+import dummyProfile from "../assets/img/profile.svg";
 
 function Chat() {
   const navigate = useNavigate(),
@@ -172,7 +172,7 @@ function Chat() {
           <div className="chat-header">
             <div className="user-info">
               <div className="convo-patner-img">
-                <img src="profile.svg" alt="" />
+                <img src={dummyProfile} alt="" />
               </div>
               <div className="convo-title">
                 <h3>
@@ -217,11 +217,11 @@ function Chat() {
         {/* RIGHT */}
         <div className="col-md-3" id="right-side">
           <div className="user-info">
-            <img class="part-1" src="profile.svg" alt="profile-icon" />
+            <img class="part-1" src={dummyProfile} alt="profile-icon" />
             <h3>LOREM NAMEN</h3>
           </div>
           <div class="part-2">
-            <img src="profile.svg" alt="profile-icon" />
+            <img src="profile.svg" alt={dummyProfile} />
             <p>Til profil</p>
           </div>
           <div className="convo-options">

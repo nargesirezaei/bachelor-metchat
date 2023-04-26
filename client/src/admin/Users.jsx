@@ -1,5 +1,5 @@
-import AdminNav from "./AdminNav";
-import dummyProfile from "../img/profile.svg";
+import AdminNav from "../components/AdminNav";
+import dummyProfile from "../assets/img/profile.svg";
 
 function Users() {
   return (

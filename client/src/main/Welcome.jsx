@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiBars3 } from "react-icons/hi2";
-import Login from "./components/login";
-import Register from "./components/Register";
-import "./home.css";
+import Login from "../components/login";
+import Register from "../components/Register";
+import logo from "../assets/img/Logo.svg";
+import lines1 from "../assets/img/Lines.png";
+import people from "../assets/img/photo.png";
+import lines2 from "../assets/img/Lines_2.png";
+import BubbleBox from "../assets/img/Lines_2.png";
 
 function Welcome() {
   const [showLogin, setShowLogin] = useState(true);
@@ -27,7 +31,7 @@ function Welcome() {
         <nav className="nav-center">
           <div className="nav-header">
             <Link to="/">
-              <img src="Logo.svg" alt="logo" />
+              <img src={logo} alt="logo" />
             </Link>
 
             <a className="push" href="">
@@ -50,8 +54,8 @@ function Welcome() {
 
         <div className="first">
           <div className="firstImages">
-            <img src="Lines.png" className="img_1" />
-            <img src="photo.png" className="img_2" />
+            <img src={lines1} className="img_1" alt="left decending lines" />
+            <img src={people} className="img_2" alt="people chatting" />
           </div>
 
           <div id="LogReg">
@@ -134,9 +138,13 @@ function Welcome() {
         </div>
         */}
         <div className="second">
-          <img src="Lines_2.png" className="img_3" />
+          <img src={lines2} className="img_3" alt="right decending lines" />
           <div className="nlp">
-            <img src="BubbleBox.png" className="img_4" />
+            <img
+              src={BubbleBox}
+              className="img_4"
+              alt="bubble box background"
+            />
             <h2>Hva Er NLP</h2>
             <p className="txt">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
@@ -148,7 +156,7 @@ function Welcome() {
               facilis pariatur, nostrum itaque.
             </p>
           </div>
-          <img src="Lines.png" className="img_5" />
+          <img src={lines1} className="img_5" alt="left decending lines" />
         </div>
         <footer>
           <p>DATA3900-1 23V Bacheloroppgave</p>
