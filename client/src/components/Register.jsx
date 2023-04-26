@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { authenticationRoute } from "../APIRoutes";
-import "../home.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -57,23 +56,24 @@ function Register() {
     e.preventDefault();
     if (handleValidation()) {
       const { fname, lname, email, password } = values;
-      await axios.post(`${authenticationRoute}/register`, {
-        firstName: fname,
-        lastName: lname,
-        email,
-        password,
-      })
-      .then((response) => {
-        localStorage.setItem(
-          "metchat-user",
-          JSON.stringify(response.data.user)
-        );
-        alert("Bruker opprettet"); // Noe bedre å si?
-        navigate("/merInfo");
-      })
-      .catch((err) => {
-        alert(err.response.data);
-      });
+      await axios
+        .post(`${authenticationRoute}/register`, {
+          firstName: fname,
+          lastName: lname,
+          email,
+          password,
+        })
+        .then((response) => {
+          localStorage.setItem(
+            "metchat-user",
+            JSON.stringify(response.data.user)
+          );
+          alert("Bruker opprettet"); // Noe bedre å si?
+          navigate("/merInfo");
+        })
+        .catch((err) => {
+          alert(err.response.data);
+        });
     }
   };
 

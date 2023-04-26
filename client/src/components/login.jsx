@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../home.css";
 import { authenticationRoute } from "../APIRoutes";
 
 function Login() {
@@ -56,7 +55,8 @@ function Login() {
 
     if (handleValidation()) {
       const { email, password } = values;
-      await axios.post(`${authenticationRoute}/login`, {
+      await axios
+        .post(`${authenticationRoute}/login`, {
           email,
           password,
         })
