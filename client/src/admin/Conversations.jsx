@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-//import { CSVLink } from "react-csv";
+import { CSVLink } from "react-csv";
 import { contactRoute, conversationRoute } from "../APIRoutes";
 
 import AdminNav from "../components/AdminNav";
@@ -74,7 +74,7 @@ export default function Conversations() {
               });
 
             // fetch messages
-            await axios.get(`${conversationRoute}/getConversationMessages`, {
+            /*await axios.get(`${conversationRoute}/getConversationMessages`, {
               params: { conversationId: conversations[i]._id },
             })
             .then((response) => {
@@ -83,7 +83,7 @@ export default function Conversations() {
             .catch((err) => {
               conversations[i]["messages"] = "";
               alert(err.response.data);
-            }); 
+            }); */
           }
           setConversations(conversations);
         })
