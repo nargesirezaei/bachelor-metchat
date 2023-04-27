@@ -62,7 +62,7 @@
   background-color: #c1c8cd;
 }
 
-/* Chat container*/
+/* ---- Chat container ---- */
 #middel {
   display: grid;
   align-items: center;
@@ -75,7 +75,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
 .user-info {
@@ -85,7 +85,7 @@
 .convo-patner-img img {
   display: flex;
   align-items: center;
-  height: 3rem;
+  height: 2.5rem;
   width: 4rem;
 }
 
@@ -114,7 +114,7 @@
   align-items: center;
 }
 .message-content {
-  max-width: 40%;
+  max-width: 50%;
   overflow-wrap: break-word;
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -177,15 +177,21 @@
   flex-direction: column;
   align-items: center;
 }
+#right-side .user-info {
+  align-items: center;
+}
 #right-side .part-1 {
-  width: 100px;
-  height: 100px;
-  margin-top: 25px;
+  width: 80px;
+  height: 80px;
+  padding-right: 0.3em;
+}
+#right-side h3 {
+  font-size: 1.2em;
 }
 #right-side .part-2 {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 25px;
   width: 50%;
 }
