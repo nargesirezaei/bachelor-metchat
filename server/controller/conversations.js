@@ -20,6 +20,9 @@ app.put(`/:conversationId`, async (req, res) => {
 });
 */
 
+//app.get('/getConversation', messages.getConversation);
+
+
 app.put('/editTitle', conversations.editTitle);
 
 app.delete('/delete/id', conversations.deleteById);

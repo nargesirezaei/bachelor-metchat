@@ -1,6 +1,8 @@
 
 const Conversations = require("../models/conversations");
 const User = require("../models/user");
+const Messages = require('../models/messages');
+
 
 module.exports = {
     create: async (req, res) => {
@@ -90,5 +92,16 @@ module.exports = {
             return res.status(500).send("Failed to edit conversation title");
         });
     },
+
+    /* Conversation.findById(conversationId).populate('messages').exec((err, conversation) => {
+    if (err) {
+      return res.status(500).send('Failed to fetch conversation');
+    }
+    if (!conversation) {
+      return res.status(404).send('Conversation not found');
+    }
+    return res.status(200).send(conversation);
+    }),*/
+
 
 };

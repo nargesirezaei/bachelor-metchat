@@ -1,4 +1,3 @@
-
 const Messages = require("../models/messages");
 
 module.exports = {
@@ -59,6 +58,19 @@ module.exports = {
             return res.status(200).send(loadedMessage);
         });
     },
+
+    getConversations: async (req, res) => {
+        const conversationId = req.params.conversationId;
+    
+        try {
+          const messages = await Messages.find({ conversationId }).sort({ createdAt: 1 });
+          res.status(200).json(messages);
+        } catch (error) {
+          console.error(error);
+          res.status(500).send('Error retrieving conversation');
+        }
+      },
+      
 
     init: {
 

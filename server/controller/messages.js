@@ -16,4 +16,17 @@ app.delete('/delete', messages.delete);
 
 app.put('/seen', messages.seen);
 
+app.get('/conversations/:conversationId/messages', async (req, res) => {
+    const { conversationId } = req.params;
+    const conversation = await Conversation.findById(conversationId);
+  
+    if (!conversation) {
+      return res.status(404).json({ error: 'Conversation not found' });
+    }
+  
+    const messages = conversation.messages;
+    res.json(messages);
+  });
+  
+
 module.exports = app;

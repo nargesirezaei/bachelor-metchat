@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
-import { contactRoute, conversationRoute } from "../APIRoutes";
+import { contactRoute, conversationRoute, messageRoute } from "../APIRoutes";
 
 import AdminNav from "../components/AdminNav";
 import dummyProfile from "../assets/img/profile.svg";
@@ -45,9 +45,7 @@ export default function Conversations() {
             if (hour < 10) hour = "0" + hour;
             if (minute < 10) minute = "0" + minute;
 
-            conversations[
-              i
-            ].createdAtText = `${day}/${month}/${year} - ${hour}:${minute}`;
+            conversations[i].createdAtText = `${day}/${month}/${year} - ${hour}:${minute}`;
 
             // fetch sender data
             await axios.get(`${contactRoute}/getUser`, {
@@ -74,16 +72,18 @@ export default function Conversations() {
               });
 
             // fetch messages
-            /*await axios.get(`${conversationRoute}/getConversationMessages`, {
+            axios.get(`${conversationRoute}/messages`, {
               params: { conversationId: conversations[i]._id },
             })
+
+            //await axios.get(`${conversationRoute}/conversations/${conversations[i]._id}/messages`)
             .then((response) => {
               conversations[i]["messages"] = response.data.map(message => message.text).join('\n');
             }) 
             .catch((err) => {
               conversations[i]["messages"] = "";
               alert(err.response.data);
-            }); */
+            });
           }
           setConversations(conversations);
         })
@@ -194,9 +194,11 @@ export default function Conversations() {
 
                 {/*<!-- Buttons -->*/}
                 <div className="text-end">{/* CSV download link */}
-                  <button className="btn-download btn-link btn-rounded btn-sm"><CSVLink data={csvData} headers={headers}>
-                    Last ned samtale
-                  </CSVLink></button>
+                  <button className="btn-download btn-link btn-rounded btn-sm">
+                    <CSVLink data={csvData} headers={headers}>
+                      Last ned samtale
+                    </CSVLink>
+                  </button>
                   <button className="btn-delete btn-link btn-rounded btn-sm">
                     Slett samtale
                   </button>
