@@ -5,16 +5,16 @@ import Welcome from "./main/Welcome";
 import MoreInfo from "./main/MoreInfo";
 import Contacts from "./main/Contacts";
 import Chat from "./main/Chat";
+import Profile from "./main/Profile";
 import Conversations from "./admin/Conversations";
 import Users from "./admin/Users";
 
 import "./assets/css/nav.css";
-// Users
 import "./assets/css/home.css";
 import "./assets/css/chat.css";
 import "./assets/css/contacts.css";
 import "./assets/css/interests.css";
-// Admin
+import "./assets/css/profile.css";
 import "./assets/css/admin_brukere.css";
 import "./assets/css/admin_samtaler.css";
 
@@ -27,6 +27,7 @@ export default function App() {
         <Route path="/kontakter" element={<Contacts />} />
         <Route path="/merInfo" element={<MoreInfo />} />
         <Route path="/samtaler" element={<Chat />} />
+        <Route path="/profil" element={<Profile />} />
 
         {/* Admin Routes */}
         <Route path="/admin/brukere" element={<Users />} />
