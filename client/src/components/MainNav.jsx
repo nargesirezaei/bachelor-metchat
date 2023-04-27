@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { HiBars3 } from "react-icons/hi2";
 import { useState } from "react";
-import "../nav.css";
+import logo from "../assets/img/Logo.svg";
 
 function Nav() {
   /* Toggle Nav*/
@@ -13,7 +13,7 @@ function Nav() {
     <nav className="nav-center">
       <div className="nav-header">
         <Link to="/" className="logo">
-          <img src="Logo.svg" alt="logo" />
+          <img src={logo} alt="logo" />
         </Link>
         <div className="nav-items">
           <Link className="item" to="/kontakter">
@@ -53,8 +53,8 @@ function Nav() {
     </nav>
   );
 }
-{
-  /*<nav className="main-menu">
+
+/*<nav className="main-menu">
       <Link to="/">
         <img src="Logo.svg" alt="logo" />
       </Link>
@@ -73,6 +73,5 @@ function Nav() {
         </li>
       </ul>
   </nav>*/
-}
 
 export default Nav;

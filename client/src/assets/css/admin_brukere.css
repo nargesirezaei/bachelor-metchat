@@ -1,0 +1,153 @@
+.admin-users {
+  margin-top: 170px;
+  gap: 48px;
+}
+.admin-users h1 {
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 2em;
+  font-weight: 500;
+  padding-bottom: 8px;
+  padding-top: 32px;
+  padding-left: 1rem;
+}
+
+/* SEARCH */
+.search-group {
+  margin-bottom: 1rem;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+.search-group input {
+  max-width: 220px;
+  background-color: #c1c8cd;
+  border: none;
+  font-size: 18px;
+  color: inherit;
+
+  flex-grow: 1;
+  border-radius: 100px;
+  padding: 16px;
+}
+
+/* ---- USER LIST ----- */
+.user-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.5rem;
+  gap: 1rem;
+  align-items: center;
+  border-right: #dee1e4 1px solid;
+}
+
+.user-item {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  background-color: #dee1e4;
+  padding: 0.5rem;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+.user-item:hover {
+  border: 2px solid #112d40;
+}
+.user-item:active {
+  background-color: #112d40;
+  color: #fafafa;
+}
+.user-item span {
+  margin-left: 2%;
+}
+.user-item img {
+  height: 2rem;
+  width: 3rem;
+}
+
+/* ---- USER ---- */
+.profile-right {
+  margin: 1rem;
+}
+
+.user-header {
+  padding-top: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.user-header span {
+  padding: 0.5rem;
+}
+.user-header img {
+  height: 4rem;
+  width: 5rem;
+}
+
+.user-info {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+.user-info tr {
+  padding: 0.5rem;
+}
+.user-info td {
+  padding: 0.5rem 1rem;
+  border: 0.5rem solid #fafafa;
+}
+.user-info-value {
+  background-color: #dee1e4;
+}
+
+/* BUTTONS FOR VIEWING AND DOWNLOADING CONVERSATIONS */
+.btn-coanversations button {
+  background-color: #98a4ac;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+
+  padding: 8px 24px;
+  margin-top: 8px;
+  border: none;
+  display: flex;
+  align-content: right;
+  justify-content: right;
+}
+
+.btn-coanversations button:hover {
+  background-color: #112d40;
+  color: #ffffff;
+}
+
+/* DETETE USER BUTTON */
+.del-user {
+  font-family: "Inter", sans-serif;
+  background-color: #112d40;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 12px;
+
+  margin-top: 5%;
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+
+.del-user:hover {
+  background-color: #dee1e4;
+  color: #112d40;
+}
