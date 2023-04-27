@@ -11,23 +11,23 @@
   height: 100%;
 }
 
-.profile-bdy .profile-header {
+.profile-header {
   display: flex;
   flex-direction: row;
   margin-bottom: 100px;
 }
-.profile-bdy .profile-header img {
+.profile-header img {
   width: 100px;
   height: 100px;
   position: absolute;
   top: 400px;
   left: 20px;
 }
-.profile-bdy .profile-header h1 {
+.profile-header h1 {
   position: absolute;
   left: 150px;
 }
-.profile-bdy .profile-header button {
+.profile-header button {
   position: absolute;
   right: 150px;
   top: 480px;
@@ -41,7 +41,6 @@
   font-weight: 400;
   font-size: 19px;
   line-height: 22px;
-  color: #000000;
 }
 
 .profile-bdy .cover {
@@ -57,7 +56,6 @@
   font-weight: 400;
   font-size: 25px;
   line-height: 22px;
-  color: #000000;
 }
 .profile-bdy .info textarea {
   max-width: 300px;

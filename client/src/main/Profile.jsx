@@ -7,23 +7,23 @@ function Profile() {
     <>
       <Nav />
 
-      <div class="profile-bdy">
+      <div className="profile-bdy">
         {/* Photo by <a href="https://unsplash.com/@priscilladupreez?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Priscilla Du Preez</a> on <a href="https://unsplash.com/s/photos/cover-photo-chat?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> */}
-        <img class="cover" src={cover} alt="cover" />
-        <div class="part-1 profile-header">
+        <img className="cover" src={cover} alt="cover" />
+        <div className="part-1 profile-header">
           <img src={dummyProfile} alt="avatar" />
           <h1>Namen Lorem</h1>
           <button>Rediger</button>
         </div>
 
-        <div class="info">
-          <p class="bio">Bio</p>
+        <div className="info">
+          <p className="bio">Bio</p>
           <textarea></textarea>
-          <p class="interests">Interesser</p>
-          <div class="btns-odd">
-            <button class="intress-btn">Mat</button>
-            <button class="intress-btn">Knust</button>
-            <button class="intress-btn">Litratur</button>
+          <p className="interests">Interesser</p>
+          <div className="btns-odd">
+            <button className="intress-btn">Mat</button>
+            <button className="intress-btn">Knust</button>
+            <button className="intress-btn">Litratur</button>
           </div>
         </div>
       </div>
