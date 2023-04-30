@@ -72,18 +72,14 @@ export default function Conversations() {
               });
 
             // fetch messages
-            axios.get(`${conversationRoute}/messages`, {
-              params: { conversationId: conversations[i]._id },
-            })
-
-            //await axios.get(`${conversationRoute}/conversations/${conversations[i]._id}/messages`)
-            .then((response) => {
-              conversations[i]["messages"] = response.data.map(message => message.text).join('\n');
-            }) 
-            .catch((err) => {
-              conversations[i]["messages"] = "";
-              alert(err.response.data);
-            });
+            await axios.get(`${conversationRoute}/${conversations[i]._id}/messages`)
+              .then((response) => {
+                conversations[i]["messages"] = response.data.map(message => message.text).join('\n');
+              }) 
+              .catch((err) => {
+                conversations[i]["messages"] = "";
+                alert(err.response.data);
+              });
           }
           setConversations(conversations);
         })
@@ -114,6 +110,7 @@ export default function Conversations() {
     { label: "Receiver", key: "receiver"},
     { label: "Messages", key: "messages" },
   ];
+
 
 
 
