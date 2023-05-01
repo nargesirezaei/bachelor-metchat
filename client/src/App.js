@@ -30,8 +30,6 @@ import { Messages } from "./main/messages";
 export default function App() {
     return (
         <Routes>
-            {/* 
-            public Layout */}
             <Route path="/" element={<PublicLayout />}>
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/" element={<Welcome />} />
