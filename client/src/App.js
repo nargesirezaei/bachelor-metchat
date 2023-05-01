@@ -26,6 +26,7 @@ import { Welcome } from "./main/Welcome";
 import { About } from "./main/about";
 import { useAccount } from "./app/account-context";
 import { Messages } from "./main/messages";
+import { Interests } from "./main/interests";
 
 export default function App() {
     return (
@@ -41,6 +42,7 @@ export default function App() {
                     <Route path="/merInfo" element={<MoreInfo />} />
                     <Route path="/samtaler" element={<Messages />} />
                     <Route path="/profil" element={<Profile />} />
+                    <Route path="/interests" element={<Interests />} />
 
                     {/* Admin Routes */}
                     <Route path="/admin/brukere" element={<Users />} />
