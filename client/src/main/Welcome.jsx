@@ -1,8 +1,4 @@
 import { useRef, useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
-import { accountApi } from "../api/account-api";
-import { useAccount } from "../app/account-context";
 import { Flex } from "../components/Flex";
 import { Nav } from "../components/nav";
 
@@ -12,23 +8,7 @@ import { Register } from "../components/Register";
 export const Welcome = () => {
     const [model, setModel] = useState({ auth: "login" });
     const registerFormRef = useRef();
-    const history = useNavigate();
-    const account = useAccount();
 
-    const onSubmitRegister = () => {
-        const values = registerFormRef.current.values;
-        accountApi
-            .register(values)
-            .then(() => {
-                setModel({ ...model, showRegisterModal: false });
-
-                account
-                    .login(values.email, values.password)
-                    .then(() => history("/interests"))
-                    .catch(() => alert("Error in Login"));
-            })
-            .catch(() => alert("error!"));
-    };
     return (
         <div className="container-fluid">
             <Nav />
@@ -96,89 +76,6 @@ export const Welcome = () => {
                     height: 400,
                 }}
             ></div>
-            <Toc
-                show={model.showRegisterModal}
-                onHide={() => setModel({ ...model, showRegisterModal: false })}
-                onSubmitHandler={onSubmitRegister}
-            />
         </div>
-    );
-};
-
-const Toc = ({ show, onHide, onSubmitHandler }) => {
-    const [acceptToc, setAcceptToc] = useState(false);
-    return (
-        <Modal show={show} onHide={onHide} size="xl">
-            <Modal.Body className="p-0">
-                <div className="heading">
-                    <Flex
-                        content="center"
-                        align="center"
-                        className="text-muted"
-                    >
-                        Vilkår for tjenesten
-                    </Flex>
-                </div>
-                <div className="scroll-div-object text-muted">
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Repellendus expedita iusto, eaque, aut maiores
-                        quas at unde delectus eius voluptatum, corrupti ex vitae
-                        commodi dolorem in quaerat cumque labore repellat!
-                    </p>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Repellendus expedita iusto, eaque, aut maiores
-                        quas at unde delectus eius voluptatum, corrupti ex vitae
-                        commodi dolorem in quaerat cumque labore repellat!
-                    </p>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Repellendus expedita iusto, eaque, aut maiores
-                        quas at unde delectus eius voluptatum, corrupti ex vitae
-                        commodi dolorem in quaerat cumque labore repellat!
-                    </p>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Repellendus expedita iusto, eaque, aut maiores
-                        quas at unde delectus eius voluptatum, corrupti ex vitae
-                        commodi dolorem in quaerat cumque labore repellat!
-                    </p>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Repellendus expedita iusto, eaque, aut maiores
-                        quas at unde delectus eius voluptatum, corrupti ex vitae
-                        commodi dolorem in quaerat cumque labore repellat!
-                    </p>
-                </div>
-                <div className="btns">
-                    <Flex vertical content="center" align="center">
-                        <Flex align="center">
-                            <input
-                                type="checkbox"
-                                className="me-2"
-                                onChange={(e) => setAcceptToc(e.target.checked)}
-                            />
-                            <label> Jeg har lest alt, og samtrykker..</label>
-                        </Flex>
-                        <Flex>
-                            <button
-                                className="btn ms-0 mb-3 text-dark"
-                                onClick={onHide}
-                            >
-                                Tilbake
-                            </button>
-                            <button
-                                className="btn mb-3 text-dark"
-                                disabled={!acceptToc}
-                                onClick={onSubmitHandler}
-                            >
-                                Gå Videre
-                            </button>
-                        </Flex>
-                    </Flex>
-                </div>
-            </Modal.Body>
-        </Modal>
     );
 };

@@ -1,9 +1,30 @@
 import { Field, Form, Formik } from "formik";
-import React from "react";
+import { React, useState } from "react";
 import * as yup from "yup";
 import { Flex } from "./Flex";
+import { Modal } from "react-bootstrap";
+import { accountApi } from "../api/account-api";
+import { useNavigate } from "react-router-dom";
+import { useAccount } from "../app/account-context";
 
 export const Register = ({ registerFormRef, setModel, model }) => {
+    const history = useNavigate();
+    const account = useAccount();
+
+    const onSubmitRegister = () => {
+        const values = registerFormRef.current.values;
+        accountApi
+            .register(values)
+            .then(() => {
+                setModel({ ...model, showRegisterModal: false });
+
+                account
+                    .login(values.email, values.password)
+                    .then(() => history("/interests"))
+                    .catch(() => alert("Error in Login"));
+            })
+            .catch(() => alert("error!"));
+    };
     return (
         <div id="reg" className="pb-5">
             <Formik
@@ -124,6 +145,89 @@ export const Register = ({ registerFormRef, setModel, model }) => {
                     </Form>
                 )}
             </Formik>
+            <Toc
+                show={model.showRegisterModal}
+                onHide={() => setModel({ ...model, showRegisterModal: false })}
+                onSubmitHandler={onSubmitRegister}
+            />
         </div>
+    );
+};
+
+const Toc = ({ show, onHide, onSubmitHandler }) => {
+    const [acceptToc, setAcceptToc] = useState(false);
+    return (
+        <Modal show={show} onHide={onHide} size="xl">
+            <Modal.Body className="p-0">
+                <div className="heading">
+                    <Flex
+                        content="center"
+                        align="center"
+                        className="text-muted"
+                    >
+                        Vilkår for tjenesten
+                    </Flex>
+                </div>
+                <div className="scroll-div-object text-muted">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Repellendus expedita iusto, eaque, aut maiores
+                        quas at unde delectus eius voluptatum, corrupti ex vitae
+                        commodi dolorem in quaerat cumque labore repellat!
+                    </p>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Repellendus expedita iusto, eaque, aut maiores
+                        quas at unde delectus eius voluptatum, corrupti ex vitae
+                        commodi dolorem in quaerat cumque labore repellat!
+                    </p>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Repellendus expedita iusto, eaque, aut maiores
+                        quas at unde delectus eius voluptatum, corrupti ex vitae
+                        commodi dolorem in quaerat cumque labore repellat!
+                    </p>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Repellendus expedita iusto, eaque, aut maiores
+                        quas at unde delectus eius voluptatum, corrupti ex vitae
+                        commodi dolorem in quaerat cumque labore repellat!
+                    </p>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Repellendus expedita iusto, eaque, aut maiores
+                        quas at unde delectus eius voluptatum, corrupti ex vitae
+                        commodi dolorem in quaerat cumque labore repellat!
+                    </p>
+                </div>
+                <div className="btns">
+                    <Flex vertical content="center" align="center">
+                        <Flex align="center">
+                            <input
+                                type="checkbox"
+                                className="me-2"
+                                onChange={(e) => setAcceptToc(e.target.checked)}
+                            />
+                            <label> Jeg har lest alt, og samtrykker..</label>
+                        </Flex>
+                        <Flex gap={2}>
+                            <button
+                                className="btn ms-0 mb-3 text-dark"
+                                onClick={onHide}
+                            >
+                                Tilbake
+                            </button>
+                            <button
+                                className="btn mb-3 text-dark"
+                                disabled={!acceptToc}
+                                onClick={onSubmitHandler}
+                            >
+                                Gå Videre
+                            </button>
+                        </Flex>
+                    </Flex>
+                </div>
+            </Modal.Body>
+        </Modal>
     );
 };
