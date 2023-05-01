@@ -1,40 +1,62 @@
 // lager lenke til test register-filen for å teste tilkobling mellom backend og frontend
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Welcome from "./main/Welcome";
-import MoreInfo from "./main/MoreInfo";
-import Contacts from "./main/Contacts";
-import Chat from "./main/Chat";
-import Profile from "./main/Profile";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Conversations from "./admin/Conversations";
 import Users from "./admin/Users";
+import Chat from "./main/Chat";
 
-import "./assets/css/nav.css";
-import "./assets/css/home.css";
-import "./assets/css/chat.css";
-import "./assets/css/contacts.css";
-import "./assets/css/interests.css";
-import "./assets/css/profile.css";
+import { Protected } from "./shared/protected";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/admin_brukere.css";
 import "./assets/css/admin_samtaler.css";
+import "./assets/css/chat.css";
+import "./assets/css/contacts.css";
+import "./assets/css/home.css";
+import "./assets/css/interests.css";
+import "./assets/css/nav.css";
+import "./assets/css/profile.css";
+import "./assets/css/index.css";
+import "./assets/css/style.css";
+import "./assets/css/app.css";
+import { PublicLayout } from "./shared/public-layout";
+import { Contacts } from "./main/Contacts";
+import MoreInfo from "./main/MoreInfo";
+import { Profile } from "./main/Profile";
+import { Welcome } from "./main/Welcome";
+import { About } from "./main/about";
+import { useAccount } from "./app/account-context";
+import { Messages } from "./main/messages";
 
 export default function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Welcome />} />
+    return (
+        <Routes>
+            {/* 
+            public Layout */}
+            <Route path="/" element={<PublicLayout />}>
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/" element={<Welcome />} />
 
-        <Route path="/kontakter" element={<Contacts />} />
-        <Route path="/merInfo" element={<MoreInfo />} />
-        <Route path="/samtaler" element={<Chat />} />
-        <Route path="/profil" element={<Profile />} />
+                {/* to handle user is login or not */}
+                <Route element={<Protected />}>
+                    <Route path="/kontakter" element={<Contacts />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/merInfo" element={<MoreInfo />} />
+                    <Route path="/samtaler" element={<Messages />} />
+                    <Route path="/profil" element={<Profile />} />
 
-        {/* Admin Routes */}
-        <Route path="/admin/brukere" element={<Users />} />
-        <Route path="/admin/samtaler" element={<Conversations />} />
-      </Routes>
-    </BrowserRouter>
-  );
+                    {/* Admin Routes */}
+                    <Route path="/admin/brukere" element={<Users />} />
+                    <Route path="/admin/samtaler" element={<Conversations />} />
+                </Route>
+            </Route>
+        </Routes>
+    );
 }
+
+const Logout = () => {
+    const account = useAccount();
+    account.logout();
+    return <Navigate to="/" />;
+};
 
 // Bruke Bootsrap Grid system for å gjøre sidene responsive

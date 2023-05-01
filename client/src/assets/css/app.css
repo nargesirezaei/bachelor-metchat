@@ -1,0 +1,54 @@
+.contents {
+    margin-top: 160px;
+}
+
+.liness {
+    background-image: url("../img/Lines.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.photo {
+    background-image: url("../img/photo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 870px;
+    height: 600px;
+}
+
+.liness2 {
+    background-image: url("../img/Lines_2.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 700px;
+    height: 600px;
+}
+.bubbleBox {
+    background-image: url("../img/BubbleBox.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 685px;
+    height: 656px;
+    padding-left: 120px;
+    padding-top: 120px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+.profile-edit-button {
+    position: absolute;
+    right: 150px;
+    top: 480px;
+    width: 109px;
+    height: 36px;
+    background-color: #fafafa;
+    border: 1px solid #000000;
+    border-radius: 40px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #000000;
+}

@@ -1,53 +1,53 @@
 #conacts-body {
-  display: flex;
-  justify-content: center;
-  margin-top: 170px;
+    display: flex;
+    justify-content: center;
+    margin-top: 170px;
 }
 
 /* --- Left side: List of contacts ---- */
 #contacts-list {
-  padding: 1em;
+    padding: 1em;
 }
 
 /* ---- Riht side: List of users ---- */
 #users {
-  display: grid;
-  gap: 0.1rem;
-  border-left: #dee1e4 1px solid;
+    display: grid;
+    gap: 0.1rem;
+    border-left: #dee1e4 1px solid;
 }
 
 /* Header */
 .users-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
 }
 
 /* Users list */
 #users-list {
-  display: grid;
-  gap: 0.1rem;
+    display: grid;
+    gap: 0.1rem;
 }
 
 .info {
-  display: flex;
-  justify-content: space-around;
-  padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.4rem;
 }
 .info img {
-  height: 3rem;
-  width: 4rem;
+    height: 3rem;
+    width: 4rem;
 }
 .pluss {
-  height: 3rem;
-  width: 4rem;
-  border: none;
-  background-color: transparent;
+    height: 3rem;
+    width: 4rem;
+    border: none;
+    background-color: transparent;
 }
 .mail {
-  height: 3rem;
-  width: 4rem;
-  border: none;
-  background-color: transparent;
+    height: 3rem;
+    width: 4rem;
+    border: none;
+    background-color: transparent;
 }
