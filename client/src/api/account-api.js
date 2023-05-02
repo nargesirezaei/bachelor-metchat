@@ -4,6 +4,9 @@ import { apiConfig } from "./config";
 export const accountApi = {
     userInfo: () => api.call("post", apiConfig.accountUrl + "/user-info/"),
 
+    initProfile: () =>
+        api.call("post", apiConfig.accountUrl + "/init-profile/"),
+
     login: (userName, password) =>
         api.call("post", apiConfig.accountUrl + "/login", {
             email: userName,

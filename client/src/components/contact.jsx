@@ -8,7 +8,7 @@ export const Contact = ({ contact, width = 50, height = 50, textStyle }) => {
                 style={{ width: width, height: height }}
             />
             <span className="ps-2" style={{ ...textStyle }}>
-                Rami
+                {contact.name}
             </span>
         </div>
     );

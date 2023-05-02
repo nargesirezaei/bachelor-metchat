@@ -2,8 +2,10 @@ import { Link, useLocation } from "react-router-dom";
 import { Flex } from "./Flex";
 import { Logo } from "./logo";
 import classNames from "classnames";
+import { useAccount } from "../app/account-context";
 
 export const TopNav = () => {
+    const account = useAccount();
     const page = useLocation().pathname;
 
     return (
@@ -43,6 +45,14 @@ export const TopNav = () => {
                             </Link>
                         </li>
                         <li className="push">
+                            <span
+                                style={{ fontSize: 20 }}
+                                className="text-warning"
+                            >
+                                {account.isConnected() && (
+                                    <> {account.displayName} </>
+                                )}
+                            </span>
                             <Link to="/logout" className="text-light">
                                 Log ut
                             </Link>

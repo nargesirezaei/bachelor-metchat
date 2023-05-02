@@ -22,7 +22,10 @@ export function Protected() {
                     vertical
                     gap={1}
                 >
-                    <span as="div">We cannot authenticate you</span>
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+
                     <button className="btn m-0" onClick={() => history("/")}>
                         Login
                     </button>
@@ -32,7 +35,7 @@ export function Protected() {
 
     return (
         <>
-            {account.getStatus() == accountStatuses.Connecting && (
+            {account.getStatus() === accountStatuses.Connecting && (
                 <div>Connecting...</div>
             )}
             {account.isConnected() && <Outlet />}

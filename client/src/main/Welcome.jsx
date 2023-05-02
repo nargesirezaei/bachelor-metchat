@@ -13,7 +13,11 @@ export const Welcome = () => {
         <div className="container-fluid">
             <Nav />
             <div className="liness">
-                <Flex content="end" className="pe-5">
+                <Flex
+                    content="end"
+                    className="pe-5"
+                    style={{ marginRight: 200 }}
+                >
                     <div className="mt-5">
                         <Flex vertical>
                             <div>

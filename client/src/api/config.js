@@ -5,4 +5,5 @@ export const apiConfig = {
     accountUrl: host + "/authentication",
     contactUrl: host + "/contacts",
     interestsUrl: host + "/interests",
+    profileUrl: host + "/profile",
 };
