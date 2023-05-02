@@ -62,54 +62,70 @@ export const Contacts = () => {
         <>
             <TopNav />
 
-            <section id="first">
-                <h1>Find Contacts</h1>
-                <hr />
-                <input
-                    type="search"
-                    className="form-control rounded"
-                    placeholder="Search"
-                    aria-label="Search"
-                    aria-describedby="search-addon"
-                ></input>
-            </section>
-            <Flex>
-                <div className="flex-grow-1 ps-3" style={{ maxWidth: 350 }}>
-                    <h5>search...</h5>
+            <div className="container-fluid">
+                <section id="first">
+                    <h1>Find Contacts</h1>
                     <hr />
-                    <input
-                        type="search"
-                        className="form-control rounded"
-                        placeholder="Search"
-                        aria-label="Search"
-                        aria-describedby="search-addon"
-                    ></input>
-                </div>
-                <section id="second" className="ps-5">
-                    {contacts.map((x) => (
-                        <React.Fragment>
-                            <Contact
-                                contact={x}
-                                pluss={pluss}
-                                mail={mail}
-                                profile={profile}
-                            />
-                        </React.Fragment>
-                    ))}
                 </section>
-            </Flex>
+                <div className="row">
+                    <div className="col-4">
+                        <h5>Contacts</h5>
+
+                        <input
+                            type="search"
+                            className="form-control rounded"
+                            placeholder="Search"
+                        />
+                    </div>
+                    <div className="col-8 ps-5">
+                        <h5>My Contacts</h5>
+
+                        <input
+                            type="search"
+                            className="form-control rounded"
+                            placeholder="Search"
+                            style={{ maxWidth: 500 }}
+                        />
+                        <hr />
+                        <div style={{ width: 500 }}>
+                            {contacts.map((x) => (
+                                <React.Fragment>
+                                    <Contact
+                                        contact={x}
+                                        pluss={pluss}
+                                        mail={mail}
+                                        profile={profile}
+                                    />
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 };
 
-const Contact = ({ contact, pluss, mail, profile }) => {
+const Contact = ({ contact, pluss, mail, setModel, profile }) => {
+    const addToMyContacts = (email) => {
+        contactApi
+            .addContact()
+            .then((result) => setModel(result))
+            .catch(() => alert("error"));
+    };
     return (
         <>
             <Flex className="info" align="center" content="space-between">
-                <img src={profile} className="profile" />
-                <span>{contact.name}</span>
+                <div>
+                    <img src={profile} className="profile me-3" />
+                    <span>{contact.name}</span>
+                </div>
                 <img src={pluss} className="pluss" />
-                <img src={mail} className="mail" />
+                <img
+                    src={mail}
+                    className="mail cur-pointer"
+                    onClick={() => addToMyContacts()}
+                />
             </Flex>
             <div className="intersts">
                 {contact.intersts?.map((x) => (

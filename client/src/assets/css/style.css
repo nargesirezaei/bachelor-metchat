@@ -85,7 +85,7 @@ a.active:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 0px;
 }
 #second img {
     width: 75px;
@@ -116,7 +116,6 @@ a.active:hover {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
-    margin-left: 150px;
     margin-top: 50px;
     margin-bottom: 50px;
 }

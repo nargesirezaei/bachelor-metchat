@@ -1,11 +1,24 @@
-import { TopNav } from "../components/top-nav";
-import cover from "../assets/img/cover.png";
-import { Contact } from "../components/contact";
-import { Flex } from "../components/Flex";
-import { Interesser } from "../components/interesser";
+import { useEffect, useState } from "react";
+import { profileApi } from "../api/profile-api";
 import { useAccount } from "../app/account-context";
+import cover from "../assets/img/cover.png";
+import { Flex } from "../components/Flex";
+import { Contact } from "../components/contact";
+import { Interesser } from "../components/interesser";
+import { TopNav } from "../components/top-nav";
+import classNames from "classnames";
 export const Profile = () => {
     var account = useAccount();
+    var [model, setModel] = useState();
+
+    useEffect(() => {
+        if (model) return;
+
+        profileApi
+            .me()
+            .then((result) => setModel(result))
+            .catch(() => alert("error in init profile"));
+    }, [model]);
     return (
         <>
             <TopNav />
@@ -30,14 +43,24 @@ export const Profile = () => {
                                 fontSize: 35,
                                 fontWeight: "bold",
                             }}
+                            contact={{ name: account.displayName }}
                         />
                     </div>
-                    <button className="profile-edit-button">Rediger</button>
+                    <button
+                        className="profile-edit-button btn"
+                        onClick={() => setModel({ ...model, readOnly: false })}
+                    >
+                        Rediger
+                    </button>
                 </Flex>
 
                 <div className="ms-5 mt-5 mb-5">
                     <h6>Bio</h6>
-                    <textarea style={{ width: 500 }}></textarea>
+                    <textarea
+                        style={{ width: 500 }}
+                        readOnly={model?.readOnly}
+                        className={classNames({ "bg-light": model?.readOnly })}
+                    ></textarea>
 
                     <h6 className="mt-5">Interesser</h6>
                     <Interesser name="Mat" />

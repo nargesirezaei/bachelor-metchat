@@ -9,9 +9,11 @@ const upload = multer({ dest: "uploads/" });
 app.get("/me", verifyaccess, profile.me);
 app.get("/user/:userId", verifyaccess, profile.userInfo);
 app.post("/change-bio", verifyaccess, profile.changeBio);
-app.post("/upload", verifyaccess,
-  upload.single("avatar"),
-  profile.uploadAvatar
+app.post(
+    "/upload",
+    verifyaccess,
+    upload.single("avatar"),
+    profile.uploadAvatar
 );
 
 module.exports = app;
