@@ -1,15 +1,33 @@
 import profile from "../assets/img/profile.svg";
-export const Contact = ({ contact, width = 50, height = 50, textStyle }) => {
+import { Flex } from "./Flex";
+import pluss from "../assets/img/pluss.svg";
+import { contactApi } from "../api/contact-api";
+export const Contact = ({
+    contact,
+    width = 50,
+    height = 50,
+    textStyle,
+    onAdd,
+}) => {
     return (
-        <div class="info">
-            <img
-                src={profile}
-                alt="profil-icon"
-                style={{ width: width, height: height }}
-            />
-            <span className="ps-2" style={{ ...textStyle }}>
-                {contact.name}
-            </span>
-        </div>
+        <Flex vertical gap={3}>
+            <div className="mb-2">
+                <img
+                    src={profile}
+                    alt="profil-icon"
+                    style={{ width: width, height: height }}
+                />
+                <span className="ps-2" style={{ ...textStyle }}>
+                    {contact.name}
+                </span>
+                <img
+                    src={pluss}
+                    width={30}
+                    className="float-end cursor-pointer"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => onAdd(contact._id)}
+                />
+            </div>
+        </Flex>
     );
 };
