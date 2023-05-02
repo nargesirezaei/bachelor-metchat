@@ -6,46 +6,9 @@ import pluss from "../assets/img/pluss.svg";
 import profile from "../assets/img/profile.svg";
 import { Flex } from "../components/Flex";
 import { TopNav } from "../components/top-nav";
+import { Contact } from "../components/contact";
 
 export const Contacts = () => {
-    var contacts = [
-        {
-            name: "Sara",
-            email: "sara@gmail.com",
-            intersts: [
-                {
-                    id: "1",
-                    name: "Mat",
-                },
-                {
-                    id: "2",
-                    name: "Knust",
-                },
-                {
-                    id: "3",
-                    name: "Litratur",
-                },
-            ],
-        },
-        {
-            name: "Ali",
-            email: "sara@gmail.com",
-            intersts: [
-                {
-                    id: "1",
-                    name: "Mat",
-                },
-                {
-                    id: "2",
-                    name: "Knust",
-                },
-                {
-                    id: "3",
-                    name: "Litratur",
-                },
-            ],
-        },
-    ];
     const [model, setModel] = useState();
 
     useEffect(() => {
@@ -54,10 +17,27 @@ export const Contacts = () => {
         contactApi
             .myContacts()
             .then((result) => {
-                setModel({ contacts: result.contacts });
+                setModel({ ...model, myContacts: result.contacts });
+            })
+            .catch(() => alert("error"));
+
+        contactApi
+            .allContacts()
+            .then((result) => {
+                setModel({ ...model, allContacts: result.data.data[1] });
             })
             .catch(() => alert("error"));
     }, [model]);
+
+    const onAddContactHandler = (id) => {
+        contactApi
+            .addContact({ contactId: id })
+            .then((result) => setModel(result))
+            .catch(() => alert("error"));
+    };
+
+    if (!model) return <>Loading...</>;
+
     return (
         <>
             <TopNav />
@@ -76,6 +56,21 @@ export const Contacts = () => {
                             className="form-control rounded"
                             placeholder="Search"
                         />
+                        <hr />
+                        {model?.allContacts?.map((x) => (
+                            <React.Fragment>
+                                <Contact
+                                    contact={{
+                                        ...x,
+                                        name: x.firstName + " " + x.lastName,
+                                    }}
+                                    pluss={pluss}
+                                    mail={mail}
+                                    profile={profile}
+                                    onAdd={onAddContactHandler}
+                                />
+                            </React.Fragment>
+                        ))}
                     </div>
                     <div className="col-8 ps-5">
                         <h5>My Contacts</h5>
@@ -87,18 +82,7 @@ export const Contacts = () => {
                             style={{ maxWidth: 500 }}
                         />
                         <hr />
-                        <div style={{ width: 500 }}>
-                            {contacts.map((x) => (
-                                <React.Fragment>
-                                    <Contact
-                                        contact={x}
-                                        pluss={pluss}
-                                        mail={mail}
-                                        profile={profile}
-                                    />
-                                </React.Fragment>
-                            ))}
-                        </div>
+                        <div style={{ width: 500 }}></div>
                     </div>
                 </div>
             </div>
@@ -106,26 +90,16 @@ export const Contacts = () => {
     );
 };
 
-const Contact = ({ contact, pluss, mail, setModel, profile }) => {
-    const addToMyContacts = (email) => {
-        contactApi
-            .addContact()
-            .then((result) => setModel(result))
-            .catch(() => alert("error"));
-    };
+const MyContacts = ({ contact, pluss, mail, setModel, profile }) => {
     return (
         <>
             <Flex className="info" align="center" content="space-between">
                 <div>
                     <img src={profile} className="profile me-3" />
-                    <span>{contact.name}</span>
+                    <span>{contact.firstName}</span>
                 </div>
                 <img src={pluss} className="pluss" />
-                <img
-                    src={mail}
-                    className="mail cur-pointer"
-                    onClick={() => addToMyContacts()}
-                />
+                <img src={mail} className="mail cur-pointer" />
             </Flex>
             <div className="intersts">
                 {contact.intersts?.map((x) => (
