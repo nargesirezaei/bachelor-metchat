@@ -3,6 +3,71 @@ const Users = require("../models/user");
 const UserInterests = require("../models/user-interests");
 
 module.exports = {
+    init: async (req, res, next) => {
+        const userId = req.userId;
+        const myUserId = req.userId;
+
+        const myInterestIds = await UserInterests.find({ userId: myUserId })
+            .exec()
+            .then((results) => {
+                return results.map((mi) => mi.interestId);
+            });
+
+        const similarUserIds = await UserInterests.find({
+            interestId: { $in: myInterestIds },
+            userId: { $ne: myUserId },
+        }).distinct("userId");
+
+        const similarContacts = await Users.find({
+            _id: { $in: similarUserIds },
+        });
+
+        const contacts = await Users.find({
+            _id: { $nin: similarUserIds },
+            _id: { $ne: myUserId },
+        });
+
+        const allContacts = similarContacts
+            .map((x) => {
+                return {
+                    _id: x._doc._id,
+                    firstName: x._doc.firstName,
+                    lastName: x._doc.lastName,
+                    email: x._doc.email,
+                    isSimilar: true,
+                };
+            })
+            .concat(
+                contacts.map((x) => {
+                    return {
+                        _id: x._doc._id,
+                        firstName: x._doc.firstName,
+                        lastName: x._doc.lastName,
+                        email: x._doc.email,
+                        isSimilar: false,
+                    };
+                })
+            );
+
+        const myContactsIds = await Contacts.find({ userId })
+            .exec()
+            .then((results) => {
+                return results.map((mi) => mi.contactId);
+            });
+        //.distinct("contactId");
+        const myContacts = await Users.find({
+            _id: { $in: myContactsIds },
+        });
+        console.log("myContactsId", myContacts);
+
+        return res.send({
+            allContacts,
+            myContacts,
+            status: true,
+            message: null,
+        });
+    },
+
     add: (req, res, next) => {
         var userId = req.userId;
         var contactId = req.body.contactId;
