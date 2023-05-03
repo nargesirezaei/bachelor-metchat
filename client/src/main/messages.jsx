@@ -3,11 +3,12 @@ import { TopNav } from "../components/top-nav";
 import profile from "../assets/img/profile.svg";
 import face from "../assets/img/face.png";
 import { Contact } from "../components/contact";
+import Nav from "../components/MainNav";
 
 export const Messages = () => {
     return (
         <>
-            <TopNav />
+            <Nav />
             <Flex content="space-between">
                 <div
                     className="border-end p-3 "

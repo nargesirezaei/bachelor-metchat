@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 import { contactApi } from "../api/contact-api";
 import mail from "../assets/img/mail.jpg";
@@ -7,24 +7,27 @@ import profile from "../assets/img/profile.svg";
 import { Flex } from "../components/Flex";
 import { TopNav } from "../components/top-nav";
 import { Contact } from "../components/contact";
+import Nav from "../components/MainNav";
+import { Link } from "react-router-dom";
 
 export const Contacts = () => {
     const [model, setModel] = useState();
+    const allContactsRef = useRef();
+    const myContactsRef = useRef();
 
     useEffect(() => {
         if (model) return;
 
         contactApi
-            .myContacts()
+            .init()
             .then((result) => {
-                setModel({ ...model, myContacts: result.contacts });
-            })
-            .catch(() => alert("error"));
+                setModel({
+                    myContacts: result.data.myContacts,
+                    allContacts: result.data.allContacts,
+                });
 
-        contactApi
-            .allContacts()
-            .then((result) => {
-                setModel({ ...model, allContacts: result.data.data[1] });
+                allContactsRef.current = result.data.allContacts;
+                myContactsRef.current = result.data.myContacts;
             })
             .catch(() => alert("error"));
     }, [model]);
@@ -32,57 +35,136 @@ export const Contacts = () => {
     const onAddContactHandler = (id) => {
         contactApi
             .addContact({ contactId: id })
-            .then((result) => setModel(result))
+            .then((result) => {
+                var contact = model.allContacts.find((x) => x._id === id);
+
+                setModel({
+                    ...model,
+                    myContacts: [...model.myContacts, contact],
+                });
+            })
             .catch(() => alert("error"));
     };
 
-    if (!model) return <>Loading...</>;
+    const onDeleteHandler = (id) => {
+        contactApi
+            .remove({ contactId: id })
+            .then((result) => {
+                setModel({
+                    ...model,
+                    myContacts: model.myContacts.filter((x) => x._id !== id),
+                });
+            })
+            .catch(() => alert("error"));
+    };
 
     return (
         <>
-            <TopNav />
+            <Nav />
 
             <div className="container-fluid">
-                <section id="first">
-                    <h1>Find Contacts</h1>
-                    <hr />
+                <section className="my-4 d-inline-block w-100">
+                    <h3 className="text-center">Find Contacts</h3>
                 </section>
                 <div className="row">
-                    <div className="col-4">
-                        <h5>Contacts</h5>
-
-                        <input
-                            type="search"
-                            className="form-control rounded"
-                            placeholder="Search"
-                        />
-                        <hr />
-                        {model?.allContacts?.map((x) => (
-                            <React.Fragment>
-                                <Contact
-                                    contact={{
-                                        ...x,
-                                        name: x.firstName + " " + x.lastName,
-                                    }}
-                                    pluss={pluss}
-                                    mail={mail}
-                                    profile={profile}
-                                    onAdd={onAddContactHandler}
-                                />
-                            </React.Fragment>
-                        ))}
-                    </div>
-                    <div className="col-8 ps-5">
+                    <div className="col-12 col-md-4">
                         <h5>My Contacts</h5>
 
                         <input
                             type="search"
-                            className="form-control rounded"
+                            className="form-control rounded mb-4"
                             placeholder="Search"
+                            onChange={(e) =>
+                                setModel({
+                                    ...model,
+                                    myContacts: myContactsRef.current.filter(
+                                        (x) =>
+                                            x.firstName
+                                                .toLowerCase()
+                                                .includes(
+                                                    e.target.value.toLowerCase()
+                                                ) ||
+                                            x.lastName
+                                                .toLowerCase()
+                                                .includes(
+                                                    e.target.value.toLowerCase()
+                                                )
+                                    ),
+                                })
+                            }
+                        />
+                        {model?.myContacts?.map((x) => (
+                            <React.Fragment key={x._id}>
+                                <Link to={`/samtaler?contactId:${x._id}`}>
+                                    <Contact
+                                        contact={{
+                                            ...x,
+                                            name:
+                                                x.firstName + " " + x.lastName,
+                                        }}
+                                        pluss={pluss}
+                                        mail={mail}
+                                        profile={profile}
+                                        onAdd={onAddContactHandler}
+                                    />
+                                </Link>
+                            </React.Fragment>
+                        ))}
+                    </div>
+                    <div className="col-12 col-md-8">
+                        <h5>Contacts</h5>
+
+                        <input
+                            type="search"
+                            className="form-control rounded mb-4"
+                            placeholder="Search"
+                            onChange={(e) =>
+                                setModel({
+                                    ...model,
+                                    allContacts: allContactsRef.current.filter(
+                                        (x) =>
+                                            x.firstName
+                                                .toLowerCase()
+                                                .includes(
+                                                    e.target.value.toLowerCase()
+                                                ) ||
+                                            x.lastName
+                                                .toLowerCase()
+                                                .includes(
+                                                    e.target.value.toLowerCase()
+                                                )
+                                    ),
+                                })
+                            }
                             style={{ maxWidth: 500 }}
                         />
-                        <hr />
-                        <div style={{ width: 500 }}></div>
+                        <div style={{ maxWidth: 500 }}>
+                            {model?.allContacts?.map((x) => {
+                                const isInMyContacts = model.myContacts.find(
+                                    (c) => c._id === x._id
+                                );
+                                return (
+                                    <React.Fragment key={x._id}>
+                                        <Contact
+                                            contact={{
+                                                ...x,
+                                                name:
+                                                    x.firstName +
+                                                    " " +
+                                                    x.lastName,
+                                            }}
+                                            pluss={pluss}
+                                            isInMyContacts={isInMyContacts}
+                                            mail={mail}
+                                            profile={profile}
+                                            onAdd={onAddContactHandler}
+                                            onDelete={onDeleteHandler}
+                                            visibleIcons
+                                        />
+                                    </React.Fragment>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

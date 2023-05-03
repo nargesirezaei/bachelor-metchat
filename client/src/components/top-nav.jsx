@@ -15,44 +15,19 @@ export const TopNav = () => {
                     <Logo />
                     <Flex className="m-0" gap={3}>
                         <li className="push">
-                            <Link
-                                to="/kontakter"
-                                className={classNames("text-light", {
-                                    active: page == "/kontakter",
-                                })}
-                            >
-                                Kontakter
-                            </Link>
+                            <Link to="/kontakter">Kontakter</Link>
                         </li>
                         <li className="push">
-                            <Link
-                                to="/samtaler"
-                                className={classNames("text-light", {
-                                    active: page == "/samtaler",
-                                })}
-                            >
-                                Meldinger
-                            </Link>
+                            <Link to="/samtaler">Meldinger</Link>
                         </li>
                         <li className="push">
-                            <Link
-                                to="/profil"
-                                className={classNames("text-light", {
-                                    active: page == "/profil",
-                                })}
-                            >
-                                Profil
-                            </Link>
+                            <Link to="/profil">Profil</Link>
                         </li>
                         <li className="push">
                             <span
                                 style={{ fontSize: 20 }}
                                 className="text-warning"
-                            >
-                                {account.isConnected() && (
-                                    <> {account.displayName} </>
-                                )}
-                            </span>
+                            ></span>
                             <Link to="/logout" className="text-light">
                                 Log ut
                             </Link>

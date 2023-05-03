@@ -7,6 +7,7 @@ import { Contact } from "../components/contact";
 import { Interesser } from "../components/interesser";
 import { TopNav } from "../components/top-nav";
 import classNames from "classnames";
+import Nav from "../components/MainNav";
 export const Profile = () => {
     var account = useAccount();
     var [model, setModel] = useState();
@@ -21,7 +22,7 @@ export const Profile = () => {
     }, [model]);
     return (
         <>
-            <TopNav />
+            <Nav />
 
             <div
                 className=" w-100"
