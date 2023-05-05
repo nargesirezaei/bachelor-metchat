@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { accountStatuses, useAccount } from "../app/account-context";
+import logo from "../assets/img/Logo.svg";
 
 export function Protected() {
     const account = useAccount();
@@ -47,6 +48,9 @@ export function Protected() {
                     style={{ maxHeight: 601 }}
                 >
                     <div>
+                        <Link to="/" className="logo">
+                            <img src={logo} alt="logo" width={150} />
+                        </Link>
                         <div>We cannot authenticate you</div>
                         <dl className="pt-2">
                             <dd className="mb-1">
