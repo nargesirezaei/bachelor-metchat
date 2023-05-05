@@ -27,12 +27,14 @@ export function Protected() {
             {account.getStatus() === accountStatuses.ConnectionFailed && (
                 <div className="h-100 middle">
                     <div className="text-center">
-                        <div className="text-danger p-3">connection-error</div>
+                        <div className="text-danger p-3">
+                            Tjenesten er ikke tilgjengelig
+                        </div>
                         <button
                             className="btn btn-link btn-icon text-dark"
                             onClick={reconnect}
                         >
-                            <span className="p-s-2">retry</span>
+                            <span className="p-s-2">Prøv på nytt</span>
                         </button>
                     </div>
                 </div>

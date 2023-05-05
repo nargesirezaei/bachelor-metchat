@@ -66,9 +66,14 @@ export const AccountProvider = (props) => {
                     setData(x);
                 })
                 .catch((ex) => {
+                    console.log("ex", ex);
+                    if (ex.code === "ERR_NETWORK")
+                        account.setStatus(accountStatuses.ConnectionFailed);
+
                     if (ex.response.status === 401)
                         account.setStatus(accountStatuses.LoggedOut);
                     else account.setStatus(accountStatuses.ConnectionFailed);
+
                     throw ex;
                 });
         },

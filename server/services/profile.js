@@ -1,6 +1,7 @@
 const Interests = require("../models/interests");
 const Profile = require("../models/profile");
 const User = require("../models/user");
+const UserInterests = require("../models/user-interests");
 
 module.exports = {
     changeBio: (req, res) => {
@@ -25,26 +26,53 @@ module.exports = {
             }
         );
     },
-
-    me: (req, res) => {
+    changeAvatar: (req, res) => {
         let userId = req.userId;
-        User.findOne({ _id: userId }, (err, result) => {
-            if (err)
-                return res.send({ status: false, message: "database error" });
-            var interests = [];
-            Interests.find({}, (err, result) => {
-                interests: result;
-            });
+        var avatar = req.body.avatar;
+        User.findOneAndUpdate(
+            { _id: userId },
+            { $set: { avatar } },
+            (err, result) => {
+                if (err)
+                    return res.send({
+                        status: false,
+                        message: "data base error",
+                    });
+                if (!result)
+                    return res.send({
+                        status: true,
+                        message: "user not exists!",
+                    });
+
+                res.send({ message: "avatar changed" });
+            }
+        );
+    },
+
+    profile: async (req, res) => {
+        try {
+            const userId = req.body.contactId ?? req.userId;
+            const user = await User.findOne({ _id: userId });
+            const interests = await Interests.find({});
+            const userInterests = await UserInterests.find({ userId: userId });
+
             return res.send({
                 status: true,
                 user: {
-                    firstName: result.firstName,
-                    lastName: result.lastName,
-                    interests: interests,
-                    bio: result.bio,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    interests,
+                    userInterests: userInterests,
+                    bio: user.bio,
+                    avatar: user.avatar,
+                    allowEdit: req.body.contactId ? false : true,
                 },
             });
-        });
+        } catch (err) {
+            console.error(err);
+            return res.send({ status: false, message: "database error" });
+        }
     },
 
     userInfo: (req, res) => {

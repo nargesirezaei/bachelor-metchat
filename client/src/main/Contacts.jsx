@@ -9,6 +9,7 @@ import { TopNav } from "../components/top-nav";
 import { Contact } from "../components/contact";
 import Nav from "../components/MainNav";
 import { Link } from "react-router-dom";
+import { Loading } from "../components/loading";
 
 export const Contacts = () => {
     const [model, setModel] = useState();
@@ -57,18 +58,18 @@ export const Contacts = () => {
             })
             .catch(() => alert("error"));
     };
-
+    if (!model) return <Loading />;
     return (
         <>
             <Nav />
 
-            <div className="container-fluid">
-                <section className="my-4 d-inline-block w-100">
-                    <h3 className="text-center">Find Contacts</h3>
-                </section>
+            <div
+                className="container-fluid position-relative"
+                style={{ top: 15 }}
+            >
                 <div className="row">
-                    <div className="col-12 col-md-4">
-                        <h5>My Contacts</h5>
+                    <div className="col-12 col-md-4 ">
+                        <h5>Mine Kontakter</h5>
 
                         <input
                             type="search"
@@ -95,7 +96,7 @@ export const Contacts = () => {
                         />
                         {model?.myContacts?.map((x) => (
                             <React.Fragment key={x._id}>
-                                <Link to={`/samtaler?contactId:${x._id}`}>
+                                <Link to={`/samtaler?contactId=${x._id}`}>
                                     <Contact
                                         contact={{
                                             ...x,
@@ -106,13 +107,14 @@ export const Contacts = () => {
                                         mail={mail}
                                         profile={profile}
                                         onAdd={onAddContactHandler}
+                                        inContact
                                     />
                                 </Link>
                             </React.Fragment>
                         ))}
                     </div>
                     <div className="col-12 col-md-8">
-                        <h5>Contacts</h5>
+                        <h5>Finn Kontakter</h5>
 
                         <input
                             type="search"
@@ -160,6 +162,8 @@ export const Contacts = () => {
                                             onAdd={onAddContactHandler}
                                             onDelete={onDeleteHandler}
                                             visibleIcons
+                                            inContact
+                                            displayIntrests
                                         />
                                     </React.Fragment>
                                 );
@@ -167,26 +171,6 @@ export const Contacts = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </>
-    );
-};
-
-const MyContacts = ({ contact, pluss, mail, setModel, profile }) => {
-    return (
-        <>
-            <Flex className="info" align="center" content="space-between">
-                <div>
-                    <img src={profile} className="profile me-3" />
-                    <span>{contact.firstName}</span>
-                </div>
-                <img src={pluss} className="pluss" />
-                <img src={mail} className="mail cur-pointer" />
-            </Flex>
-            <div className="intersts">
-                {contact.intersts?.map((x) => (
-                    <button className="btn">{x.name}</button>
-                ))}
             </div>
         </>
     );

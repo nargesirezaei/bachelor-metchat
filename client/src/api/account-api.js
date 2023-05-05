@@ -16,6 +16,9 @@ export const accountApi = {
     register: (data) =>
         api.call("post", apiConfig.accountUrl + "/register", data),
 
+    changePassword: (data) =>
+        api.call("post", apiConfig.accountUrl + "/change-password", data),
+
     logout: () => {
         api.call("post", apiConfig.accountUrl + "/logout");
     },

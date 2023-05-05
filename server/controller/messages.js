@@ -1,19 +1,20 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const messages = require('../services/messages');
+const messages = require("../services/messages");
+const { verifyaccess } = require("../services/authorization");
 
+app.post("/init", verifyaccess, messages.init);
 
-app.post('/send', messages.send);
+app.post("/send", verifyaccess, messages.send);
 
-app.get('/getConversation', messages.getConversation);
+app.get("/getConversation", verifyaccess, messages.getConversation);
 
-app.get('/getMessage/:messageId', messages.getMessage);
+app.get("/getMessage/:messageId", verifyaccess, messages.getMessage);
 
+app.put("/edit", verifyaccess, messages.edit);
 
-app.put('/edit', messages.edit);
+app.delete("/delete", verifyaccess, messages.delete);
 
-app.delete('/delete', messages.delete);
-
-app.put('/seen', messages.seen);
+app.put("/seen", verifyaccess, messages.seen);
 
 module.exports = app;

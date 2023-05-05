@@ -1,8 +1,13 @@
+import { useState } from "react";
+import { Modal, ModalHeader } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Avatars } from "../assets/img/avatars";
+import mail from "../assets/img/mail.jpg";
 import pluss from "../assets/img/pluss.svg";
 import profile from "../assets/img/profile.svg";
-import mail from "../assets/img/mail.jpg";
 import { Flex } from "./Flex";
-import { Link, useNavigate } from "react-router-dom";
+import classNames from "classnames";
+
 export const Contact = ({
     contact,
     width = 50,
@@ -12,21 +17,71 @@ export const Contact = ({
     onDelete,
     visibleIcons,
     isInMyContacts,
+    onChangeAvatarHandler,
+    allowChangeAvatar = false,
+    inContact,
+    readOnly = false,
+    displayText = true,
+    displayIntrests = false,
+    showEmail = true,
+    className,
+    justifyContent,
 }) => {
-    const navigate = useNavigate();
+    const [model, setModel] = useState({ selectAvatar: false });
+
     return (
-        <>
-            <Flex className="mb-2" align="center" content="space-between">
-                <div>
+        <div className={classNames("mb-4", className)}>
+            <Flex
+                className=""
+                align="center"
+                content={justifyContent ?? "space-between"}
+            >
+                <div className="position-relative d-flex">
+                    {!readOnly && allowChangeAvatar && (
+                        <small
+                            className="position-absolute border bg-light rounded-5 p-1 "
+                            style={{
+                                opacity: 0.7,
+                                left: 50,
+                                fontSize: 15,
+                                cursor: "pointer",
+                            }}
+                            onClick={() =>
+                                setModel({ ...model, selectAvatar: true })
+                            }
+                        >
+                            Change...
+                        </small>
+                    )}
                     <img
-                        src={profile}
+                        src={
+                            contact?.avatar
+                                ? Avatars.find((x) => x.id === contact.avatar)
+                                      .value
+                                : profile
+                        }
                         alt="profil-icon"
                         style={{ width: width, height: height }}
                     />
-                    <span className="ps-2" style={{ ...textStyle }}>
-                        {contact?.name}
-                    </span>
+                    {displayText && (
+                        <Flex className="text-muted ps-1" vertical>
+                            <span style={{ ...textStyle }}>
+                                {" "}
+                                {contact?.name}
+                            </span>
+                            <span
+                                className="text-muted"
+                                style={{
+                                    fontSize: 18,
+                                    marginTop: !inContact ? "25px" : "0",
+                                }}
+                            >
+                                {showEmail && <>({contact?.email})</>}
+                            </span>
+                        </Flex>
+                    )}
                 </div>
+
                 {visibleIcons && (
                     <Flex style={{ minWidth: 150 }} content="space-between">
                         {!isInMyContacts && (
@@ -66,6 +121,49 @@ export const Contact = ({
                     </Flex>
                 )}
             </Flex>
-        </>
+            {contact?.intrests?.length && displayIntrests && (
+                <div className="intersts ps-2">
+                    {contact.intrests?.map((i) => (
+                        <button className="btn">{i.title}</button>
+                    ))}
+                </div>
+            )}
+            {allowChangeAvatar && (
+                <SelectAvatar
+                    show={model.selectAvatar}
+                    onHide={() => setModel({ ...model, selectAvatar: false })}
+                    onChangeAvatarHandler={(avatar) => {
+                        setModel({ ...model, selectAvatar: false });
+                        onChangeAvatarHandler(avatar);
+                    }}
+                />
+            )}
+        </div>
+    );
+};
+
+const SelectAvatar = ({ show, onHide, onChangeAvatarHandler }) => {
+    return (
+        <Modal show={show} onHide={onHide} size="sm">
+            <ModalHeader closeButton></ModalHeader>
+            <Modal.Body className="p-0">
+                <div className="p-3">
+                    <Flex className="row" gap={1}>
+                        {Avatars.map((x) => (
+                            <div
+                                style={{
+                                    height: 50,
+                                    width: 50,
+                                    backgroundImage: `url(${x.value})`,
+                                    backgroundSize: "cover",
+                                    cursor: "pointer",
+                                }}
+                                onClick={() => onChangeAvatarHandler(x.id)}
+                            ></div>
+                        ))}
+                    </Flex>
+                </div>
+            </Modal.Body>
+        </Modal>
     );
 };

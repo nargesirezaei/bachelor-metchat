@@ -366,7 +366,8 @@ a.active:hover {
     font-family: "Roboto", sans-serif;
     font-size: 28px;
 }
-.intress-btn:hover {
+.intress-btn:hover,
+.intress-btn.active {
     background-color: #112d40;
 }
 
@@ -386,4 +387,8 @@ footer {
 }
 footer p {
     margin-top: 25px;
+}
+
+.bg-gary {
+    background-color: #777 !important;
 }
