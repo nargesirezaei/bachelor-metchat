@@ -32,7 +32,7 @@ export default function App() {
     return (
         <Routes>
             <Route path="/" element={<PublicLayout />}>
-                <Route path="/logout" element={<Logout />} />
+                <Route path="/logut" element={<Logout />} />
                 <Route path="/" element={<Welcome />} />
 
                 {/* to handle user is login or not */}

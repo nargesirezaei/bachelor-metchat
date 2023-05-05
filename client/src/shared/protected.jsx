@@ -1,44 +1,70 @@
 import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { accountStatuses, useAccount } from "../app/account-context";
-import { Flex } from "../components/Flex";
-import { Nav } from "../components/nav";
 
 export function Protected() {
     const account = useAccount();
-    const history = useNavigate();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    function reconnect() {
+        account.init();
+    }
     useEffect(() => {
         if (account.getStatus() === "") account.init();
     }, []);
 
-    if (account.isUnAuthorized())
-        return (
-            <>
-                <Nav />
-                <Flex
-                    align="center"
-                    content="center"
-                    className="p-5"
-                    vertical
-                    gap={1}
-                >
-                    <div className="spinner-border" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
-
-                    <button className="btn m-0" onClick={() => history("/")}>
-                        Login
-                    </button>
-                </Flex>
-            </>
-        );
-
     return (
         <>
             {account.getStatus() === accountStatuses.Connecting && (
-                <div>Connecting...</div>
+                <div className="h-100 middle text-center">
+                    <div className="m-e-2 spinner-grow text-info spinner-grow-sm animation-delay--0s"></div>
+                    <div className="m-e-2 spinner-grow text-info spinner-grow-sm animation-delay--1s"></div>
+                    <div className="m-e-2 spinner-grow text-info spinner-grow-sm animation-delay--2s"></div>
+                </div>
             )}
+
+            {account.getStatus() === accountStatuses.ConnectionFailed && (
+                <div className="h-100 middle">
+                    <div className="text-center">
+                        <div className="text-danger p-3">connection-error</div>
+                        <button
+                            className="btn btn-link btn-icon text-dark"
+                            onClick={reconnect}
+                        >
+                            <span className="p-s-2">retry</span>
+                        </button>
+                    </div>
+                </div>
+            )}
+
             {account.isConnected() && <Outlet />}
+            {account.getStatus() === accountStatuses.LoggedOut && (
+                <div
+                    className="h-100 middle text-center"
+                    style={{ maxHeight: 601 }}
+                >
+                    <div>
+                        <div>We cannot authenticate you</div>
+                        <dl className="pt-2">
+                            <dd className="mb-1">
+                                <button
+                                    className="btn"
+                                    onClick={() =>
+                                        navigate("/", {
+                                            state: { from: location },
+                                            replace: true,
+                                        })
+                                    }
+                                >
+                                    Login
+                                </button>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            )}
+            {account.getStatus() === accountStatuses.Forbidden && <Outlet />}
         </>
     );
 }

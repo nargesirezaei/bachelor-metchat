@@ -50,9 +50,7 @@ export const Profile = () => {
                     <button
                         className="profile-edit-button btn"
                         onClick={() => setModel({ ...model, readOnly: false })}
-                    >
-                        Rediger
-                    </button>
+                    ></button>
                 </Flex>
 
                 <div className="ms-5 mt-5 mb-5">

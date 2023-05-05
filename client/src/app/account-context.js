@@ -32,35 +32,45 @@ export const AccountProvider = (props) => {
     }
 
     const account = {
+        getStatus: () => data.status,
+
         userName: data.email,
         displayName: data.displayName,
 
-        isUnAuthorized: () => api.token === null,
-        getStatus: () => data.status,
-        isConnected: () => data.status === accountStatuses.Connected,
-        isConnecting: () => data.status === accountStatuses.Connecting,
+        isConnecting: () => account.getStatus() === accountStatuses.Connecting,
+        isConnectionFailed: () =>
+            account.getStatus() === accountStatuses.ConnectionFailed,
+        isConnected: () =>
+            account.getStatus() === accountStatuses.Connected ||
+            account.getStatus() === accountStatuses.LoggedIn,
+        isLoggedIn: () => account.getStatus() === accountStatuses.LoggedIn,
+        isLoggedOut: () => account.getStatus() === accountStatuses.LoggedOut,
+
+        setAsLoggedOut: () => account.setStatus(accountStatuses.LoggedOut),
+        setAsForbidden: () => account.setStatus(accountStatuses.Forbidden),
 
         setStatus: (value) => setData({ ...data, status: value }),
 
         init: () => {
             account.setStatus(accountStatuses.Connecting);
-            return new Promise((resolve, reject) => {
-                accountApi
-                    .userInfo()
-                    .then((result) => {
-                        api.token = result.data.token;
-                        api.expiry = result.data.expiry;
-                        var x = {
-                            status: accountStatuses.Connected,
-                            displayName: result.data.displayName,
-                            userName: result.data.email,
-                        };
-                        setData(x);
-
-                        resolve(x);
-                    })
-                    .catch(reject);
-            });
+            return accountApi
+                .userInfo()
+                .then((result) => {
+                    api.token = result.data.token;
+                    api.expiry = result.data.expiry;
+                    var x = {
+                        status: accountStatuses.Connected,
+                        displayName: result.data.displayName,
+                        userName: result.data.email,
+                    };
+                    setData(x);
+                })
+                .catch((ex) => {
+                    if (ex.response.status === 401)
+                        account.setStatus(accountStatuses.LoggedOut);
+                    else account.setStatus(accountStatuses.ConnectionFailed);
+                    throw ex;
+                });
         },
 
         login: (userName, password) =>
