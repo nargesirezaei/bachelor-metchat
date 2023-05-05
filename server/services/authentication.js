@@ -21,6 +21,8 @@ module.exports = {
                         .status(500)
                         .json({ message: "Error in get user" });
                 });
+        } else {
+            return res.status(401).json({ message: "Access Denied!" });
         }
     },
 
