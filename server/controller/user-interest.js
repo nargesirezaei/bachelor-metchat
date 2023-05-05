@@ -1,13 +1,12 @@
-const express = require('express');
-const { verifyaccess } = require('../services/authorization');
+const express = require("express");
+const { verifyaccess } = require("../services/authorization");
 const app = express();
-const userInterests = require('../services/user-interest');
+const userInterests = require("../services/user-interest");
 
+app.post(`/create`, verifyaccess, userInterests.create);
 
-app.post(`/`, /*verifyaccess,*/ userInterests.create);
+app.get(`/getAll`, verifyaccess, userInterests.getAll);
 
-app.get(`/`, /*verifyaccess,*/ userInterests.getAll);
-
-app.delete(`/`,verifyaccess, userInterests.delete);
+app.delete(`/delete`, verifyaccess, userInterests.delete);
 
 module.exports = app;

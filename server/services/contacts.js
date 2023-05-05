@@ -1,6 +1,8 @@
 const Contacts = require("../models/contacts");
+const Interests = require("../models/interests");
 const Users = require("../models/user");
 const UserInterests = require("../models/user-interests");
+const interests = require("./interests");
 
 module.exports = {
     init: async (req, res, next) => {
@@ -29,11 +31,23 @@ module.exports = {
 
         const allContacts = similarContacts
             .map((x) => {
+                var intrests = [];
+                UserInterests.find({
+                    userId: x._doc._id,
+                }).then((u) =>
+                    u.map((v) => {
+                        Interests.findOne({ _id: v.interestId }).then((c) =>
+                            intrests.push(c)
+                        );
+                    })
+                );
                 return {
                     _id: x._doc._id,
                     firstName: x._doc.firstName,
                     lastName: x._doc.lastName,
                     email: x._doc.email,
+                    intrests,
+                    avatar: x._doc.avatar,
                     isSimilar: true,
                 };
             })
@@ -44,6 +58,7 @@ module.exports = {
                         firstName: x._doc.firstName,
                         lastName: x._doc.lastName,
                         email: x._doc.email,
+                        avatar: x._doc.avatar,
                         isSimilar: false,
                     };
                 })
@@ -58,7 +73,6 @@ module.exports = {
         const myContacts = await Users.find({
             _id: { $in: myContactsIds },
         });
-        console.log("myContactsId", myContacts);
 
         return res.send({
             allContacts,
@@ -105,15 +119,23 @@ module.exports = {
             res.send({ message: "contact removed" });
         });
     },
-    myContacts: (req, res, next) => {
+    myContacts: async (req, res, next) => {
         const userId = req.userId;
-        Contacts.find({ userId })
-            .then((result) => {
-                res.send({ status: true, contacts: result });
-            })
-            .catch((err) => {
-                res.send({ status: false, message: "data base error" });
+        const myContactsIds = await Contacts.find({ userId })
+            .exec()
+            .then((results) => {
+                return results.map((mi) => mi.contactId);
             });
+
+        const myContacts = await Users.find({
+            _id: { $in: myContactsIds },
+        });
+
+        return res.send({
+            myContacts,
+            status: true,
+            message: null,
+        });
     },
     allContacts: async (req, res, next) => {
         const myUserId = req.userId;
@@ -146,6 +168,7 @@ module.exports = {
                         firstName: x._doc.firstName,
                         lastName: x._doc.lastName,
                         email: x._doc.email,
+                        avatar: x._doc.avatar,
                         isSimilar: true,
                     };
                 }),
@@ -155,6 +178,7 @@ module.exports = {
                         firstName: x._doc.firstName,
                         lastName: x._doc.lastName,
                         email: x._doc.email,
+                        avatar: x._doc.avatar,
                         isSimilar: false,
                     };
                 }),

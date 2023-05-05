@@ -1,3 +1,16 @@
-export const Interesser = ({ name }) => {
-    return <button className="intress-btn me-2">{name}</button>;
+import classNames from "classnames";
+
+export const Interesser = ({ interess, isActive, onClick, className }) => {
+    return (
+        <>
+            <button
+                className={classNames("intress-btn me-2", className, {
+                    active: isActive,
+                })}
+                onClick={onClick}
+            >
+                {interess.title}
+            </button>
+        </>
+    );
 };
