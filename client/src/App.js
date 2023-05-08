@@ -16,7 +16,7 @@ import "./assets/css/interests.css";
 import "./assets/css/nav.css";
 import "./assets/css/profile.css";
 import "./assets/css/index.css";
-import "./assets/css/style.css";
+//import "./assets/css/style.css";
 import "./assets/css/app.css";
 import { PublicLayout } from "./shared/public-layout";
 import { Contacts } from "./main/Contacts";
@@ -29,34 +29,34 @@ import { Messages } from "./main/messages";
 import { Interests } from "./main/interests";
 
 export default function App() {
-    return (
-        <Routes>
-            <Route path="/" element={<PublicLayout />}>
-                <Route path="/logut" element={<Logout />} />
-                <Route path="/" element={<Welcome />} />
+  return (
+    <Routes>
+      <Route path="/" element={<PublicLayout />}>
+        <Route path="/logut" element={<Logout />} />
+        <Route path="/" element={<Welcome />} />
 
-                {/* to handle user is login or not */}
-                <Route element={<Protected />}>
-                    <Route path="/kontakter" element={<Contacts />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/merInfo" element={<MoreInfo />} />
-                    <Route path="/samtaler" element={<Messages />} />
-                    <Route path="/profil" element={<Profile />} />
-                    <Route path="/interests" element={<Interests />} />
+        {/* to handle user is login or not */}
+        <Route element={<Protected />}>
+          <Route path="/kontakter" element={<Contacts />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/merInfo" element={<MoreInfo />} />
+          <Route path="/samtaler" element={<Messages />} />
+          <Route path="/profil" element={<Profile />} />
+          <Route path="/interests" element={<Interests />} />
 
-                    {/* Admin Routes */}
-                    <Route path="/admin/brukere" element={<Users />} />
-                    <Route path="/admin/samtaler" element={<Conversations />} />
-                </Route>
-            </Route>
-        </Routes>
-    );
+          {/* Admin Routes */}
+          <Route path="/admin/brukere" element={<Users />} />
+          <Route path="/admin/samtaler" element={<Conversations />} />
+        </Route>
+      </Route>
+    </Routes>
+  );
 }
 
 const Logout = () => {
-    const account = useAccount();
-    account.logout();
-    return <Navigate to="/" />;
+  const account = useAccount();
+  account.logout();
+  return <Navigate to="/" />;
 };
 
 // Bruke Bootsrap Grid system for å gjøre sidene responsive
