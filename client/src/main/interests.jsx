@@ -19,7 +19,7 @@ export const Interests = () => {
     if (model.init) return;
 
     profileApi
-      .me()
+      .profile()
       .then((result) => setModel({ ...model, ...result.data.user, init: true }))
       .catch(() => alert("error in init profile"));
   }, []);
