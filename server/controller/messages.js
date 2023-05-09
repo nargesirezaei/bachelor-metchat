@@ -5,7 +5,7 @@ const messages = require('../services/messages');
 
 app.post('/send', messages.send);
 
-app.get('/getConversation', messages.getConversation);
+app.get('/getConversation/:conversationId', messages.getConversation);
 
 app.get('/getMessage/:messageId', messages.getMessage);
 

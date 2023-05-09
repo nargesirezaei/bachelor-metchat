@@ -35,9 +35,7 @@ function Chat() {
   useEffect(() => {
     async function getConversations() {
       await axios
-        .get(`${conversationRoute}/conversations`, {
-          params: { id: self._id },
-        })
+        .get(`${conversationRoute}/conversations/${self._id}`)
         .then(async (response) => {
           const conversations = response.data,
             count = conversations.length;
@@ -48,17 +46,14 @@ function Chat() {
                 ? conversations[i].fromId
                 : conversations[i].toId;
 
-            await axios
-              .get(`${contactRoute}/getUser`, {
-                params: { id: contact },
-              })
-              .then((response) => {
-                conversations[i]["toData"] = response.data;
-              })
-              .catch((err) => {
-                conversations[i]["toData"] = [];
-                alert(err.response.data);
-              });
+            await axios.get(`${contactRoute}/getUser/${contact}`)
+            .then((response) => {
+              conversations[i]["toData"] = response.data;
+            })
+            .catch((err) => {
+              conversations[i]["toData"] = [];
+              alert(err.response.data);
+            });
           }
           setConversations(conversations);
         })
@@ -74,9 +69,7 @@ function Chat() {
   useEffect(() => {
     if (currentChat) {
       async function getMessages() {
-        const response = await axios.get(`${messageRoute}/getConversation`, {
-          params: { conversationId: currentChat._id },
-        });
+        const response = await axios.get(`${messageRoute}/getConversation/${currentChat._id}`);
         // console.log(response.data[0]);
         setMessages(response.data);
       }

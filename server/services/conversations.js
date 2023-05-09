@@ -32,14 +32,14 @@ module.exports = {
     },
 
     conversations: async (req, res) => {
-        const name = req.query.id;
+        const userId = req.params.userId;
 
-        await Conversations.find({$or: [{fromId: name}, {toId: name}]}).sort({ updatedAt: 1 }).exec()
+        await Conversations.find({$or: [{fromId: userId}, {toId: userId}]}).sort({ updatedAt: 1 }).exec()
         .then((conversations) => {
             return res.status(200).send(conversations);
         })
         .catch((err) => {
-            return res.status(500).send("Failed to load messages" + err);
+            return res.status(500).send("Failed to load conversations:\r\n" + err);
         });        
     },
 
@@ -49,7 +49,7 @@ module.exports = {
             return res.status(200).send(conversations);
         })
         .catch((err) => {
-            return res.status(500).send("Failed to load messages" + err);
+            return res.status(500).send("Failed to load conversations:\r\n:" + err);
         });        
     },
 
