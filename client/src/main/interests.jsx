@@ -76,6 +76,7 @@ export const Interests = () => {
     };
 
     if (!model.init) return <Loading />;
+
     return (
         <>
             <nav>
@@ -92,10 +93,12 @@ export const Interests = () => {
                     </Flex>
                 </div>
             </nav>
+
             <section id="first">
                 <h1 className="text-center">
                     Snart ferdig. Fortell oss litt om deg selv
                 </h1>
+
                 <Contact
                     width={250}
                     height={250}
@@ -114,6 +117,7 @@ export const Interests = () => {
                     onChangeAvatarHandler={onChangeAvatarHandler}
                     displayText={false}
                 />
+
                 <div className="box">
                     <label className="text">Om Meg</label>
                     <textarea
@@ -123,6 +127,7 @@ export const Interests = () => {
                             setModel({ ...model, bio: e.target.value })
                         }
                     ></textarea>
+
                     <h2>Intresser</h2>
                     {model.interests.length && (
                         <Flex className="flex-wrap" content="center">
@@ -146,6 +151,7 @@ export const Interests = () => {
                             })}
                         </Flex>
                     )}
+
                     <Flex className="my-3 w-100 ps-5" align="center">
                         <span
                             className="p-1 bg-light"
@@ -167,6 +173,7 @@ export const Interests = () => {
                     </Flex>
                 </div>
             </section>
+
             <Flex className="btns" style={{ backgroundColor: "transparent" }}>
                 <button onClick={() => navigate("/")}>Tilbake</button>
                 <button onClick={onSave}>Gå Videre</button>
