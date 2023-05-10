@@ -19,6 +19,7 @@ export const AccountProvider = (props) => {
     const [data, setData] = useState({
         status: "",
         displayName: "",
+        userId: "",
     });
 
     function logout(sync) {
@@ -36,6 +37,7 @@ export const AccountProvider = (props) => {
 
         userName: data.email,
         displayName: data.displayName,
+        userId: data.userId,
 
         isConnecting: () => account.getStatus() === accountStatuses.Connecting,
         isConnectionFailed: () =>
@@ -62,6 +64,7 @@ export const AccountProvider = (props) => {
                         status: accountStatuses.Connected,
                         displayName: result.data.displayName,
                         userName: result.data.email,
+                        userId: result.data.userId,
                     };
                     setData(x);
                 })

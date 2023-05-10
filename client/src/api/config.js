@@ -1,7 +1,8 @@
 const host = "http://localhost:" + "8088";
-
+const chat = "ws://localhost:" + "8000";
 export const apiConfig = {
-    localeUrl: host,
+    baseUrl: host,
+    chatUrl: chat,
     accountUrl: host + "/authentication",
     contactUrl: host + "/contacts",
     messageUrl: host + "/messages",

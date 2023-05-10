@@ -4,374 +4,370 @@ FAFAFA (hvit)
 DEE1E4 (grå)
     */
 .homePage {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 /* img {
     width: 650px;
 } */
 .nav-center {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  font-family: "Bai Jamjuree", sans-serif;
-  font-size: 36px;
-  font-weight: 400;
-  line-height: 45px;
-  height: 170px;
-  background-color: #112d40;
-  z-index: 1;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-family: "Bai Jamjuree", sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 45px;
+    height: 170px;
+    background-color: #112d40;
+    z-index: 1;
 }
 .nav-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 a.push {
-  text-decoration: none;
-  color: #fafafa;
+    text-decoration: none;
+    color: #fafafa;
 }
 .push {
-  text-decoration: none;
-  color: #fafafa;
-  margin-top: 50px;
-  margin-right: 50px;
+    text-decoration: none;
+    color: #fafafa;
+    margin-top: 50px;
+    margin-right: 50px;
 }
 .nav-toggle {
-  display: none;
-  background-color: transparent;
-  border: none;
-  color: #fafafa;
-  width: 75px;
-  height: 75px;
-  margin-right: 50px;
-  margin-top: 50px;
+    display: none;
+    background-color: transparent;
+    border: none;
+    color: #fafafa;
+    width: 75px;
+    height: 75px;
+    margin-right: 50px;
+    margin-top: 50px;
 }
 
 .nav-header img {
-  width: 150px;
-  height: 150px;
-  margin-left: 50px;
+    width: 150px;
+    height: 150px;
+    margin-left: 50px;
 }
 
 /* 190px */
 .links-container {
-  display: none;
-  width: 100%;
-  margin-top: 10px;
-  background-color: #112d40;
+    display: none;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #112d40;
 }
 .show-container {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
 }
 
 .links-container a {
-  color: #fafafa;
-  text-decoration: none;
-  text-transform: capitalize;
-  font-size: 25px;
+    color: #fafafa;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 25px;
 }
 .links-container a:hover {
-  color: #ffdc00;
-  padding-left: 1.5rem;
+    color: #ffdc00;
+    padding-left: 1.5rem;
 }
 .nav-toggle :hover {
-  color: #ffdc00;
+    color: #ffdc00;
 }
 /* make Nave responsive at width 450 px */
 @media only screen and (max-width: 700px) {
-  .nav-toggle {
-    display: flex;
-  }
-  .push {
-    display: none;
-  }
+    .nav-toggle {
+        display: flex;
+    }
+    .push {
+        display: none;
+    }
 }
 
 .first {
-  display: flex;
-  flex-direction: row;
-  margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
 }
 .firstImages {
-  display: flex;
-  flex-direction: column;
-  margin-left: 15vw;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15vw;
 }
 .img_1 {
-  margin-left: 5vw;
+    margin-left: 5vw;
 }
 .img_2 {
-  margin-right: 20px;
+    margin-right: 20px;
 }
 
 /* Form*/
 #LogReg {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 100%;
-  margin-left: 0px;
-  z-index: 0;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 100%;
+    margin-left: 0px;
+    z-index: 0;
 }
 #btn-tabs {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 .content {
-  display: none;
+    display: none;
 }
 .active-content {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 .active-tabs {
-  border-radius: 0 10px 0 0;
+    border-radius: 0 10px 0 0;
 }
 
 #reg-content {
-  width: 100%;
-  height: 850px;
-  background-color: #112d40;
-  color: #fafafa;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 22px;
-  line-height: 48px;
-  border-radius: 0px 0px 10px 10px;
+    width: 100%;
+    height: 850px;
+    background-color: #112d40;
+    color: #fafafa;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 48px;
+    border-radius: 0px 0px 10px 10px;
 }
 #log-content {
-  width: 100%;
-  height: 614px;
-  background-color: #98a4ac;
-  color: #fafafa;
-  border-radius: 0px 0px 10px 10px;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 22px;
-  line-height: 48px;
+    width: 100%;
+    height: 614px;
+    background-color: #98a4ac;
+    color: #fafafa;
+    border-radius: 0px 0px 10px 10px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 48px;
 }
 
 #btn-reg {
-  background-color: #112d40;
-  width: 30vw;
-  height: 75px;
-  border: none;
-  font-family: "Bai Jamjuree";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 30px;
-  line-height: 50px;
-  color: #fafafa;
-  border-radius: 0 10px 0 0;
+    background-color: #112d40;
+    width: 30vw;
+    height: 75px;
+    border: none;
+    font-family: "Bai Jamjuree";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 50px;
+    color: #fafafa;
+    border-radius: 0 10px 0 0;
 }
 #btn-log {
-  width: 30vw;
-  height: 75px;
-  border-radius: 10px 0 0 0;
-  border: none;
-  background-color: #98a4ac;
-  font-family: "Bai Jamjuree";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 30px;
-  line-height: 50px;
-  color: #112d40;
+    width: 30vw;
+    height: 75px;
+    border-radius: 10px 0 0 0;
+    border: none;
+    background-color: #98a4ac;
+    font-family: "Bai Jamjuree";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 50px;
+    color: #112d40;
 }
 
 #form-reg {
-  display: flex;
-  flex-direction: column;
-  margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
 }
 
 #form-log {
-  display: flex;
-  flex-direction: column;
-  margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
 }
 
 .form-row {
-  display: flex;
-  flex-direction: column;
-  margin-top: 25px;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    align-items: flex-start;
 }
 .checkBox {
-  display: flex;
-  flex-direction: row;
-  margin-top: 75px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 75px;
 }
 input.large {
-  width: 25px;
-  height: 25px;
-  margin-top: 10px;
-  margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
-.form-row input {
-  width: 300px;
-  height: 50px;
-}
 .form-row button {
-  width: 200px;
-  height: 50px;
-  border-radius: 25px;
-  border: none;
-  margin-left: 15%;
-  margin-top: 10%;
-  color: #112d40;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 25px;
-  line-height: 29px;
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    margin-left: 15%;
+    margin-top: 10%;
+    color: #112d40;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 29px;
 }
 .btn-form-log {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 .btn-form-reg {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 1326px) {
-  #LogReg {
-    margin-left: 0px;
-  }
-  .firstImages {
-    margin-left: 0px;
-  }
+    #LogReg {
+        margin-left: 0px;
+    }
+    .firstImages {
+        margin-left: 0px;
+    }
 }
 @media only screen and (max-width: 1124px) {
-  .firstImages {
-    display: none;
-  }
-  #LogReg {
-    margin-left: 32vw;
-  }
+    .firstImages {
+        display: none;
+    }
+    #LogReg {
+        margin-left: 32vw;
+    }
 }
 @media only screen and (max-width: 665px) {
-  #LogReg {
-    margin-left: 20vw;
-  }
-  #reg-content {
-    font-size: 4vw;
-  }
-  #log-content {
-    font-size: 4vw;
-  }
-  #btn-reg {
-    width: 100%;
-    font-size: 5vw;
-  }
-  #btn-log {
-    width: 100%;
-    font-size: 5vw;
-  }
+    #LogReg {
+        margin-left: 20vw;
+    }
+    #reg-content {
+        font-size: 4vw;
+    }
+    #log-content {
+        font-size: 4vw;
+    }
+    #btn-reg {
+        width: 100%;
+        font-size: 5vw;
+    }
+    #btn-log {
+        width: 100%;
+        font-size: 5vw;
+    }
 
-  .form-row input {
-    width: 300px;
-    height: 50px;
-  }
-  .form-row button {
-    width: 30vw;
-    font-size: 5vw;
-  }
+    .form-row input {
+        width: 300px;
+        height: 50px;
+    }
+    .form-row button {
+        width: 30vw;
+        font-size: 5vw;
+    }
 }
 @media only screen and (max-width: 428px) {
-  #LogReg {
-    margin-left: 3vw;
-  }
+    #LogReg {
+        margin-left: 3vw;
+    }
 }
 
 @media only screen and (max-width: 412px) {
-  #LogReg {
-    margin-left: 8vw;
-    width: 350px;
-  }
+    #LogReg {
+        margin-left: 8vw;
+        width: 350px;
+    }
 
-  .form-row input {
-    width: 275px;
-  }
-  .form-row button {
-    margin-left: 18vw;
-  }
+    .form-row input {
+        width: 275px;
+    }
+    .form-row button {
+        margin-left: 18vw;
+    }
 }
 @media only screen and (max-width: 390px) {
-  #LogReg {
-    margin-left: 5vw;
-  }
+    #LogReg {
+        margin-left: 5vw;
+    }
 }
 @media only screen and (max-width: 375px) {
-  #LogReg {
-    margin-left: 3vw;
-  }
+    #LogReg {
+        margin-left: 3vw;
+    }
 }
 
 /* images*/
 .second {
-  display: flex;
-  flex-direction: column;
-  margin-left: 45vw;
-  margin-top: -200px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 45vw;
+    margin-top: -200px;
 }
 .nlp {
-  text-align: center;
-  position: relative;
-  width: 600px;
-  height: auto;
+    text-align: center;
+    position: relative;
+    width: 600px;
+    height: auto;
 }
 .nlp h2 {
-  position: absolute;
-  top: 10vh;
-  left: 12vw;
-  right: 10vw;
-  font-size: 33px;
-  color: #fafafa;
+    position: absolute;
+    top: 10vh;
+    left: 12vw;
+    right: 10vw;
+    font-size: 33px;
+    color: #fafafa;
 }
 .txt {
-  position: absolute;
-  left: 4vw;
-  right: 2vw;
-  height: 100%;
-  line-height: 3vh;
-  font-size: 25px;
-  top: 18vh;
-  color: #fafafa;
+    position: absolute;
+    left: 4vw;
+    right: 2vw;
+    height: 100%;
+    line-height: 3vh;
+    font-size: 25px;
+    top: 18vh;
+    color: #fafafa;
 }
 
 .img_5 {
-  margin-left: -600px;
-  margin-top: -200px;
+    margin-left: -600px;
+    margin-top: -200px;
 }
 
 @media only screen and (max-width: 1124px) {
-  .second {
-    display: none;
-  }
+    .second {
+        display: none;
+    }
 }
 footer {
-  background-color: #112d40;
-  width: 100%;
-  height: 150px;
-  color: #fafafa;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.4vw;
-  margin-top: 5vh;
+    background-color: #112d40;
+    width: 100%;
+    height: 150px;
+    color: #fafafa;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4vw;
+    margin-top: 5vh;
 }
 @media only screen and (max-width: 450px) {
-  footer {
-    font-size: 0.8rem;
-  }
+    footer {
+        font-size: 0.8rem;
+    }
 }

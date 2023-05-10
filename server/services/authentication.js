@@ -14,6 +14,7 @@ module.exports = {
                         expiry: 60,
                         userName: user.email,
                         displayName: user.firstName + " " + user.lastName,
+                        userId: user._id,
                     });
                 })
                 .catch((err) => {

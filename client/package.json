@@ -20,9 +20,10 @@
         "react-icons": "^4.7.1",
         "react-router-dom": "^6.10.0",
         "react-scripts": "5.0.1",
-        "socket.io-client": "^4.6.1",
+        "react-signalr": "^0.2.14",
         "styled-components": "^5.3.6",
         "web-vitals": "^2.1.0",
+        "websocket": "^1.0.34",
         "yarn": "^1.22.19",
         "yup": "^1.1.1"
     },
