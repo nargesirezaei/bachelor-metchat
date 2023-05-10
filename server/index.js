@@ -9,8 +9,11 @@ app.use(
         credentials: true,
     })
 );
+
 const port = 8088;
 const { connectToDb } = require("./db");
+const { chat } = require("./chat");
+
 //parse incoming request bodies in JSON format
 app.use(express.json());
 //The body-parser middleware parses the request body and attaches the resulting data to the req.body property

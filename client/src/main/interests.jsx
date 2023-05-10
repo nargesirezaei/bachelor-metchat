@@ -9,6 +9,7 @@ import { Loading } from "../components/loading";
 import { Logo } from "../components/logo";
 import { Interesser } from "../components/interesser";
 import { userInterestApi } from "../api/user-interest-api";
+
 export const Interests = () => {
     const account = useAccount();
     const [model, setModel] = useState({ init: false, count: 10 });
@@ -18,7 +19,7 @@ export const Interests = () => {
         if (model.init) return;
 
         profileApi
-            .me()
+            .profile()
             .then((result) =>
                 setModel({ ...model, ...result.data.user, init: true })
             )

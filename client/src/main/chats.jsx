@@ -2,24 +2,53 @@ import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { messageApi } from "../api/message-api";
-import face from "../assets/img/face.png";
 import profile from "../assets/img/profile.svg";
 import { Flex } from "../components/Flex";
 import Nav from "../components/MainNav";
 import { Contact } from "../components/contact";
 import { Loading } from "../components/loading";
 import { useQuery } from "../components/use-query";
+import { WebSocketClient } from "./chat/WebSocketClient";
+import { useAccount } from "../app/account-context";
+import { apiConfig } from "../api/config";
+import { IoMdSend } from "react-icons/io";
 
-export const Messages = () => {
+export const Chats = () => {
+    const account = useAccount();
     const q = useQuery();
     const contactId = q.get("contactId") ?? "";
 
     const [model, setModel] = useState({
         init: false,
         currentContact: contactId,
+        message: "",
+        recipientId: contactId,
     });
+    const [messages, setMessages] = useState([]);
+    const messagesEndRef = useRef(null);
     const myContactsRef = useRef();
+    const [forceUpdate, setForceUpdate] = useState(0);
 
+    const receiveMessage = (message) => {
+        setMessages((prevMessages) => [...prevMessages, message]);
+    };
+
+    const webSocket = WebSocketClient(apiConfig.chatUrl, receiveMessage);
+
+    const sendMessage = () => {
+        webSocket.sendMessage({
+            message: model.message,
+            recipientId: contactId,
+            userId: account.userId,
+        });
+        setModel({ ...model, message: "" });
+        setForceUpdate(forceUpdate + 1);
+    };
+    function handleKeyDown(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
     useEffect(() => {
         init();
     }, [contactId]);
@@ -29,6 +58,7 @@ export const Messages = () => {
             .init({ contactId: contactId ?? "" })
             .then((result) => {
                 setModel({
+                    ...model,
                     currentContact: result.data.contact,
                     myContacts: result.data.myContacts,
                     init: true,
@@ -38,6 +68,12 @@ export const Messages = () => {
             })
             .catch(() => alert("error"));
     };
+
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages]);
 
     if (!model.init) return <Loading />;
     return (
@@ -102,11 +138,7 @@ export const Messages = () => {
                 <div className="flex-grow-1">
                     {model.currentContact && (
                         <>
-                            <Flex
-                                align="center"
-                                content="center"
-                                className="border-bottom"
-                            >
+                            <Flex align="center" content="center">
                                 <Contact
                                     contact={{
                                         ...model.currentContact,
@@ -124,13 +156,55 @@ export const Messages = () => {
                                 content="space-between"
                                 style={{ height: 500 }}
                             >
-                                <div className="p-3">chats</div>
+                                <div className="p-3">
+                                    <ul className="chat">
+                                        {messages?.map((x, index) => {
+                                            const message = JSON.parse(x);
 
-                                <input
-                                    type="text"
-                                    className="message-input m-2 p-3"
-                                    placeholder="message..."
-                                />
+                                            return (
+                                                <li
+                                                    key={index}
+                                                    className={classNames(
+                                                        "message",
+                                                        {
+                                                            sent:
+                                                                message.recipientId ===
+                                                                account.userId,
+                                                            received:
+                                                                message.userId ===
+                                                                account.userId,
+                                                        }
+                                                    )}
+                                                >
+                                                    <span>
+                                                        {message.content}
+                                                    </span>
+                                                </li>
+                                            );
+                                        })}
+                                        <li ref={messagesEndRef}></li>
+                                    </ul>
+                                </div>
+                                <Flex align="center" className="w-100">
+                                    <div className="input-container m-3">
+                                        <input
+                                            type="text"
+                                            placeholder="Skriv noe her..."
+                                            style={{ margin: "0px", border: 0 }}
+                                            onChange={(e) =>
+                                                setModel({
+                                                    ...model,
+                                                    message: e.target.value,
+                                                })
+                                            }
+                                            value={model.message}
+                                            onKeyDown={handleKeyDown}
+                                        />
+                                        <button onClick={sendMessage}>
+                                            <IoMdSend />
+                                        </button>
+                                    </div>
+                                </Flex>
                             </Flex>
                         </>
                     )}
