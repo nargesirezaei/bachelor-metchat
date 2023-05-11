@@ -1,29 +1,27 @@
-# Commands tha can be run from this root folder:
+# Welcome to MetChat, a chat-webapplication for collection of conversation data
 
-## npm install
+This is a webapplication developed as chat. The purpose of this chat is to collect conaversation data, to be used in AI research.
 
-- Installs all packages specified in the package. json file for both the client and server.
+This project is developed as part of a bachelor's thesis for OsloMet - Oslo Metropolitan University.
 
-## npm run start
+## Commands tha can be run from this root folder:
 
-- checks if the environment variable 'NODE_ENV' is set to production, and runs either the develoment version or the production version of the project.
+### Installing dependencies:
 
-## npm run start:dev
+**cd server && npm install && cd ../client && npm npm install**
 
-- Runs the development version of the project.
+- Installs all packages specified in the package.json file for both the client and server.
 
-## npm run start:prod
+### Running backend:
 
-- Runs the production version of the project.
+**cd server && npm run back**
 
-## npm run buld
+- Runs server side.
 
-- Runs build in the client folder.
+### Running frontend:
 
-## npm run client
+**cd client && npm start**
 
 - Runs client side.
 
-## npm run server
-
-- Runs server side.
+## Video Presentations of project:
