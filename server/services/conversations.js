@@ -1,94 +1,116 @@
-
 const Conversations = require("../models/conversations");
-const User = require("../models/user");
 
 module.exports = {
-    create: async (req, res) => {
-        const { fromId, toId } = req.body;
+    add: (req, res, next) => {
+        var fromUserId = req.userId;
+        var toUserId = req.body.toUserId;
+        var title = req.body.title;
 
-        const date = new Date(),
-            year = date.getFullYear();
-        let month = date.getMonth() + 1,
-            day = date.getDate();
-
-        if (month < 10) month = '0' + month;
-        if (day < 10) day = '0' + day;
-
-        const defaultTitle = `${day}/${month}/${year}`;
-
-        await Conversations.create({
-            title: defaultTitle,
-            fromId,
-            toId,
-        })
-        .then(() => {
-            return res.status(200).send("Conversation successflly created in database");
-        })
-        .catch(() => {
-            return res.status(500).send("Failed to create conversation in database");
+        var conversation = new Conversations({
+            fromUserId,
+            toUserId,
+            title,
         });
-    },
 
-    conversations: async (req, res) => {
-        const name = req.query.id;
-
-        await Conversations.find({$or: [{fromId: name}, {toId: name}]}).sort({ updatedAt: 1 }).exec()
-        .then((conversations) => {
-            return res.status(200).send(conversations);
-        })
-        .catch((err) => {
-            return res.status(500).send("Failed to load messages" + err);
-        });        
-    },
-
-    getAllConversations: async (req, res) => {
-        await Conversations.find().sort({ createdAt: 1 }).exec()
-        .then((conversations) => {
-            return res.status(200).send(conversations);
-        })
-        .catch((err) => {
-            return res.status(500).send("Failed to load messages" + err);
-        });        
-    },
-
-    deleteById: async (req, res) => {
-        const { conversationId } = req.body;
-        
-        await Conversations.findByIdAndDelete(conversationId).exec((err, deletedConversation) => {
-        if (err)
-            return res.status(500).send("Failed to delete conversation");
-
-        else if (!deletedConversation)
-            return res.status(404).send("Conversation not found");
-
-        return res.status(200).send(deletedConversation);
-        });        
-    },
-    deleteByName: async (req, res) => {
-        const { name1, name2 } = req.body;
-        
-        await Conversations.deleteMany({$or: [{fromId: name1, toId: name2}, {fromId: name2, toId: name1}]})
-        .exec((err, deleted) => {
+        conversation.save((err, createResult) => {
             if (err)
-                return res.status(500).send("Failed to delete conversation");
-    
-            else if (deleted.deletedCount === 0)
-                return res.status(404).send("Conversation not found");
-    
-            return res.status(200).send(deleted);
+                return res.send({
+                    status: false,
+                    message: "database error",
+                });
+
+            Conversations.find({
+                $or: [
+                    {
+                        $and: [
+                            { fromUserId: fromUserId },
+                            { toUserId: toUserId },
+                        ],
+                    },
+                    {
+                        $and: [
+                            { fromUserId: toUserId },
+                            { toUserId: fromUserId },
+                        ],
+                    },
+                ],
+            })
+                .populate("fromUserId toUserId")
+                .exec((err, conversations) => {
+                    if (err)
+                        return res.send({
+                            status: false,
+                            message: "database error",
+                        });
+
+                    res.send({
+                        status: true,
+                        message: "conversation created",
+                        conversation: createResult,
+                        conversations: conversations,
+                    });
+                });
         });
     },
-
-    editTitle: async (req, res) => {
-        const { conversationId, title } = req.body;
-
-        await Conversations.findByIdAndUpdate(conversationId, { title })
-        .then(() => {
-            return res.status(200).send("Conversation title successflly edited");
-        })
-        .catch(() => {
-            return res.status(500).send("Failed to edit conversation title");
-        });
+    get: (req, res, next) => {
+        Conversations.findOne(
+            { _id: req.params.conversationId },
+            (err, result) => {
+                if (err)
+                    return res.send({
+                        status: false,
+                        message: "data base error",
+                    });
+                return res.send({ status: true, conversation: result });
+            }
+        );
     },
+    getAll: (req, res, next) => {
+        Conversations.find(
+            { fromUserId: req.userId, toUserId: req.body.toUserId },
 
+            (err, result) => {
+                if (err)
+                    return res.send({
+                        status: false,
+                        message: "data base error",
+                    });
+                return res.send({ status: true, conversation: result });
+            }
+        );
+    },
+    delete: (req, res, next) => {
+        Conversations.findOneAndRemove(
+            { _id: req.params.conversationId },
+            (err, result) => {
+                if (err)
+                    return res.send({
+                        status: false,
+                        message: "data base error",
+                    });
+                if (!result)
+                    return res.send({
+                        status: true,
+                        message: "conversation not exists!",
+                    });
+
+                res.send({ message: "conversation removed" });
+            }
+        );
+    },
+    finish: (req, res, next) => {
+        Conversations.findOneAndUpdate(
+            { _id: req.params.conversationId },
+            { $set: { finished: true } },
+            { new: true },
+            (err, result) => {
+                if (err)
+                    return res.send({
+                        status: false,
+                        message: "data base error",
+                    });
+                return res.send({ status: true, conversation: result });
+            }
+        );
+    },
 };

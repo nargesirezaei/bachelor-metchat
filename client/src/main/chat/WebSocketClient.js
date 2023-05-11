@@ -1,8 +1,9 @@
-export const WebSocketClient = (url, onMessageCallback) => {
+export const WebSocketClient = (url, onMessageCallback, onConnected) => {
     const ws = new WebSocket(url);
 
     ws.onopen = () => {
         console.log("WebSocket connection established");
+        onConnected(true);
     };
 
     ws.onmessage = (event) => {
@@ -16,5 +17,6 @@ export const WebSocketClient = (url, onMessageCallback) => {
 
     return {
         sendMessage: sendMessage,
+        ws,
     };
 };

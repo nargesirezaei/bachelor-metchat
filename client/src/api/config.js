@@ -6,6 +6,7 @@ export const apiConfig = {
     accountUrl: host + "/authentication",
     contactUrl: host + "/contacts",
     messageUrl: host + "/messages",
+    conversationUrl: host + "/conversations",
     interestsUrl: host + "/interests",
     userInterestsUrl: host + "/user-interests",
     profileUrl: host + "/profile",
