@@ -26,6 +26,8 @@ export const Contact = ({
     showEmail = true,
     className,
     justifyContent,
+    allowDelete,
+    textInBottom = false,
 }) => {
     const [model, setModel] = useState({ selectAvatar: false });
 
@@ -36,7 +38,12 @@ export const Contact = ({
                 align="center"
                 content={justifyContent ?? "space-between"}
             >
-                <div className="position-relative d-flex">
+                <div
+                    className={classNames("position-relative", {
+                        "d-flex": !textInBottom,
+                        "d-block": textInBottom,
+                    })}
+                >
                     {!readOnly && allowChangeAvatar && (
                         <small
                             className="position-absolute border bg-light rounded-5 p-1 "
@@ -94,7 +101,7 @@ export const Contact = ({
                                 alt=""
                             />
                         )}
-                        {isInMyContacts && (
+                        {isInMyContacts && allowDelete && (
                             <span
                                 className="text-danger cursor-pointer"
                                 style={{
@@ -109,7 +116,7 @@ export const Contact = ({
                             </span>
                         )}
 
-                        <Link to={`/samtaler?contactId:${contact?._id}`}>
+                        <Link to={`/samtaler?contactId=${contact?._id}`}>
                             <img
                                 src={mail}
                                 width={70}

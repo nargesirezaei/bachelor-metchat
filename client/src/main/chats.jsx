@@ -12,35 +12,53 @@ import { WebSocketClient } from "./chat/WebSocketClient";
 import { useAccount } from "../app/account-context";
 import { apiConfig } from "../api/config";
 import { IoMdSend } from "react-icons/io";
+import { Modal, ModalHeader, ModalTitle } from "react-bootstrap";
+import { conversationApi } from "../api/conversation-api";
+import { Conversations } from "../components/conversations";
+import EditSVG from "../assets/icons/Edit";
+import ProfileSVG from "../assets/icons/Profile";
+import DeleteSVG from "../assets/icons/Delete";
 
 export const Chats = () => {
     const account = useAccount();
     const q = useQuery();
     const contactId = q.get("contactId") ?? "";
-
+    const [isConnected, setIsConnected] = useState(false);
     const [model, setModel] = useState({
         init: false,
         currentContact: contactId,
         message: "",
         recipientId: contactId,
+        conversation: null,
+        conversations: [],
     });
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
-    const myContactsRef = useRef();
+    const conversationsRef = useRef();
     const [forceUpdate, setForceUpdate] = useState(0);
+
+    const onConnected = (status) => setIsConnected(status);
 
     const receiveMessage = (message) => {
         setMessages((prevMessages) => [...prevMessages, message]);
     };
 
-    const webSocket = WebSocketClient(apiConfig.chatUrl, receiveMessage);
+    const webSocket = WebSocketClient(
+        apiConfig.chatUrl,
+        receiveMessage,
+        onConnected
+    );
 
     const sendMessage = () => {
+        if (!model.message) return;
+
         webSocket.sendMessage({
             message: model.message,
-            recipientId: contactId,
-            userId: account.userId,
+            toId: contactId,
+            fromId: account.userId,
+            conversationId: model.conversation._id,
         });
+
         setModel({ ...model, message: "" });
         setForceUpdate(forceUpdate + 1);
     };
@@ -53,26 +71,45 @@ export const Chats = () => {
         init();
     }, [contactId]);
 
+    useEffect(() => {
+        if (!model.conversation) return;
+
+        messageApi
+            .getAllMessagesByConversationId(model.conversation._id)
+            .then(({ data }) => {
+                setMessages(
+                    data.messages.map((x) => {
+                        return JSON.stringify(x);
+                    })
+                );
+            })
+            .catch(() => alert("error"));
+    }, [model.conversation]);
+
     const init = () => {
         messageApi
             .init({ contactId: contactId ?? "" })
-            .then((result) => {
+            .then(({ data }) => {
                 setModel({
                     ...model,
-                    currentContact: result.data.contact,
-                    myContacts: result.data.myContacts,
+                    currentContact: data.contact,
+                    conversations: data.conversations,
                     init: true,
                 });
-
-                myContactsRef.current = result.data.myContacts;
+                conversationsRef.current = data.conversations;
             })
             .catch(() => alert("error"));
     };
 
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+        });
+    };
+
     useEffect(() => {
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-        }
+        scrollToBottom();
     }, [messages]);
 
     if (!model.init) return <Loading />;
@@ -82,9 +119,9 @@ export const Chats = () => {
             <Flex
                 content="space-between "
                 className="position-relative"
-                style={{ top: 15 }}
+                style={{ top: 15, height: "100%" }}
             >
-                <div className="border-end pt-0">
+                <div className="border-end pt-0" style={{ minWidth: 350 }}>
                     <div className="px-3">
                         <input
                             type="search"
@@ -93,97 +130,103 @@ export const Chats = () => {
                             onChange={(e) =>
                                 setModel({
                                     ...model,
-                                    myContacts: myContactsRef.current.filter(
-                                        (x) =>
-                                            x.firstName
-                                                .toLowerCase()
-                                                .includes(
-                                                    e.target.value.toLowerCase()
-                                                ) ||
-                                            x.lastName
-                                                .toLowerCase()
-                                                .includes(
-                                                    e.target.value.toLowerCase()
-                                                )
-                                    ),
+                                    conversations:
+                                        conversationsRef.current.filter(
+                                            (x) =>
+                                                x.firstName
+                                                    .toLowerCase()
+                                                    .includes(
+                                                        e.target.value.toLowerCase()
+                                                    ) ||
+                                                x.lastName
+                                                    .toLowerCase()
+                                                    .includes(
+                                                        e.target.value.toLowerCase()
+                                                    )
+                                        ),
                                 })
                             }
                         />
                     </div>
                     <div className="px-3">
-                        {model?.myContacts?.map((x) => (
-                            <React.Fragment key={x._id}>
-                                <Link
-                                    to={`/samtaler?contactId=${x._id}`}
-                                    replace
-                                >
-                                    <Contact
-                                        contact={{
-                                            ...x,
-                                            name:
-                                                x.firstName + " " + x.lastName,
-                                        }}
-                                        inContact
-                                        showEmail={false}
-                                        className={classNames({
-                                            "border-bottom pb-2 border-2 border-info":
-                                                x._id === contactId,
-                                        })}
-                                    />
-                                </Link>
-                            </React.Fragment>
-                        ))}
+                        <Flex content="space-between" className="mb-2">
+                            <small className="text-muted">
+                                conversations ({model.conversations?.length})
+                            </small>
+                            <button
+                                className="btn bnt-default "
+                                style={{ fontSize: 15 }}
+                                onClick={() =>
+                                    setModel({
+                                        ...model,
+                                        conversationsModal: true,
+                                    })
+                                }
+                            >
+                                +
+                            </button>
+                        </Flex>
+                        <Conversations
+                            conversations={model.conversations}
+                            currentId={model.conversation?._id}
+                            onSelectConversation={(conversation) =>
+                                setModel({
+                                    ...model,
+                                    conversation: conversation,
+                                })
+                            }
+                        />
                     </div>
                 </div>
                 <div className="flex-grow-1">
-                    {model.currentContact && (
+                    {model.conversation?._id && (
                         <>
                             <Flex align="center" content="center">
-                                <Contact
-                                    contact={{
-                                        ...model.currentContact,
-                                        name:
-                                            model.currentContact.firstName +
-                                            " " +
-                                            model.currentContact.lastName,
-                                    }}
-                                    inContact
-                                    showEmail={false}
-                                />
+                                <span
+                                    className={classNames("status", {
+                                        connected: isConnected,
+                                        disConnected: !isConnected,
+                                    })}
+                                ></span>
+                                <h5 className="m-0 me-3">
+                                    {model.conversation.title}
+                                </h5>
                             </Flex>
-                            <Flex
-                                vertical
-                                content="space-between"
-                                style={{ height: 500 }}
-                            >
+                            <Flex vertical content="space-between">
                                 <div className="p-3">
-                                    <ul className="chat">
+                                    <div className="message-container chat">
                                         {messages?.map((x, index) => {
                                             const message = JSON.parse(x);
 
                                             return (
-                                                <li
+                                                <div
                                                     key={index}
                                                     className={classNames(
-                                                        "message",
+                                                        "message ",
                                                         {
-                                                            sent:
-                                                                message.recipientId ===
+                                                            "sent rounded-start rounded-bottom":
+                                                                message.fromId ===
                                                                 account.userId,
-                                                            received:
-                                                                message.userId ===
-                                                                account.userId,
+                                                            "received rounded-end rounded-bottom":
+                                                                message.fromId ===
+                                                                contactId,
                                                         }
                                                     )}
                                                 >
                                                     <span>
-                                                        {message.content}
+                                                        {message.message}
                                                     </span>
-                                                </li>
+                                                </div>
                                             );
                                         })}
-                                        <li ref={messagesEndRef}></li>
-                                    </ul>
+                                        <div
+                                            ref={messagesEndRef}
+                                            style={{
+                                                float: "left",
+                                                clear: "both",
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                                 <Flex align="center" className="w-100">
                                     <div className="input-container m-3">
@@ -208,16 +251,16 @@ export const Chats = () => {
                             </Flex>
                         </>
                     )}
-                    {!model.currentContact && (
+                    {!model.conversation?._id && (
                         <div className="text-center p-5">
-                            Select a user to start chat
+                            Select a conversation to start chat
                         </div>
                     )}
                 </div>
                 {model.currentContact && (
                     <div
                         className="border-start p-3 text-center"
-                        style={{ width: 350 }}
+                        style={{ minWidth: 350 }}
                     >
                         <Contact
                             width={200}
@@ -231,43 +274,113 @@ export const Chats = () => {
                             }}
                             inContact
                             showEmail={false}
-                            displayText={false}
                             justifyContent="center"
+                            textInBottom
                         />
 
                         <Flex content="space-between" className="w-100 px-4">
                             <Flex align="center" vertical className="mt-4">
-                                <img
-                                    src={profile}
-                                    alt="profil-icon"
-                                    style={{ width: 35, height: 35 }}
-                                />
+                                <ProfileSVG />
                                 <Link to={`/profil?contactId=${contactId}`}>
-                                    profile
+                                    Profil
                                 </Link>
                             </Flex>
-                            <Flex
-                                align="center"
-                                vertical
-                                className="mt-4"
-                                content="space-between"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="35"
-                                    height="35"
-                                    fill="currentColor"
-                                    class="bi bi-search"
-                                    viewBox="0 0 16 16"
+                            {model.conversation && (
+                                <Flex
+                                    align="center"
+                                    vertical
+                                    className="mt-4"
+                                    content="space-between"
                                 >
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                                </svg>
-                                <a href="">Søk i chat</a>
-                            </Flex>
+                                    <DeleteSVG />
+                                    <span
+                                        className="cur-p"
+                                        onClick={() =>
+                                            conversationApi
+                                                .delete(model.conversation?._id)
+                                                .then(({ data }) => {
+                                                    setModel({
+                                                        ...model,
+                                                        conversation: null,
+                                                        conversations:
+                                                            model.conversations.filter(
+                                                                (x) =>
+                                                                    x._id !==
+                                                                    model
+                                                                        .conversation
+                                                                        ._id
+                                                            ),
+                                                    });
+                                                })
+                                                .catch(() => alert("error"))
+                                        }
+                                    >
+                                        Slett
+                                    </span>
+                                </Flex>
+                            )}
                         </Flex>
                     </div>
                 )}
             </Flex>
+            <SelectConversations
+                show={model.conversationsModal}
+                onHide={() => setModel({ ...model, conversationsModal: false })}
+                model={model}
+                setModel={setModel}
+                contactId={contactId}
+            />
         </>
+    );
+};
+
+const SelectConversations = ({ show, onHide, model, contactId, setModel }) => {
+    const addConversation = () => {
+        conversationApi
+            .add({ toUserId: contactId, title: model.conversationTitle })
+            .then(({ data }) => {
+                setModel({
+                    ...model,
+                    conversations: data.conversations,
+                    conversation: data.conversation,
+                    conversationsModal: false,
+                });
+            })
+            .catch(() => alert("error"));
+    };
+    return (
+        <Modal show={show} onHide={onHide} size="lg">
+            <ModalHeader closeButton>
+                <ModalTitle>
+                    Conversations with [
+                    {model.currentContact.firstName +
+                        " " +
+                        model.currentContact.lastName}
+                    ]
+                </ModalTitle>
+            </ModalHeader>
+            <Modal.Body className="p-0 mb-4">
+                <Flex className="mx-3 my-2" align="center" content="center">
+                    <input
+                        placeholder="enter conversation title here..."
+                        className="form-control"
+                        style={{ maxWidth: 400 }}
+                        value={model.conversationTitle}
+                        onChange={(e) =>
+                            setModel({
+                                ...model,
+                                conversationTitle: e.target.value,
+                            })
+                        }
+                    />
+                    <button
+                        className="btn btn-dark ms-3"
+                        onClick={addConversation}
+                    >
+                        Create New Conversation
+                    </button>
+                </Flex>
+            </Modal.Body>
+        </Modal>
     );
 };
