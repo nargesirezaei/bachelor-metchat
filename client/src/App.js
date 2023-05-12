@@ -6,8 +6,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Protected } from "./shared/protected";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { HiUsers } from "react-icons/hi2";
 import Conversations from "./admin/Conversations";
+import Users from "./admin/Users";
 import { useAccount } from "./app/account-context";
 import "./assets/css/admin_brukere.css";
 import "./assets/css/admin_samtaler.css";
@@ -48,7 +48,7 @@ export default function App() {
                     <Route path="/interests" element={<Interests />} />
 
                     {/* Admin Routes */}
-                    <Route path="/admin/brukere" element={<HiUsers />} />
+                    <Route path="/admin/brukere" element={<Users />} />
                     <Route path="/admin/samtaler" element={<Conversations />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />

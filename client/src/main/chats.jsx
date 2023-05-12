@@ -134,6 +134,49 @@ export const Chats = () => {
             >
                 <div className="border-end pt-0 " style={{ minWidth: 350 }}>
                     <div className="px-3 ">
+                        <Flex
+                            content="space-between"
+                            align="center"
+                            className="border-bottom "
+                        >
+                            {model.currentContact && (
+                                <>
+                                    <Contact
+                                        contact={{
+                                            ...model?.currentContact,
+                                            name:
+                                                model.currentContact
+                                                    ?.firstName +
+                                                " " +
+                                                model.currentContact?.lastName,
+                                        }}
+                                        inContact
+                                        isInMyContacts
+                                    />
+
+                                    <button
+                                        className="btn bnt-default "
+                                        onClick={() =>
+                                            setModel({
+                                                ...model,
+                                                viewConversations: false,
+                                                currentContact: null,
+                                                conversation: null,
+                                            })
+                                        }
+                                    >
+                                        <ArrowBackSVG
+                                            className="text-muted"
+                                            style={{
+                                                width: 24,
+                                                height: 24,
+                                            }}
+                                        />
+                                    </button>
+                                </>
+                            )}
+                        </Flex>
+
                         {model.viewConversations && (
                             <>
                                 <input
@@ -155,46 +198,7 @@ export const Chats = () => {
                                         })
                                     }
                                 />
-                                {!contactId && (
-                                    <Flex
-                                        content="space-between"
-                                        align="center"
-                                        className="border-bottom "
-                                    >
-                                        <Contact
-                                            contact={{
-                                                ...model?.currentContact,
-                                                name:
-                                                    model.currentContact
-                                                        ?.firstName +
-                                                    " " +
-                                                    model.currentContact
-                                                        ?.lastName,
-                                            }}
-                                            inContact
-                                            isInMyContacts
-                                        />
-                                        <button
-                                            className="btn bnt-default "
-                                            onClick={() =>
-                                                setModel({
-                                                    ...model,
-                                                    viewConversations: false,
-                                                    currentContact: null,
-                                                    conversation: null,
-                                                })
-                                            }
-                                        >
-                                            <ArrowBackSVG
-                                                className="text-muted"
-                                                style={{
-                                                    width: 24,
-                                                    height: 24,
-                                                }}
-                                            />
-                                        </button>
-                                    </Flex>
-                                )}
+
                                 <Flex
                                     content="space-between"
                                     className="mb-2 mt-2"
