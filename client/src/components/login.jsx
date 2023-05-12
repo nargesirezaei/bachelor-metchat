@@ -12,9 +12,9 @@ export const Login = () => {
         <div className="content active inactive pb-5" id="log_in">
             <Formik
                 initialValues={{
-                    email: "bhrajabi@gmail.com",
-                    password: "456456",
-                    savePassword: "456456",
+                    email: "",
+                    password: "",
+                    savePassword: "",
                 }}
                 validationSchema={yup.object({
                     email: yup.string().required("Required"),

@@ -1,28 +1,28 @@
 import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
+import { Modal, ModalHeader, ModalTitle } from "react-bootstrap";
+import { IoMdSend } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { apiConfig } from "../api/config";
+import { conversationApi } from "../api/conversation-api";
 import { messageApi } from "../api/message-api";
-import profile from "../assets/img/profile.svg";
+import { useAccount } from "../app/account-context";
+import DeleteSVG from "../assets/icons/Delete";
+import ProfileSVG from "../assets/icons/Profile";
 import { Flex } from "../components/Flex";
 import Nav from "../components/MainNav";
 import { Contact } from "../components/contact";
+import { Conversations } from "../components/conversations";
 import { Loading } from "../components/loading";
 import { useQuery } from "../components/use-query";
 import { WebSocketClient } from "./chat/WebSocketClient";
-import { useAccount } from "../app/account-context";
-import { apiConfig } from "../api/config";
-import { IoMdSend } from "react-icons/io";
-import { Modal, ModalHeader, ModalTitle } from "react-bootstrap";
-import { conversationApi } from "../api/conversation-api";
-import { Conversations } from "../components/conversations";
-import EditSVG from "../assets/icons/Edit";
-import ProfileSVG from "../assets/icons/Profile";
-import DeleteSVG from "../assets/icons/Delete";
+import ArrowBackSVG from "../assets/icons/ArrowBack";
+import AddCommentSVG from "../assets/icons/AddComment";
 
 export const Chats = () => {
     const account = useAccount();
     const q = useQuery();
-    const contactId = q.get("contactId") ?? "";
+    const contactId = q.get("contactId") ?? null;
     const [isConnected, setIsConnected] = useState(false);
     const [model, setModel] = useState({
         init: false,
@@ -31,10 +31,12 @@ export const Chats = () => {
         recipientId: contactId,
         conversation: null,
         conversations: [],
+        viewConversations: false,
     });
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
     const conversationsRef = useRef();
+    const contactsRef = useRef();
     const [forceUpdate, setForceUpdate] = useState(0);
 
     const onConnected = (status) => setIsConnected(status);
@@ -54,7 +56,7 @@ export const Chats = () => {
 
         webSocket.sendMessage({
             message: model.message,
-            toId: contactId,
+            toId: contactId ?? model.currentContact._id,
             fromId: account.userId,
             conversationId: model.conversation._id,
         });
@@ -82,6 +84,8 @@ export const Chats = () => {
                         return JSON.stringify(x);
                     })
                 );
+
+                conversationsRef.current = data.conversations;
             })
             .catch(() => alert("error"));
     }, [model.conversation]);
@@ -94,9 +98,12 @@ export const Chats = () => {
                     ...model,
                     currentContact: data.contact,
                     conversations: data.conversations,
+                    contacts: data.contacts,
                     init: true,
+                    viewConversations: contactId ? true : false,
                 });
                 conversationsRef.current = data.conversations;
+                contactsRef.current = data.contacts;
             })
             .catch(() => alert("error"));
     };
@@ -119,66 +126,171 @@ export const Chats = () => {
             <Flex
                 content="space-between "
                 className="position-relative"
-                style={{ top: 15, height: "100%" }}
+                style={{
+                    height: "100%",
+                    overflow: "hidden",
+                    paddingTop: "15px",
+                }}
             >
-                <div className="border-end pt-0" style={{ minWidth: 350 }}>
-                    <div className="px-3">
-                        <input
-                            type="search"
-                            className="form-control rounded mb-4"
-                            placeholder="Search"
-                            onChange={(e) =>
-                                setModel({
-                                    ...model,
-                                    conversations:
-                                        conversationsRef.current.filter(
-                                            (x) =>
-                                                x.firstName
-                                                    .toLowerCase()
-                                                    .includes(
-                                                        e.target.value.toLowerCase()
-                                                    ) ||
-                                                x.lastName
-                                                    .toLowerCase()
-                                                    .includes(
-                                                        e.target.value.toLowerCase()
-                                                    )
-                                        ),
-                                })
-                            }
-                        />
-                    </div>
-                    <div className="px-3">
-                        <Flex content="space-between" className="mb-2">
-                            <small className="text-muted">
-                                conversations ({model.conversations?.length})
-                            </small>
-                            <button
-                                className="btn bnt-default "
-                                style={{ fontSize: 15 }}
-                                onClick={() =>
-                                    setModel({
-                                        ...model,
-                                        conversationsModal: true,
-                                    })
-                                }
-                            >
-                                +
-                            </button>
-                        </Flex>
-                        <Conversations
-                            conversations={model.conversations}
-                            currentId={model.conversation?._id}
-                            onSelectConversation={(conversation) =>
-                                setModel({
-                                    ...model,
-                                    conversation: conversation,
-                                })
-                            }
-                        />
+                <div className="border-end pt-0 " style={{ minWidth: 350 }}>
+                    <div className="px-3 ">
+                        {model.viewConversations && (
+                            <>
+                                <input
+                                    type="search"
+                                    className="form-control rounded mb-4"
+                                    placeholder="Search"
+                                    onChange={(e) =>
+                                        setModel({
+                                            ...model,
+                                            conversations:
+                                                conversationsRef.current.filter(
+                                                    (x) =>
+                                                        x.title
+                                                            .toLowerCase()
+                                                            .includes(
+                                                                e.target.value.toLowerCase()
+                                                            )
+                                                ),
+                                        })
+                                    }
+                                />
+                                {!contactId && (
+                                    <Flex
+                                        content="space-between"
+                                        align="center"
+                                        className="border-bottom "
+                                    >
+                                        <Contact
+                                            contact={{
+                                                ...model?.currentContact,
+                                                name:
+                                                    model.currentContact
+                                                        ?.firstName +
+                                                    " " +
+                                                    model.currentContact
+                                                        ?.lastName,
+                                            }}
+                                            inContact
+                                            isInMyContacts
+                                        />
+                                        <button
+                                            className="btn bnt-default "
+                                            onClick={() =>
+                                                setModel({
+                                                    ...model,
+                                                    viewConversations: false,
+                                                    currentContact: null,
+                                                    conversation: null,
+                                                })
+                                            }
+                                        >
+                                            <ArrowBackSVG
+                                                className="text-muted"
+                                                style={{
+                                                    width: 24,
+                                                    height: 24,
+                                                }}
+                                            />
+                                        </button>
+                                    </Flex>
+                                )}
+                                <Flex
+                                    content="space-between"
+                                    className="mb-2 mt-2"
+                                >
+                                    <small className="text-muted">
+                                        conversations (
+                                        {model.conversations?.length})
+                                    </small>
+                                    <button
+                                        className="btn bnt-default "
+                                        style={{ fontSize: 15 }}
+                                        onClick={() =>
+                                            setModel({
+                                                ...model,
+                                                conversationsModal: true,
+                                            })
+                                        }
+                                    >
+                                        <AddCommentSVG
+                                            className="text-muted"
+                                            style={{ width: 24, height: 24 }}
+                                        />
+                                    </button>
+                                </Flex>
+                                <Conversations
+                                    conversations={model.conversations}
+                                    currentId={model.conversation?._id}
+                                    onSelectConversation={(conversation) =>
+                                        setModel({
+                                            ...model,
+                                            conversation: conversation,
+                                        })
+                                    }
+                                />
+                            </>
+                        )}
+                        {!model.viewConversations && (
+                            <>
+                                <input
+                                    type="search"
+                                    className="form-control rounded mb-4"
+                                    placeholder="Search"
+                                    onChange={(e) =>
+                                        setModel({
+                                            ...model,
+                                            contacts:
+                                                contactsRef.current.filter(
+                                                    (x) =>
+                                                        x.firstName
+                                                            .toLowerCase()
+                                                            .includes(
+                                                                e.target.value.toLowerCase()
+                                                            )
+                                                ),
+                                        })
+                                    }
+                                />
+                                {model.contacts?.map((x) => (
+                                    <React.Fragment key={x._id}>
+                                        <Contact
+                                            contact={{
+                                                ...x,
+                                                name:
+                                                    x.firstName +
+                                                    " " +
+                                                    x.lastName,
+                                            }}
+                                            inContact
+                                            isInMyContacts
+                                            onSelectContact={(contact) =>
+                                                conversationApi
+                                                    .getAll({
+                                                        contactId: contact._id,
+                                                    })
+                                                    .then(({ data }) => {
+                                                        setModel({
+                                                            ...model,
+                                                            viewConversations: true,
+                                                            currentContact:
+                                                                contact,
+                                                            conversations:
+                                                                data.conversations,
+                                                        });
+                                                        conversationsRef.current =
+                                                            data.conversations;
+                                                    })
+                                                    .catch(() => alert("error"))
+                                            }
+                                        />
+                                    </React.Fragment>
+                                ))}
+                            </>
+                        )}
                     </div>
                 </div>
-                <div className="flex-grow-1">
+                <div className="flex-grow-1 d-none d-lg-block">
                     {model.conversation?._id && (
                         <>
                             <Flex align="center" content="center">
@@ -194,10 +306,14 @@ export const Chats = () => {
                             </Flex>
                             <Flex vertical content="space-between">
                                 <div className="p-3">
-                                    <div className="message-container chat">
+                                    <div className="message-container chat triangle-clip">
                                         {messages?.map((x, index) => {
                                             const message = JSON.parse(x);
-
+                                            console.log("message", message);
+                                            console.log(
+                                                "model",
+                                                model.currentContact
+                                            );
                                             return (
                                                 <div
                                                     key={index}
@@ -209,7 +325,9 @@ export const Chats = () => {
                                                                 account.userId,
                                                             "received rounded-end rounded-bottom":
                                                                 message.fromId ===
-                                                                contactId,
+                                                                    contactId ||
+                                                                message.toId ===
+                                                                    account.userId,
                                                         }
                                                     )}
                                                 >
@@ -259,7 +377,7 @@ export const Chats = () => {
                 </div>
                 {model.currentContact && (
                     <div
-                        className="border-start p-3 text-center"
+                        className="border-start p-3 text-center d-none d-lg-block"
                         style={{ minWidth: 350 }}
                     >
                         <Contact
@@ -273,7 +391,6 @@ export const Chats = () => {
                                     model.currentContact.lastName,
                             }}
                             inContact
-                            showEmail={false}
                             justifyContent="center"
                             textInBottom
                         />
@@ -323,13 +440,17 @@ export const Chats = () => {
                     </div>
                 )}
             </Flex>
-            <SelectConversations
-                show={model.conversationsModal}
-                onHide={() => setModel({ ...model, conversationsModal: false })}
-                model={model}
-                setModel={setModel}
-                contactId={contactId}
-            />
+            {model.currentContact && (
+                <SelectConversations
+                    show={model.conversationsModal}
+                    onHide={() =>
+                        setModel({ ...model, conversationsModal: false })
+                    }
+                    model={model}
+                    setModel={setModel}
+                    contactId={contactId ?? model.currentContact._id}
+                />
+            )}
         </>
     );
 };
@@ -341,7 +462,9 @@ const SelectConversations = ({ show, onHide, model, contactId, setModel }) => {
             .then(({ data }) => {
                 setModel({
                     ...model,
-                    conversations: data.conversations,
+                    conversations: data.isExist
+                        ? model.conversations
+                        : data.conversations,
                     conversation: data.conversation,
                     conversationsModal: false,
                 });

@@ -1,7 +1,7 @@
 .contents {
     margin-top: 170px;
     margin-bottom: 15px;
-    height: calc(100vh - 336px);
+    min-height: calc(100vh - 336px);
     overflow-y: auto;
 }
 
@@ -141,4 +141,9 @@ input[type="checkbox"] {
     animation-name: blink;
     animation-duration: 0.5s;
     animation-iteration-count: infinite;
+}
+
+.conversation-box {
+    height: calc(100% - 90px);
+    overflow-y: auto;
 }

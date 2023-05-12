@@ -25,7 +25,6 @@ import MoreInfo from "./main/MoreInfo";
 import { Profile } from "./main/Profile";
 import { Welcome } from "./main/Welcome";
 import { About } from "./main/about";
-import Chat from "./main/chat/Chat";
 import { Chats } from "./main/chats";
 import { Interests } from "./main/interests";
 import { NotFound } from "./shared/not-found";
@@ -37,7 +36,7 @@ export default function App() {
             <Route path="/" element={<PublicLayout />}>
                 <Route path="/logut" element={<Logout />} />
                 <Route path="/" element={<Welcome />} />
-                <Route path="/chat" element={<Chat />} />
+
                 {/* to handle user is login or not */}
                 <Route element={<Protected />}>
                     <Route path="/kontakter" element={<Contacts />} />
