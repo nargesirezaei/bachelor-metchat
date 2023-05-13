@@ -7,7 +7,6 @@ export const WebSocketClient = (url, onMessageCallback, onConnected) => {
     };
 
     ws.onmessage = (event) => {
-        console.log(event.data);
         onMessageCallback(event.data);
     };
 

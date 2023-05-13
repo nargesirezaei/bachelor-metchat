@@ -18,9 +18,14 @@ import { useQuery } from "../components/use-query";
 import { WebSocketClient } from "./chat/WebSocketClient";
 import ArrowBackSVG from "../assets/icons/ArrowBack";
 import AddCommentSVG from "../assets/icons/AddComment";
+import { useScreenSize } from "../app/theme-context";
 
 export const Chats = () => {
     const account = useAccount();
+
+    const screen = useScreenSize();
+    const isMobile = screen.isMobile;
+
     const q = useQuery();
     const contactId = q.get("contactId") ?? null;
     const [isConnected, setIsConnected] = useState(false);
@@ -33,11 +38,11 @@ export const Chats = () => {
         conversations: [],
         viewConversations: false,
     });
+
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
     const conversationsRef = useRef();
     const contactsRef = useRef();
-    const [forceUpdate, setForceUpdate] = useState(0);
 
     const onConnected = (status) => setIsConnected(status);
 
@@ -54,21 +59,34 @@ export const Chats = () => {
     const sendMessage = () => {
         if (!model.message) return;
 
-        webSocket.sendMessage({
+        const msg = {
             message: model.message,
             toId: contactId ?? model.currentContact._id,
             fromId: account.userId,
             conversationId: model.conversation._id,
-        });
+        };
 
-        setModel({ ...model, message: "" });
-        setForceUpdate(forceUpdate + 1);
+        webSocket.sendMessage(msg);
+
+        messageApi
+            .send(msg)
+            .then(({ data }) => {
+                setModel({ ...model, message: "" });
+
+                setMessages((prevMessages) => [
+                    ...prevMessages,
+                    JSON.stringify(msg),
+                ]);
+            })
+            .catch(() => alert("error"));
     };
+
     function handleKeyDown(event) {
         if (event.key === "Enter") {
             sendMessage();
         }
     }
+
     useEffect(() => {
         init();
     }, [contactId]);
@@ -132,7 +150,10 @@ export const Chats = () => {
                     paddingTop: "15px",
                 }}
             >
-                <div className="border-end pt-0 " style={{ minWidth: 350 }}>
+                <div
+                    className={classNames("border-end pt-0")}
+                    style={{ minWidth: 350 }}
+                >
                     <div className="px-3 ">
                         <Flex
                             content="space-between"
@@ -219,7 +240,10 @@ export const Chats = () => {
                                     >
                                         <AddCommentSVG
                                             className="text-muted"
-                                            style={{ width: 24, height: 24 }}
+                                            style={{
+                                                width: 24,
+                                                height: 24,
+                                            }}
                                         />
                                     </button>
                                 </Flex>
@@ -294,7 +318,8 @@ export const Chats = () => {
                         )}
                     </div>
                 </div>
-                <div className="flex-grow-1 d-none d-lg-block">
+
+                <div className="flex-grow-1">
                     {model.conversation?._id && (
                         <>
                             <Flex align="center" content="center">
@@ -313,11 +338,6 @@ export const Chats = () => {
                                     <div className="message-container chat triangle-clip">
                                         {messages?.map((x, index) => {
                                             const message = JSON.parse(x);
-                                            console.log("message", message);
-                                            console.log(
-                                                "model",
-                                                model.currentContact
-                                            );
                                             return (
                                                 <div
                                                     key={index}
@@ -355,7 +375,10 @@ export const Chats = () => {
                                         <input
                                             type="text"
                                             placeholder="Skriv noe her..."
-                                            style={{ margin: "0px", border: 0 }}
+                                            style={{
+                                                margin: "0px",
+                                                border: 0,
+                                            }}
                                             onChange={(e) =>
                                                 setModel({
                                                     ...model,
@@ -379,6 +402,7 @@ export const Chats = () => {
                         </div>
                     )}
                 </div>
+
                 {model.currentContact && (
                     <div
                         className="border-start p-3 text-center d-none d-lg-block"
