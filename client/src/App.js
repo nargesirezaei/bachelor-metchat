@@ -29,31 +29,37 @@ import { Chats } from "./main/chats";
 import { Interests } from "./main/interests";
 import { NotFound } from "./shared/not-found";
 import { PublicLayout } from "./shared/public-layout";
+import { ThemeProvider } from "./app/theme-context";
 
 export default function App() {
     return (
-        <Routes>
-            <Route path="/" element={<PublicLayout />}>
-                <Route path="/logut" element={<Logout />} />
-                <Route path="/" element={<Welcome />} />
+        <ThemeProvider>
+            <Routes>
+                <Route path="/" element={<PublicLayout />}>
+                    <Route path="/logut" element={<Logout />} />
+                    <Route path="/" element={<Welcome />} />
 
-                {/* to handle user is login or not */}
-                <Route element={<Protected />}>
-                    <Route path="/kontakter" element={<Contacts />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/merInfo" element={<MoreInfo />} />
+                    {/* to handle user is login or not */}
+                    <Route element={<Protected />}>
+                        <Route path="/kontakter" element={<Contacts />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/merInfo" element={<MoreInfo />} />
 
-                    <Route path="/samtaler" element={<Chats />} />
-                    <Route path="/profil" element={<Profile />} />
-                    <Route path="/interests" element={<Interests />} />
+                        <Route path="/samtaler" element={<Chats />} />
+                        <Route path="/profil" element={<Profile />} />
+                        <Route path="/interests" element={<Interests />} />
 
-                    {/* Admin Routes */}
-                    <Route path="/admin/brukere" element={<Users />} />
-                    <Route path="/admin/samtaler" element={<Conversations />} />
+                        {/* Admin Routes */}
+                        <Route path="/admin/brukere" element={<Users />} />
+                        <Route
+                            path="/admin/samtaler"
+                            element={<Conversations />}
+                        />
+                    </Route>
+                    <Route path="*" element={<NotFound />} />
                 </Route>
-                <Route path="*" element={<NotFound />} />
-            </Route>
-        </Routes>
+            </Routes>
+        </ThemeProvider>
     );
 }
 
