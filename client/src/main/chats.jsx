@@ -103,6 +103,8 @@ export const Chats = () => {
                     })
                 );
 
+                setModel({ ...model, fromUser: data.fromUser });
+
                 conversationsRef.current = data.conversations;
             })
             .catch(() => alert("error"));
@@ -348,10 +350,8 @@ export const Chats = () => {
                                                                 message.fromId ===
                                                                 account.userId,
                                                             "received rounded-end rounded-bottom":
-                                                                message.fromId ===
-                                                                    contactId ||
-                                                                message.toId ===
-                                                                    account.userId,
+                                                                message.fromId !==
+                                                                account.userId,
                                                         }
                                                     )}
                                                 >
