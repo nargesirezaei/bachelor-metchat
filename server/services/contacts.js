@@ -55,7 +55,7 @@ module.exports = {
   },
 
   getUser: async (req, res) => {
-    await User.findById(req.query.id, "firstName lastName").exec()
+    await User.findById(req.params.userId, "firstName lastName").exec()
     .then((user) => {
       return res.status(200).send(user);
     })

@@ -19,10 +19,7 @@ function ChatContainer() {
   useEffect(() => {
     if (currentChat) {
       async function getMessages() {
-        const response = await axios.get(`${messageRoute}/getConversation`, {
-          params: { conversationId: currentChat._id },
-        });
-        // console.log(response.data[0]);
+        const response = await axios.get(`${messageRoute}/getConversation/${currentChat._id}`);
         setMessages(response.data);
       }
       getMessages();

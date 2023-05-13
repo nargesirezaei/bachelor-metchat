@@ -5,7 +5,7 @@ const conversations = require('../services/conversations');
 
 app.post('/create', conversations.create);
 
-app.get('/conversations', conversations.conversations);
+app.get('/conversations/:userId', conversations.conversations);
 app.get('/getAllConversations', conversations.getAllConversations);
 
 /*
@@ -19,6 +19,9 @@ app.put(`/:conversationId`, async (req, res) => {
    //coming soon 
 });
 */
+
+//app.get('/getConversation', messages.getConversation);
+
 
 app.put('/editTitle', conversations.editTitle);
 

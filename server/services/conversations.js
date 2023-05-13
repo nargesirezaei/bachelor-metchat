@@ -1,6 +1,8 @@
 
 const Conversations = require("../models/conversations");
 const User = require("../models/user");
+const Messages = require('../models/messages');
+
 
 module.exports = {
     create: async (req, res) => {
@@ -30,14 +32,14 @@ module.exports = {
     },
 
     conversations: async (req, res) => {
-        const name = req.query.id;
+        const userId = req.params.userId;
 
-        await Conversations.find({$or: [{fromId: name}, {toId: name}]}).sort({ updatedAt: 1 }).exec()
+        await Conversations.find({$or: [{fromId: userId}, {toId: userId}]}).sort({ updatedAt: 1 }).exec()
         .then((conversations) => {
             return res.status(200).send(conversations);
         })
         .catch((err) => {
-            return res.status(500).send("Failed to load messages" + err);
+            return res.status(500).send("Failed to load conversations:\r\n" + err);
         });        
     },
 
@@ -47,7 +49,7 @@ module.exports = {
             return res.status(200).send(conversations);
         })
         .catch((err) => {
-            return res.status(500).send("Failed to load messages" + err);
+            return res.status(500).send("Failed to load conversations:\r\n:" + err);
         });        
     },
 
@@ -90,5 +92,16 @@ module.exports = {
             return res.status(500).send("Failed to edit conversation title");
         });
     },
+
+    /* Conversation.findById(conversationId).populate('messages').exec((err, conversation) => {
+    if (err) {
+      return res.status(500).send('Failed to fetch conversation');
+    }
+    if (!conversation) {
+      return res.status(404).send('Conversation not found');
+    }
+    return res.status(200).send(conversation);
+    }),*/
+
 
 };

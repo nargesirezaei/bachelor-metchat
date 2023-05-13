@@ -1,4 +1,3 @@
-
 const Messages = require("../models/messages");
 
 module.exports = {
@@ -35,7 +34,7 @@ module.exports = {
     },
 
     getConversation: async (req, res) => {
-        const conversationId = req.query.conversationId;
+        const conversationId = req.params.conversationId;
 
         await Messages.find({ conversationId }).sort({ createdAt: 1 }).exec()
         .then((messages) => {
@@ -47,9 +46,9 @@ module.exports = {
     },
 
     getMessage: async (req, res) => {
-        const { messageId } = req.params;
+        const messageId = req.params.messageId;
         
-        await Messages.findById((messageId), (err, loadedMessage) => {
+        await Messages.findById(messageId, (err, loadedMessage) => {
             if (err)
                 return res.status(500).send("Failed to load message");
 
@@ -59,6 +58,19 @@ module.exports = {
             return res.status(200).send(loadedMessage);
         });
     },
+
+    getConversations: async (req, res) => {
+        const conversationId = req.params.conversationId;
+    
+        try {
+          const messages = await Messages.find({ conversationId }).sort({ createdAt: 1 });
+          res.status(200).json(messages);
+        } catch (error) {
+          console.error(error);
+          res.status(500).send('Error retrieving conversation');
+        }
+      },
+      
 
     init: {
 
