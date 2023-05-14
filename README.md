@@ -4,6 +4,10 @@ This is a webapplication developed as chat. The purpose of this chat is to colle
 
 This project is developed as part of a bachelor's thesis for OsloMet - Oslo Metropolitan University.
 
+## To run this project you need to install Node.js
+
+Use this link to install: [Node.js](https://nodejs.org/en)
+
 ## Commands tha can be run from this root folder:
 
 ### Installing dependencies:
@@ -23,5 +27,10 @@ This project is developed as part of a bachelor's thesis for OsloMet - Oslo Metr
 **cd client && npm start**
 
 - Runs client side.
+
+## Links to documentation:
+
+[Backend]()
+[Frontend]()
 
 ## Video Presentations of project:
