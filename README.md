@@ -8,7 +8,7 @@ This project is developed as part of a bachelor's thesis for OsloMet - Oslo Metr
 
 ### Installing dependencies:
 
-**cd server && npm install && cd ../client && npm npm install**
+**cd server && npm install && cd ../client && npm install**
 
 - Installs all packages specified in the package.json file for both the client and server.
 
