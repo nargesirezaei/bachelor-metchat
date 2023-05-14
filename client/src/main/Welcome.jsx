@@ -4,10 +4,14 @@ import { Nav } from "../components/nav";
 
 import { Login } from "../components/login";
 import { Register } from "../components/Register";
+import { useScreenSize } from "../app/theme-context";
+import classNames from "classnames";
 
 export const Welcome = () => {
     const [model, setModel] = useState({ auth: "login" });
     const registerFormRef = useRef();
+    const screen = useScreenSize();
+    const isMobile = screen.isMobile;
 
     return (
         <div className="container-fluid">
@@ -15,8 +19,8 @@ export const Welcome = () => {
             <div className="liness">
                 <Flex
                     content="end"
-                    className="pe-5"
-                    style={{ marginRight: 200 }}
+                    className={classNames({ "pe-5": !isMobile })}
+                    style={{ marginRight: isMobile ? 0 : 200 }}
                 >
                     <div className="mt-5">
                         <Flex vertical>
@@ -26,6 +30,9 @@ export const Welcome = () => {
                                     onClick={() =>
                                         setModel({ ...model, auth: "login" })
                                     }
+                                    style={{
+                                        width: isMobile ? "50%" : "220px",
+                                    }}
                                 >
                                     Logg Inn
                                 </button>
@@ -34,6 +41,9 @@ export const Welcome = () => {
                                     onClick={() =>
                                         setModel({ ...model, auth: "reg" })
                                     }
+                                    style={{
+                                        width: isMobile ? "50%" : "220px",
+                                    }}
                                 >
                                     Register
                                 </button>
@@ -50,13 +60,17 @@ export const Welcome = () => {
                     </div>
                 </Flex>
             </div>
-            <Flex content="space-between" style={{ marginTop: "-200px" }}>
+            <Flex
+                content="space-between"
+                className={classNames({ "d-none": isMobile })}
+                style={{ marginTop: "-200px" }}
+            >
                 <div className="photo"></div>
                 <div className="liness2"></div>
             </Flex>
             <Flex
                 content="end"
-                className="mb-5"
+                className={classNames("mb-5", { "d-none": isMobile })}
                 style={{ marginTop: "-100px" }}
             >
                 <div className="bubbleBox">
@@ -73,7 +87,7 @@ export const Welcome = () => {
                 </div>
             </Flex>
             <div
-                className="liness"
+                className={classNames("liness", { "d-none": isMobile })}
                 style={{
                     marginTop: "-200px",
                     width: 685,
