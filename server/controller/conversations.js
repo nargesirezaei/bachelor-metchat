@@ -1,28 +1,16 @@
-const express = require('express');
+const express = require("express");
+const { verifyaccess } = require("../services/authorization");
 const app = express();
-const conversations = require('../services/conversations');
+const conversations = require("../services/conversations");
 
+app.post(`/`, verifyaccess, conversations.add);
 
-app.post('/create', conversations.create);
+app.post(`/get-all`, verifyaccess, conversations.getAll);
 
-app.get('/conversations', conversations.conversations);
-app.get('/getAllConversations', conversations.getAllConversations);
+app.get(`/:conversationId`, verifyaccess, conversations.get);
 
-/*
-app.get(`/:conversationId`, async (req, res) => {
-   //coming soon 
-});
-*/
+app.delete(`/:conversationId`, verifyaccess, conversations.delete);
 
-/*
-app.put(`/:conversationId`, async (req, res) => {
-   //coming soon 
-});
-*/
-
-app.put('/editTitle', conversations.editTitle);
-
-app.delete('/delete/id', conversations.deleteById);
-app.delete('/delete/names', conversations.deleteByName);
+app.put("/:conversationId", verifyaccess, conversations.finish);
 
 module.exports = app;

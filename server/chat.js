@@ -1,38 +1,31 @@
 const WebSocket = require("ws");
-const User = require("./models/user");
 
 const wss = new WebSocket.Server({ port: 8000 });
 
-// A dictionary to map user IDs to WebSocket instances
 const clients = {};
 
 wss.on("connection", function connection(ws) {
-    let userId = "";
-    ws.on("message", function incoming(message) {
+    let fromId = "";
+    ws.on("message", async function incoming(message) {
         try {
             const parsedMessage = JSON.parse(message);
-            const recipientId = parsedMessage.recipientId;
-            userId = parsedMessage.userId;
+            const toId = parsedMessage.toId;
+            fromId = parsedMessage.fromId;
             const content = parsedMessage.message;
+            const conversationId = parsedMessage.conversationId;
 
             // Update the clients object for the current user
-            clients[userId] = ws;
+            clients[fromId] = ws;
 
             // Send the message to the recipient
-            const recipient = clients[recipientId];
+            const recipient = clients[toId];
             if (
                 recipient !== undefined &&
                 recipient.readyState === WebSocket.OPEN
             ) {
                 recipient.send(
-                    JSON.stringify({ content, recipientId, userId })
+                    JSON.stringify({ message: content, toId, fromId })
                 );
-            }
-
-            // Send the message back to the sender
-            const user = clients[userId];
-            if (user !== undefined && user.readyState === WebSocket.OPEN) {
-                user.send(JSON.stringify({ content, recipientId, userId }));
             }
         } catch (error) {
             console.error(error);
@@ -40,7 +33,7 @@ wss.on("connection", function connection(ws) {
     });
 
     ws.on("close", function close() {
-        console.log(`WebSocket connection closed (user ID: ${userId})`);
-        delete clients[userId];
+        console.log(`WebSocket connection closed (user ID: ${fromId})`);
+        delete clients[fromId];
     });
 });

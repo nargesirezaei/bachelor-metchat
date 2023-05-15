@@ -25,29 +25,49 @@ module.exports = {
         });
 
         const contacts = await Users.find({
-            _id: { $nin: similarUserIds },
-            _id: { $ne: myUserId },
+            $and: [
+                { _id: { $nin: similarUserIds } },
+                { _id: { $ne: myUserId } },
+            ],
         });
 
-        const allContacts = similarContacts
+        const similarUserInterests = await UserInterests.find({
+            userId: { $in: similarContacts.map((c) => c._id) },
+        })
+            .populate("interestId")
+            .lean();
+
+        const similarContactsDict = {};
+        similarContacts.forEach((x) => {
+            similarContactsDict[x._id] = x;
+            similarContactsDict[x._id].intrests = [];
+        });
+
+        await Promise.all(
+            similarUserInterests.map(async (x) => {
+                const contactId = x.userId.toString();
+                const interest = x.interestId;
+                if (similarContactsDict[contactId]) {
+                    const c = await Interests.findOne({
+                        _id: interest._id,
+                    }).lean();
+                    similarContactsDict[contactId].intrests.push(c);
+                }
+            })
+        );
+
+        const allContacts = Object.values(similarContactsDict)
             .map((x) => {
-                var intrests = [];
-                UserInterests.find({
-                    userId: x._doc._id,
-                }).then((u) =>
-                    u.map((v) => {
-                        Interests.findOne({ _id: v.interestId }).then((c) =>
-                            intrests.push(c)
-                        );
-                    })
-                );
+                if (x.intrests.length === 0) {
+                    x.intrests = null;
+                }
                 return {
-                    _id: x._doc._id,
-                    firstName: x._doc.firstName,
-                    lastName: x._doc.lastName,
-                    email: x._doc.email,
-                    intrests,
-                    avatar: x._doc.avatar,
+                    _id: x._id,
+                    firstName: x.firstName,
+                    lastName: x.lastName,
+                    email: x.email,
+                    intrests: x.intrests,
+                    avatar: x.avatar,
                     isSimilar: true,
                 };
             })
@@ -64,24 +84,56 @@ module.exports = {
                 })
             );
 
+        // remove duplicates
+        const uniqueContactsSet = new Set(
+            allContacts.map((contact) => contact._id)
+        );
+        const uniqueContacts = Array.from(uniqueContactsSet).map((id) => {
+            return allContacts.find((contact) => contact._id === id);
+        });
+
         const myContactsIds = await Contacts.find({ userId })
             .exec()
             .then((results) => {
-                return results.map((mi) => mi.contactId);
+                return results
+                    .filter((x) => x._id !== userId)
+                    .map((mi) => mi.contactId);
             });
-        //.distinct("contactId");
+
         const myContacts = await Users.find({
             _id: { $in: myContactsIds },
         });
 
+        const filteredMyContacts = myContacts.filter((contact) => {
+            return (
+                uniqueContacts.findIndex((c) => c._id === contact._id) === -1
+            );
+        });
+
+        // remove duplicates
+        const myContactsSet = new Set(
+            filteredMyContacts.map((contact) => contact._id)
+        );
+        const uniqueMyContacts = Array.from(myContactsSet).map((id) => {
+            return filteredMyContacts.find((contact) => contact._id === id);
+        });
+
+        console.log("userId", userId);
+        console.log(
+            "uniqueMyContacts",
+            uniqueMyContacts.filter((x) => {
+                if (x._id !== userId) return x;
+            })
+        );
         return res.send({
-            allContacts,
-            myContacts,
             status: true,
             message: null,
+            allContacts: uniqueContacts,
+            myContacts: uniqueMyContacts.filter(
+                (x) => x._id.toString() !== userId
+            ),
         });
     },
-
     add: (req, res, next) => {
         var userId = req.userId;
         var contactId = req.body.contactId;

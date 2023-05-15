@@ -6,12 +6,12 @@ const conversationSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        fromId: {
+        fromUserId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
             required: true,
         },
-        toId: {
+        toUserId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
             required: true,
@@ -24,10 +24,8 @@ const conversationSchema = new mongoose.Schema(
     {
         timestamps: true,
     }
-); 
+);
 
-const Conversations = mongoose.models.Conversations
-    ? mongoose.model('Conversations')
-    : mongoose.model('Conversations', conversationSchema);
+const Conversations = mongoose.model("Conversations", conversationSchema);
 
 module.exports = Conversations;
