@@ -9,12 +9,14 @@ import { Loading } from "../components/loading";
 import { Logo } from "../components/logo";
 import { Interesser } from "../components/interesser";
 import { userInterestApi } from "../api/user-interest-api";
+import { useScreenSize } from "../app/theme-context";
 
 export const Interests = () => {
     const account = useAccount();
     const [model, setModel] = useState({ init: false, count: 10 });
     const navigate = useNavigate();
-
+    const screen = useScreenSize();
+    const isMobile = screen.isMobile;
     useEffect(() => {
         if (model.init) return;
 
@@ -75,6 +77,11 @@ export const Interests = () => {
             .then((x) => navigate("/kontakter"));
     };
 
+    const box = {
+        width: "90%",
+        padding: 15,
+    };
+
     if (!model.init) return <Loading />;
 
     return (
@@ -84,7 +91,7 @@ export const Interests = () => {
                     <Flex content="space-between" align="center">
                         <Logo />
                         <Flex className="m-0" gap={3}>
-                            <li className="push">
+                            <li>
                                 <Link to="/logout" className="text-light">
                                     Log ut
                                 </Link>
@@ -118,18 +125,18 @@ export const Interests = () => {
                     displayText={false}
                 />
 
-                <div className="box">
-                    <label className="text">Om Meg</label>
+                <div className="box" style={isMobile ? box : {}}>
+                    <h3>Om Meg</h3>
                     <textarea
-                        style={{ width: 500 }}
+                        style={{ width: isMobile ? "90%" : 500 }}
                         value={model.bio}
                         onChange={(e) =>
                             setModel({ ...model, bio: e.target.value })
                         }
                     ></textarea>
 
-                    <h2>Intresser</h2>
-                    {model.interests.length && (
+                    <h3>Intresser</h3>
+                    {model.interests.length > 0 && (
                         <Flex className="flex-wrap" content="center">
                             {model.interests.slice(0, model.count).map((x) => {
                                 var userInt = model.userInterests.find(
