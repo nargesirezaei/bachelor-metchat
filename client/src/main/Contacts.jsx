@@ -61,10 +61,7 @@ export const Contacts = () => {
         <>
             <Nav />
 
-            <div
-                className="container-fluid position-relative"
-                style={{ top: 15 }}
-            >
+            <div className="container-fluid position-relative" style={{ top: 15 }}>
                 <div className="row">
                     <div className="col-12 col-md-4 ">
                         <h5>Mine kontakter</h5>
@@ -78,16 +75,8 @@ export const Contacts = () => {
                                     ...model,
                                     myContacts: myContactsRef.current.filter(
                                         (x) =>
-                                            x.firstName
-                                                .toLowerCase()
-                                                .includes(
-                                                    e.target.value.toLowerCase()
-                                                ) ||
-                                            x.lastName
-                                                .toLowerCase()
-                                                .includes(
-                                                    e.target.value.toLowerCase()
-                                                )
+                                            x.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+                                            x.lastName.toLowerCase().includes(e.target.value.toLowerCase())
                                     ),
                                 })
                             }
@@ -126,16 +115,8 @@ export const Contacts = () => {
                                     ...model,
                                     allContacts: allContactsRef.current.filter(
                                         (x) =>
-                                            x.firstName
-                                                .toLowerCase()
-                                                .includes(
-                                                    e.target.value.toLowerCase()
-                                                ) ||
-                                            x.lastName
-                                                .toLowerCase()
-                                                .includes(
-                                                    e.target.value.toLowerCase()
-                                                )
+                                            x.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+                                            x.lastName.toLowerCase().includes(e.target.value.toLowerCase())
                                     ),
                                 })
                             }
@@ -144,18 +125,13 @@ export const Contacts = () => {
 
                         <div style={{ maxWidth: 500 }}>
                             {model?.allContacts?.map((x) => {
-                                const isInMyContacts = model.myContacts.find(
-                                    (c) => c._id === x._id
-                                );
+                                const isInMyContacts = model.myContacts.find((c) => c._id === x._id);
                                 return (
                                     <React.Fragment key={x._id}>
                                         <Contact
                                             contact={{
                                                 ...x,
-                                                name:
-                                                    x.firstName +
-                                                    " " +
-                                                    x.lastName,
+                                                name: x.firstName + " " + x.lastName,
                                             }}
                                             pluss={pluss}
                                             isInMyContacts={isInMyContacts}

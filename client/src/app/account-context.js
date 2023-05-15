@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { accountApi } from "../api/account-api";
 import { api } from "../api/api";
 
@@ -40,11 +40,8 @@ export const AccountProvider = (props) => {
         userId: data.userId,
 
         isConnecting: () => account.getStatus() === accountStatuses.Connecting,
-        isConnectionFailed: () =>
-            account.getStatus() === accountStatuses.ConnectionFailed,
-        isConnected: () =>
-            account.getStatus() === accountStatuses.Connected ||
-            account.getStatus() === accountStatuses.LoggedIn,
+        isConnectionFailed: () => account.getStatus() === accountStatuses.ConnectionFailed,
+        isConnected: () => account.getStatus() === accountStatuses.Connected || account.getStatus() === accountStatuses.LoggedIn,
         isLoggedIn: () => account.getStatus() === accountStatuses.LoggedIn,
         isLoggedOut: () => account.getStatus() === accountStatuses.LoggedOut,
 
@@ -54,7 +51,6 @@ export const AccountProvider = (props) => {
         setStatus: (value) => setData({ ...data, status: value }),
 
         init: () => {
-            account.setStatus(accountStatuses.Connecting);
             return accountApi
                 .userInfo()
                 .then((result) => {
@@ -69,12 +65,9 @@ export const AccountProvider = (props) => {
                     setData(x);
                 })
                 .catch((ex) => {
-                    console.log("ex", ex);
-                    if (ex.code === "ERR_NETWORK")
-                        account.setStatus(accountStatuses.ConnectionFailed);
+                    if (ex.code === "ERR_NETWORK") account.setStatus(accountStatuses.ConnectionFailed);
 
-                    if (ex.response.status === 401)
-                        account.setStatus(accountStatuses.LoggedOut);
+                    if (ex.response.status === 401) account.setStatus(accountStatuses.LoggedOut);
                     else account.setStatus(accountStatuses.ConnectionFailed);
 
                     throw ex;
@@ -105,9 +98,5 @@ export const AccountProvider = (props) => {
         // api.onUnauthorized(() => account.setAsLoggedOut());
     }, [api, account]);
 
-    return (
-        <AccountContext.Provider value={account}>
-            {props.children}
-        </AccountContext.Provider>
-    );
+    return <AccountContext.Provider value={account}>{props.children}</AccountContext.Provider>;
 };

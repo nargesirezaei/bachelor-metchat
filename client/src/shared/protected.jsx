@@ -12,9 +12,10 @@ export function Protected() {
         account.init();
     }
     useEffect(() => {
-        if (account.getStatus() === "") account.init();
-    }, []);
-
+        var status = account.getStatus();
+        if (!!status) return;
+        account.init();
+    });
     return (
         <>
             {account.getStatus() === accountStatuses.Connecting && (
@@ -28,13 +29,8 @@ export function Protected() {
             {account.getStatus() === accountStatuses.ConnectionFailed && (
                 <div className="h-100 middle">
                     <div className="text-center">
-                        <div className="text-danger p-3">
-                            Tjenesten er ikke tilgjengelig
-                        </div>
-                        <button
-                            className="btn btn-link btn-icon text-dark"
-                            onClick={reconnect}
-                        >
+                        <div className="text-danger p-3">Tjenesten er ikke tilgjengelig</div>
+                        <button className="btn btn-link btn-icon text-dark" onClick={reconnect}>
                             <span className="p-s-2">Prøv på nytt</span>
                         </button>
                     </div>
@@ -43,10 +39,7 @@ export function Protected() {
 
             {account.isConnected() && <Outlet />}
             {account.getStatus() === accountStatuses.LoggedOut && (
-                <div
-                    className="h-100 middle text-center"
-                    style={{ maxHeight: 601 }}
-                >
+                <div className="h-100 middle text-center" style={{ maxHeight: 601 }}>
                     <div>
                         <Link to="/" className="logo">
                             <img src={logo} alt="logo" width={150} />

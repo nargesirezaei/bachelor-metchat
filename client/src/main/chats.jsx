@@ -50,11 +50,7 @@ export const Chats = () => {
         setMessages((prevMessages) => [...prevMessages, message]);
     };
 
-    const webSocket = WebSocketClient(
-        apiConfig.chatUrl,
-        receiveMessage,
-        onConnected
-    );
+    const webSocket = WebSocketClient(apiConfig.chatUrl, receiveMessage, onConnected);
 
     const sendMessage = () => {
         if (!model.message) return;
@@ -73,10 +69,7 @@ export const Chats = () => {
             .then(({ data }) => {
                 setModel({ ...model, message: "" });
 
-                setMessages((prevMessages) => [
-                    ...prevMessages,
-                    JSON.stringify(msg),
-                ]);
+                setMessages((prevMessages) => [...prevMessages, JSON.stringify(msg)]);
             })
             .catch(() => alert("error"));
     };
@@ -90,25 +83,6 @@ export const Chats = () => {
     useEffect(() => {
         init();
     }, [contactId]);
-
-    useEffect(() => {
-        if (!model.conversation) return;
-
-        messageApi
-            .getAllMessagesByConversationId(model.conversation._id)
-            .then(({ data }) => {
-                setMessages(
-                    data.messages.map((x) => {
-                        return JSON.stringify(x);
-                    })
-                );
-
-                setModel({ ...model, fromUser: data.fromUser });
-
-                conversationsRef.current = data.conversations;
-            })
-            .catch(() => alert("error"));
-    }, [model.conversation]);
 
     const init = () => {
         messageApi
@@ -159,16 +133,14 @@ export const Chats = () => {
                         setModel={setModel}
                         conversationsRef={conversationsRef}
                         contactsRef={contactsRef}
+                        setMessages={setMessages}
                     />
                 )}
 
                 <div className="flex-grow-1">
                     {model.conversation?._id && (
                         <>
-                            <Flex
-                                align="center"
-                                className="px-4 border-bottom pb-2"
-                            >
+                            <Flex align="center" className="px-4 border-bottom pb-2">
                                 <button
                                     className="btn bnt-default "
                                     onClick={() =>
@@ -192,12 +164,7 @@ export const Chats = () => {
                                         <Contact
                                             contact={{
                                                 ...model?.currentContact,
-                                                name:
-                                                    model.currentContact
-                                                        ?.firstName +
-                                                    " " +
-                                                    model.currentContact
-                                                        ?.lastName,
+                                                name: model.currentContact?.firstName + " " + model.currentContact?.lastName,
                                             }}
                                             inContact
                                             isInMyContacts
@@ -207,20 +174,14 @@ export const Chats = () => {
                                         />
                                     </>
                                 )}
-                                <Flex
-                                    align="center"
-                                    content="center"
-                                    className="ms-3 "
-                                >
+                                <Flex align="center" content="center" className="ms-3 ">
                                     <span
                                         className={classNames("status", {
                                             connected: isConnected,
                                             disConnected: !isConnected,
                                         })}
                                     ></span>
-                                    <h5 className="m-0 me-3">
-                                        {model.conversation.title}
-                                    </h5>
+                                    <h5 className="m-0 me-3">{model.conversation.title}</h5>
                                 </Flex>
                             </Flex>
                             <Flex vertical content="space-between">
@@ -233,24 +194,23 @@ export const Chats = () => {
                                     >
                                         {messages?.map((x, index) => {
                                             const message = JSON.parse(x);
+                                            console.log("message.toId", message.toId === account.userId);
+                                            console.log("message.fromId", message.fromId === account.userId);
+                                            console.log("message.curentContact", message.fromId === model.currentContact._id);
+
+                                            console.log("account.userId", account.userId);
+                                            console.log("toId", message.toId);
+                                            console.log("fromId", message.fromId);
+                                            console.log("curentContact", model.currentContact._id);
                                             return (
                                                 <div
                                                     key={index}
-                                                    className={classNames(
-                                                        "message ",
-                                                        {
-                                                            "sent rounded-start rounded-bottom":
-                                                                message.fromId ===
-                                                                account.userId,
-                                                            "received rounded-end rounded-bottom":
-                                                                message.fromId !==
-                                                                account.userId,
-                                                        }
-                                                    )}
+                                                    className={classNames("message ", {
+                                                        "sent rounded-start rounded-bottom": message.fromId === account.userId,
+                                                        "received rounded-end rounded-bottom": message.fromId !== account.userId,
+                                                    })}
                                                 >
-                                                    <span>
-                                                        {message.message}
-                                                    </span>
+                                                    <span>{message.message}</span>
                                                 </div>
                                             );
                                         })}
@@ -289,27 +249,17 @@ export const Chats = () => {
                             </Flex>
                         </>
                     )}
-                    {!model.conversation?._id && (
-                        <div className="text-center p-5">
-                            Select a conversation to start chat
-                        </div>
-                    )}
+                    {!model.conversation?._id && <div className="text-center p-5">Select a conversation to start chat</div>}
                 </div>
 
                 {model.currentContact && (
-                    <div
-                        className="border-start p-3 text-center d-none d-lg-block"
-                        style={{ minWidth: 350 }}
-                    >
+                    <div className="border-start p-3 text-center d-none d-lg-block" style={{ minWidth: 350 }}>
                         <Contact
                             width={200}
                             height={200}
                             contact={{
                                 ...model.currentContact,
-                                name:
-                                    model.currentContact.firstName +
-                                    " " +
-                                    model.currentContact.lastName,
+                                name: model.currentContact.firstName + " " + model.currentContact.lastName,
                             }}
                             inContact
                             justifyContent="center"
@@ -319,17 +269,10 @@ export const Chats = () => {
                         <Flex content="space-between" className="w-100 px-4">
                             <Flex align="center" vertical className="mt-4">
                                 <ProfileSVG />
-                                <Link to={`/profil?contactId=${contactId}`}>
-                                    Profil
-                                </Link>
+                                <Link to={`/profil?contactId=${contactId}`}>Profil</Link>
                             </Flex>
                             {model.conversation && (
-                                <Flex
-                                    align="center"
-                                    vertical
-                                    className="mt-4"
-                                    content="space-between"
-                                >
+                                <Flex align="center" vertical className="mt-4" content="space-between">
                                     <DeleteSVG />
                                     <span
                                         className="cur-p"
@@ -340,14 +283,7 @@ export const Chats = () => {
                                                     setModel({
                                                         ...model,
                                                         conversation: null,
-                                                        conversations:
-                                                            model.conversations.filter(
-                                                                (x) =>
-                                                                    x._id !==
-                                                                    model
-                                                                        .conversation
-                                                                        ._id
-                                                            ),
+                                                        conversations: model.conversations.filter((x) => x._id !== model.conversation._id),
                                                     });
                                                 })
                                                 .catch(() => alert("error"))
@@ -364,9 +300,7 @@ export const Chats = () => {
             {model.currentContact && (
                 <SelectConversations
                     show={model.conversationsModal}
-                    onHide={() =>
-                        setModel({ ...model, conversationsModal: false })
-                    }
+                    onHide={() => setModel({ ...model, conversationsModal: false })}
                     model={model}
                     setModel={setModel}
                     contactId={contactId ?? model.currentContact._id}
@@ -385,9 +319,7 @@ const SelectConversations = ({ show, onHide, model, contactId, setModel }) => {
             .then(({ data }) => {
                 setModel({
                     ...model,
-                    conversations: data.isExist
-                        ? model.conversations
-                        : data.conversations,
+                    conversations: data.isExist ? model.conversations : data.conversations,
                     conversation: data.conversation,
                     conversationsModal: false,
                 });
@@ -398,20 +330,11 @@ const SelectConversations = ({ show, onHide, model, contactId, setModel }) => {
         <Modal show={show} onHide={onHide} size="lg">
             <ModalHeader closeButton>
                 <ModalTitle style={{ fontSize: isMobile ? 20 : 40 }}>
-                    Conversations with [
-                    {model.currentContact.firstName +
-                        " " +
-                        model.currentContact.lastName}
-                    ]
+                    Conversations with [{model.currentContact.firstName + " " + model.currentContact.lastName}]
                 </ModalTitle>
             </ModalHeader>
             <Modal.Body className="p-0 mb-4">
-                <Flex
-                    className="mx-3 my-2"
-                    align="center"
-                    vertical={isMobile}
-                    content="center"
-                >
+                <Flex className="mx-3 my-2" align="center" vertical={isMobile} content="center">
                     <input
                         placeholder="enter conversation title here..."
                         className="form-control"
@@ -439,32 +362,17 @@ const SelectConversations = ({ show, onHide, model, contactId, setModel }) => {
     );
 };
 
-const ChatConversations = ({
-    model,
-    setModel,
-    conversationsRef,
-    contactsRef,
-}) => {
+const ChatConversations = ({ model, setModel, conversationsRef, contactsRef, setMessages }) => {
     return (
-        <div
-            className={classNames("border-end pt-0")}
-            style={{ minWidth: 350 }}
-        >
+        <div className={classNames("border-end pt-0")} style={{ minWidth: 350 }}>
             <div className="px-3 ">
-                <Flex
-                    content="space-between"
-                    align="center"
-                    className="border-bottom "
-                >
+                <Flex content="space-between" align="center" className="border-bottom ">
                     {model.currentContact && (
                         <>
                             <Contact
                                 contact={{
                                     ...model?.currentContact,
-                                    name:
-                                        model.currentContact?.firstName +
-                                        " " +
-                                        model.currentContact?.lastName,
+                                    name: model.currentContact?.firstName + " " + model.currentContact?.lastName,
                                 }}
                                 inContact
                                 isInMyContacts
@@ -502,22 +410,15 @@ const ChatConversations = ({
                             onChange={(e) =>
                                 setModel({
                                     ...model,
-                                    conversations:
-                                        conversationsRef.current.filter((x) =>
-                                            x.title
-                                                .toLowerCase()
-                                                .includes(
-                                                    e.target.value.toLowerCase()
-                                                )
-                                        ),
+                                    conversations: conversationsRef.current.filter((x) =>
+                                        x.title.toLowerCase().includes(e.target.value.toLowerCase())
+                                    ),
                                 })
                             }
                         />
 
                         <Flex content="space-between" className="mb-2 mt-2">
-                            <small className="text-muted">
-                                conversations ({model.conversations?.length})
-                            </small>
+                            <small className="text-muted">conversations ({model.conversations?.length})</small>
                             <button
                                 className="btn bnt-default "
                                 style={{ fontSize: 15 }}
@@ -541,10 +442,23 @@ const ChatConversations = ({
                             conversations={model.conversations}
                             currentId={model.conversation?._id}
                             onSelectConversation={(conversation) =>
-                                setModel({
-                                    ...model,
-                                    conversation: conversation,
-                                })
+                                messageApi
+                                    .getAllMessagesByConversationId(conversation._id)
+                                    .then(({ data }) => {
+                                        setModel({
+                                            ...model,
+                                            fromUser: data.fromUser,
+                                            conversation,
+                                        });
+
+                                        setMessages(
+                                            data.messages.map((x) => {
+                                                return JSON.stringify(x);
+                                            })
+                                        );
+                                        conversationsRef.current = data.conversations;
+                                    })
+                                    .catch(() => alert("error"))
                             }
                         />
                     </>
@@ -559,11 +473,7 @@ const ChatConversations = ({
                                 setModel({
                                     ...model,
                                     contacts: contactsRef.current.filter((x) =>
-                                        x.firstName
-                                            .toLowerCase()
-                                            .includes(
-                                                e.target.value.toLowerCase()
-                                            )
+                                        x.firstName.toLowerCase().includes(e.target.value.toLowerCase())
                                     ),
                                 })
                             }
@@ -587,11 +497,9 @@ const ChatConversations = ({
                                                     ...model,
                                                     viewConversations: true,
                                                     currentContact: contact,
-                                                    conversations:
-                                                        data.conversations,
+                                                    conversations: data.conversations,
                                                 });
-                                                conversationsRef.current =
-                                                    data.conversations;
+                                                conversationsRef.current = data.conversations;
                                             })
                                             .catch(() => alert("error"))
                                     }

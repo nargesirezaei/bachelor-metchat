@@ -22,9 +22,7 @@ export const Interests = () => {
 
         profileApi
             .profile()
-            .then((result) =>
-                setModel({ ...model, ...result.data.user, init: true })
-            )
+            .then((result) => setModel({ ...model, ...result.data.user, init: true }))
             .catch(() => alert("error in init profile"));
     }, []);
 
@@ -48,10 +46,7 @@ export const Interests = () => {
             .then((result) => {
                 setModel({
                     ...model,
-                    userInterests: [
-                        ...model.userInterests,
-                        result.data.userInterest,
-                    ],
+                    userInterests: [...model.userInterests, result.data.userInterest],
                 });
             });
 
@@ -61,9 +56,7 @@ export const Interests = () => {
                 interestId: x._id,
             })
             .then(() => {
-                var userInterests = model.userInterests.filter(
-                    (c) => c.interestId !== x._id
-                );
+                var userInterests = model.userInterests.filter((c) => c.interestId !== x._id);
                 setModel({
                     ...model,
                     userInterests,
@@ -72,9 +65,7 @@ export const Interests = () => {
     };
 
     const onSave = () => {
-        profileApi
-            .changeBio({ bio: model.bio })
-            .then((x) => navigate("/kontakter"));
+        profileApi.changeBio({ bio: model.bio }).then((x) => navigate("/kontakter"));
     };
 
     const box = {
@@ -102,9 +93,7 @@ export const Interests = () => {
             </nav>
 
             <section id="first">
-                <h1 className="text-center">
-                    Snart ferdig. Fortell oss litt om deg selv
-                </h1>
+                <h1 className="text-center">Snart ferdig. Fortell oss litt om deg selv</h1>
 
                 <Contact
                     width={250}
@@ -130,18 +119,14 @@ export const Interests = () => {
                     <textarea
                         style={{ width: isMobile ? "90%" : 500 }}
                         value={model.bio}
-                        onChange={(e) =>
-                            setModel({ ...model, bio: e.target.value })
-                        }
+                        onChange={(e) => setModel({ ...model, bio: e.target.value })}
                     ></textarea>
 
                     <h3>Intresser</h3>
                     {model.interests.length > 0 && (
                         <Flex className="flex-wrap" content="center">
                             {model.interests.slice(0, model.count).map((x) => {
-                                var userInt = model.userInterests.find(
-                                    (i) => i.interestId === x._id
-                                );
+                                var userInt = model.userInterests.find((i) => i.interestId === x._id);
 
                                 return (
                                     <Interesser
@@ -160,10 +145,7 @@ export const Interests = () => {
                     )}
 
                     <Flex className="my-3 w-100 ps-5" align="center">
-                        <span
-                            className="p-1 bg-light"
-                            style={{ cursor: "pointer" }}
-                        >
+                        <span className="p-1 bg-light" style={{ cursor: "pointer" }}>
                             <img
                                 src={pluss}
                                 width={50}

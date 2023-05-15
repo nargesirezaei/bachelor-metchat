@@ -77,10 +77,7 @@ export const Profile = () => {
             .then((result) => {
                 setModel({
                     ...model,
-                    userInterests: [
-                        ...model.userInterests,
-                        result.data.userInterest,
-                    ],
+                    userInterests: [...model.userInterests, result.data.userInterest],
                 });
             });
 
@@ -90,9 +87,7 @@ export const Profile = () => {
                 interestId: x._id,
             })
             .then(() => {
-                var userInterests = model.userInterests.filter(
-                    (c) => c.interestId !== x._id
-                );
+                var userInterests = model.userInterests.filter((c) => c.interestId !== x._id);
                 setModel({
                     ...model,
                     userInterests,
@@ -146,11 +141,7 @@ export const Profile = () => {
                                 top: isMobile ? 550 : 480,
                             }}
                         >
-                            {model.readOnly ? (
-                                <span>Rediger</span>
-                            ) : (
-                                <span>save</span>
-                            )}
+                            {model.readOnly ? <span>Rediger</span> : <span>save</span>}
                         </button>
                     )}
                 </Flex>
@@ -167,24 +158,15 @@ export const Profile = () => {
                         readOnly={model.readOnly}
                         className={classNames({ "bg-light": model.readOnly })}
                         value={model.bio}
-                        onChange={(e) =>
-                            setModel({ ...model, bio: e.target.value })
-                        }
+                        onChange={(e) => setModel({ ...model, bio: e.target.value })}
                     ></textarea>
 
                     {model.interests?.length > 0 && (
                         <>
-                            <h6 className="mt-5 border-bottom pb-2">
-                                Interesser
-                            </h6>
-                            <Flex
-                                className="flex-wrap"
-                                style={{ maxWidth: 1000 }}
-                            >
+                            <h6 className="mt-5 border-bottom pb-2">Interesser</h6>
+                            <Flex className="flex-wrap" style={{ maxWidth: 1000 }}>
                                 {model.interests.map((x) => {
-                                    var userInt = model.userInterests.find(
-                                        (i) => i.interestId === x._id
-                                    );
+                                    var userInt = model.userInterests.find((i) => i.interestId === x._id);
                                     if (!model.allowEdit && !userInt) return "";
                                     return (
                                         <Interesser
@@ -208,29 +190,18 @@ export const Profile = () => {
                     {model.allowEdit && (
                         <>
                             {" "}
-                            <h6 className="mt-5 border-bottom pb-2">
-                                Change password
-                            </h6>
+                            <h6 className="mt-5 border-bottom pb-2">Change password</h6>
                             <Formik
                                 initialValues={{
                                     password: "",
                                     confirmPassword: "",
                                 }}
                                 validationSchema={yup.object({
-                                    password: yup
-                                        .string()
-                                        .required("Required")
-                                        .min(
-                                            6,
-                                            "password-minimum-length-is-6-characters"
-                                        ),
+                                    password: yup.string().required("Required").min(6, "password-minimum-length-is-6-characters"),
                                     confirmPassword: yup
                                         .string()
                                         .required("Required")
-                                        .oneOf(
-                                            [yup.ref("password"), null],
-                                            "passwords-must-match"
-                                        ),
+                                        .oneOf([yup.ref("password"), null], "passwords-must-match"),
                                 })}
                                 innerRef={passwordFormRef}
                             >
@@ -245,17 +216,12 @@ export const Profile = () => {
                                                         id="password_reg"
                                                         style={sm}
                                                         {...field}
-                                                        readOnly={
-                                                            model.readOnly
-                                                        }
+                                                        readOnly={model.readOnly}
                                                     />
                                                 )}
                                             </Field>
-                                            {errors.password &&
-                                            touched.password ? (
-                                                <div className="text-warning">
-                                                    {errors.password}
-                                                </div>
+                                            {errors.password && touched.password ? (
+                                                <div className="text-warning">{errors.password}</div>
                                             ) : null}
                                         </div>
                                         <div className="form-row mt-0">
@@ -267,17 +233,12 @@ export const Profile = () => {
                                                         id="password_reg"
                                                         style={sm}
                                                         {...field}
-                                                        readOnly={
-                                                            model.readOnly
-                                                        }
+                                                        readOnly={model.readOnly}
                                                     />
                                                 )}
                                             </Field>
-                                            {errors.confirmPassword &&
-                                            touched.confirmPassword ? (
-                                                <div className="text-warning">
-                                                    {errors.confirmPassword}
-                                                </div>
+                                            {errors.confirmPassword && touched.confirmPassword ? (
+                                                <div className="text-warning">{errors.confirmPassword}</div>
                                             ) : null}
                                         </div>
                                     </Form>

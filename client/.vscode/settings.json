@@ -1,0 +1,31 @@
+{
+    "git.ignoreMissingGitWarning": true,
+    "settingsSync.ignoredSettings": [],
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.formatOnSave": true,
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "terminal.integrated.tabs.enabled": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.detectIndentation": false,
+    "prettier.tabWidth": 4,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "none",
+    "workbench.sideBar.location": "right",
+    "prettier.printWidth": 140,
+    "workbench.colorTheme": "Monokai",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "workbench.startupEditor": "none",
+    "workbench.tree.indent": 16,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "window.zoomLevel": 1.5,
+    "breadcrumbs.enabled": false,
+    "editor.codeActionsOnSave": {},
+    "git.ignoreLimitWarning": true
+}
