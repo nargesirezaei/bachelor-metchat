@@ -15,6 +15,7 @@ module.exports = {
                         userName: user.email,
                         displayName: user.firstName + " " + user.lastName,
                         userId: user._id,
+                        isAdmin: user.isAdmin,
                     });
                 })
                 .catch((err) => {

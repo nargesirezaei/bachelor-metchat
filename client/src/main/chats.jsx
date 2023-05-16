@@ -304,13 +304,14 @@ export const Chats = () => {
                     model={model}
                     setModel={setModel}
                     contactId={contactId ?? model.currentContact._id}
+                    setMessages={setMessages}
                 />
             )}
         </>
     );
 };
 
-const SelectConversations = ({ show, onHide, model, contactId, setModel }) => {
+const SelectConversations = ({ show, onHide, model, contactId, setModel, setMessages }) => {
     const screen = useScreenSize();
     const isMobile = screen.isMobile;
     const addConversation = () => {
@@ -323,6 +324,7 @@ const SelectConversations = ({ show, onHide, model, contactId, setModel }) => {
                     conversation: data.conversation,
                     conversationsModal: false,
                 });
+                setMessages([]);
             })
             .catch(() => alert("error"));
     };
