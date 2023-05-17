@@ -29,13 +29,12 @@ export const Contact = ({
     allowDelete,
     textInBottom = false,
     onSelectContact,
-    mb = "mb-4",
 }) => {
     const [model, setModel] = useState({ selectAvatar: false });
 
     return (
         <div
-            className={classNames("cur-p", className, mb)}
+            className={classNames("mb-4 cur-p", className)}
             onClick={() => onSelectContact && onSelectContact(contact)}
         >
             <Flex

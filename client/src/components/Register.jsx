@@ -62,7 +62,9 @@ export const Register = ({ registerFormRef, setModel, model }) => {
             <div className="form-row">
               <label>Fornavn</label>
               <Field name="firstName">
-                {({ field }) => <input id="first_name" {...field} />}
+                {({ field }) => (
+                  <input type="text" id="first_name" {...field} />
+                )}
               </Field>
               {errors.firstName && touched.firstName ? (
                 <div className="text-warning">{errors.firstName}</div>
@@ -71,7 +73,7 @@ export const Register = ({ registerFormRef, setModel, model }) => {
             <div className="form-row">
               <label>Etternavn</label>
               <Field name="lastName">
-                {({ field }) => <input id="last_name" {...field} />}
+                {({ field }) => <input type="text" id="last_name" {...field} />}
               </Field>
               {errors.lastName && touched.lastName ? (
                 <div className="text-warning">{errors.lastName}</div>
@@ -80,7 +82,7 @@ export const Register = ({ registerFormRef, setModel, model }) => {
             <div className="form-row">
               <label>E-post</label>
               <Field name="email">
-                {({ field }) => <input id="email_reg" {...field} />}
+                {({ field }) => <input type="text" id="email_reg" {...field} />}
               </Field>
               {errors.email && touched.email ? (
                 <div className="text-warning">{errors.email}</div>

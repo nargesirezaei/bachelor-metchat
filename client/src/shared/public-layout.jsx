@@ -1,18 +1,15 @@
 import { Outlet } from "react-router-dom";
 import { useAccount } from "../app/account-context";
+import Footer from "../components/footer";
 
 export function PublicLayout() {
-    const account = useAccount();
-    return (
-        <>
-            <main className="contents  flex-grow-1">
-                <Outlet />
-            </main>
-            {account.isConnected() && (
-                <footer>
-                    <p>DATA3900-1 23V Bacheloroppgave</p>
-                </footer>
-            )}
-        </>
-    );
+  const account = useAccount();
+  return (
+    <>
+      <main className="contents  flex-grow-1">
+        <Outlet />
+        <Footer />
+      </main>
+    </>
+  );
 }

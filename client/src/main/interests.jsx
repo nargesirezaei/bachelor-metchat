@@ -9,20 +9,20 @@ import { Loading } from "../components/loading";
 import { Logo } from "../components/logo";
 import { Interesser } from "../components/interesser";
 import { userInterestApi } from "../api/user-interest-api";
-import { useScreenSize } from "../app/theme-context";
 
 export const Interests = () => {
     const account = useAccount();
     const [model, setModel] = useState({ init: false, count: 10 });
     const navigate = useNavigate();
-    const screen = useScreenSize();
-    const isMobile = screen.isMobile;
+
     useEffect(() => {
         if (model.init) return;
 
         profileApi
             .profile()
-            .then((result) => setModel({ ...model, ...result.data.user, init: true }))
+            .then((result) =>
+                setModel({ ...model, ...result.data.user, init: true })
+            )
             .catch(() => alert("error in init profile"));
     }, []);
 
@@ -46,7 +46,10 @@ export const Interests = () => {
             .then((result) => {
                 setModel({
                     ...model,
-                    userInterests: [...model.userInterests, result.data.userInterest],
+                    userInterests: [
+                        ...model.userInterests,
+                        result.data.userInterest,
+                    ],
                 });
             });
 
@@ -56,7 +59,9 @@ export const Interests = () => {
                 interestId: x._id,
             })
             .then(() => {
-                var userInterests = model.userInterests.filter((c) => c.interestId !== x._id);
+                var userInterests = model.userInterests.filter(
+                    (c) => c.interestId !== x._id
+                );
                 setModel({
                     ...model,
                     userInterests,
@@ -65,12 +70,9 @@ export const Interests = () => {
     };
 
     const onSave = () => {
-        profileApi.changeBio({ bio: model.bio }).then((x) => navigate("/kontakter"));
-    };
-
-    const box = {
-        width: "90%",
-        padding: 15,
+        profileApi
+            .changeBio({ bio: model.bio })
+            .then((x) => navigate("/kontakter"));
     };
 
     if (!model.init) return <Loading />;
@@ -82,7 +84,7 @@ export const Interests = () => {
                     <Flex content="space-between" align="center">
                         <Logo />
                         <Flex className="m-0" gap={3}>
-                            <li>
+                            <li className="push">
                                 <Link to="/logout" className="text-light">
                                     Log ut
                                 </Link>
@@ -93,7 +95,9 @@ export const Interests = () => {
             </nav>
 
             <section id="first">
-                <h1 className="text-center">Snart ferdig. Fortell oss litt om deg selv</h1>
+                <h1 className="text-center">
+                    Snart ferdig. Fortell oss litt om deg selv
+                </h1>
 
                 <Contact
                     width={250}
@@ -114,19 +118,23 @@ export const Interests = () => {
                     displayText={false}
                 />
 
-                <div className="box" style={isMobile ? box : {}}>
-                    <h3>Om Meg</h3>
+                <div className="box">
+                    <label className="text">Om Meg</label>
                     <textarea
-                        style={{ width: isMobile ? "90%" : 500 }}
+                        style={{ width: 500 }}
                         value={model.bio}
-                        onChange={(e) => setModel({ ...model, bio: e.target.value })}
+                        onChange={(e) =>
+                            setModel({ ...model, bio: e.target.value })
+                        }
                     ></textarea>
 
-                    <h3>Intresser</h3>
-                    {model.interests.length > 0 && (
+                    <h2>Intresser</h2>
+                    {model.interests.length && (
                         <Flex className="flex-wrap" content="center">
                             {model.interests.slice(0, model.count).map((x) => {
-                                var userInt = model.userInterests.find((i) => i.interestId === x._id);
+                                var userInt = model.userInterests.find(
+                                    (i) => i.interestId === x._id
+                                );
 
                                 return (
                                     <Interesser
@@ -145,7 +153,10 @@ export const Interests = () => {
                     )}
 
                     <Flex className="my-3 w-100 ps-5" align="center">
-                        <span className="p-1 bg-light" style={{ cursor: "pointer" }}>
+                        <span
+                            className="p-1 bg-light"
+                            style={{ cursor: "pointer" }}
+                        >
                             <img
                                 src={pluss}
                                 width={50}
