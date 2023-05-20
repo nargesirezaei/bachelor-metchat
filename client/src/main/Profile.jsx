@@ -33,7 +33,7 @@ export const Profile = () => {
           init: true,
         })
       )
-      .catch(() => alert("error in init profile"));
+      .catch(() => alert("Feil i initialisering av profilen!"));
   }, [contactId]);
 
   const handelEdit = () => {
@@ -53,7 +53,7 @@ export const Profile = () => {
         .then((x) => {
           alert("Profilen ble endret!");
         })
-        .catch(() => alert("error in update profile"));
+        .catch(() => alert("Feil i oppdatering av profil!"));
     }
   };
 
@@ -66,7 +66,7 @@ export const Profile = () => {
           avatar,
         });
       })
-      .catch(() => alert("error in init profile"));
+      .catch(() => alert("Feil i initialisering av profil!"));
   };
 
   const addIntrest = (x) =>
@@ -143,7 +143,7 @@ export const Profile = () => {
                 top: isMobile ? 550 : 480,
               }}
             >
-              {model.readOnly ? <span>Rediger</span> : <span>save</span>}
+              {model.readOnly ? <span>Rediger</span> : <span>Lagre</span>}
             </button>
           )}
         </Flex>
@@ -194,7 +194,7 @@ export const Profile = () => {
           {model.allowEdit && (
             <>
               {" "}
-              <h6 className="mt-5 border-bottom pb-2">Change password</h6>
+              <h6 className="mt-5 border-bottom pb-2">Endre passord</h6>
               <Formik
                 initialValues={{
                   password: "",
@@ -203,11 +203,11 @@ export const Profile = () => {
                 validationSchema={yup.object({
                   password: yup
                     .string()
-                    .required("Required")
+                    .required("Må fylles ut")
                     .min(6, "password-minimum-length-is-6-characters"),
                   confirmPassword: yup
                     .string()
-                    .required("Required")
+                    .required("Må fylles ut")
                     .oneOf([yup.ref("password"), null], "passwords-must-match"),
                 })}
                 innerRef={passwordFormRef}
@@ -232,7 +232,7 @@ export const Profile = () => {
                       ) : null}
                     </div>
                     <div className="form-row mt-0">
-                      <label>Gjente Passord</label>
+                      <label>Gjenta Passord</label>
                       <Field name="confirmPassword">
                         {({ field }) => (
                           <input
