@@ -29,3 +29,5 @@ const conversationSchema = new mongoose.Schema(
 const Conversations = mongoose.model("Conversations", conversationSchema);
 
 module.exports = Conversations;
+
+// module.exports = mongoose.models.Conversations || mongoose.model('Conversations', conversationSchema);
