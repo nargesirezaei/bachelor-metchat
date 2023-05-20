@@ -269,7 +269,7 @@ export const Chats = () => {
           )}
           {!model.conversation?._id && (
             <div className="text-center p-5">
-              Select a conversation to start chat
+              Velg en samtale for å starte chat
             </div>
           )}
         </div>
@@ -376,7 +376,7 @@ const SelectConversations = ({
     <Modal show={show} onHide={onHide} size="lg">
       <ModalHeader closeButton>
         <ModalTitle style={{ fontSize: isMobile ? 20 : 40 }}>
-          Conversations with [
+          Samtaler med [
           {model.currentContact.firstName + " " + model.currentContact.lastName}
           ]
         </ModalTitle>
@@ -389,7 +389,7 @@ const SelectConversations = ({
           content="center"
         >
           <input
-            placeholder="enter conversation title here..."
+            placeholder="Skriv en tittel..."
             className="form-control"
             style={{ maxWidth: 400 }}
             value={model.conversationTitle}
@@ -407,7 +407,7 @@ const SelectConversations = ({
             })}
             onClick={addConversation}
           >
-            Create New Conversation
+            Opprett samtale
           </button>
         </Flex>
       </Modal.Body>
@@ -457,6 +457,7 @@ const ChatConversations = ({
                     width: 24,
                     height: 24,
                   }}
+                  alt="tilbake"
                 />
               </button>
             </>
@@ -468,7 +469,7 @@ const ChatConversations = ({
             <input
               type="search"
               className="form-control rounded mb-4"
-              placeholder="Search"
+              placeholder="Søk"
               onChange={(e) =>
                 setModel({
                   ...model,
@@ -481,7 +482,7 @@ const ChatConversations = ({
 
             <Flex content="space-between" className="mb-2 mt-2">
               <small className="text-muted">
-                conversations ({model.conversations?.length})
+                Samtaler ({model.conversations?.length})
               </small>
               <button
                 className="btn bnt-default "
@@ -499,6 +500,7 @@ const ChatConversations = ({
                     width: 24,
                     height: 24,
                   }}
+                  alt="start samtale"
                 />
               </button>
             </Flex>
@@ -532,7 +534,7 @@ const ChatConversations = ({
             <input
               type="search"
               className="form-control rounded mb-4"
-              placeholder="Search"
+              placeholder="Søk"
               onChange={(e) =>
                 setModel({
                   ...model,
