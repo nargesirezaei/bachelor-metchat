@@ -13,11 +13,13 @@ import { Contact } from "../components/contact";
 import { Interesser } from "../components/interesser";
 import { Loading } from "../components/loading";
 import { useQuery } from "../components/use-query";
+import { useScreenSize } from "../app/theme-context";
 
 export const Profile = () => {
   const q = useQuery();
   const contactId = q.get("contactId") ?? null;
-
+  const screen = useScreenSize();
+  const isMobile = screen.isMobile;
   const [model, setModel] = useState({ readOnly: true, init: false });
   const passwordFormRef = useRef();
 
@@ -94,6 +96,7 @@ export const Profile = () => {
         });
       });
   };
+  const sm = { width: isMobile ? "90%" : 500 };
 
   if (!model.init) return <Loading />;
 
@@ -132,23 +135,35 @@ export const Profile = () => {
             />
           </div>
           {model.allowEdit && (
-            <button className="profile-edit-button btn" onClick={handelEdit}>
+            <button
+              className="profile-edit-button btn"
+              onClick={handelEdit}
+              style={{
+                right: isMobile ? 10 : 100,
+                top: isMobile ? 550 : 480,
+              }}
+            >
               {model.readOnly ? <span>Rediger</span> : <span>save</span>}
             </button>
           )}
         </Flex>
 
-        <div className="ms-5 mt-5 mb-5">
+        <div
+          className={classNames("mt-5 mb-5", {
+            "ms-0": isMobile,
+            "ms-5": !isMobile,
+          })}
+        >
           <h6 className="border-bottom pb-2">Bio</h6>
           <textarea
-            style={{ width: 500 }}
+            style={sm}
             readOnly={model.readOnly}
             className={classNames({ "bg-light": model.readOnly })}
             value={model.bio}
             onChange={(e) => setModel({ ...model, bio: e.target.value })}
           ></textarea>
 
-          {model.interests?.length && (
+          {model.interests?.length > 0 && (
             <>
               <h6 className="mt-5 border-bottom pb-2">Interesser</h6>
               <Flex className="flex-wrap" style={{ maxWidth: 1000 }}>
@@ -206,6 +221,7 @@ export const Profile = () => {
                           <input
                             type="password"
                             id="password_reg"
+                            style={sm}
                             {...field}
                             readOnly={model.readOnly}
                           />
@@ -222,6 +238,7 @@ export const Profile = () => {
                           <input
                             type="password"
                             id="password_reg"
+                            style={sm}
                             {...field}
                             readOnly={model.readOnly}
                           />
