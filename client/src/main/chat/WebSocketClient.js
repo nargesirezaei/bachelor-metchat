@@ -11,9 +11,7 @@ export const WebSocketClient = (url, onMessageCallback, onConnected) => {
     };
 
     const sendMessage = (message) => {
-        if (ws.readyState === WebSocket.OPEN) {
-            ws.send(JSON.stringify(message));
-        }
+        ws.send(JSON.stringify(message));
     };
 
     return {
