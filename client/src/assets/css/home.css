@@ -346,8 +346,18 @@ footer a:hover {
   color: #98a4ac;
   text-decoration: none;
 }
+@media only screen and (max-width: 810px) {
+  footer {
+    font-size: 25px;
+  }
+}
 @media only screen and (max-width: 450px) {
   footer {
-    font-size: 16px;
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width: 384px) {
+  footer {
+    font-size: 18px;
   }
 }
