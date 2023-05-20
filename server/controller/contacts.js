@@ -18,8 +18,9 @@ app.get("/all-contacts", verifyaccess, contacts.allContacts);
 
 app.get("/update", verifyaccess, contacts.UpdateMyContact);
 
-app.get("/getUser/:userId", /*verifyaccess,*/ contacts.getUser);
+// Feilmedling: "Route.get() requires a callback function but got a [object Undefined]""
+//app.get("/getUser/:userId", /*verifyaccess,*/ contacts.getUser);
 
-app.get("/getAllUsers", /*verifyaccess,*/ contacts.getAllUsers);
+//app.get("/getAllUsers", /*verifyaccess,*/ contacts.getAllUsers);
 
 module.exports = app;
