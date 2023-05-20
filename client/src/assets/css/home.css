@@ -4,366 +4,360 @@ FAFAFA (hvit)
 DEE1E4 (grå)
     */
 .homePage {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-/* img {
-    width: 650px;
-} */
-.nav-center {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    font-family: "Bai Jamjuree", sans-serif;
-    font-size: 36px;
-    font-weight: 400;
-    line-height: 45px;
-    height: 170px;
-    background-color: #112d40;
-    z-index: 1;
+.png,
+.png_5 {
+  width: 650px;
 }
-.nav-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-a.push {
-    text-decoration: none;
-    color: #fafafa;
-}
-.push {
-    text-decoration: none;
-    color: #fafafa;
-    margin-top: 50px;
-    margin-right: 50px;
-}
-.nav-toggle {
-    display: none;
-    background-color: transparent;
-    border: none;
-    color: #fafafa;
-    width: 75px;
-    height: 75px;
-    margin-right: 50px;
-    margin-top: 50px;
-}
-
-.nav-header img {
-    width: 150px;
-    height: 150px;
-    margin-left: 50px;
-}
-
-/* 190px */
-.links-container {
-    display: none;
-    width: 100%;
-    margin-top: 10px;
-    background-color: #112d40;
-}
-.show-container {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-}
-
-.links-container a {
-    color: #fafafa;
-    text-decoration: none;
-    text-transform: capitalize;
-    font-size: 25px;
-}
-.links-container a:hover {
-    color: #ffdc00;
-    padding-left: 1.5rem;
-}
-.nav-toggle :hover {
-    color: #ffdc00;
-}
-/* make Nave responsive at width 450 px */
-@media only screen and (max-width: 700px) {
-    .nav-toggle {
-        display: flex;
-    }
-    .push {
-        display: none;
-    }
-}
-
 .first {
-    display: flex;
-    flex-direction: row;
-    margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 100px;
 }
 .firstImages {
-    display: flex;
-    flex-direction: column;
-    margin-left: 15vw;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15vw;
 }
 .img_1 {
-    margin-left: 5vw;
+  margin-left: 5vw;
 }
 .img_2 {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 /* Form*/
 #LogReg {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    height: 100%;
-    margin-left: 0px;
-    z-index: 0;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 100%;
+  margin-left: 0px;
+  z-index: 0;
 }
 #btn-tabs {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 .content {
-    display: none;
+  display: none;
 }
 .active-content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .active-tabs {
-    border-radius: 0 10px 0 0;
+  border-radius: 0 10px 0 0;
 }
 
 #reg-content {
-    width: 100%;
-    height: 850px;
-    background-color: #112d40;
-    color: #fafafa;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 300;
-    font-size: 22px;
-    line-height: 48px;
-    border-radius: 0px 0px 10px 10px;
+  width: 100%;
+  height: 850px;
+  background-color: #112d40;
+  color: #fafafa;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 48px;
+  border-radius: 0px 0px 10px 10px;
 }
 #log-content {
-    width: 100%;
-    height: 614px;
-    background-color: #98a4ac;
-    color: #fafafa;
-    border-radius: 0px 0px 10px 10px;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 300;
-    font-size: 22px;
-    line-height: 48px;
+  width: 100%;
+  height: 614px;
+  background-color: #98a4ac;
+  color: #fafafa;
+  border-radius: 0px 0px 10px 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 48px;
 }
 
 #btn-reg {
-    background-color: #112d40;
-    width: 30vw;
-    height: 75px;
-    border: none;
-    font-family: "Bai Jamjuree";
-    font-style: normal;
-    font-weight: 300;
-    font-size: 30px;
-    line-height: 50px;
-    color: #fafafa;
-    border-radius: 0 10px 0 0;
+  background-color: #112d40;
+  width: 30vw;
+  height: 75px;
+  border: none;
+  font-family: "Bai Jamjuree";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 50px;
+  color: #fafafa;
+  border-radius: 0 10px 0 0;
 }
 #btn-log {
-    width: 30vw;
-    height: 75px;
-    border-radius: 10px 0 0 0;
-    border: none;
-    background-color: #98a4ac;
-    font-family: "Bai Jamjuree";
-    font-style: normal;
-    font-weight: 300;
-    font-size: 30px;
-    line-height: 50px;
-    color: #112d40;
+  width: 30vw;
+  height: 75px;
+  border-radius: 10px 0 0 0;
+  border: none;
+  background-color: #98a4ac;
+  font-family: "Bai Jamjuree";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 50px;
+  color: #112d40;
 }
-
-#form-reg {
-    display: flex;
-    flex-direction: column;
-    margin-left: 50px;
+#log_in {
+  background-color: #98a4ac;
+  padding: 20px 40px;
+  color: #fafafa;
+  height: 700px;
+  border-radius: 0px 0px 20px 20px;
+  /* font-family: "Inter"; */
+  font-style: normal;
+  font-weight: 300;
+  line-height: 48px;
+  max-width: 440px;
+  z-index: 1;
 }
-
-#form-log {
-    display: flex;
-    flex-direction: column;
-    margin-left: 50px;
+#reg {
+  background-color: #112d40;
+  padding: 20px 40px;
+  color: #fafafa;
+  /* font-family: "Roboto", sans-serif; */
+  font-size: 22px;
+  border-radius: 0px 0px 20px 20px;
+  max-width: 440px;
+  z-index: 1;
 }
-
+#reg .form-row input {
+  width: 350px;
+  height: 40px;
+  background: #fafafa;
+  border: none;
+  color: #112d40;
+  font-size: 22px;
+}
+#log_in label,
+#reg label {
+  /* font-family: "Roboto"; */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26px;
+}
 .form-row {
-    display: flex;
-    flex-direction: column;
-    margin-top: 25px;
-    align-items: flex-start;
+  padding: 50px 0 0 0px;
 }
-.checkBox {
-    display: flex;
-    flex-direction: row;
-    margin-top: 75px;
-}
-input.large {
-    width: 25px;
-    height: 25px;
-    margin-top: 10px;
-    margin-right: 10px;
+.form-row input[type="text"],
+input[type="password"] {
+  width: 350px;
+  height: 40px;
+  background: rgba(17, 45, 64, 0.24);
+  border: none;
+  border-bottom: #112d40 1px solid;
+  color: #112d40;
+  font-size: 22px;
 }
 
-.form-row button {
-    width: 200px;
-    height: 50px;
-    border-radius: 25px;
-    border: none;
-    margin-left: 15%;
-    margin-top: 10%;
-    color: #112d40;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 29px;
+.form-row input:focus,
+.form-row input:valid {
+  outline: 0;
 }
-.btn-form-log {
-    margin-bottom: 50px;
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
 }
-.btn-form-reg {
-    margin-bottom: 50px;
+.tab-btn {
+  border: none;
+  width: 220px;
+  border-radius: 20px 0 0 0;
+  padding: 15px;
+  color: #fff;
+  background-color: #112d40;
+  /* font-family: Inter; */
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 50px;
+}
+.reg {
+  border-radius: 0 20px 0 0;
+}
+
+.tab-btn.active {
+  background-color: #98a4ac;
+}
+.content {
+  display: none;
+}
+
+.content.active {
+  display: flex;
+  flex-direction: column;
+}
+.btn,
+.btn-reg {
+  border: none;
+  /* width: 170px;
+    height: 59px; */
+  /* border-radius: 25px; */
+  background-color: #dee1e4 !important;
+  /* margin-left: 100px;
+    margin-top: 100px; */
+  font-size: 24px;
+  /* font-family: "Inter", sans-serif; */
+  font-weight: 400;
+}
+.btn:hover {
+  background-color: #112d40;
+  color: #fafafa;
+}
+.btn-reg:hover {
+  background-color: #fafafa;
+  color: #112d40;
+}
+
+.btn:hover a {
+  color: #fafafa;
 }
 
 @media only screen and (max-width: 1326px) {
-    #LogReg {
-        margin-left: 0px;
-    }
-    .firstImages {
-        margin-left: 0px;
-    }
+  #LogReg {
+    margin-left: 0px;
+  }
+  .firstImages {
+    margin-left: 0px;
+  }
 }
 @media only screen and (max-width: 1124px) {
-    .firstImages {
-        display: none;
-    }
-    #LogReg {
-        margin-left: 32vw;
-    }
+  .firstImages {
+    display: none;
+  }
+  #LogReg {
+    margin-left: 32vw;
+  }
 }
-@media only screen and (max-width: 665px) {
-    /* #LogReg {
-        margin-left: 20vw;
-    }
-    #reg-content {
-        font-size: 4vw;
-    }
-    #log-content {
-        font-size: 4vw;
-    }
-    #btn-reg {
-        width: 100%;
-        font-size: 5vw;
-    }
-    #btn-log {
-        width: 100%;
-        font-size: 5vw;
-    }
+@media only screen and (max-width: 950px) {
+  #LogReg {
+    margin-left: 27vw;
+  }
 
-    .form-row button {
-        width: 30vw;
-        font-size: 5vw;
-    } */
+  #btn-reg {
+    width: 100%;
+    font-size: 5vw;
+  }
+  #btn-log {
+    width: 100%;
+    font-size: 5vw;
+  }
 }
+
 @media only screen and (max-width: 428px) {
-    #LogReg {
-        margin-left: 3vw;
-    }
-}
-
-@media only screen and (max-width: 412px) {
-    #LogReg {
-        margin-left: 8vw;
-        width: 350px;
-    }
-
-    .form-row input {
-        width: 275px;
-    }
-    .form-row button {
-        margin-left: 18vw;
-    }
+  #LogReg {
+    width: 325px;
+    margin-left: 12vw;
+    height: 600px;
+  }
+  #reg .form-row input,
+  .form-row input[type="text"],
+  input[type="password"] {
+    width: 275px;
+    font-size: 16px;
+  }
+  #log_in label,
+  #reg label {
+    font-size: 16px;
+  }
+  .btn,
+  .btn-reg {
+    font-size: 16px;
+  }
 }
 @media only screen and (max-width: 390px) {
-    #LogReg {
-        margin-left: 5vw;
-    }
+  #LogReg {
+    margin-left: 9vw;
+  }
 }
 @media only screen and (max-width: 375px) {
-    #LogReg {
-        margin-left: 3vw;
-    }
+  #LogReg {
+    margin-left: 7vw;
+  }
 }
-
+@media only screen and (max-width: 360px) {
+  #LogReg {
+    margin-left: 5vw;
+  }
+}
 /* images*/
 .second {
-    display: flex;
-    flex-direction: column;
-    margin-left: 45vw;
-    margin-top: -200px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 45vw;
+  margin-top: -200px;
 }
 .nlp {
-    text-align: center;
-    position: relative;
-    width: 600px;
-    height: auto;
+  text-align: center;
+  position: relative;
+  width: 600px;
+  height: auto;
 }
 .nlp h2 {
-    position: absolute;
-    top: 10vh;
-    left: 12vw;
-    right: 10vw;
-    font-size: 33px;
-    color: #fafafa;
+  position: absolute;
+  top: 10vh;
+  left: 12vw;
+  right: 10vw;
+  font-size: 33px;
+  color: #fafafa;
 }
 .txt {
-    position: absolute;
-    left: 4vw;
-    right: 2vw;
-    height: 100%;
-    line-height: 3vh;
-    font-size: 25px;
-    top: 18vh;
-    color: #fafafa;
+  position: absolute;
+  left: 4vw;
+  right: 2vw;
+  height: 100%;
+  line-height: 3vh;
+  font-size: 25px;
+  top: 18vh;
+  color: #fafafa;
 }
 
-.img_5 {
-    margin-left: -600px;
-    margin-top: -200px;
+.png_5 {
+  margin-left: -600px;
+  margin-top: -200px;
 }
 
 @media only screen and (max-width: 1124px) {
-    .second {
-        display: none;
-    }
+  .second {
+    display: none;
+  }
 }
 footer {
-    background-color: #112d40;
-    width: 100%;
-    height: 150px;
-    color: #fafafa;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.4vw;
-    margin-top: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #112d40;
+  width: 100%;
+  height: 150px;
+  color: #fafafa;
+  margin-top: 50px;
+  font-size: 2vw;
+}
+footer a {
+  color: aliceblue;
+}
+footer a:hover {
+  color: #98a4ac;
+  text-decoration: none;
+}
+@media only screen and (max-width: 810px) {
+  footer {
+    font-size: 25px;
+  }
 }
 @media only screen and (max-width: 450px) {
-    footer {
-        font-size: 0.8rem;
-    }
+  footer {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width: 384px) {
+  footer {
+    font-size: 18px;
+  }
 }

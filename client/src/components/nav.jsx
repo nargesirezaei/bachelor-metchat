@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
 import Logo from "../assets/img/Logo.svg";
-import { HiBars3 } from "react-icons/hi2";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { HiBars3 } from "react-icons/hi2";
+import "../assets/css/home.css";
 
 export const Nav = () => {
   /* Toggle Nav*/
@@ -13,12 +14,12 @@ export const Nav = () => {
     <nav className="nav-center">
       <div className="nav-header">
         <Link to="/">
-          <img src={Logo} />
+          <img src={Logo} alt="logo" />
         </Link>
 
-        <a className="push" href="">
+        <Link className="push" to="">
           Om Oss
-        </a>
+        </Link>
 
         <HiBars3 className="nav-toggle" onClick={toggleLinks} />
       </div>

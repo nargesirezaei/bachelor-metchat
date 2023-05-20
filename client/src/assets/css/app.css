@@ -1,149 +1,148 @@
 .contents {
-    margin-top: 170px;
-    margin-bottom: 15px;
-    min-height: calc(100vh - 336px);
-    overflow-y: auto;
+  margin-top: 170px;
+  min-height: calc(100vh - 336px);
+  overflow-y: auto;
 }
 
 .liness {
-    background-image: url("../img/Lines.png");
-    background-repeat: no-repeat;
-    background-position: center;
+  background-image: url("../img/Lines.png");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .photo {
-    background-image: url("../img/photo.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 870px;
-    height: 600px;
+  background-image: url("../img/photo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 870px;
+  height: 600px;
 }
 
 .liness2 {
-    background-image: url("../img/Lines_2.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 700px;
-    height: 600px;
+  background-image: url("../img/Lines_2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 700px;
+  height: 600px;
 }
 .bubbleBox {
-    background-image: url("../img/BubbleBox.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 685px;
-    height: 656px;
-    padding-left: 120px;
-    padding-top: 120px;
+  background-image: url("../img/BubbleBox.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 685px;
+  height: 656px;
+  padding-left: 120px;
+  padding-top: 120px;
 }
 
 input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
-.profile-edit-button {
-    position: absolute;
-    right: 150px;
-    top: 480px;
-    width: 109px;
-    height: 36px;
-    background-color: #fafafa;
-    border: 1px solid #000000;
-    border-radius: 40px;
 
-    font-style: normal;
-    font-weight: 400;
-    font-size: 19px;
-    line-height: 22px;
-    color: #000000;
+.profile-edit-button {
+  position: absolute;
+  right: 150px;
+  top: 480px;
+  width: 109px;
+  height: 36px;
+  background-color: #fafafa;
+  border: 1px solid #000000;
+  border-radius: 40px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22px;
+  color: #000000;
 }
 
 .chat {
-    width: 100%;
-    height: calc(100vh - 550px);
-    overflow-y: auto;
+  width: 100%;
+  height: calc(100vh - 550px);
+  overflow-y: auto;
 }
 
 .message {
-    max-width: 60%;
-    padding: 10px;
-    margin: 10px;
-    clear: both;
-    background-color: #a5a5a5;
+  max-width: 60%;
+  padding: 10px;
+  margin: 10px;
+  clear: both;
+  background-color: #a5a5a5;
 }
 
 .sent {
-    float: right;
-    background-color: #6aadf6;
+  float: right;
+  background-color: #6aadf6;
 }
 
 .received {
-    float: left;
-    background-color: #bcbfc2;
+  float: left;
+  background-color: #bcbfc2;
 }
 /* width */
 ::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgb(104, 103, 103);
-    border-radius: 10px;
+  background: rgb(104, 103, 103);
+  border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #cbcaca;
+  background: #cbcaca;
 }
 
 .cur-p {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .connected {
-    margin-right: 15px;
-    display: block;
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    position: relative;
-    background-color: forestgreen;
+  margin-right: 15px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  position: relative;
+  background-color: forestgreen;
 }
 
 .disConnected {
-    margin-right: 15px;
-    display: block;
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    position: relative;
-    background-color: rgb(220, 6, 6);
+  margin-right: 15px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  position: relative;
+  background-color: rgb(220, 6, 6);
 }
 
 @keyframes blink {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.1;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .status {
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
 }
 
 .conversation-box {
-    height: calc(100% - 90px);
-    overflow-y: auto;
+  height: calc(100% - 90px);
+  overflow-y: auto;
 }
