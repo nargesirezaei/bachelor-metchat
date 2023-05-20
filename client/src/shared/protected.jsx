@@ -48,7 +48,7 @@ export function Protected() {
             <Link to="/" className="logo">
               <img src={logo} alt="logo" width={150} />
             </Link>
-            <div>We cannot authenticate you</div>
+            <div>Vi kan ikke autentisere deg</div>
             <dl className="pt-2">
               <dd className="mb-1">
                 <button
