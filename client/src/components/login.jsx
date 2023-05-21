@@ -29,10 +29,17 @@ export const Login = () => {
         {({ errors, touched }) => (
           <Form id="form_log">
             <div className="form-row">
-              <label>Epost</label>
+              <label>E-post</label>
 
               <Field name="email">
-                {({ field }) => <input type="text" id="email_log" {...field} />}
+                {({ field }) => (
+                  <input
+                    type="text"
+                    id="email_log"
+                    placeholder="e-post"
+                    {...field}
+                  />
+                )}
               </Field>
               {errors.email && touched.email ? (
                 <div className="text-warning">{errors.email}</div>
@@ -42,7 +49,12 @@ export const Login = () => {
               <label>Passord</label>
               <Field name="password">
                 {({ field }) => (
-                  <input type="password" id="password_log" {...field} />
+                  <input
+                    type="password"
+                    id="password_log"
+                    placeholder="passord"
+                    {...field}
+                  />
                 )}
               </Field>
               {errors.password && touched.password ? (
@@ -53,7 +65,12 @@ export const Login = () => {
               <Field name="savePassword">
                 {({ field }) => (
                   <Flex align="center" content="center" gap={1}>
-                    <input type="checkbox" name="savePassword" {...field} />
+                    <input
+                      type="checkbox"
+                      name="savePassword"
+                      aria-label="lagre passord"
+                      {...field}
+                    />
                     <label className="chang-color m-0">Husk meg</label>
                   </Flex>
                 )}

@@ -63,7 +63,12 @@ export const Register = ({ registerFormRef, setModel, model }) => {
               <label>Fornavn</label>
               <Field name="firstName">
                 {({ field }) => (
-                  <input type="text" id="first_name" {...field} />
+                  <input
+                    type="text"
+                    id="first_name"
+                    placeholder="fornavn"
+                    {...field}
+                  />
                 )}
               </Field>
               {errors.firstName && touched.firstName ? (
@@ -73,7 +78,14 @@ export const Register = ({ registerFormRef, setModel, model }) => {
             <div className="form-row">
               <label>Etternavn</label>
               <Field name="lastName">
-                {({ field }) => <input type="text" id="last_name" {...field} />}
+                {({ field }) => (
+                  <input
+                    type="text"
+                    id="last_name"
+                    placeholder="etternavn"
+                    {...field}
+                  />
+                )}
               </Field>
               {errors.lastName && touched.lastName ? (
                 <div className="text-warning">{errors.lastName}</div>
@@ -82,7 +94,14 @@ export const Register = ({ registerFormRef, setModel, model }) => {
             <div className="form-row">
               <label>E-post</label>
               <Field name="email">
-                {({ field }) => <input type="text" id="email_reg" {...field} />}
+                {({ field }) => (
+                  <input
+                    type="text"
+                    id="email_reg"
+                    placeholder="e-post"
+                    {...field}
+                  />
+                )}
               </Field>
               {errors.email && touched.email ? (
                 <div className="text-warning">{errors.email}</div>
@@ -92,7 +111,12 @@ export const Register = ({ registerFormRef, setModel, model }) => {
               <label>Passord</label>
               <Field name="password">
                 {({ field }) => (
-                  <input type="password" id="password_reg" {...field} />
+                  <input
+                    type="password"
+                    id="password_reg"
+                    placeholder="passord"
+                    {...field}
+                  />
                 )}
               </Field>
               {errors.password && touched.password ? (
@@ -103,7 +127,12 @@ export const Register = ({ registerFormRef, setModel, model }) => {
               <label>Gjenta Passord</label>
               <Field name="confirmPassword">
                 {({ field }) => (
-                  <input type="password" id="password_reg" {...field} />
+                  <input
+                    type="password"
+                    id="password_reg"
+                    placeholder="gjenta passord"
+                    {...field}
+                  />
                 )}
               </Field>
               {errors.confirmPassword && touched.confirmPassword ? (
@@ -113,7 +142,7 @@ export const Register = ({ registerFormRef, setModel, model }) => {
 
             <Flex content="center" className="mt-5">
               <button type="submit" className="btn">
-                Register
+                Registrer
               </button>
             </Flex>
           </Form>
