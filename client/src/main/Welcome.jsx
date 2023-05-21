@@ -16,8 +16,8 @@ export const Welcome = () => {
       <Nav />
       <div className="first">
         <div className="firstImages">
-          <img src={Lines1} className="png" />
-          <img src={Photo} className="png" />
+          <img src={Lines1} className="png" alt="Linjer bue ned mot venstre" />
+          <img src={Photo} className="png" alt="Personer som snakker" />
         </div>
         <div id="LogReg">
           <div id="btn-tabs">
@@ -49,9 +49,9 @@ export const Welcome = () => {
         </div>
       </div>
       <div className="second">
-        <img src={Lines2} className="png" />
+        <img src={Lines2} className="png" alt="Linjer i bue ned mot høyre" />
         <div className="nlp">
-          <img src={BubbleBox} className="png" />
+          <img src={BubbleBox} className="png" alt="Boble boks" />
           <h2>Hva Er NLP</h2>
           <p className="txt">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ab
@@ -63,7 +63,11 @@ export const Welcome = () => {
             pariatur, nostrum itaque.
           </p>
         </div>
-        <img src={Lines1} className="png_5" />
+        <img
+          src={Lines1}
+          className="png_5"
+          alt="Linjer i bue ned mot venstre"
+        />
       </div>
     </div>
   );
