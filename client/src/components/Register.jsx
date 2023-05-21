@@ -113,7 +113,7 @@ export const Register = ({ registerFormRef, setModel, model }) => {
 
             <Flex content="center" className="mt-5">
               <button type="submit" className="btn">
-                Register
+                Registrer
               </button>
             </Flex>
           </Form>
