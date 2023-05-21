@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
 import { contactRoute, conversationRoute, messageRoute } from "../APIRoutes";
+import { useAccount } from "../app/account-context";
 
 import AdminNav from "../components/AdminNav";
 import dummyProfile from "../assets/img/profile.svg";
@@ -10,6 +11,7 @@ import dummyProfile from "../assets/img/profile.svg";
 export default function Conversations() {
   const navigate = useNavigate(),
     csvInstance = useRef(),
+    account = useAccount(),
     // [self, setSelf] = useState({}),
     [conversations, setConversations] = useState([]),
     [csvData, setCsvData] = useState([]),
@@ -56,7 +58,7 @@ export default function Conversations() {
 
             // fetch data of user 1
             await axios
-              .get(`${contactRoute}/getUser/${conversations[i].fromId}`)
+              .get(`${contactRoute}/getUser/${conversations[i].fromUserId}`)
               .then((response) => {
                 conversations[i]["fromData"] = response.data;
               })
@@ -67,7 +69,7 @@ export default function Conversations() {
 
             // fetch data of user 2
             await axios
-              .get(`${contactRoute}/getUser/${conversations[i].toId}`)
+              .get(`${contactRoute}/getUser/${conversations[i].toUserId}`)
               .then((response) => {
                 conversations[i]["toData"] = response.data;
               })
