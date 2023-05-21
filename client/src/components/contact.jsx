@@ -89,13 +89,13 @@ export const Contact = ({
         {visibleIcons && (
           <Flex style={{ minWidth: 150 }} content="space-between">
             {!isInMyContacts && (
-              <button className="pluss">
+              <button className="pluss" aria-label="legg til kontakt">
                 <IoIosAdd
                   width={30}
                   className="cursor-pointer"
                   style={{ cursor: "pointer" }}
                   onClick={() => onAdd(contact._id)}
-                  alt=""
+                  alt="legg til kontakt"
                 />
               </button>
             )}
@@ -115,12 +115,12 @@ export const Contact = ({
             )}
 
             <Link to={`/samtaler?contactId=${contact?._id}`}>
-              <button className="mail">
+              <button className="mail" aria-label="start samtale">
                 <IoIosMail
                   width={70}
                   className="cur-pointer"
                   style={{ opacity: 0.7 }}
-                  alt=""
+                  alt="start samtale"
                 />
               </button>
             </Link>
