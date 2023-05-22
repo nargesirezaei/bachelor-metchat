@@ -168,6 +168,7 @@ const Toc = ({ show, onHide, onSubmitHandler }) => {
           </Flex>
         </div>
         <div className="scroll-div-object text-muted">
+          <p></p>
           <p>
             Denne chat-tjenetsen har som formål å samle inn samtaledata til bruk
             i forskning. Ved å akseptere velger du å la OsloMet lagre og bruke
