@@ -4,10 +4,10 @@ const cors = require("cors");
 
 const app = express();
 app.use(
-    cors({
-        origin: "http://localhost:3000",
-        credentials: true,
-    })
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
 );
 
 const port = 8088;
@@ -34,9 +34,13 @@ const autheticationController = require("./controller/authentication");
 const profileController = require("./controller/profile");
 const contactsController = require("./controller/contacts");
 const conversationsController = require("./controller/conversations");
+
 const interestsController = require("./controller/interests");
 const messagesController = require("./controller/messages");
 const userInterestsController = require("./controller/user-interest");
+
+//admin
+const adminConversationsController = require("./controller/admin-conversations");
 
 //route to intended function
 //app = route x
@@ -49,10 +53,13 @@ app.use("/interests", interestsController); //ex : locallhsot:3000/interests/2
 app.use("/messages", messagesController);
 app.use("/user-interests", userInterestsController);
 
+//admin
+app.use("/admin-conversations", adminConversationsController);
+
 // connect to db and then run app on our port
 connectToDb((result) => {
-    console.log(result);
-    app.listen(port, () => {
-        console.log(`chat app is listening on port ${port}`);
-    });
+  console.log(result);
+  app.listen(port, () => {
+    console.log(`chat app is listening on port ${port}`);
+  });
 });

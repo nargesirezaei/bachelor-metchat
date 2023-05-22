@@ -7,6 +7,10 @@ import { useAccount } from "../app/account-context";
 
 import AdminNav from "../components/AdminNav";
 import dummyProfile from "../assets/img/profile.svg";
+import { adminApi } from "../api/admin-api";
+import { Contact } from "../components/contact";
+import { Flex } from "../components/Flex";
+import { conversationApi } from "../api/conversation-api";
 
 export default function Conversations() {
   const navigate = useNavigate(),
@@ -17,7 +21,16 @@ export default function Conversations() {
     [csvData, setCsvData] = useState([]),
     [csvFilename, setCsvFilename] = useState([]);
 
+  //list all conversations **
   useEffect(() => {
+    adminApi
+      .getAll()
+      .then((result) => setConversations(result.data.conversations))
+      .catch();
+  }, []);
+
+  /*useEffect(() => {
+
     async function fetchData() {
       if (!localStorage.getItem("metchat-user")) navigate("/");
       /*
@@ -25,13 +38,13 @@ export default function Conversations() {
         const data = await JSON.parse(localStorage.getItem("metchat-user"));
         setSelf(data);
       }
-      */
+      
     }
     fetchData();
-  }, [navigate]);
+  }, [navigate]);*/
 
   // get conversations
-  useEffect(() => {
+  /*useEffect(() => {
     async function getConversations() {
       await axios
         .get(`${conversationRoute}/getAllConversations`)
@@ -88,7 +101,7 @@ export default function Conversations() {
             conversations[i]["messages"] = "";
             alert(err.response.data);
           });
-          */
+          
           }
           setConversations(conversations);
         })
@@ -98,7 +111,7 @@ export default function Conversations() {
         });
     }
     getConversations();
-  });
+  });*/
 
   useEffect(() => {
     if (
@@ -147,6 +160,24 @@ export default function Conversations() {
       });
   };
 
+  function formatDateTime(dateStr) {
+    const date = new Date(dateStr);
+
+    const formattedDate = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+
+    const formattedTime = date.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    var result = formattedDate + " " + formattedTime;
+    return result;
+  }
+
   return (
     <>
       <AdminNav />
@@ -181,128 +212,63 @@ export default function Conversations() {
         </section>
 
         {/*<!-- List of conversetions -->*/}
-        <div className="row conversation-list">
-          {conversations.map((conversation, i) => (
-            <div key={i} className="col-sm-6 ">
-              {/*<!-- Conversation participants -->*/}
-              <div className="card">
-                <div className="card-body">
-                  {/*<!-- Date -->*/}
-                  <a className="convo-date" href="./samtaler">
-                    {conversation.createdAtText}
-                  </a>
-                  {conversation._id}
-                  {conversation.title}
 
-                  {/*<!-- Conversation participants -->*/}
-                  <div className="participants">
-                    <div className="participant">
-                      <img
-                        src={dummyProfile}
-                        alt="P"
-                        className="rounded-circle"
-                      />
-                      <div className="ms-3">
-                        <p className="fw-bold mb-1">
-                          {conversation.fromData.firstName}{" "}
-                          {conversation.fromData.lastName}
-                        </p>
-                      </div>
+        <div className="container-fluid">
+          <div className="row g-3">
+            {conversations.map((x, idx) => {
+              return (
+                <div className="col-md-6">
+                  <div key={idx} className="border shadow mb-2 p-3">
+                    <div className="mb-3">
+                      <span>
+                        {formatDateTime(x.createdAt)} - {x.title}
+                      </span>
                     </div>
-                    <div className="participant d-flex align-items-center">
-                      <img
-                        src={dummyProfile}
-                        alt="P"
-                        className="rounded-circle"
+                    <div>
+                      <Contact
+                        contact={{
+                          name:
+                            x.fromUserId.firstName +
+                            " " +
+                            x.fromUserId.lastName,
+                        }}
+                        showEmail={false}
+                        className="mb-0"
                       />
-                      <div className="ms-3">
-                        <p className="fw-bold mb-1">
-                          {conversation.toData.firstName}{" "}
-                          {conversation.toData.lastName}
-                        </p>
-                      </div>
                     </div>
-                  </div>
+                    <div>
+                      <Contact
+                        contact={{
+                          name:
+                            x.toUserId.firstName + " " + x.toUserId.lastName,
+                        }}
+                        showEmail={false}
+                        className="m-0"
+                      />
+                    </div>
 
-                  {/*<!-- Buttons -->*/}
-                  <div className="text-end">
-                    {/* CSV download link */}
-                    <button
-                      className="btn-download btn-link btn-rounded btn-sm"
-                      onClick={() =>
-                        getCsvData(conversation._id, conversation.title)
-                      }
-                    >
-                      Last ned samtale
-                    </button>
-                    {csvData.length > 0 && csvFilename ? (
-                      <CSVLink
-                        // className="btn-download btn-link btn-rounded btn-sm"
-                        data={csvData}
-                        headers={headers}
-                        filename={csvFilename}
-                        ref={csvInstance}
-                        target="_blank"
-                        asyncOnClick={true}
-                        // onClick={(event, done) => { getCsvData(event, done, conversation._id); }}
-                      />
-                    ) : undefined}
-                    <button className="btn-delete btn-link btn-rounded btn-sm">
-                      Slett samtale
-                    </button>
+                    <Flex gap={2}>
+                      <button className="btn">download</button>
+                      <button
+                        className="btn"
+                        onClick={() =>
+                          conversationApi
+                            .delete(x._id)
+                            .then(({ data }) => {
+                              setConversations(
+                                conversations.filter((v) => v._id !== x._id)
+                              );
+                            })
+                            .catch(() => alert("error"))
+                        }
+                      >
+                        delete
+                      </button>
+                    </Flex>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/*<!-- List of conversetions -->*/}
-        <div className="row conversation-list">
-          <div className="col-sm-6 ">
-            {/*<!-- Conversation participants -->*/}
-            <div className="card">
-              <div className="card-body">
-                {/*<!-- Date -->*/}
-                <a className="convo-date" href="./samtaler">
-                  Dato
-                </a>
-                {/*<!-- Conversation participants -->*/}
-                <div className="participants">
-                  <div className="participant">
-                    <img
-                      src={dummyProfile}
-                      alt="P"
-                      className="rounded-circle"
-                    />
-                    <div className="ms-3">
-                      <p className="fw-bold mb-1">Person En</p>
-                    </div>
-                  </div>
-
-                  <div className="participant d-flex align-items-center">
-                    <img
-                      src={dummyProfile}
-                      alt="P"
-                      className="rounded-circle"
-                    />
-                    <div className="ms-3">
-                      <p className="fw-bold mb-1">Person To</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/*<!-- Buttons -->*/}
-                <div className="text-end">
-                  <button className="btn-download btn-link btn-rounded btn-sm">
-                    Last ned samtale
-                  </button>
-                  <button className="btn-delete btn-link btn-rounded btn-sm">
-                    Slett samtale
-                  </button>
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
 
