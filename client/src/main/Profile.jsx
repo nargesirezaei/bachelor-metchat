@@ -157,6 +157,7 @@ export const Profile = () => {
           <h6 className="border-bottom pb-2">Bio</h6>
           <textarea
             style={sm}
+            aria-label="Biografi"
             readOnly={model.readOnly}
             className={classNames({ "bg-light": model.readOnly })}
             value={model.bio}
@@ -221,6 +222,7 @@ export const Profile = () => {
                           <input
                             type="password"
                             id="password_reg"
+                            placeholder="Passord"
                             style={sm}
                             {...field}
                             readOnly={model.readOnly}
@@ -238,6 +240,8 @@ export const Profile = () => {
                           <input
                             type="password"
                             id="password_reg"
+                            placeholder="Gjenta Passord"
+                            pattern="gjenta passord"
                             style={sm}
                             {...field}
                             readOnly={model.readOnly}

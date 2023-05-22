@@ -63,7 +63,12 @@ export const Register = ({ registerFormRef, setModel, model }) => {
               <label>Fornavn</label>
               <Field name="firstName">
                 {({ field }) => (
-                  <input type="text" id="first_name" {...field} />
+                  <input
+                    type="text"
+                    id="first_name"
+                    placeholder="fornavn"
+                    {...field}
+                  />
                 )}
               </Field>
               {errors.firstName && touched.firstName ? (
@@ -73,7 +78,14 @@ export const Register = ({ registerFormRef, setModel, model }) => {
             <div className="form-row">
               <label>Etternavn</label>
               <Field name="lastName">
-                {({ field }) => <input type="text" id="last_name" {...field} />}
+                {({ field }) => (
+                  <input
+                    type="text"
+                    id="last_name"
+                    placeholder="etternavn"
+                    {...field}
+                  />
+                )}
               </Field>
               {errors.lastName && touched.lastName ? (
                 <div className="text-warning">{errors.lastName}</div>
@@ -82,7 +94,14 @@ export const Register = ({ registerFormRef, setModel, model }) => {
             <div className="form-row">
               <label>E-post</label>
               <Field name="email">
-                {({ field }) => <input type="text" id="email_reg" {...field} />}
+                {({ field }) => (
+                  <input
+                    type="text"
+                    id="email_reg"
+                    placeholder="e-post"
+                    {...field}
+                  />
+                )}
               </Field>
               {errors.email && touched.email ? (
                 <div className="text-warning">{errors.email}</div>
@@ -92,7 +111,12 @@ export const Register = ({ registerFormRef, setModel, model }) => {
               <label>Passord</label>
               <Field name="password">
                 {({ field }) => (
-                  <input type="password" id="password_reg" {...field} />
+                  <input
+                    type="password"
+                    id="password_reg"
+                    placeholder="passord"
+                    {...field}
+                  />
                 )}
               </Field>
               {errors.password && touched.password ? (
@@ -103,7 +127,12 @@ export const Register = ({ registerFormRef, setModel, model }) => {
               <label>Gjenta Passord</label>
               <Field name="confirmPassword">
                 {({ field }) => (
-                  <input type="password" id="password_reg" {...field} />
+                  <input
+                    type="password"
+                    id="password_reg"
+                    placeholder="gjenta passord"
+                    {...field}
+                  />
                 )}
               </Field>
               {errors.confirmPassword && touched.confirmPassword ? (
@@ -113,7 +142,7 @@ export const Register = ({ registerFormRef, setModel, model }) => {
 
             <Flex content="center" className="mt-5">
               <button type="submit" className="btn">
-                Register
+                Registrer
               </button>
             </Flex>
           </Form>
@@ -139,35 +168,13 @@ const Toc = ({ show, onHide, onSubmitHandler }) => {
           </Flex>
         </div>
         <div className="scroll-div-object text-muted">
+          <p></p>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
+            Denne chat-tjenetsen har som formål å samle inn samtaledata til bruk
+            i forskning. Ved å akseptere velger du å la OsloMet lagre og bruke
+            dataene du registerer til forskning. Dataene dine vil forbli hos
+            OsloMet og ikke deles med andre eller brukes til
+            markedsføringsformål.
           </p>
         </div>
         <div className="btns">
