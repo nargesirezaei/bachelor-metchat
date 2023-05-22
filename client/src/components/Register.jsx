@@ -169,34 +169,11 @@ const Toc = ({ show, onHide, onSubmitHandler }) => {
         </div>
         <div className="scroll-div-object text-muted">
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus expedita iusto, eaque, aut maiores quas at unde delectus
-            eius voluptatum, corrupti ex vitae commodi dolorem in quaerat cumque
-            labore repellat!
+            Denne chat-tjenetsen har som formål å samle inn samtaledata til bruk
+            i forskning. Ved å akseptere velger du å la OsloMet lagre og bruke
+            dataene du registerer til forskning. Dataene dine vil forbli hos
+            OsloMet og ikke deles med andre eller brukes til
+            markedsføringsformål.
           </p>
         </div>
         <div className="btns">
