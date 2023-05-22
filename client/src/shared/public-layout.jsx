@@ -8,8 +8,8 @@ export function PublicLayout() {
     <>
       <main className="contents  flex-grow-1">
         <Outlet />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }
