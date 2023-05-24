@@ -148,13 +148,13 @@ export default function Conversations() {
   function formatDateTime(dateStr) {
     const date = new Date(dateStr);
 
-    const formattedDate = date.toLocaleDateString("en-US", {
+    const formattedDate = date.toLocaleDateString("no-NO", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
     });
 
-    const formattedTime = date.toLocaleTimeString("en-US", {
+    const formattedTime = date.toLocaleTimeString("no-NO", {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
@@ -233,7 +233,7 @@ export default function Conversations() {
                     </div>
 
                     <Flex gap={2}>
-                      <button className="btn">download</button>
+                      <button className="btn">Last ned</button>
                       <button
                         className="btn"
                         onClick={() =>
@@ -247,7 +247,7 @@ export default function Conversations() {
                             .catch(() => alert("error"))
                         }
                       >
-                        delete
+                        Slett
                       </button>
                     </Flex>
                   </div>
