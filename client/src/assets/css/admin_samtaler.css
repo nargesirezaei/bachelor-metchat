@@ -7,7 +7,7 @@ For now it's specified so it doesn't affect styling of other pages. */
   padding-left: 0.5em;
 }
 
-/* SEARCH */
+/* ----- SEARCH ----- */
 .search-group {
   margin-bottom: 0.5em;
   padding: 0.5em;
@@ -45,7 +45,7 @@ For now it's specified so it doesn't affect styling of other pages. */
   border-radius: 10px;
 }
 
-/* LIST OF CONVERSATIONS */
+/* ----- LIST OF CONVERSATIONS ----- */
 .convo-date {
   padding: 0.5em 1em;
   border-radius: 30px;
@@ -78,7 +78,7 @@ For now it's specified so it doesn't affect styling of other pages. */
   border: 1px solid #112d40;
 }
 
-/* BUTTONS FOR DOWNLOADING AND DELETING */
+/* ----- BUTTONS FOR DOWNLOADING AND DELETING ----- */
 .master-buttons button {
   border: none;
   font-family: "Inter", sans-serif;
