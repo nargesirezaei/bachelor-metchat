@@ -6,4 +6,10 @@ const adminConversations = require("../services/adminConversations");
 
 app.post(`/get-all`, verifyaccess, adminConversations.getAll);
 
+app.get(
+  `/getConversation/:conversationId`,
+  verifyaccess,
+  adminConversations.getConversation
+);
+
 module.exports = app;

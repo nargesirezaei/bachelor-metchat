@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
 import { contactRoute, conversationRoute, messageRoute } from "../APIRoutes";
-import { useAccount } from "../app/account-context";
 
 import AdminNav from "../components/AdminNav";
 import dummyProfile from "../assets/img/profile.svg";
@@ -13,10 +12,9 @@ import { Flex } from "../components/Flex";
 import { conversationApi } from "../api/conversation-api";
 
 export default function Conversations() {
-  const navigate = useNavigate(),
-    csvInstance = useRef(),
-    // [self, setSelf] = useState({}),
+  const csvInstance = useRef(),
     [conversations, setConversations] = useState([]),
+    [messages, setMessages] = useState(""),
     [csvData, setCsvData] = useState([]),
     [csvFilename, setCsvFilename] = useState([]);
 
@@ -27,76 +25,6 @@ export default function Conversations() {
       .then((result) => setConversations(result.data.conversations))
       .catch();
   }, []);
-
-  // get conversations
-  /*useEffect(() => {
-    async function getConversations() {
-      await axios
-        .get(`${conversationRoute}/getAllConversations`)
-        .then(async (response) => {
-          const conversations = response.data,
-            count = conversations.length;
-
-          for (let i = 0; i < count; i++) {
-            const date = new Date(conversations[i].createdAt),
-              year = date.getFullYear();
-            let month = date.getMonth() + 1,
-              day = date.getDate(),
-              hour = date.getHours(),
-              minute = date.getMinutes();
-
-            if (month < 10) month = "0" + month;
-            if (day < 10) day = "0" + day;
-            if (hour < 10) hour = "0" + hour;
-            if (minute < 10) minute = "0" + minute;
-
-            conversations[
-              i
-            ].createdAtText = `${day}/${month}/${year} - ${hour}:${minute}`;
-
-            // fetch data of user 1
-            await axios
-              .get(`${contactRoute}/getUser/${conversations[i].fromUserId}`)
-              .then((response) => {
-                conversations[i]["fromData"] = response.data;
-              })
-              .catch((err) => {
-                conversations[i]["fromData"] = [];
-                alert(err.response.data);
-              });
-
-            // fetch data of user 2
-            await axios
-              .get(`${contactRoute}/getUser/${conversations[i].toUserId}`)
-              .then((response) => {
-                conversations[i]["toData"] = response.data;
-              })
-              .catch((err) => {
-                conversations[i]["toData"] = [];
-                alert(err.response.data);
-              });
-
-            /*
-          // fetch messages
-          await axios.get(`${conversationRoute}/${conversations[i]._id}/messages`)
-          .then((response) => {
-            conversations[i]["messages"] = response.data.map(message => message.text).join('\n');
-          }) 
-          .catch((err) => {
-            conversations[i]["messages"] = "";
-            alert(err.response.data);
-          });
-          
-          }
-          setConversations(conversations);
-        })
-        .catch((err) => {
-          console.log(err);
-          alert(err.response.data);
-        });
-    }
-    getConversations();
-  });*/
 
   useEffect(() => {
     if (
@@ -124,8 +52,8 @@ export default function Conversations() {
   ];
 
   const getCsvData = async (id, title) => {
-    await axios
-      .get(`${messageRoute}/getConversation/${id}`)
+    await adminApi
+      .getConversation(id)
       .then((response) => {
         setCsvData(
           response.data.map((value) => {
@@ -232,9 +160,26 @@ export default function Conversations() {
                         className="m-0"
                       />
                     </div>
-
+                    {/* --- Conversation buttons --- */}
                     <Flex gap={2}>
-                      <button className="btn">Last ned</button>
+                      <button
+                        className="btn"
+                        onClick={() => getCsvData(x._id, x.title)}
+                      >
+                        Last ned
+                      </button>
+                      {csvData.length > 0 && csvFilename ? (
+                        <CSVLink
+                          // className="btn-download btn-link btn-rounded btn-sm"
+                          data={csvData}
+                          headers={headers}
+                          filename={csvFilename}
+                          ref={csvInstance}
+                          target="_blank"
+                          asyncOnClick={true}
+                          // onClick={(event, done) => { getCsvData(event, done, conversation._id); }}
+                        />
+                      ) : undefined}
                       <button
                         className="btn"
                         onClick={() =>
