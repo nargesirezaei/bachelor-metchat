@@ -15,4 +15,11 @@ export const adminApi = {
       "get",
       apiConfig.adminConversationUrl + `/getConversation/${conversationId}`
     ),
+
+  //delete all conversations
+  deleteAllConversations: () =>
+    api.call(
+      "delete",
+      apiConfig.adminConversationUrl + "/delete-all-conversations"
+    ),
 };

@@ -32,6 +32,20 @@ module.exports = {
     }
   },
 
+  deleteAllConversations: async (req, res, next) => {
+    try {
+      console.log("err111111111111111");
+      await Conversations.deleteMany({});
+      res.send({ message: "all conversations removed" });
+    } catch (err) {
+      console.log("err", err);
+      res.send({
+        status: false,
+        message: "database error1",
+      });
+    }
+  },
+
   getConversation: async (req, res) => {
     const conversationId = req.params.conversationId;
 

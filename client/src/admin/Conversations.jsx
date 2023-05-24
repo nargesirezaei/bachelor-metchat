@@ -205,7 +205,19 @@ export default function Conversations() {
 
         <div className="master-buttons">
           <button className="btn-download-all">Last ned alle</button>
-          <button className="btn-delete-all">Slett alle</button>
+          <button
+            className="btn-delete-all"
+            onClick={() =>
+              adminApi
+                .deleteAllConversations()
+                .then(({ data }) => {
+                  setConversations([]);
+                })
+                .catch(() => alert("error"))
+            }
+          >
+            Slett alle
+          </button>
         </div>
       </div>
     </>
