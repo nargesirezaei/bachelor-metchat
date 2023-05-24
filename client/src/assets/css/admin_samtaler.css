@@ -46,77 +46,36 @@ For now it's specified so it doesn't affect styling of other pages. */
 }
 
 /* LIST OF CONVERSATIONS */
-.card {
-  display: grid;
-  gap: 3em;
-  padding: 0.2em;
-  margin: 0.5em;
-  align-items: center;
-  border-radius: 30px;
-
-  background-color: #dee1e4;
-}
-
 .convo-date {
   padding: 0.5em 1em;
   border-radius: 30px;
+  margin-left: 0.3rem;
 
   font-family: "Bai Jamjuree", sans-serif;
-  font-size: 0.5em;
+  font-size: 0.6em;
   font-weight: 500;
   background-color: #112d40;
   color: #ffffff;
 }
 
-.participants {
-  margin-block-end: 24px;
+.participant {
+  font-family: "Inter", sans-serif;
+  align-items: center;
+  font-weight: 600;
 }
 
-.card-body button {
+.convo button {
   text-decoration: none;
-  margin-left: 10px;
-  border-radius: 30px;
-  padding: 1em 2em;
-  transition: 0.3s;
+  border-radius: 0.8rem;
 
-  font-family: "Bai Jamjuree", sans-serif;
   font-weight: 500;
-  font-size: 0.6em;
+  font-size: 0.8rem;
 }
 
-.card-body button:hover {
+.convo button:hover {
   background-color: #ffffff;
   color: #000000;
   border: 1px solid #112d40;
-  transition: 0.3s;
-}
-
-.participant {
-  display: flex;
-  align-items: center;
-  padding: 8px 4px;
-
-  font-family: "Inter", sans-serif;
-  font-weight: 300;
-  font-size: 18px;
-}
-
-.rounded-circle {
-  width: 3em;
-}
-
-.participant p {
-  margin-left: 10px;
-}
-
-.btn-download {
-  background-color: #98a4ac;
-  color: #000000;
-}
-
-.btn-delete {
-  background-color: #112d40;
-  color: #fafafa;
 }
 
 /* BUTTONS FOR DOWNLOADING AND DELETING */
@@ -124,31 +83,27 @@ For now it's specified so it doesn't affect styling of other pages. */
   border: none;
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 1em;
   line-height: 1;
 
-  position: absolute;
-  padding: 12px 20px;
-  margin-top: 16px;
-  border-radius: 10px;
-  transition: 0.3s;
+  padding: 0.5em 1em;
+  margin-top: 1em;
+  margin-left: 1em;
+  border-radius: 0.3em;
 }
 
 .master-buttons button:hover {
   background-color: #ffffff;
   color: #000000;
-  transition: 0.3s;
   border: 1px solid #112d40;
 }
 
 .btn-download-all {
   background-color: #dee1e4;
   border: 1px solid #112d40;
-  right: 15%;
 }
 
 .btn-delete-all {
   background-color: #112d40;
   color: #fafafa;
-  right: 5%;
 }

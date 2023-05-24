@@ -203,13 +203,14 @@ export default function Conversations() {
             {conversations.map((x, idx) => {
               return (
                 <div className="col-md-6">
-                  <div key={idx} className="border shadow mb-2 p-3">
+                  <div key={idx} className="border shadow mb-2 p-3 convo">
                     <div className="mb-3">
-                      <span>
-                        {formatDateTime(x.createdAt)} - {x.title}
+                      <span className="convo-date">
+                        {formatDateTime(x.createdAt)}
                       </span>
+                      <span className="convo-date">Tittel: {x.title}</span>
                     </div>
-                    <div>
+                    <div className="participant">
                       <Contact
                         contact={{
                           name:
@@ -221,7 +222,7 @@ export default function Conversations() {
                         className="mb-0"
                       />
                     </div>
-                    <div>
+                    <div className="participant">
                       <Contact
                         contact={{
                           name:
