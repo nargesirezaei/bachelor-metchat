@@ -15,7 +15,6 @@ import { conversationApi } from "../api/conversation-api";
 export default function Conversations() {
   const navigate = useNavigate(),
     csvInstance = useRef(),
-    account = useAccount(),
     // [self, setSelf] = useState({}),
     [conversations, setConversations] = useState([]),
     [csvData, setCsvData] = useState([]),
@@ -28,20 +27,6 @@ export default function Conversations() {
       .then((result) => setConversations(result.data.conversations))
       .catch();
   }, []);
-
-  /*useEffect(() => {
-
-    async function fetchData() {
-      if (!localStorage.getItem("metchat-user")) navigate("/");
-      /*
-      else {
-        const data = await JSON.parse(localStorage.getItem("metchat-user"));
-        setSelf(data);
-      }
-      
-    }
-    fetchData();
-  }, [navigate]);*/
 
   // get conversations
   /*useEffect(() => {
