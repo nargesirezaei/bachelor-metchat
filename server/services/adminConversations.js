@@ -1,6 +1,8 @@
 const Conversations = require("../models/conversations");
 const User = require("../models/user");
 const Messages = require("../models/messages");
+const Interests = require("../models/interests");
+const UserInterests = require("../models/user-interests");
 
 module.exports = {
   getAll: async (req, res, next) => {
@@ -58,5 +60,58 @@ module.exports = {
       .catch((err) => {
         return res.status(500).send("Failed to load messages" + err);
       });
+  },
+  allUsers: async (req, res) => {
+    User.find({}, (err, result) => {
+      if (err) return res.send({ status: false, message: "data base error" });
+      res.send({ status: true, users: result });
+    });
+  },
+
+  deleteUser: async (req, res) => {
+    User.findOneAndRemove({ _id: req.body.userId }, (err, result) => {
+      if (err)
+        return res.send({
+          status: false,
+          message: "data base error",
+        });
+      if (!result)
+        return res.send({
+          status: true,
+          message: "user not exists!",
+        });
+
+      res.send({ message: "user removed" });
+    });
+  },
+
+  getUser: async (req, res) => {
+    try {
+      const userId = req.body.userId;
+      const user = await User.findOne({ _id: userId });
+
+      const userInterests = await UserInterests.find({
+        userId: userId,
+      }).populate("interestId", "title");
+
+      return res.send({
+        status: true,
+        user: {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          password: user.password,
+          userInterests: userInterests.map(
+            (interest) => interest.interestId.title
+          ),
+          bio: user.bio,
+          avatar: user.avatar,
+          allowEdit: req.body.contactId ? false : true,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+      return res.send({ status: false, message: "database error" });
+    }
   },
 };
