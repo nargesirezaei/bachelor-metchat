@@ -10,8 +10,11 @@ import { adminApi } from "../api/admin-api";
 import { Contact } from "../components/contact";
 import { Flex } from "../components/Flex";
 import { conversationApi } from "../api/conversation-api";
+import { useAccount } from "../app/account-context";
 
 export default function Conversations() {
+  const account = useAccount();
+
   const csvInstance = useRef(),
     [conversations, setConversations] = useState([]),
     [messages, setMessages] = useState(""),
