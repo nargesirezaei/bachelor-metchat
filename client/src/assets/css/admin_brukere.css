@@ -38,56 +38,39 @@
   gap: 1rem;
   align-items: center;
   border-right: #dee1e4 1px solid;
+  border-bottom: #dee1e4 1px solid;
+}
+
+@media only screen and (max-width: 1326px) {
+  .user-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 .user-item {
   font-family: "Inter", sans-serif;
+  color: #000000;
   font-weight: 300;
-  font-size: 16px;
-  background-color: #dee1e4;
+  font-size: 1rem;
   padding: 0.5rem;
-  border-radius: 100px;
+  border-radius: 0.5em;
   display: flex;
   align-items: center;
   transition: 0.3s;
 }
-.user-item:hover {
-  border: 2px solid #112d40;
-}
-.user-item:active {
-  background-color: #112d40;
-  color: #fafafa;
-}
-.user-item span {
-  margin-left: 2%;
-}
-.user-item img {
-  height: 2rem;
-  width: 3rem;
-}
 
 /* ---- USER ---- */
 .profile-right {
-  margin: 1rem;
+  margin: 1em;
 }
 
 .user-header {
-  padding-top: 1rem;
-  text-align: center;
   display: flex;
-  align-items: center;
   justify-content: center;
 
   font-family: "Bai Jamjuree", sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
-}
-.user-header span {
-  padding: 0.5rem;
-}
-.user-header img {
-  height: 4rem;
-  width: 5rem;
 }
 
 .user-info {

@@ -63,7 +63,7 @@ function Users() {
           {/* -- List of users -- */}
           <ul className="user-list">
             {users?.map((x, idx) => (
-              <li key={idx}>
+              <li key={idx} className="border shadow mb-1 p-2 user-item">
                 <Contact
                   contact={{ ...x, name: x.firstName + " " + x.lastName }}
                   onSelectContact={(c) => getUser(c)}
@@ -82,6 +82,7 @@ function Users() {
                 name: user?.firstName + " " + user?.lastName,
               }}
               showEmail={false}
+              className={"user-header"}
             />
             <table className="user-info">
               <tbody>
