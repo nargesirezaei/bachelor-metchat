@@ -38,21 +38,26 @@ export const Register = ({ registerFormRef, setModel, model }) => {
         validationSchema={yup.object({
           firstName: yup
             .string()
-            .min(4, "Fornavn må være minst 4 tenger")
-            .required("Required"),
+            .min(2, "Fornavn må være minst 2 tengn")
+            .max(20, "Fornavn kan ikke være mer enn 20 tegn")
+            .required("Må fylles ut"),
           lastName: yup
             .string()
-            .min(4, "Etternavn må være minst 4 tenger")
-            .required("Required "),
-          email: yup.string().email("Email is invalid").required(" Required"),
+            .min(2, "Etternavn må være minst 2 tengn")
+            .max(20, "Etternavn kan ikke være mer enn 20 tegn")
+            .required("Må fylles ut"),
+          email: yup
+            .string()
+            .email("E-post er ikke gyldig")
+            .required("Må fylles ut"),
           password: yup
             .string()
-            .required("Required")
-            .min(6, "password-minimum-length-is-6-characters"),
+            .required("Må fylles ut")
+            .min(6, "Passord må være minst 6 tegn"),
           confirmPassword: yup
             .string()
-            .required("Required")
-            .oneOf([yup.ref("password"), null], "passwords-must-match"),
+            .required("Må fylles ut")
+            .oneOf([yup.ref("password"), null], "Passordene må være like"),
         })}
         onSubmit={() =>
           setModel({
