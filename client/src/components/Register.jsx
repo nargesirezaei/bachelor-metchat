@@ -36,10 +36,15 @@ export const Register = ({ registerFormRef, setModel, model }) => {
           confirmPassword: "",
         }}
         validationSchema={yup.object({
-          firstName: yup.string().required("Required"),
-          lastName: yup.string().required("Required "),
-          email: yup.string().required(" Required"),
-
+          firstName: yup
+            .string()
+            .min(4, "Fornavn må være minst 4 tenger")
+            .required("Required"),
+          lastName: yup
+            .string()
+            .min(4, "Etternavn må være minst 4 tenger")
+            .required("Required "),
+          email: yup.string().email("Email is invalid").required(" Required"),
           password: yup
             .string()
             .required("Required")
@@ -96,7 +101,7 @@ export const Register = ({ registerFormRef, setModel, model }) => {
               <Field name="email">
                 {({ field }) => (
                   <input
-                    type="text"
+                    type="email"
                     id="email_reg"
                     placeholder="e-post"
                     {...field}
