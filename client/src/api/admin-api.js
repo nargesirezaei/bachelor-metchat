@@ -9,4 +9,17 @@ export const adminApi = {
 
   getAll: (data) =>
     api.call("post", apiConfig.adminConversationUrl + "/get-all", data),
+
+  getConversation: (conversationId) =>
+    api.call(
+      "get",
+      apiConfig.adminConversationUrl + `/getConversation/${conversationId}`
+    ),
+
+  //delete all conversations
+  deleteAllConversations: () =>
+    api.call(
+      "delete",
+      apiConfig.adminConversationUrl + "/delete-all-conversations"
+    ),
 };
