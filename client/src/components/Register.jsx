@@ -38,12 +38,12 @@ export const Register = ({ registerFormRef, setModel, model }) => {
         validationSchema={yup.object({
           firstName: yup
             .string()
-            .min(2, "Fornavn må være minst 2 tengn")
+            .min(2, "Fornavn må være minst 2 tegn")
             .max(20, "Fornavn kan ikke være mer enn 20 tegn")
             .required("Må fylles ut"),
           lastName: yup
             .string()
-            .min(2, "Etternavn må være minst 2 tengn")
+            .min(2, "Etternavn må være minst 2 tegn")
             .max(20, "Etternavn kan ikke være mer enn 20 tegn")
             .required("Må fylles ut"),
           email: yup
