@@ -101,26 +101,32 @@ export default function Conversations() {
           {/*<!-- Search bar -->
           <!-- Retrived from https://mdbootstrap.com/docs/standard/forms/search/-->*/}
           <div className="search-group input-group rounded">
-            <input
-              type="search"
-              className="form-control rounded"
-              placeholder="Søk"
-              aria-label="Search"
-              aria-describedby="search-addon"
-            />
-            <button type="button" className="btn btn-outline-primary">
-              søk
-            </button>
-            <p>
-              Sorter etter:
-              <select defaultValue={""}>
-                <option value="" disabled hidden>
-                  Velg
-                </option>
-                <option value="dato">Dato</option>
-                <option value="navn">Navn</option>
-              </select>
-            </p>
+            <div>
+              <input
+                type="search"
+                className="form-control rounded"
+                placeholder="Søk"
+                aria-label="Search"
+                aria-describedby="search-addon"
+              />
+            </div>
+            <div>
+              <button type="button" className="btn btn-outline-primary">
+                søk
+              </button>
+            </div>
+            <div>
+              <p>
+                Sorter etter:
+                <select defaultValue={""}>
+                  <option value="" disabled hidden>
+                    Velg
+                  </option>
+                  <option value="dato">Dato</option>
+                  <option value="navn">Navn</option>
+                </select>
+              </p>
+            </div>
           </div>
         </section>
 

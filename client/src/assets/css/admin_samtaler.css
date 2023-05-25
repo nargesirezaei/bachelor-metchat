@@ -16,6 +16,12 @@ For now it's specified so it doesn't affect styling of other pages. */
   gap: 16px;
   font-family: "Bai Jamjuree", sans-serif;
 }
+@media only screen and (max-width: 428px) {
+  .search-group {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 .search-group input,
 .search-group select {
@@ -56,6 +62,16 @@ For now it's specified so it doesn't affect styling of other pages. */
   font-weight: 500;
   background-color: #112d40;
   color: #ffffff;
+}
+
+@media only screen and (max-width: 428px) {
+  .mb-3 {
+    display: flex;
+    flex-direction: column;
+  }
+  .convo-date {
+    margin-top: 10px;
+  }
 }
 
 .participant {
