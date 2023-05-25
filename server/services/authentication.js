@@ -38,7 +38,6 @@ module.exports = {
             message: "User with that email already exists",
           });
         }
-
         // Create new user
         const user = new User({ firstName, lastName, email, password });
         user
@@ -85,7 +84,6 @@ module.exports = {
           expires: expiry,
           httpOnly: false,
         });
-
         // Send success response with token
         return res.status(200).json({
           message: "Login successful",

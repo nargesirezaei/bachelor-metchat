@@ -25,6 +25,10 @@ export const Register = ({ registerFormRef, setModel, model }) => {
       })
       .catch(() => alert("error!"));
   };
+
+  const nameRegex = /^[a-zA-ZæøåÆØÅ-]+$/;
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
   return (
     <div id="reg" className="pb-5">
       <Formik
@@ -36,18 +40,32 @@ export const Register = ({ registerFormRef, setModel, model }) => {
           confirmPassword: "",
         }}
         validationSchema={yup.object({
-          firstName: yup.string().required("Required"),
-          lastName: yup.string().required("Required "),
-          email: yup.string().required(" Required"),
-
+          firstName: yup
+            .string()
+            .matches(nameRegex, "Fornavn kan kun inneholde bokstaver")
+            .min(2, "Fornavn må være minst 2 tegn")
+            .max(20, "Fornavn kan ikke være mer enn 20 tegn")
+            .required("Må fylles ut"),
+          lastName: yup
+            .string()
+            .matches(nameRegex, "Etternavn kan kun inneholde bokstaver")
+            .min(2, "Etternavn må være minst 2 tegn")
+            .max(20, "Etternavn kan ikke være mer enn 20 tegn")
+            .required("Må fylles ut"),
+          email: yup
+            .string()
+            .email("E-post er ikke gyldig")
+            .matches(emailRegex, "E-post er ikke gyldig")
+            .required("Må fylles ut"),
           password: yup
             .string()
-            .required("Required")
-            .min(6, "password-minimum-length-is-6-characters"),
+            .required("Må fylles ut")
+            .min(6, "Passord må være minst 6 tegn")
+            .max(20, "Passord kan ikke være mer enn 20 tegn"),
           confirmPassword: yup
             .string()
-            .required("Required")
-            .oneOf([yup.ref("password"), null], "passwords-must-match"),
+            .required("Må fylles ut")
+            .oneOf([yup.ref("password"), null], "Passordene må være like"),
         })}
         onSubmit={() =>
           setModel({
@@ -96,7 +114,7 @@ export const Register = ({ registerFormRef, setModel, model }) => {
               <Field name="email">
                 {({ field }) => (
                   <input
-                    type="text"
+                    type="email"
                     id="email_reg"
                     placeholder="e-post"
                     {...field}

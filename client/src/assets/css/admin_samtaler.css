@@ -16,6 +16,12 @@ For now it's specified so it doesn't affect styling of other pages. */
   gap: 16px;
   font-family: "Bai Jamjuree", sans-serif;
 }
+@media only screen and (max-width: 428px) {
+  .search-group {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 .search-group input,
 .search-group select {
@@ -57,6 +63,21 @@ For now it's specified so it doesn't affect styling of other pages. */
   background-color: #112d40;
   color: #ffffff;
 }
+@media only screen and (max-width: 820px) {
+  .mb-3 {
+    display: flex;
+    flex-direction: column;
+  }
+  .convo-date {
+    margin-top: 10px;
+  }
+  .master-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 .participant {
   font-family: "Inter", sans-serif;
@@ -83,12 +104,12 @@ For now it's specified so it doesn't affect styling of other pages. */
   border: none;
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  font-size: 1em;
+  font-size: 0.8em;
   line-height: 1;
 
   padding: 0.5em 1em;
   margin-top: 1em;
-  margin-left: 1em;
+  margin-left: 0.8em;
   border-radius: 0.3em;
 }
 

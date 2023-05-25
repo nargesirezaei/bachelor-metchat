@@ -16,22 +16,15 @@ export const Login = () => {
           savePassword: "",
         }}
         validationSchema={yup.object({
-          email: yup.string().required("Required"),
-          password: yup.string().required("Required"),
+          email: yup.string().required("Må fylles ut"),
+          password: yup.string().required("Må fylles ut"),
         })}
         onSubmit={(values) =>
           account
             .login(values.email, values.password)
             //må slette dette senere
             .then(() => navigate("/kontakter"))
-            /*.then((result) => {
-              console.log(result);
-              if (result.data.isAdmin) navigate("/admin/samtaler");
-              else {
-                navigate("/kontakter");
-              }
-            })*/
-            .catch(() => alert("Error in Login"))
+            .catch(() => alert("Feil i innlogging"))
         }
       >
         {({ errors, touched }) => (
