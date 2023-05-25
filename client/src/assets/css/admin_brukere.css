@@ -92,6 +92,10 @@
 .user-info-value {
   background-color: #dee1e4;
 }
+.interest {
+  margin-right: 0.2rem;
+  margin-bottom: 0.2rem;
+}
 
 /* BUTTONS FOR VIEWING AND DOWNLOADING CONVERSATIONS */
 .btn-coanversations button {

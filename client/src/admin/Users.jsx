@@ -100,7 +100,10 @@ function Users() {
                     <Flex className="flex-wrap" style={{ maxWidth: 1000 }}>
                       {user?.userInterests?.map((x) => {
                         return (
-                          <span key={x} className="p-2 border rounded shadow">
+                          <span
+                            key={x}
+                            className="p-1 border rounded shadow interest"
+                          >
                             {x}
                           </span>
                         );
