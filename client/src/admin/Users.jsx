@@ -42,7 +42,7 @@ function Users() {
       <AdminNav />
 
       <div className="row admin-users">
-        <div className="col-sm-6">
+        <div className="col-lg-6">
           <h1>Brukere</h1>
 
           {/* -- Search bar --
@@ -73,7 +73,7 @@ function Users() {
           </ul>
         </div>
 
-        <div className="col-sm-5 profile-right">
+        <div className="col-lg-4 profile-right">
           {/* -- User profile -- */}
           <div className="user">
             <Contact
