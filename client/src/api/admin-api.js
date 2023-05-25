@@ -22,4 +22,12 @@ export const adminApi = {
       "delete",
       apiConfig.adminConversationUrl + "/delete-all-conversations"
     ),
+  getAllUsers: () =>
+    api.call("post", apiConfig.adminConversationUrl + "/all-users"),
+
+  deleteUser: (data) =>
+    api.call("post", apiConfig.adminConversationUrl + "/delete-user", data),
+
+  getUser: (data) =>
+    api.call("post", apiConfig.adminConversationUrl + "/get-user", data),
 };

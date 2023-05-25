@@ -22,5 +22,10 @@ app.get(
   verifyaccess,
   adminConversations.getConversation
 );
+app.post(`/all-users`, verifyaccess, adminConversations.allUsers);
+
+app.post(`/delete-user`, verifyaccess, adminConversations.deleteUser);
+
+app.post(`/get-user`, verifyaccess, adminConversations.getUser);
 
 module.exports = app;
