@@ -35,13 +35,13 @@ Use this link to install: [Node.js](https://nodejs.org/en)
 
 ## admin :
 
-For å logge inn som admin og få tilgang til admin-sidene, følg disse trinnene:
+To log in as an admin and access the admin pages, follow these steps:
 
-    1. Åpne nettleseren din og naviger til innloggingsiden for applikasjonen.
-    2. Skriv inn brukernavnet og passordet som er tilordnet administratoren i          applikasjonens database.
-    3. Klikk på "Logg inn" eller lignende knapp for å sende innloggingsforespørselen.
-    4. Når du er logget inn som admin, vil du bli videresendt til hovedsiden av applikasjonen.
-    5. I nettleserens adressefelt, endre URL-en fra noe slikt som http://localhost:3000/kontakter til http://localhost:3000/admin/samtaler.
-    6. Trykk Enter eller oppdater siden for å laste inn admin-sidene.
+    1. Open your web browser and navigate to the login page of the application.
+    2. Enter the username and password assigned to the administrator in the application's database.
+    3. Click on the "Log in"  to submit the login request
+    4. When you are logged in as an admin, you will be redirected to the main page of the  application
+    5. In the browser's address bar, change the URL from: like http://localhost:3000/kontakter to http://localhost:3000/admin/samtaler.
+    6. Press Enter or refresh the page to load the admin pages.
 
 ## Video Presentations of project:
