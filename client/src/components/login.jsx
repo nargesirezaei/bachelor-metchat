@@ -22,6 +22,7 @@ export const Login = () => {
         onSubmit={(values) =>
           account
             .login(values.email, values.password)
+            //må slette dette senere
             .then(() => navigate("/kontakter"))
             .catch(() => alert("Feil i innlogging"))
         }
