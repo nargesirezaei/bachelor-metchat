@@ -44,7 +44,7 @@ function Users() {
 
           {/* -- Search bar --
         -- Retrived from https://mdbootstrap.com/docs/standard/forms/search/-- */}
-          <div className="search-group input-group rounded">
+          {/*<div className="search-group input-group rounded">
             <input
               type="search"
               className="form-control rounded"
@@ -55,7 +55,7 @@ function Users() {
             <button type="button" className="btn btn-outline-primary">
               søk
             </button>
-          </div>
+          </div>*/}
 
           {/* -- List of users -- */}
           <ul className="user-list">
