@@ -46,7 +46,7 @@ function Users() {
       <AdminNav />
 
       <div className="row admin-users">
-        <div className="col-sm-6">
+        <div className="col-lg-6">
           <h1>Brukere</h1>
 
           {/* -- Search bar --
@@ -68,7 +68,7 @@ function Users() {
           {/* -- List of users -- */}
           <ul className="user-list">
             {users?.map((x, idx) => (
-              <li key={idx}>
+              <li key={idx} className="border shadow mb-1 p-2 user-item">
                 <Contact
                   contact={{ ...x, name: x.firstName + " " + x.lastName }}
                   onSelectContact={(c) => getUser(c)}
@@ -78,7 +78,7 @@ function Users() {
           </ul>
         </div>
 
-        <div className="col-sm-5 profile-right">
+        <div className="col-lg-4 profile-right">
           {/* -- User profile -- */}
           <div className="user">
             <Contact
@@ -87,6 +87,7 @@ function Users() {
                 name: user?.firstName + " " + user?.lastName,
               }}
               showEmail={false}
+              className={"user-header"}
             />
 
             <table className="user-info">
