@@ -1,11 +1,8 @@
 import AdminNav from "../components/AdminNav";
-import dummyProfile from "../assets/img/profile.svg";
 import { adminApi } from "../api/admin-api";
 import React, { useEffect, useState } from "react";
 import { Contact } from "../components/contact";
 import { Flex } from "../components/Flex";
-import { Interesser } from "../components/interesser";
-import { useAccount } from "../app/account-context";
 
 function Users() {
   const [users, setUsers] = useState();
@@ -116,14 +113,14 @@ function Users() {
           </div>
 
           {/* -- Buttons for conversations -- */}
-          <div className="btn-coanversations">
+          {/* <div className="btn-coanversations">
             <button>Se samtaler</button>
             <button>Last ned samtaler</button>
-          </div>
+          </div>*/}
           {/* -- Button for deleting user -- */}
-          <button className="del-user" onClick={() => deleteUser(user._id)}>
+          {/*<button className="del-user" onClick={() => deleteUser(user._id)}>
             Slett bruker
-          </button>
+          </button>*/}
         </div>
       </div>
     </>

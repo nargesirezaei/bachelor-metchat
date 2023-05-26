@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
-import { contactRoute, conversationRoute, messageRoute } from "../APIRoutes";
 
 import AdminNav from "../components/AdminNav";
-import dummyProfile from "../assets/img/profile.svg";
 import { adminApi } from "../api/admin-api";
 import { Contact } from "../components/contact";
 import { Flex } from "../components/Flex";
@@ -14,7 +10,6 @@ import { conversationApi } from "../api/conversation-api";
 export default function Conversations() {
   const csvInstance = useRef(),
     [conversations, setConversations] = useState([]),
-    [messages, setMessages] = useState(""),
     [csvData, setCsvData] = useState([]),
     [csvFilename, setCsvFilename] = useState([]);
 
@@ -100,7 +95,7 @@ export default function Conversations() {
 
           {/*<!-- Search bar -->
           <!-- Retrived from https://mdbootstrap.com/docs/standard/forms/search/-->*/}
-          <div className="search-group input-group rounded">
+          {/*<div className="search-group input-group rounded">
             <input
               type="search"
               className="form-control rounded"
@@ -121,7 +116,7 @@ export default function Conversations() {
                 <option value="navn">Navn</option>
               </select>
             </p>
-          </div>
+          </div>*/}
         </section>
 
         {/*<!-- List of conversetions -->*/}
@@ -203,7 +198,7 @@ export default function Conversations() {
           </div>
         </div>
 
-        <div className="master-buttons">
+        {/* <div className="master-buttons">
           <button className="btn-download-all">Last ned alle</button>
           <button
             className="btn-delete-all"
@@ -218,7 +213,7 @@ export default function Conversations() {
           >
             Slett alle
           </button>
-        </div>
+        </div>*/}
       </div>
     </>
   );
