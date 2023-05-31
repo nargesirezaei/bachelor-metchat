@@ -37,7 +37,7 @@ module.exports = {
       // req.userId = decoded.userId; //{userId:user._id}
       const token = req.cookies.jwt_token;
       const user = JSON.parse(atob(token.split(".")[1]));
-      console.log("user", user);
+
       req.userId = user.userId;
       next();
     } catch (error) {

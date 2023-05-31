@@ -9,7 +9,6 @@ module.exports = {
 
       User.findOne({ _id: user.userId })
         .then((user) => {
-          console.log("user", user);
           return res.status(200).json({
             token,
             expiry: 60,
@@ -90,7 +89,7 @@ module.exports = {
           token,
           expiry: expiry,
           userName: user.email,
-          //isAdmin: user.isAdmin,
+          isAdmin: user.isAdmin,
           displayName: user.firstName + " " + user.lastName,
         });
       })

@@ -19,15 +19,16 @@ module.exports = {
         const conversations = await Conversations.find({})
           .populate("fromUserId", "firstName lastName")
           .populate("toUserId", "firstName lastName");
-
+        console.log("conversations", conversations);
         const users = conversations.reduce((acc, conv) => {
-          acc[conv.fromUserId._id] = conv.fromUserId;
-          acc[conv.toUserId._id] = conv.toUserId;
+          acc[conv.fromUserId?._id] = conv.fromUserId;
+          acc[conv.toUserId?._id] = conv.toUserId;
           return acc;
         }, {});
+        console.log("users", users);
 
         const usersList = Object.values(users);
-
+        console.log("usersList", usersList);
         return res.send({
           users: usersList,
           conversations,
@@ -35,6 +36,7 @@ module.exports = {
           message: null,
         });
       } catch (error) {
+        console.log("error", error);
         // Handle error
         return res.status(500).send({
           status: false,

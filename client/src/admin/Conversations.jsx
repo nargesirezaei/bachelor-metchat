@@ -140,9 +140,9 @@ export default function Conversations() {
                       <Contact
                         contact={{
                           name:
-                            x.fromUserId.firstName +
+                            x.fromUserId?.firstName +
                             " " +
-                            x.fromUserId.lastName,
+                            x.fromUserId?.lastName,
                         }}
                         showEmail={false}
                         className="mb-0"
@@ -152,7 +152,7 @@ export default function Conversations() {
                       <Contact
                         contact={{
                           name:
-                            x.toUserId.firstName + " " + x.toUserId.lastName,
+                            x.toUserId?.firstName + " " + x.toUserId?.lastName,
                         }}
                         showEmail={false}
                         className="m-0"

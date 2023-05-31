@@ -23,7 +23,11 @@ export const Login = () => {
           account
             .login(values.email, values.password)
             //må slette dette senere
-            .then(() => navigate("/kontakter"))
+            .then((result) => {
+              console.log("result", result);
+              if (result.data?.isAdmin) navigate("/admin/samtaler");
+              else navigate("/kontakter");
+            })
             .catch(() => alert("Feil i innlogging"))
         }
       >
