@@ -36,9 +36,10 @@ Use this link to install: [Node.js](https://nodejs.org/en)
 
 To log in as an admin and access the admin pages, follow these steps:
 
-    1. Open your web browser and navigate to the login page of the application.
-    2. Enter the username and password assigned to the administrator in the application's database.
+    1. Enter the username and password assigned to the administrator in the application's database
+          .  Username: nargesirezaei@gmail.com
+          .  Password: Khodam122
+
+    2. Click on the "Log in" button to submit the login request.
     3. Click on the "Log in"  to submit the login request
     4. When you are logged in as an admin, you will be redirected to the main page of the  application
-    5. In the browser's address bar, change the URL from: like http://localhost:3000/kontakter to http://localhost:3000/admin/samtaler.
-    6. Press Enter or refresh the page to load the admin pages.
