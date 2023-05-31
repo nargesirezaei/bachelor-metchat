@@ -112,10 +112,7 @@ function Users() {
             </table>
           </div>
           {/* -- Buttons for conversations -- */}
-          <div className="btn-coanversations">
-            <button>Se samtaler</button>
-            <button>Last ned samtaler</button>
-          </div>
+          <div className="btn-coanversations"></div>
           {/* -- Button for deleting user -- */}
           <button className="del-user" onClick={() => deleteUser(user._id)}>
             Slett bruker
