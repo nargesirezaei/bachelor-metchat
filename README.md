@@ -41,5 +41,4 @@ To log in as an admin and access the admin pages, follow these steps:
           .  Password: Strong123
 
     2. Click on the "Log in" button to submit the login request.
-    3. Click on the "Log in"  to submit the login request
-    4. When you are logged in as an admin, you will be redirected to the main page of the  application
+    3. When you are logged in as an admin, you will be redirected to the main page of the  application
